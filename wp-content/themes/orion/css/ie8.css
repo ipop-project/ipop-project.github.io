@@ -1,0 +1,4 @@
+div.module {
+	box-shadow:#ccc 2px 2px 4px;
+	behavior: url(wp-content/themes/orion/css/PIE.htc);
+}
