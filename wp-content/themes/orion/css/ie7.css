@@ -1,0 +1,11 @@
+
+ul#postlist li.pl-item {
+	border-bottom: 0px solid none;
+}
+#st_slider_nav {
+	top: -10px;
+}
+div.module {
+	box-shadow:#ccc 2px 2px 4px;
+	behavior: url(wp-content/themes/orion/css/PIE.htc);
+}
