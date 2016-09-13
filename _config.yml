@@ -1,3 +1,2 @@
 markdown: redcarpet
-baseurl: /ipop-new
 exclude: ['README.md']
