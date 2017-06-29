@@ -22,16 +22,16 @@
 main:
   - title: Latest Release
     url: /graple-v3.1.0-released/
-  - title: Guide
-    url: /quick-guide/
+  - title: Documentations
+    url: /documentations/
   - title: About
     url: /about/
   - title: Team
     url: /team/
   - title: Contact
     url: /contact/
-  - title: Sister Projects
-    url: /sisters/
+  - title: PersoNet
+    url: /personet/
   - title: Publications
     url: /publications/
   - title: Mailing List

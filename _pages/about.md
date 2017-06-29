@@ -1,6 +1,6 @@
 ---
 permalink: /about/
-title: "About GRAPLE"
+title: "About IPOP"
 header:
   overlay_image: /assets/images/header.jpg
   overlay_filter: rgba(127, 0, 255, 0.75)
