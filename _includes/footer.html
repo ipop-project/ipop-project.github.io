@@ -1,0 +1,33 @@
+<!-- <div class="page__footer-follow">
+  <ul class="social-icons">
+    {% if site.data.ui-text[site.locale].follow_label %}
+      <li><strong>{{ site.data.ui-text[site.locale].follow_label }}</strong></li>
+    {% endif %}
+    {% if site.twitter.username %}
+      <li><a href="https://twitter.com/{{ site.twitter.username }}"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    {% endif %}
+    {% if site.facebook.username %}
+      <li><a href="https://facebook.com/{{ site.facebook.username }}"><i class="fa fa-fw fa-facebook-square" aria-hidden="true"></i> Facebook</a></li>
+    {% endif %}
+    {% if site.author.github %}
+      <li><a href="http://github.com/{{ site.author.github }}"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    {% endif %}
+    {% if site.author.bitbucket %}
+      <li><a href="http://bitbucket.org/{{ site.author.bitbucket }}"><i class="fa fa-fw fa-bitbucket" aria-hidden="true"></i> Bitbucket</a></li>
+    {% endif %} -->
+    <!-- <li><a href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ '/feed.xml' | absolute_url }}{% endif %}"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].feed_label | default: "Feed" }}</a></li> -->
+<!--  </ul>
+</div> --> 
+
+<div class="page__footer-copyright three-fourth">
+  <img src="{{ site.url }}{{ site.baseurl}}/assets/images/nsf_small.png" class="padding-bottom-right float-left" />GRAPLE is an inter-disciplinary collaboration between computer scientists and lake modelers with the <a href="http://www.gleon.org/" rel="nofollow" target="_blank">GLEON</a> Research and <a href="http://www.pragma-grid.net/" rel="nofollow" target="_blank">PRAGMA</a> Lake Expedition supported by PRAGMA award (NSF OCI-1234983).
+</div>
+
+<div class="page__footer-copyright last-fourth">
+  <div>
+    <a href="{{ site.url }}{{ site.baseurl }}/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="{{ site.url }}{{ site.baseurl }}/mailinglist">Mailing List</a> | <a href="{{ site.url }}{{ site.baseurl }}/sitemap">Sitemap</a><br />
+    <div>{{ site.data.ui-text[site.locale].powered_by | default: "Powered by" }} <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
+    &copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }} - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
+    </div>
+  </div>
+</div>

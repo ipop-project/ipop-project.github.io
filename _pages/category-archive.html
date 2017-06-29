@@ -1,0 +1,20 @@
+---
+layout: archive
+permalink: /categories/
+title: "Posts by Category"
+header:
+  overlay_image: /assets/images/header.jpg
+  overlay_filter: rgba(0, 127, 255, 0.75)
+sidebar:
+  nav: "sidebar"
+---
+
+{% include group-by-array collection=site.posts field="categories" %}
+
+{% for category in group_names %}
+  {% assign posts = group_items[forloop.index0] %}
+  <h2 id="{{ category | slugify }}" class="archive__subtitle">{{ category }}</h2>
+  {% for post in posts %}
+    {% include archive-single.html %}
+  {% endfor %}
+{% endfor %}

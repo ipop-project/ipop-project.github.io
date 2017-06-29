@@ -1,0 +1,111 @@
+# example navigation
+#foo:
+#  - title: "Parent Link 1"
+#    url: /parent-1-page-url/
+#    children:
+#      - title: "Child Link 1"
+#        url: /child-1-page-url/
+#      - title: "Child Link 2"
+#        url: /child-2-page-url/
+#  - title: "Parent Link 2"
+#    url: /parent-2-page-url/
+#    children:
+#      - title: "Child Link 1"
+#        url: /child-1-page-url/
+#      - title: "Child Link 2"
+#        url: /child-2-page-url/
+#      - title: "Child Link 3"
+#        url: /child-3-page-url/
+
+
+# main links
+main:
+  - title: Latest Release
+    url: /graple-v3.1.0-released/
+  - title: Guide
+    url: /quick-guide/
+  - title: About
+    url: /about/
+  - title: Team
+    url: /team/
+  - title: Contact
+    url: /contact/
+  - title: Sister Projects
+    url: /sisters/
+  - title: Publications
+    url: /publications/
+  - title: Mailing List
+    url: /mailinglist/
+  - title: Gallery
+    url: /gallery/
+  - title: Sponsors
+    url: /sponsors/
+
+
+# sidebar links
+sidebar:
+ - title: Getting Started
+   children:
+     - title: Quick Guide
+       url: /quick-guide/
+     - title: GRAPLEr v3.1.0
+       url: /graple-v3.1.0-released/
+ - title: Categories
+   children:
+     - title: Documents
+       url: /categories/#documents
+     - title: News
+       url: /categories/#news
+     - title: Releases
+       url: /categories/#releases
+ - title: Repositories
+   children:
+     - title: GRAPLEr
+       url: https://github.com/GRAPLE/GRAPLEr
+     - title: GWS
+       url: https://github.com/GRAPLE/GWS
+     - title: GEMT
+       url: https://github.com/GRAPLE/GEMT
+
+## sidebar navigation list sample
+#sidebar-sample:
+#  - title: "Parent Page A"
+#    children:
+#      - title: "Child Page A1"
+#        url: /
+#      - title: "Child Page A2"
+#        url: /
+#      - title: "Child Page A3"
+#        url: /
+#      - title: "Child Page A4"
+#        url: /
+#  - title: "Parent Page B"
+#    children:
+#      - title: "Child Page B1"
+#        url: /
+#      - title: "Child Page B2"
+#        url: /
+#      - title: "Child Page B3"
+#        url: /
+#      - title: "Child Page B4"
+#        url: /
+#      - title: "Child Page B5"
+#        url: /
+#  - title: "Parent Page C"
+#    children:
+#      - title: "Child Page C1"
+#        url: /
+#      - title: "Child Page C2"
+#        url: /
+#      - title: "Child Page C3"
+#        url: /
+#      - title: "Child Page C4"
+#        url: /
+#      - title: "Child Page C5"
+#        url: /
+#  - title: "Parent Page D"
+#    children:
+#      - title: "Child Page D1"
+#        url: /
+#      - title: "Child Page D2"
+#        url: /

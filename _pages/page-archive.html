@@ -1,0 +1,14 @@
+---
+layout: archive
+title: "Page Archive"
+permalink: /page-archive/
+header:
+  overlay_image: /assets/images/header.jpg
+  overlay_filter: rgba(0, 127, 255, 0.75)
+sidebar:
+  nav: "sidebar"
+---
+
+{% for post in site.pages %}
+  {% include archive-single.html %}
+{% endfor %}
