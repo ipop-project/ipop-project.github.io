@@ -20,52 +20,88 @@
 
 # main links
 main:
-  - title: Latest Release
-    url: /graple-v3.1.0-released/
-  - title: Documentations
-    url: /documentations/
   - title: About
     url: /about/
-  - title: Team
-    url: /team/
+  - title: Learn
+    url: /videos/
+  - title: Use
+    url: /use/
+  - title: Contribute
+    url: /contribute/
   - title: Contact
     url: /contact/
-  - title: PersoNet
+  - title: PersoNET
     url: /personet/
-  - title: Publications
-    url: /publications/
-  - title: Mailing List
-    url: /mailinglist/
-  - title: Gallery
-    url: /gallery/
+
+# sidebar links
+about:
+  - title: Project History
+    url: /history/
+  - title: Usage Scenarios
+    url: /usage/
+  - title: IPOP Users
+    url: /users/
   - title: Sponsors
     url: /sponsors/
 
 
-# sidebar links
-sidebar:
- - title: Getting Started
+learn:
+ - title: Architecture
    children:
-     - title: Quick Guide
-       url: /quick-guide/
-     - title: GRAPLEr v3.1.0
-       url: /graple-v3.1.0-released/
- - title: Categories
+     - title: TinCan Architecture
+       url: /tincan/
+     - title: Controllers Architecture
+       url: /controllers/
+     - title: Controller-TinCan API
+       url: https://github.com/ipop-project/ipop-project.github.io/wiki/Controller-API
+ - title: XMPP/OSN Bindings
+   url: /xmpp-osn-bindings/
+ - title: NAT Traversal
+   url: /nat-traversal/
+ - title: Controllers
    children:
-     - title: Documents
-       url: /categories/#documents
-     - title: News
-       url: /categories/#news
-     - title: Releases
-       url: /categories/#releases
- - title: Repositories
-   children:
-     - title: GRAPLEr
-       url: https://github.com/GRAPLE/GRAPLEr
-     - title: GWS
-       url: https://github.com/GRAPLE/GWS
-     - title: GEMT
-       url: https://github.com/GRAPLE/GEMT
+     - title: GroupVPN
+       url: /groupvpn/
+     - title: SocialVPN
+       url: /socialvpn/
+ - title: Publications
+   url: /publications/
+ - title: IPOP WhitePaper
+   url: /assets/docs/IPOP-WhitePaper-1605.pdf
+ - title: videos
+   url: /videos/
+
+
+use:
+  - title: IPOP Tutorial
+    url: https://github.com/ipop-project/ipop-project.github.io/wiki/All-inclusive-IPOP-GroupVPN-Tutorial
+  - title: Downloads
+    url: https://github.com/ipop-project/downloads/releases
+  - title: Installing IPOP
+    url: https://github.com/ipop-project/ipop-project.github.io/wiki/Installation
+  - title: Building IPOP
+    url: https://github.com/ipop-project/ipop-project.github.io/wiki/Building-the-Code
+  - title: FAQs
+    url: https://github.com/ipop-project/ipop-project.github.io/wiki/FAQs
+  - title: Known Issues
+    url: https://github.com/ipop-project/ipop-project.github.io/wiki/Known-Issues
+
+
+contribute:
+  - title: Code Repository
+    url: http://github.com/ipop-project
+  - title: Reporting Issue
+    url: https://github.com/ipop-project/ipop-tincan/issues
+  - title: Submitting Code
+    url: https://github.com/ipop-project/ipop-project.github.io/wiki/How-to-Contribute
+
+
+contact:
+  - title: Mailing List
+    url: /mailinglist/
+  - title: Team
+    url: /team/
+
 
 ## sidebar navigation list sample
 #sidebar-sample:

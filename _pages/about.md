@@ -1,37 +1,41 @@
 ---
+layout: single
 permalink: /about/
 title: "About IPOP"
 header:
   overlay_image: /assets/images/header.jpg
   overlay_filter: rgba(127, 0, 255, 0.75)
-excerpt: "Distributed Computing Made Easy for Lake Ecology Modeling"
+excerpt: "Open-source User-centric Software Virtual Network"
+sidebar:
+  nav: "about"
 ---
-GRAPLEr is an R-based open-source software product of GRAPLE, the [GLEON] Research and [PRAGMA] Lake Expedition.
+## What is IPOP?
 
-GRAPLEr brings the power of distributed computing to the fingertips of lake ecology modelers. While it is relatively easy to run one lake model simulation on a personal computer, it is more difficult to execute multiple simulations, which requires additional computing and human resources. To overcome this problem, GRAPLEr, a distributed computing system, integrates and applies overlay virtual network, high-throughput computing, and Web service technologies. GRAPLEr allows submission of hundreds or thousands of General Lake Model (GLM) simulations, runs these lake model simulations efficiently, and retrieves model output.
+IPOP (IP-Over-P2P) is an open-source user-centric software virtual network allowing end users to define and create their own virtual private networks (VPNs). IPOP virtual networks provide end-to-end tunneling of IP or Ethernet over “TinCan” links setup and managed through a control API to create various software-defined VPN overlays.
 
-## Using GRAPLE\*
+## Architecture
 
-GRAPLEr, available on GitHub, is installed on a personal computer and integrated into the R development environment. It acts as a proxy to translate user commands written in R into Web service calls and arranges data between the client and Web service. A GLM simulation is specified by a set of input files (csv files) and model parameters (nml file). The required input files consist of time-series meteorological and inflow data. An additional outflow csv file can be included. Based on inputs, GRAPLEr either (A) performs a batch job which submits multiple preconfigured simulations as a job or (B1) performs a linear sweep or (B2) random sweep which generates multiple simulation input files, as specified, for submission:
+IPOP’s architecture and design have evolved since the project’s inception from one based on a structured P2P library (Brunet) connecting all peers into a global overlay, to the current design based on TinCan links connecting users to trusted peers (e.g. from online social networks) through mediation of a decoupled controller. At its core, IPOP leverages existing technologies (Jingle/WebRTC) and standards (STUN, TURN, XMPP) to tunnel IP packets over P2P links between computers – even when they are behind firewalls and/or Network Address Translators (NATs).
 
-![Slide1](../assets/images/Slide1.jpg)
+## Use Cases
 
-The batch job or option A requires multiple simulation folders with required meteorological, inflow, and parameter files:
+IPOP is useful in many applications where you need virtual networks:
 
-![Slide2](../assets/images/Slide2.jpg)
+### Cloud computing
 
-The linear or random sweep jobs B require a single set of baseline meteorological, inflow, and parameter files and a job description file (csv file) specifying constant or random distribution offsets to input variables within the meteorological and inflow files:
+IPOP GroupVPN brings together VMs distributed over multiple providers into virtual private clusters that can run unmodified platforms, services and applications.
 
-![Slide3](../assets/images/Slide3.jpg)
+### Mobile computing
 
-![Slide4](../assets/images/Slide4.jpg)
+IPOP SocialVPN can seamlessly connect Android mobile devices to cloud instances or other  devices for computation off-loading and private data sharing.
 
-The job description file specifies the file (met.csv or inflow.csv) to be modified, number of samples or iterations, variables, mathematical operation (add, sub, mul, or div), type of distribution (linear, random, uniform, binomial, or Poisson), and range of values. Next, GRAPLEr configures, queues, and runs jobs and consolidates and prepares results for download. The resulting output at the completion of the model run is a netCDF file containing time-series data of lake variables at varying depths.
+### Social networking
 
+IPOP SocialVPN can connect a user’s PC, mobile device and cloud servers to devices of friends in their social network, enabling them to communicate directly and privately with each other to share data, stream media, play video games using existing applications.
 
-<span class="footnote">* Thanks to <i>Amy Hetherington</i> for developing these schematic figures.</span>
+## Unique Features
 
-
-[project EDDIE]: http://cemast.illinoisstate.edu/data-for-students/modules/lake-modeling.shtml
-[GLEON]: http://www.gleon.org/
-[PRAGMA]: http://www.pragma-grid.net/
+- In contrast to typical VPN technologies, which require complex setup, management and a gateway to relay VPN traffic, IPOP is straightforward to configure, because:
+- It runs on existing Internet infrastructure, without requiring any specialized networking infrastructure (e.g. hardware switches/routers, or virtual routers);
+- It uses online social network (OSN) infrastructures to allow users to define their own networks;
+- It seamlessly traverses firewalls, NATs, and create VPN tunnels in a peer-to-peer fashion, avoiding the need for centralized VPN gateways.

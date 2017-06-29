@@ -171,7 +171,7 @@ a, .nav__list .nav__items a, .greedy-nav a:hover {
 
 .greedy-nav a {
   color: #E28F41;
-  margin: 0px 0.6rem;
+  margin: 0px 1rem;
 }
 
 .greedy-nav .visible-links {
@@ -186,7 +186,13 @@ a, .nav__list .nav__items a, .greedy-nav a:hover {
   font-size: .75em;
 }
 
-.margin-low {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+.nav__sub-title {
+  border-top: 1px solid #f2f3f3;
+  border-bottom: none;
+  padding-bottom: 0;
+  font-size: .9em;
+}
+
+.sidebar p, .sidebar li {
+  font-size: .85em;
 }

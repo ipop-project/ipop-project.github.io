@@ -5,6 +5,8 @@ header:
   overlay_image: /assets/images/header.jpg
   overlay_filter: rgba(255, 127, 127, 0.75)
 excerpt: 'IPOP Sponsors'
+sidebar:
+  nav: "about"
 ---
 ![NSF Logo](../assets/images/nsf.png){: .profile-img} This material is based upon work supported in part by the National Science Foundation under Grant No. [1339737] (under the Division of Advanced Cyberinfrastructure’s SI2 program) and [1234983] (SAVI – PRAGMA). Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
 

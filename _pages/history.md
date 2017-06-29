@@ -5,6 +5,8 @@ header:
   overlay_image: /assets/images/header.jpg
   overlay_filter: rgba(255, 127, 127, 0.75)
 excerpt: 'IPOP Project History'
+sidebar:
+  nav: "about"
 ---
 IPOP started as a research project at the University of Florida in 2006. In its first-generation design and implementation, IPOP was built atop structured P2P links managed by the C# [Brunet] library. In its first design, IPOP relied on Brunet’s structured P2P overlay network for peer-to-peer messaging, notifications, NAT traversal, and IP tunneling. The Brunet-based IPOP is still available as [open-source code]; however, IPOP’s architecture and implementation have evolved.
 

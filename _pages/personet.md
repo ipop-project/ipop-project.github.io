@@ -1,10 +1,11 @@
 ---
+layout: splash
 permalink: /personet/
-title: "PersoNet"
+title: "PersoNET"
 header:
   overlay_image: /assets/images/header.jpg
   overlay_filter: rgba(127, 0, 255, 0.75)
-excerpt: ""
+excerpt: "PersoNET"
 ---
 Progress in mobile and cloud computing leads to an ever-increasing number of devices with increasing diversity in capacity, capabilities and usage modalities. Furthermore, the wide adoption of Online Social Networks (OSNs) for user interaction points to a future where applications increasingly demand the ability to communicate among distributed personal devices, and across those of social peers. It is crucial for these devices to communicate with each other not only seamlessly, but also securely. However, the increased number, mobility and diversity of devices pose ever-increasing challenges. Outside of an enterprise environment, users remain typically responsible for managing their own devices which is complex and error-prone. To address these challenges, this project develops PerSoNet, a novel approach based on overlay peer-to-peer (P2P) networks allowing Internet users to seamlessly establish virtual private networks connecting their own personal devices and extending to devices of their trusted peers by leveraging OSNs as a basis for user and device discovery and for the setup of private communication channels.
 

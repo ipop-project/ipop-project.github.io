@@ -198,7 +198,7 @@ defaults:
       path: "_pages"
       type: pages
     values:
-      layout: splash
+      layout: single
       author_profile: false
   # # _docs
   # - scope:
@@ -309,5 +309,5 @@ compress_html:
     envs: development
 
 # Jekyll ExtLinks Plugin
-extlinks:
-  attributes: {rel: nofollow, target: _blank}
+#extlinks:
+#  attributes: {rel: nofollow, target: _blank}

@@ -1,10 +1,12 @@
 ---
 permalink: /publications/
-title: "Documents and Publications"
+title: "Publications"
 header:
   overlay_image: /assets/images/header.jpg
   overlay_filter: rgba(127, 127, 0, 0.75)
-excerpt: "IPOP Documents and Publications"
+excerpt: "IPOP Publications"
+sidebar:
+  nav: "learn"
 ---
 Help IPOP continue to be a successful project by making sure that, if you use IPOP-TinCan code in your research, you reference the project’s web site (ipop-project.org) and the following articles in your publications:
 
@@ -17,11 +19,6 @@ Arijit Ganguly, Abhishek Agrawal, P. Oscar Boykin and Renato Figueiredo. ‘IP o
 Razavi, K, Ion, A, Tato, G, Jeong, K, Figueiredo, RJ, Pierre, G, Kielmann, T, “Kangaroo: A Tenant-Centric Software-Defined Cloud Infrastructure”, IEEE International Conference on Cloud Engineering (IC2E), 2015
 
 Pierre St Juste, Kyuho Jeong, Heungsik Eom, Corey Baker, Renato Figueiredo, ‘TinCan: User-Defined P2P Virtual Network Overlays for Ad-hoc Collaboration‘, ICST Transactions on Collaborative Computing, Volume 14 Issue 2, 08/2014
-
-## IPOP WhitePaper
-
-[IPOP-WhitePaper-1407]  
-This document details the current TinCan-based IPOOP design and implementation.
 
 ## IPOP-Brunet publications
 
@@ -40,4 +37,4 @@ Arijit Ganguly, Abhishek Agrawal, P. Oscar Boykin, Renato Figueiredo. ‘WOW: Se
 Arijit Ganguly, Abhishek Agrawal, P. Oscar Boykin and Renato Figueiredo. ‘IP over P2P: Enabling Self-Configuring Virtual IP Networks for Grid Computing’. In Proceedings of the 20th IEEE International Parallel and Distributed Processing Symposium (IPDPS). Rhodes Island, Greece, 2006.
 
 
-[IPOP-WhitePaper-1407]: http://ipop-project.org/wp-content/uploads/2014/07/IPOP-WhitePaper-1407.pdf
+[IPOP-WhitePaper-1605]: ../assets/docs/IPOP-WhitePaper-1605.pdf

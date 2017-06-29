@@ -5,6 +5,8 @@ header:
   overlay_image: /assets/images/header.jpg
   overlay_filter: rgba(255, 127, 127, 0.75)
 excerpt: 'IPOP Usage Scenarios'
+sidebar:
+  nav: "about"
 ---
 There are various usage scenarios for IPOP-based VPNs that we have encountered; some of the relevant ones are highlighted below. If you are using IPOP in a different scenario, we’d like to hear from you!
 

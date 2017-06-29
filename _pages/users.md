@@ -5,6 +5,8 @@ header:
   overlay_image: /assets/images/header.jpg
   overlay_filter: rgba(255, 127, 127, 0.75)
 excerpt: 'IPOP Users'
+sidebar:
+  nav: "about"
 ---
 * [FutureGrid]
 * [ConPaaS]
