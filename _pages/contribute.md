@@ -1,13 +1,12 @@
 ---
+layout: splash
 permalink: /contribute/
 title: "Contribute"
-header:
-  overlay_image: /assets/images/header.jpg
-  overlay_filter: rgba(0, 127, 127, 0.75)
-excerpt: 'Contribute to IPOP Project'
-sidebar:
-  nav: "contribute"
 ---
+{% include toc %}
+
+# Contribute
+
 We welcome developers to contribute code to the open-source IPOP project, as well as contributions in porting/building executables for various platforms, packaging for different O/S distributions, and documentation.
 
 Our software repository is on GitHub, which many developers are familiar with. We follow a review process – pull requests are thoroughly reviewed by one or more experienced peer developers before being incorporated in the code base. Therefore, we expect code of good quality that is thoroughly tested before a pull request is accepted.
@@ -28,3 +27,20 @@ Laundry list of projects/topics for contributions:
 - Social NAT traversal (STUN/TURN over social peers)
 - Packet capture/injection on OpenvSwitch
 - IPOP supports existing IPv4/IPv6 applications, and enables new ones as well. We are very interested in new, creative applications that layer upon IPOP – in particular, applications that use SocialVPN in mobile device environments.
+
+# Code Repository
+
+[Code Repository - GitHub]
+
+# Reporting Issue
+
+[Reporting Issue - IPOP Wiki]
+
+# Submitting Code
+
+[Submitting Code - IPOP Wiki]
+
+
+[Code Repository - GitHub]: https://github.com/ipop-project
+[Reporting Issue - IPOP Wiki]: https://github.com/ipop-project/ipop-tincan/issues
+[Submitting Code - IPOP Wiki]: https://github.com/ipop-project/ipop-project.github.io/wiki/How-to-Contribute

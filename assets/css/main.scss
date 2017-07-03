@@ -196,3 +196,15 @@ a, .nav__list .nav__items a, .greedy-nav a:hover {
 .sidebar p, .sidebar li {
   font-size: .85em;
 }
+
+.page__hero--overlay .page__title {
+  font-size: 2em;
+}
+
+.page__hero--overlay {
+  padding: 1em 0;
+}
+
+.toc__menu>li:last-child a {
+  border-bottom: 1px solid #f2f3f3;
+}
