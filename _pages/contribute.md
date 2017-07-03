@@ -1,5 +1,4 @@
 ---
-layout: splash
 permalink: /contribute/
 title: "Contribute"
 ---
@@ -30,17 +29,17 @@ Laundry list of projects/topics for contributions:
 
 # Code Repository
 
-[Code Repository - GitHub]
+[Code Repository - GitHub <i class="fa fa-external-link" aria-hidden="true"></i>]
 
 # Reporting Issue
 
-[Reporting Issue - IPOP Wiki]
+[Reporting Issue - IPOP Wiki <i class="fa fa-external-link" aria-hidden="true"></i>]
 
 # Submitting Code
 
-[Submitting Code - IPOP Wiki]
+[Submitting Code - IPOP Wiki <i class="fa fa-external-link" aria-hidden="true"></i>]
 
 
-[Code Repository - GitHub]: https://github.com/ipop-project
-[Reporting Issue - IPOP Wiki]: https://github.com/ipop-project/ipop-tincan/issues
-[Submitting Code - IPOP Wiki]: https://github.com/ipop-project/ipop-project.github.io/wiki/How-to-Contribute
+[Code Repository - GitHub <i class="fa fa-external-link" aria-hidden="true"></i>]: https://github.com/ipop-project
+[Reporting Issue - IPOP Wiki <i class="fa fa-external-link" aria-hidden="true"></i>]: https://github.com/ipop-project/ipop-tincan/issues
+[Submitting Code - IPOP Wiki <i class="fa fa-external-link" aria-hidden="true"></i>]: https://github.com/ipop-project/ipop-project.github.io/wiki/How-to-Contribute

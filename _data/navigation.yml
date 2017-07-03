@@ -23,15 +23,14 @@ main:
   - title: About
     url: /about/
   - title: Learn
-    url: /videos/
+    url: /learn/
   - title: Use
     url: /use/
   - title: Contribute
     url: /contribute/
   - title: Contact
     url: /contact/
-  - title: PersoNET
-    url: /personet/
+
 
 # sidebar links
 about:

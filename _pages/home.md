@@ -1,5 +1,4 @@
 ---
-layout: splash
 permalink: /
 title: "IPOP (IP-Over-P2P)"
 header:
@@ -17,5 +16,9 @@ excerpt: 'Open-source User-centric Software Virtual Network<br /><br />
 - It uses online social network (OSN) infrastructures to allow users to define their own networks;
 - It seamlessly traverses firewalls, NATs, and create VPN tunnels in a peer-to-peer fashion, avoiding the need for centralized VPN gateways.
 
+## IPOP Users
+
+[![PRAGMA](assets/images/pragma.jpg)](http://pragma-grid.net){: .users-logo} [![GRAPLE](assets/images/graple.jpg)](http://graple.org/){: .users-logo} [![GLEON](assets/images/gleon.png)](http://www.gleon.org/){: .users-logo}  
+[![ConPaaS](assets/images/conpaas.png)](http://www.conpaas.eu/){: .users-logo} [![CENTRA](assets/images/centra.png)](http://www.globalcentra.org/){: .users-logo} [![PerSoNET](assets/images/personet.jpg)](personet){: .users-logo}
 
 [TinCan]: tincan/

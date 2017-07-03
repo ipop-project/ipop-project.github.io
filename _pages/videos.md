@@ -1,13 +1,18 @@
 ---
 permalink: /videos/
 title: "Videos"
-header:
-  overlay_image: /assets/images/header.jpg
-  overlay_filter: rgba(255, 127, 127, 0.75)
-excerpt: 'IPOP Videos'
-sidebar:
-  nav: "learn"
 ---
+{% include toc %}
+
+**Note:** This page may take a while before it get fuly loaded.
+{: .notice--info}
+
+# Presentations
+
+[IPOP in ConPaaS <i class="fa fa-file-video-o" aria-hidden="true"></i>] - Presentations on ConPaaS, a platform-as-a-service system that uses IPOP
+
+# Videos
+
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/CLe2cFCcOXY" frameborder="0" allowfullscreen></iframe>
 <br />
 
@@ -47,24 +52,20 @@ sidebar:
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/G4WMs_wub9M" frameborder="0" allowfullscreen> </iframe>
 <br />
 
-### SocialVPN Demonstration on Virtual Machines
+## SocialVPN Demonstration on Virtual Machines
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/gZC0LN0kW68" frameborder="0" allowfullscreen> </iframe>
 <br />
 
-### SocialVPN Demonstration on Android Mobile Device
+## SocialVPN Demonstration on Android Mobile Device
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/UP7soa-Cz8U" frameborder="0" allowfullscreen> </iframe>
 <br />
 
-### GroupVPN Demonstration
+## GroupVPN Demonstration
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/NktFD4iArTM" frameborder="0" allowfullscreen> </iframe>
 <br />
 
-## Presentations
 
-[IPOP in ConPaaS] - Presentations on ConPaaS, a platform-as-a-service system that uses IPOP
-
-
-[IPOP in ConPaaS]: http://www.conpaas.eu/videos-of-the-conpaas-workshop-are-available/
+[IPOP in ConPaaS <i class="fa fa-file-video-o" aria-hidden="true"></i>]: http://www.conpaas.eu/videos-of-the-conpaas-workshop-are-available/

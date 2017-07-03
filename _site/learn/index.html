@@ -1,0 +1,378 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.4.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Lear about IPOP - IPOP</title>
+
+
+
+
+<meta name="description" content="IP-Over-P2P, Open-source User-centric Software Virtual Network">
+
+
+
+
+<meta name="author" content="">
+
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IPOP">
+<meta property="og:title" content="Lear about IPOP">
+
+
+  <link rel="canonical" href="http://localhost:4000/ipop-project.github.io/learn/">
+  <meta property="og:url" content="http://localhost:4000/ipop-project.github.io/learn/">
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "IPOP",
+      "url" : "http://localhost:4000/ipop-project.github.io",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://localhost:4000/ipop-project.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/ipop-project.github.io/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/ipop-project.github.io/the_favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/ipop-project.github.io/the_favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/ipop-project.github.io/the_favicon/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/ipop-project.github.io/the_favicon/manifest.json">
+<link rel="mask-icon" href="http://localhost:4000/ipop-project.github.io/the_favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--splash">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="http://localhost:4000/ipop-project.github.io/">IPOP</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/about/">About</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/learn/">Learn</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/use/">Use</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/contribute/">Contribute</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/contact/">Contact</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+<div id="main" role="main">
+  <article class="splash" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Lear about IPOP">
+    
+    
+    
+
+    <section class="page__content" itemprop="text">
+      <aside class="sidebar__right">
+<nav class="toc">
+    <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+<ul class="toc__menu" id="markdown-toc">
+  <li><a href="#ipop-architecture" id="markdown-toc-ipop-architecture">IPOP Architecture</a>    <ul>
+      <li><a href="#tincan" id="markdown-toc-tincan">Tincan</a></li>
+      <li><a href="#controllers" id="markdown-toc-controllers">Controllers</a></li>
+      <li><a href="#controller-tincan-api" id="markdown-toc-controller-tincan-api">Controller-TinCan API</a></li>
+      <li><a href="#xmpposn-bindings" id="markdown-toc-xmpposn-bindings">XMPP/OSN Bindings</a></li>
+      <li><a href="#nat-traversal" id="markdown-toc-nat-traversal">NAT Traversal</a></li>
+    </ul>
+  </li>
+  <li><a href="#controllers-1" id="markdown-toc-controllers-1">Controllers</a>    <ul>
+      <li><a href="#groupvpn" id="markdown-toc-groupvpn">GroupVPN</a></li>
+      <li><a href="#socialvpn" id="markdown-toc-socialvpn">SocialVPN</a></li>
+    </ul>
+  </li>
+  <li><a href="#publications" id="markdown-toc-publications">Publications</a>    <ul>
+      <li><a href="#ipop-tincan-publications" id="markdown-toc-ipop-tincan-publications">IPOP-TinCan publications</a></li>
+      <li><a href="#ipop-brunet-publications" id="markdown-toc-ipop-brunet-publications">IPOP-Brunet publications</a></li>
+    </ul>
+  </li>
+  <li><a href="#ipop-whitepaper" id="markdown-toc-ipop-whitepaper">IPOP WhitePaper</a></li>
+  <li><a href="#videos" id="markdown-toc-videos">Videos</a></li>
+</ul>
+
+  </nav>
+</aside>
+
+<p class="notice--info"><strong>Note:</strong> For full documentation, visit <a href="https://github.com/ipop-project/ipop-project.github.io/wiki">IPOP Wiki <i class="fa fa-external-link" aria-hidden="true"></i></a>.</p>
+
+<h1 id="ipop-architecture">IPOP Architecture</h1>
+
+<h2 id="tincan">Tincan</h2>
+
+<p>The TinCan link is the core communication abstraction used by IPOP to create tunnels. The name comes from an analogy with tin can phones – a popular children’s toy where two cans are connected by a string, creating an ad-hoc link for communication between two friends.</p>
+
+<p>In IPOP, TinCan links are bi-directional communication channels that connect user devices end-to-end to other trusted user devices, where trust is derived from an online social network (OSN) service. Instead of carrying voice like a tin can phone, IPOP TinCan links carry tunneled IP packets (IPv4 or IPv6) – and since version 15.01, also Ethernet frames in IPOP’s “switch mode”. Packets are intercepted by virtual network interfaces (tap) and then tunneled by IPOP through TinCan links; at the destination, they are injected again into a virtual network interface. This allows existing applications to work unmodified when running over an IPOP virtual network, as depicted in the figure.</p>
+
+<p><img src="/ipop-project.github.io/assets/images/ipop-application-view.png" alt="IPOP Application View" /></p>
+
+<p>IPOP’s implementation of TinCan links leverages extensively the libjingle open-source code, which is widely used and can run on a variety of platforms. The IPOP-TinCan module in the source code is primarily responsible for the creation, management, and tear-down of individual TinCan links with peers. This is done under coordination of IPOP’s controller module; controller and TinCan are decoupled modules that communicate through an API layered upon local host sockets, allowing flexibility in the design and facilitating the development of new IPOP-based VPNs.</p>
+
+<p>For instance, the GroupVPN controller is based on group memberships; it creates TinCan links to any online node that belongs to the group, and establishes a flat virtual IP address subnet for nodes in the group, with the purpose of creating virtual private clusters. A different controller for a different purpose – the SocialVPN – uses the same underlying primitives, but creates TinCan links to devices of the local user’s individual friends, and implements dynamic address assignment and translation to allow it to scale to large social networks.</p>
+
+<h2 id="controllers">Controllers</h2>
+
+<p>The TinCan-based IPOP architecture supports different controllers to implement different virtual networks.</p>
+
+<p>There are two controllers under active development – GroupVPN and SocialVPN. These are both social-based virtual private networks, but with different use cases and controller implementations. In SocialVPN, social relationships have an individual perspective: relationships are independently managed by each individual, and VPN links are friend-to-friend. In GroupVPN, social relationships have a group perspective: there is the concept of a group leader or manager, and once a user joins a group, VPN links are established among all devices that belong to the group.</p>
+
+<p>SocialVPN – this is a controller for the creation of virtual private networks connecting an Internet user’s to their friend’s devices. Each user has its own view of a personal IPv4 virtual address space, and devices of friends are mapped to this address space dynamically.</p>
+
+<p>GroupVPN – this is a controller for the creation of clusters where machines belonging to the cluster’s group are able to communicate to all other machines under a private virtual address space subnet (e.g. 10.10.x.y/16) that is not translated. Example use cases include user-defined virtual private clusters, inter-cloud computing, and virtual LANs for gaming.</p>
+
+<p>Since version 15.01, IPOP GroupVPN can also be executed in “switch mode”, allowing it to handle Ethernet frames as a virtual layer-2 switch. Use case scenarios of switch mode include support for Linux container virtual networks (where multiple container endpoints can be bound to a single IPOP instance through a bridge), and GroupVP on OpenWRT-enabled wireless routers allowing multiple devices across multiple LANs to connect to each other without the need to run GroupVPN software on each device.</p>
+
+<p>From a technical standpoint, the main difference between the two controllers is with respect to the allocation and translation of IPv4 address spaces. SocialVPN assigns and translates private IPv4 subnets and addresses dynamically between any two users/nodes such that it can scale to large numbers of users of online social networks without creating address conflicts. GroupVPN assigns a single private subnet to a group of user/nodes, and does not perform any address translation.</p>
+
+<h2 id="controller-tincan-api">Controller-TinCan API</h2>
+
+<p><a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Controller-API">Controller-TinCan API - IPOP Wiki</a></p>
+
+<h2 id="xmpposn-bindings">XMPP/OSN Bindings</h2>
+
+<p>In order to create a user-defined virtual network, it is necessary for users to establish who they want to link with in their virtual network, and to configure and deploy IPOP software on their devices. The figure illustrates the process for users to establish relationships, and how IPOP controllers utilizes XMPP infrastructure to establish TinCan links. This is done through an online social network interface – independently from using IPOP.</p>
+
+<p>In the typical case, a user creates and authenticates himself/herself to an account in an online social network (OSN) server; this could be a public service (e.g. Google hangout), or a private service (e.g. a private ejabberd server), through a Web interface or XMPP client (e.g. Pidgin). The user establishes relationships with other users they wish to connect to through the OSN (e.g. with friend requests). These can be peer-to-peer (e.g. in IPOP’s SocialVPN), or based on groups (e.g. in IPOP’s GroupVPN). Currently, IPOP supports the XMPP protocol to query OSN relationships, and to send messages to online peers. In the figure, Alice and Bob become friends with each other to run SocialVPN. Carol creates a group, and David joins that group.</p>
+
+<p><img src="/ipop-project.github.io/assets/images/ipop-user-view.png" alt="IPOP User View" /></p>
+
+<p>The IPOP software typically runs on a user’s personal computer, smartphone, or on virtual machines deployed on cloud resources. Once peer relationships are established through an OSN server,  a local configuration file at each IPOP  endpoint points to the OSN server, and the user (or system administrator) simply executes the IPOP software on the resources that are to be connected to the virtual network, as depicted below. IPOP then automatically installs and configures the local VNIC, and creates end-to-end tunnels connecting to VNICs of peers determined by the OSN.</p>
+
+<p>Because we use an open protocol (XMPP), it is relatively easy for you to deploy your own private XMPP service by using the open-source ejabberd software. In conjunction with deployment of your own STUN/TURN NAT traversal services, you have the option of running IPOP virtual networks that are completely under your control – in other words, the VPN links are peer-to-peer, but their configuration can be managed by centralized services.</p>
+
+<p><img src="/ipop-project.github.io/assets/images/ipop-deployer-view.png" alt="IPOP Deployer View" /></p>
+
+<h2 id="nat-traversal">NAT Traversal</h2>
+
+<p>One of the key aspects of IPOP that enables it to transparently tunnel traffic between endpoint devices is its ability to traverse NATs. This is very important as IPv4 address space exhaustion, and desire for private address spaces as a line-of-defense against attacks have contributed to the proliferation of NAT devices in personal and enterprise networks. NATs complicate the process of creating end-to-end VPN tunnels, as resources behind distinct NATs are not directly addressable by each other.</p>
+
+<p><img src="/ipop-project.github.io/assets/images/ipop-nat-traversal.png" alt="IPOP Deployer View" /></p>
+
+<p>IPOP leverages the libjingle library to perform NAT traversal in two major ways: IPOP leverages STUN/TURN protocols to discover their NAT endpoints and create tunnels directly with peers. STUN is employed, when possible, to discover network endpoints and punch “holes” in “cone-type” NATs and allow direct communication between endpoints through the NATs. When STUN fails (e.g. with symmetric NATs), TURN is used to select an intermediary relay node, and traffic between endpoints is routed through the TURN relay. The selection of a tunneling approach is managed autonomously by IPOP in a way that is completely transparent to applications — users are not aware whether a direct connection is a STUN- or TURN-mediated IPOP-TinCan link. IPOP allows you to specify multiple STUN/TURN services through configuration.</p>
+
+<p>There are public STUN/TURN traversal services available in the Internet; we run a STUN/TURN node for demonstration purposes. You can also deploy your own STUN/TURN server(s) for your own dedicated use. Check out also the documentation on deploying your own STUN and TURN NAT traversal services.</p>
+
+<h1 id="controllers-1">Controllers</h1>
+
+<h2 id="groupvpn">GroupVPN</h2>
+
+<p><em>GroupVPN</em> is an IPOP controller for virtual private network tailored to use cases where you want to bring together groups of machines into a virtual network that is logically connected all-to-all. With the GroupVPN controller, machines that join a group are assigned virtual addresses within an IP subnet, each node has connectivity to all other nodes in the group, and IP addresses are not translated. GroupVPN also supports a “switch mode” where Ethernet frames are tunneled, and IPOP behaves as a virtual L2 switch. These are some of the ways you can use GroupVPN:</p>
+
+<p><strong>Multi-cloud computing</strong></p>
+
+<p>GroupVPN allows you to connect virtual machines across multiple cloud providers (private or commercial) for enhanced fault tolerance content distribution. You do not need any support from the cloud provider to run GroupVPN – all you need is a VM!</p>
+
+<p><strong>Collaborative environments</strong></p>
+
+<p>GroupVPN allows you to create virtual private networks that span across multiple sites that need to collaborate – e.g. universities, branches and roaming workers in small/medium businesses. It is easy to setup and automatically traverses NATs/firewalls.</p>
+
+<p><strong>Virtual LANs for gaming</strong></p>
+
+<p>GroupVPN allows gamers to create virtual networks connecting them together for multi-player gaming. In the typical configuration, GroupVPN runs on end devices (e.g. a PC), but it’s also possible to run GroupVPN on OpenWRT routers to connect all devices of a LAN to a GroupVPN.</p>
+
+<h2 id="socialvpn">SocialVPN</h2>
+
+<p><em>SocialVPN</em> is an open-source IPOP-based virtual network that connects your computers privately to your friends’ computers. It automatically maps online social network relationships using Jingle and  XMPP  to create your own user-defined peer-to-peer VPNs – with no hassle, and supporting unmodified TCP/IP applications. In the SocialVPN, each user is in control of who their VPN connects to. To scale to large online social networks, SocialVPN employs a unique dynamic IPv4 address allocation/translation approach that avoids conflicts with local networks and devices outside a user’s social network. These are some of the ways you can use SocialVPN:</p>
+
+<p><strong>Private data sharing</strong></p>
+
+<p>SocialVPN allows you to create private, end-to-end virtual IP networks connecting you to your friends. You can use these links to privately share data with your friends, using existing applications for file transfer and sharing.</p>
+
+<p><strong>Mobile cloud computing</strong></p>
+
+<p>SocialVPN runs on Android devices and allows users to create VPNs connecting mobile devices as well as desktops, laptops and servers. It provides a basis for research and development on “social area networks” for data sharing and computational offloading.</p>
+
+<p><strong>Decentralized OSNs</strong></p>
+
+<p>SocialVPN creates a communication overlay that can be used as a basis to design decentralized Online Social Networks (OSNs).</p>
+
+<h1 id="publications">Publications</h1>
+
+<p>Help IPOP continue to be a successful project by making sure that, if you use IPOP-TinCan code in your research, you reference the project’s web site (ipop-project.org) and the following articles in your publications:</p>
+
+<p>Pierre St Juste, Kyuho Jeong, Heungsik Eom, Corey Baker, Renato Figueiredo, ‘TinCan: User-Defined P2P Virtual Network Overlays for Ad-hoc Collaboration’, ICST Transactions on Collaborative Computing, Volume 14 Issue 2, 08/2014</p>
+
+<p>Arijit Ganguly, Abhishek Agrawal, P. Oscar Boykin and Renato Figueiredo. ‘IP over P2P: Enabling Self-Configuring Virtual IP Networks for Grid Computing’. In Proceedings of the 20th IEEE International Parallel and Distributed Processing Symposium (IPDPS). Rhodes Island, Greece, 2006.</p>
+
+<h2 id="ipop-tincan-publications">IPOP-TinCan publications</h2>
+
+<p>Razavi, K, Ion, A, Tato, G, Jeong, K, Figueiredo, RJ, Pierre, G, Kielmann, T, “Kangaroo: A Tenant-Centric Software-Defined Cloud Infrastructure”, IEEE International Conference on Cloud Engineering (IC2E), 2015</p>
+
+<p>Pierre St Juste, Kyuho Jeong, Heungsik Eom, Corey Baker, Renato Figueiredo, ‘TinCan: User-Defined P2P Virtual Network Overlays for Ad-hoc Collaboration‘, ICST Transactions on Collaborative Computing, Volume 14 Issue 2, 08/2014</p>
+
+<h2 id="ipop-brunet-publications">IPOP-Brunet publications</h2>
+
+<p>David I Wolinsky, Pierre St. Juste, Oscar Boykin, and Renato Figueiredo, ‘Addressing the P2P Bootstrap Problem for Small Overlay Networks’, In the Proceedings of the 10th IEEE International Conference on Peer-to-Peer Computing 2010 (P2P’10), 08/2010.</p>
+
+<p>David Isaac Wolinsky, Yonggang Liu, Pierre St. Juste, Girish Venkatasubramanian, Renato Figueiredo. ‘On the Design of Scalable, Self-Configuring Virtual Networks’. In Proceedings of SuperComputing ’09 (SC), 11/2009.</p>
+
+<p>David Wolinsky, Yonggang Liu, Renato Figueiredo. ‘Towards a Uniform Self-Configuring Virtual Private Network for Workstations and Clusters in Grid Computing’. In Proceedings of Virtualization Technologies in Distributed Computing (VTDC). 06/2009.</p>
+
+<p>Arijit Ganguly, David Wolinsky, P. Oscar Boykin, Renato Figueiredo. ‘Improving Peer Connectivity in Wide-area Overlays of Virtual Workstations’. In Proceedings of IEEE High Performance Distributed Computing (HPDC). Best paper award, 06/2008</p>
+
+<p>Arijit Ganguly, David Wolinsky, P. Oscar Boykin, Renato Figueiredo. ‘Decentralized Dynamic Host Configuration in Wide-Area Overlay Networks of Virtual Workstations’. In Proceedings of Large-Scale and Volatile Desktop Grids (PCGrid), 03/2007</p>
+
+<p>Arijit Ganguly, Abhishek Agrawal, P. Oscar Boykin, Renato Figueiredo. ‘WOW: Self-Organizing Wide Area Overlay Networks of Virtual Workstations”. In Proceedings of the 15th IEEE International Symposium on High Performance Distributed Computing (HPDC), pages 30-41, 2006.</p>
+
+<p>Arijit Ganguly, Abhishek Agrawal, P. Oscar Boykin and Renato Figueiredo. ‘IP over P2P: Enabling Self-Configuring Virtual IP Networks for Grid Computing’. In Proceedings of the 20th IEEE International Parallel and Distributed Processing Symposium (IPDPS). Rhodes Island, Greece, 2006.</p>
+
+<h1 id="ipop-whitepaper">IPOP WhitePaper</h1>
+
+<p><a href="/ipop-project.github.io/assets/docs/IPOP-WhitePaper-1605.pdf">IPOP-WhitePaper - PDF File <i class="fa fa-file-pdf-o" aria-hidden="true"></i></a></p>
+
+<h1 id="videos">Videos</h1>
+
+<p><a href="../videos/">Videos <i class="fa fa-file-video-o" aria-hidden="true"></i></a></p>
+
+
+    </section>
+  </article>
+</div>
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+     -->
+    <!-- <li><a href="http://localhost:4000/ipop-project.github.io/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
+<!--  </ul>
+</div> --> 
+
+<div class="page__footer-copyright three-fourth">
+  <div class="float-left">
+    <img src="http://localhost:4000/ipop-project.github.io/assets/images/uf_small.png" class="padding-bottom-right" /><img src="http://localhost:4000/ipop-project.github.io/assets/images/nsf_small.png" class="padding-bottom-right" />
+  </div>
+  <i class="fa fa-address-card-o" aria-hidden="true"></i>
+  <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br />
+  <a href="http://www.ece.ufl.edu/" rel="nofollow" target="_blank">Department of Electrical & Computer Engineering</a><br />
+  <a href="http://www.eng.ufl.edu/" rel="nofollow" target="_blank">College of Engineering</a>, <a href="http://www.ufl.edu/" rel="nofollow" target="_blank">University of Florida</a>
+</div>
+
+<div class="page__footer-copyright last-fourth">
+  <div>
+    <a href="http://localhost:4000/ipop-project.github.io/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="http://localhost:4000/ipop-project.github.io/mailinglist">Mailing List</a> | <a href="http://localhost:4000/ipop-project.github.io/sitemap">Sitemap</a><br />
+    <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
+    &copy; 2017 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
+    </div>
+  </div>
+</div>
+      </footer>
+    </div>
+
+    <script src="http://localhost:4000/ipop-project.github.io/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>
