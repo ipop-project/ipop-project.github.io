@@ -4,8 +4,7 @@ title: "Lear about IPOP"
 ---
 {% include toc %}
 
-**Note:** For full documentation, visit [IPOP Wiki <i class="fa fa-external-link" aria-hidden="true"></i>].
-{: .notice--info}
+[IPOP Documentation Wiki <i class="fa fa-external-link" aria-hidden="true"></i>]
 
 # IPOP Architecture
 
@@ -62,6 +61,10 @@ One of the key aspects of IPOP that enables it to transparently tunnel traffic b
 IPOP leverages the libjingle library to perform NAT traversal in two major ways: IPOP leverages STUN/TURN protocols to discover their NAT endpoints and create tunnels directly with peers. STUN is employed, when possible, to discover network endpoints and punch “holes” in “cone-type” NATs and allow direct communication between endpoints through the NATs. When STUN fails (e.g. with symmetric NATs), TURN is used to select an intermediary relay node, and traffic between endpoints is routed through the TURN relay. The selection of a tunneling approach is managed autonomously by IPOP in a way that is completely transparent to applications — users are not aware whether a direct connection is a STUN- or TURN-mediated IPOP-TinCan link. IPOP allows you to specify multiple STUN/TURN services through configuration.
 
 There are public STUN/TURN traversal services available in the Internet; we run a STUN/TURN node for demonstration purposes. You can also deploy your own STUN/TURN server(s) for your own dedicated use. Check out also the documentation on deploying your own STUN and TURN NAT traversal services.
+
+# Videos
+
+[Series of Video Lectures on IPOP's Architecture and Design <i class="fa fa-file-video-o" aria-hidden="true"></i>]
 
 # Controllers
 
@@ -131,12 +134,8 @@ Arijit Ganguly, Abhishek Agrawal, P. Oscar Boykin and Renato Figueiredo. ‘IP o
 
 [IPOP-WhitePaper - PDF File <i class="fa fa-file-pdf-o" aria-hidden="true"></i>]
 
-# Videos
 
-[Videos <i class="fa fa-file-video-o" aria-hidden="true"></i>]
-
-
-[IPOP Wiki <i class="fa fa-external-link" aria-hidden="true"></i>]: https://github.com/ipop-project/ipop-project.github.io/wiki
+[IPOP Documentation Wiki <i class="fa fa-external-link" aria-hidden="true"></i>]: https://github.com/ipop-project/ipop-project.github.io/wiki
 [Controller-TinCan API - IPOP Wiki]: https://github.com/ipop-project/ipop-project.github.io/wiki/Controller-API
 [IPOP-WhitePaper - PDF File <i class="fa fa-file-pdf-o" aria-hidden="true"></i>]: ../assets/docs/IPOP-WhitePaper-1605.pdf
-[Videos <i class="fa fa-file-video-o" aria-hidden="true"></i>]: ../videos/
+[Series of Video Lectures on IPOP's Architecture and Design <i class="fa fa-file-video-o" aria-hidden="true"></i>]: ../videos/

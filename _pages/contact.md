@@ -4,13 +4,11 @@ title: "Contact"
 ---
 {% include toc %}
 
-# Contact
-
-## Project Lead
+# Project Lead
 
 **Dr. Renato J. Figueiredo:** <i class="fa fa-envelope-o" aria-hidden="true"></i> renato{at}ece.ufl.edu
 
-## Technical Support
+# Technical Support
 
 **Kensworth Subratie:** <i class="fa fa-envelope-o" aria-hidden="true"></i> kcratie{at}acis.ufl.edu
 

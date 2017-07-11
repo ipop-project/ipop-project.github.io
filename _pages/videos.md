@@ -4,14 +4,9 @@ title: "Videos"
 ---
 {% include toc %}
 
-**Note:** This page may take a while before it get fuly loaded.
-{: .notice--info}
-
-# Presentations
-
-[IPOP in ConPaaS <i class="fa fa-file-video-o" aria-hidden="true"></i>] - Presentations on ConPaaS, a platform-as-a-service system that uses IPOP
-
 # Videos
+
+## IPOP TinCan
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/CLe2cFCcOXY" frameborder="0" allowfullscreen></iframe>
 <br />

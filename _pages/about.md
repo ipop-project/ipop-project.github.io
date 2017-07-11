@@ -79,8 +79,8 @@ Please help us continue being supported by our sponsors by [referencing our work
 
 [Brunet]: http://github.com/johnynek/brunet
 [open-source code]: http://github.com/ptony82/brunet/tree/master
-[Tincan]: http://ipop-project.org/learn/tincan
-[Controller]: http://ipop-project.org/learn/controllers
+[Tincan]: ../learn/#tincan
+[Controller]: ../learn/#controllers
 [1339737]: http://nsf.gov/awardsearch/showAward?AWD_ID=1339737
 [1234983]: http://nsf.gov/awardsearch/showAward?AWD_ID=1234983
 [Advanced Computing and Information Systems (ACIS) Laboratory]: https://www.acis.ufl.edu/

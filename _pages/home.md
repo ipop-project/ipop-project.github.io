@@ -18,7 +18,6 @@ excerpt: 'Open-source User-centric Software Virtual Network<br /><br />
 
 ## IPOP Users
 
-[![PRAGMA](assets/images/pragma.jpg)](http://pragma-grid.net){: .users-logo} [![GRAPLE](assets/images/graple.jpg)](http://graple.org/){: .users-logo} [![GLEON](assets/images/gleon.png)](http://www.gleon.org/){: .users-logo}  
-[![ConPaaS](assets/images/conpaas.png)](http://www.conpaas.eu/){: .users-logo} [![CENTRA](assets/images/centra.png)](http://www.globalcentra.org/){: .users-logo} [![PerSoNET](assets/images/personet.jpg)](personet){: .users-logo}
+[![PRAGMA](assets/images/pragma.jpg)](http://pragma-grid.net){: .users-logo} [![GRAPLE](assets/images/graple.jpg)](http://graple.org/){: .users-logo} [![CENTRA](assets/images/centra.png)](http://www.globalcentra.org/){: .users-logo} [![GLEON](assets/images/gleon.png)](http://www.gleon.org/){: .users-logo} [![PerSoNET](assets/images/personet.jpg)](personet){: .users-logo}
 
-[TinCan]: tincan/
+[TinCan]: learn/#TinCan
