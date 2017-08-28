@@ -35,6 +35,9 @@
 <loc>http://localhost:4000/ipop-project.github.io/controllers/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/ipop-project.github.io/download/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/ipop-project.github.io/gallery/</loc>
 </url>
 <url>
@@ -108,6 +111,6 @@
 </url>
 <url>
 <loc>http://localhost:4000/ipop-project.github.io/assets/docs/IPOP-WhitePaper-1605.pdf</loc>
-<lastmod>2017-06-29T11:35:49-04:00</lastmod>
+<lastmod>2017-08-28T07:42:32-04:00</lastmod>
 </url>
 </urlset>

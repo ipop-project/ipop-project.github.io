@@ -22,6 +22,8 @@
 main:
   - title: About
     url: /about/
+  - title: Download
+    url: /download
   - title: Learn
     url: /learn/
   - title: Use

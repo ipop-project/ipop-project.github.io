@@ -5,7 +5,7 @@ header:
   overlay_color: "#5e616c"
   overlay_image: /assets/images/header.jpg
 excerpt: 'Open-source User-centric Software Virtual Network<br /><br />
-<a href="https://github.com/ipop-project/downloads/releases" class="btn btn--light-outline btn--small">Official Release 16.08.1, September 2016</a>'
+<a href="download" class="btn btn--light-outline btn--small">Official Release 17.08, August 2017</a>'
 ---
 *IPOP (IP-Over-P2P)* is an open-source user-centric software virtual network allowing end users to define and create their own virtual private networks (VPNs). IPOP virtual networks provide end-to-end tunneling of IP or Ethernet over [TinCan] links setup and managed through a control API to create various software-defined VPN overlays.
 
