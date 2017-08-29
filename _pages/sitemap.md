@@ -1,11 +1,6 @@
 ---
 title: "Sitemap"
 permalink: /sitemap/
-header:
-  overlay_image: /assets/images/header.jpg
-  overlay_filter: rgba(0, 127, 255, 0.75)
-excerpt: 'GRAPLE Sitemap'
-author_profile: false
 ---
 
 {% include base_path %}

@@ -7,7 +7,7 @@ header:
 excerpt: 'Open-source User-centric Software Virtual Network<br /><br />
 <a href="download" class="btn btn--light-outline btn--small">Official Release 17.08, August 2017</a>'
 ---
-*IPOP (IP-Over-P2P)* is an open-source user-centric software virtual network allowing end users to define and create their own virtual private networks (VPNs). IPOP virtual networks provide end-to-end tunneling of IP or Ethernet over [TinCan] links setup and managed through a control API to create various software-defined VPN overlays.
+*IPOP (IP-Over-P2P)* is an open-source user-centric software virtual network allowing end users to define and create their own virtual private networks (VPNs). IPOP virtual networks provide end-to-end tunneling of IP or Ethernet over [Tincan] links setup and managed through a control API to create various software-defined VPN overlays.
 
 ## Unique Features
 
@@ -18,6 +18,6 @@ excerpt: 'Open-source User-centric Software Virtual Network<br /><br />
 
 ## IPOP Users
 
-[![PRAGMA](assets/images/pragma.jpg)](http://pragma-grid.net){: .users-logo} [![GRAPLE](assets/images/graple.jpg)](http://graple.org/){: .users-logo} [![CENTRA](assets/images/centra.png)](http://www.globalcentra.org/){: .users-logo} [![GLEON](assets/images/gleon.png)](http://www.gleon.org/){: .users-logo} [![PerSoNET](assets/images/personet.jpg)](personet){: .users-logo}
+[![PRAGMA](assets/images/pragma.jpg)](http://www.pragma-grid.net){: .users-logo} [![GRAPLE](assets/images/graple.jpg)](http://graple.org/){: .users-logo} [![CENTRA](assets/images/centra.png)](http://www.globalcentra.org/){: .users-logo} [![GLEON](assets/images/gleon.png)](http://www.gleon.org/){: .users-logo} [![PerSoNET](assets/images/personet.jpg)](personet){: .users-logo}
 
-[TinCan]: learn/#TinCan
+[Tincan]: learn/#Tincan

@@ -4,7 +4,7 @@ title: "Contribute"
 ---
 {% include toc %}
 
-# Contribute
+# <i class="fa fa-cubes" aria-hidden="true"></i>Contribute
 
 We welcome developers to contribute code to the open-source IPOP project, as well as contributions in porting/building executables for various platforms, packaging for different O/S distributions, and documentation.
 
@@ -27,15 +27,15 @@ Laundry list of projects/topics for contributions:
 - Packet capture/injection on OpenvSwitch
 - IPOP supports existing IPv4/IPv6 applications, and enables new ones as well. We are very interested in new, creative applications that layer upon IPOP – in particular, applications that use SocialVPN in mobile device environments.
 
-# Code Repository
+# <i class="fa fa-cubes" aria-hidden="true"></i>Code Repository
 
 [Code Repository - GitHub <i class="fa fa-external-link" aria-hidden="true"></i>]
 
-# Reporting Issue
+# <i class="fa fa-cubes" aria-hidden="true"></i>Reporting Issue
 
 [Reporting Issue - IPOP Wiki <i class="fa fa-external-link" aria-hidden="true"></i>]
 
-# Submitting Code
+# <i class="fa fa-cubes" aria-hidden="true"></i>Submitting Code
 
 [Submitting Code - IPOP Wiki <i class="fa fa-external-link" aria-hidden="true"></i>]
 
