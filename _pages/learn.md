@@ -4,25 +4,23 @@ title: "Lear about IPOP"
 ---
 {% include toc %}
 
-[IPOP Documentation Wiki <i class="fa fa-external-link" aria-hidden="true"></i>]
-
-# IPOP Architecture
+# <i class="fa fa-cubes" aria-hidden="true"></i>IPOP Architecture
 
 ## Tincan
 
-The TinCan link is the core communication abstraction used by IPOP to create tunnels. The name comes from an analogy with tin can phones – a popular children’s toy where two cans are connected by a string, creating an ad-hoc link for communication between two friends.
+The Tincan link is the core communication abstraction used by IPOP to create tunnels. The name comes from an analogy with tin can phones – a popular children’s toy where two cans are connected by a string, creating an ad-hoc link for communication between two friends.
 
-In IPOP, TinCan links are bi-directional communication channels that connect user devices end-to-end to other trusted user devices, where trust is derived from an online social network (OSN) service. Instead of carrying voice like a tin can phone, IPOP TinCan links carry tunneled IP packets (IPv4 or IPv6) – and since version 15.01, also Ethernet frames in IPOP’s “switch mode”. Packets are intercepted by virtual network interfaces (tap) and then tunneled by IPOP through TinCan links; at the destination, they are injected again into a virtual network interface. This allows existing applications to work unmodified when running over an IPOP virtual network, as depicted in the figure.
+In IPOP, Tincan links are bi-directional communication channels that connect user devices end-to-end to other trusted user devices, where trust is derived from an online social network (OSN) service. Instead of carrying voice like a tin can phone, IPOP Tincan links carry tunneled IP packets (IPv4 or IPv6) – and since version 15.01, also Ethernet frames in IPOP’s “switch mode”. Packets are intercepted by virtual network interfaces (tap) and then tunneled by IPOP through Tincan links; at the destination, they are injected again into a virtual network interface. This allows existing applications to work unmodified when running over an IPOP virtual network, as depicted in the figure.
 
 ![IPOP Application View](../assets/images/ipop-application-view.png)
 
-IPOP’s implementation of TinCan links leverages extensively the libjingle open-source code, which is widely used and can run on a variety of platforms. The IPOP-TinCan module in the source code is primarily responsible for the creation, management, and tear-down of individual TinCan links with peers. This is done under coordination of IPOP’s controller module; controller and TinCan are decoupled modules that communicate through an API layered upon local host sockets, allowing flexibility in the design and facilitating the development of new IPOP-based VPNs.
+IPOP’s implementation of Tincan links leverages extensively the libjingle open-source code, which is widely used and can run on a variety of platforms. The IPOP-Tincan module in the source code is primarily responsible for the creation, management, and tear-down of individual Tincan links with peers. This is done under coordination of IPOP’s controller module; controller and Tincan are decoupled modules that communicate through an API layered upon local host sockets, allowing flexibility in the design and facilitating the development of new IPOP-based VPNs.
 
-For instance, the GroupVPN controller is based on group memberships; it creates TinCan links to any online node that belongs to the group, and establishes a flat virtual IP address subnet for nodes in the group, with the purpose of creating virtual private clusters. A different controller for a different purpose – the SocialVPN – uses the same underlying primitives, but creates TinCan links to devices of the local user’s individual friends, and implements dynamic address assignment and translation to allow it to scale to large social networks.
+For instance, the GroupVPN controller is based on group memberships; it creates Tincan links to any online node that belongs to the group, and establishes a flat virtual IP address subnet for nodes in the group, with the purpose of creating virtual private clusters. A different controller for a different purpose – the SocialVPN – uses the same underlying primitives, but creates Tincan links to devices of the local user’s individual friends, and implements dynamic address assignment and translation to allow it to scale to large social networks.
 
 ## Controllers
 
-The TinCan-based IPOP architecture supports different controllers to implement different virtual networks.
+The Tincan-based IPOP architecture supports different controllers to implement different virtual networks.
 
 There are two controllers under active development – GroupVPN and SocialVPN. These are both social-based virtual private networks, but with different use cases and controller implementations. In SocialVPN, social relationships have an individual perspective: relationships are independently managed by each individual, and VPN links are friend-to-friend. In GroupVPN, social relationships have a group perspective: there is the concept of a group leader or manager, and once a user joins a group, VPN links are established among all devices that belong to the group.
 
@@ -34,13 +32,13 @@ Since version 15.01, IPOP GroupVPN can also be executed in “switch mode”, al
 
 From a technical standpoint, the main difference between the two controllers is with respect to the allocation and translation of IPv4 address spaces. SocialVPN assigns and translates private IPv4 subnets and addresses dynamically between any two users/nodes such that it can scale to large numbers of users of online social networks without creating address conflicts. GroupVPN assigns a single private subnet to a group of user/nodes, and does not perform any address translation.
 
-## Controller-TinCan API
+## Controller-Tincan API
 
-[Controller-TinCan API - IPOP Wiki]
+[Controller-Tincan API - IPOP Wiki <i class="fa fa-external-link" aria-hidden="true"></i>]
 
 ## XMPP/OSN Bindings
 
-In order to create a user-defined virtual network, it is necessary for users to establish who they want to link with in their virtual network, and to configure and deploy IPOP software on their devices. The figure illustrates the process for users to establish relationships, and how IPOP controllers utilizes XMPP infrastructure to establish TinCan links. This is done through an online social network interface – independently from using IPOP.
+In order to create a user-defined virtual network, it is necessary for users to establish who they want to link with in their virtual network, and to configure and deploy IPOP software on their devices. The figure illustrates the process for users to establish relationships, and how IPOP controllers utilizes XMPP infrastructure to establish Tincan links. This is done through an online social network interface – independently from using IPOP.
 
 In the typical case, a user creates and authenticates himself/herself to an account in an online social network (OSN) server; this could be a public service (e.g. Google hangout), or a private service (e.g. a private ejabberd server), through a Web interface or XMPP client (e.g. Pidgin). The user establishes relationships with other users they wish to connect to through the OSN (e.g. with friend requests). These can be peer-to-peer (e.g. in IPOP’s SocialVPN), or based on groups (e.g. in IPOP’s GroupVPN). Currently, IPOP supports the XMPP protocol to query OSN relationships, and to send messages to online peers. In the figure, Alice and Bob become friends with each other to run SocialVPN. Carol creates a group, and David joins that group.
 
@@ -58,15 +56,15 @@ One of the key aspects of IPOP that enables it to transparently tunnel traffic b
 
 ![IPOP Deployer View](../assets/images/ipop-nat-traversal.png)
 
-IPOP leverages the libjingle library to perform NAT traversal in two major ways: IPOP leverages STUN/TURN protocols to discover their NAT endpoints and create tunnels directly with peers. STUN is employed, when possible, to discover network endpoints and punch “holes” in “cone-type” NATs and allow direct communication between endpoints through the NATs. When STUN fails (e.g. with symmetric NATs), TURN is used to select an intermediary relay node, and traffic between endpoints is routed through the TURN relay. The selection of a tunneling approach is managed autonomously by IPOP in a way that is completely transparent to applications — users are not aware whether a direct connection is a STUN- or TURN-mediated IPOP-TinCan link. IPOP allows you to specify multiple STUN/TURN services through configuration.
+IPOP leverages the libjingle library to perform NAT traversal in two major ways: IPOP leverages STUN/TURN protocols to discover their NAT endpoints and create tunnels directly with peers. STUN is employed, when possible, to discover network endpoints and punch “holes” in “cone-type” NATs and allow direct communication between endpoints through the NATs. When STUN fails (e.g. with symmetric NATs), TURN is used to select an intermediary relay node, and traffic between endpoints is routed through the TURN relay. The selection of a tunneling approach is managed autonomously by IPOP in a way that is completely transparent to applications — users are not aware whether a direct connection is a STUN- or TURN-mediated IPOP-Tincan link. IPOP allows you to specify multiple STUN/TURN services through configuration.
 
 There are public STUN/TURN traversal services available in the Internet; we run a STUN/TURN node for demonstration purposes. You can also deploy your own STUN/TURN server(s) for your own dedicated use. Check out also the documentation on deploying your own STUN and TURN NAT traversal services.
 
-# Videos
+# <i class="fa fa-video-camera" aria-hidden="true"></i>Videos
 
 [Series of Video Lectures on IPOP's Architecture and Design <i class="fa fa-file-video-o" aria-hidden="true"></i>]
 
-# Controllers
+# <i class="fa fa-cubes" aria-hidden="true"></i>Controllers
 
 ## GroupVPN
 
@@ -100,19 +98,19 @@ SocialVPN runs on Android devices and allows users to create VPNs connecting mob
 
 SocialVPN creates a communication overlay that can be used as a basis to design decentralized Online Social Networks (OSNs).
 
-# Publications
+# <i class="fa fa-cubes" aria-hidden="true"></i>Publications
 
-Help IPOP continue to be a successful project by making sure that, if you use IPOP-TinCan code in your research, you reference the project’s web site (ipop-project.org) and the following articles in your publications:
+Help IPOP continue to be a successful project by making sure that, if you use IPOP-Tincan code in your research, you reference the project’s web site (ipop-project.org) and the following articles in your publications:
 
-Pierre St Juste, Kyuho Jeong, Heungsik Eom, Corey Baker, Renato Figueiredo, ‘TinCan: User-Defined P2P Virtual Network Overlays for Ad-hoc Collaboration’, ICST Transactions on Collaborative Computing, Volume 14 Issue 2, 08/2014
+Pierre St Juste, Kyuho Jeong, Heungsik Eom, Corey Baker, Renato Figueiredo, ‘Tincan: User-Defined P2P Virtual Network Overlays for Ad-hoc Collaboration’, ICST Transactions on Collaborative Computing, Volume 14 Issue 2, 08/2014
 
 Arijit Ganguly, Abhishek Agrawal, P. Oscar Boykin and Renato Figueiredo. ‘IP over P2P: Enabling Self-Configuring Virtual IP Networks for Grid Computing’. In Proceedings of the 20th IEEE International Parallel and Distributed Processing Symposium (IPDPS). Rhodes Island, Greece, 2006.
 
-## IPOP-TinCan publications
+## IPOP-Tincan publications
 
 Razavi, K, Ion, A, Tato, G, Jeong, K, Figueiredo, RJ, Pierre, G, Kielmann, T, “Kangaroo: A Tenant-Centric Software-Defined Cloud Infrastructure”, IEEE International Conference on Cloud Engineering (IC2E), 2015
 
-Pierre St Juste, Kyuho Jeong, Heungsik Eom, Corey Baker, Renato Figueiredo, ‘TinCan: User-Defined P2P Virtual Network Overlays for Ad-hoc Collaboration‘, ICST Transactions on Collaborative Computing, Volume 14 Issue 2, 08/2014
+Pierre St Juste, Kyuho Jeong, Heungsik Eom, Corey Baker, Renato Figueiredo, ‘Tincan: User-Defined P2P Virtual Network Overlays for Ad-hoc Collaboration‘, ICST Transactions on Collaborative Computing, Volume 14 Issue 2, 08/2014
 
 ## IPOP-Brunet publications
 
@@ -130,12 +128,17 @@ Arijit Ganguly, Abhishek Agrawal, P. Oscar Boykin, Renato Figueiredo. ‘WOW: Se
 
 Arijit Ganguly, Abhishek Agrawal, P. Oscar Boykin and Renato Figueiredo. ‘IP over P2P: Enabling Self-Configuring Virtual IP Networks for Grid Computing’. In Proceedings of the 20th IEEE International Parallel and Distributed Processing Symposium (IPDPS). Rhodes Island, Greece, 2006.
 
-# IPOP WhitePaper
+# <i class="fa fa-file-pdf-o" aria-hidden="true"></i>IPOP WhitePaper
 
 [IPOP-WhitePaper - PDF File <i class="fa fa-file-pdf-o" aria-hidden="true"></i>]
 
+# <i class="fa fa-cubes" aria-hidden="true"></i>More About IPOP
+
+[IPOP Documentation Wiki <i class="fa fa-external-link" aria-hidden="true"></i>]
+
+
 
 [IPOP Documentation Wiki <i class="fa fa-external-link" aria-hidden="true"></i>]: https://github.com/ipop-project/ipop-project.github.io/wiki
-[Controller-TinCan API - IPOP Wiki]: https://github.com/ipop-project/ipop-project.github.io/wiki/Controller-API
+[Controller-Tincan API - IPOP Wiki <i class="fa fa-external-link" aria-hidden="true"></i>]: https://github.com/ipop-project/ipop-project.github.io/wiki/Controller-API
 [IPOP-WhitePaper - PDF File <i class="fa fa-file-pdf-o" aria-hidden="true"></i>]: ../assets/docs/IPOP-WhitePaper-1605.pdf
 [Series of Video Lectures on IPOP's Architecture and Design <i class="fa fa-file-video-o" aria-hidden="true"></i>]: ../videos/

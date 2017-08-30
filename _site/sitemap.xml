@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/ipop-project.github.io/graple-v3.1.0-released/</loc>
-<lastmod>2017-05-23T00:00:00-04:00</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/ipop-project.github.io/quick-guide/</loc>
-<lastmod>2017-05-24T00:00:00-04:00</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/ipop-project.github.io/news/good-luck-jaikrishna/</loc>
-<lastmod>2017-05-26T00:00:00-04:00</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/ipop-project.github.io/news/mailinglist-created/</loc>
-<lastmod>2017-05-26T00:00:00-04:00</lastmod>
-</url>
-<url>
 <loc>http://localhost:4000/ipop-project.github.io/about/</loc>
 </url>
 <url>
@@ -36,9 +20,6 @@
 </url>
 <url>
 <loc>http://localhost:4000/ipop-project.github.io/download/</loc>
-</url>
-<url>
-<loc>http://localhost:4000/ipop-project.github.io/gallery/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/ipop-project.github.io/groupvpn/</loc>
@@ -111,6 +92,6 @@
 </url>
 <url>
 <loc>http://localhost:4000/ipop-project.github.io/assets/docs/IPOP-WhitePaper-1605.pdf</loc>
-<lastmod>2017-08-28T07:42:32-04:00</lastmod>
+<lastmod>2017-08-27T13:55:55-04:00</lastmod>
 </url>
 </urlset>

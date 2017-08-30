@@ -161,7 +161,7 @@ a, .nav__list .nav__items a, .greedy-nav a:hover {
 
 .greedy-nav a.site-title {
   color: #6C9AC3;
-  font-size: xx-large;
+  font-size: 2em;
   text-shadow: 1px 1px 1px #000;
 }
 
@@ -211,4 +211,30 @@ a, .nav__list .nav__items a, .greedy-nav a:hover {
 
 .users-logo {
   margin: 0 1em 1em 0;
+}
+
+.fa {
+  color: #E28F41;
+  font-size: .7em;
+  margin-right: .5em;
+}
+
+.nav__title .fa {
+  color: #fff;
+  font-size: 1em;
+}
+
+#markdown-toc .fa {
+  color: inherit;
+  font-size: .8em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: museo-slab,Georgia,"Times New Roman",Times,serif;
+  font-weight: 500;
+  color: #286c8d;
+}
+
+body {
+  font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
