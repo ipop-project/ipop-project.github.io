@@ -6,21 +6,22 @@ title: "Contact"
 
 # <i class="fa fa-user-circle-o" aria-hidden="true"></i>Principal Investigator
 
-**Dr. Renato J. Figueiredo:** renato{at}ece.ufl.edu
+**Dr. Renato J. Figueiredo:** renato {at} ece.ufl.edu
 
 # <i class="fa fa-question-circle-o" aria-hidden="true"></i>Research and Development
 
-**Kensworth Subratie:** kcratie{at}acis.ufl.edu
+**Kensworth Subratie:** kcratie {at} acis.ufl.edu
 
-**Saumitra Aditya:** saumitraaditya{at}acis.ufl.edu
+**Saumitra Aditya:** saumitraaditya {at} acis.ufl.edu
 
-**Vahid Daneshmand:** vdaneshmand{at}acis.ufl.edu
+**Vahid Daneshmand:** vdaneshmand {at} acis.ufl.edu
 
 # <i class="fa fa-envelope-o" aria-hidden="true"></i>Mailing List Subscription
 
 [Join or Leave the IPOP Users Mailing List <i class="fa fa-external-link" aria-hidden="true"></i>]
 
-If you have already subscribed, to send a message to all of the people currently subscribed to the list, just send email to: IPOP-USERS-L{at}LISTS.UFL.EDU
+If you have already subscribed, to send a message to all of the people currently subscribed to the list, just send email to:  
+IPOP-USERS-L {at} LISTS.UFL.EDU
 
 # <i class="fa fa-users" aria-hidden="true"></i>Team
 
