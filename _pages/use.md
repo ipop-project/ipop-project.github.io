@@ -2,9 +2,6 @@
 permalink: /use/
 title: "Use IPOP"
 ---
-**Note:** For full documentation, visit [IPOP Wiki <i class="fa fa-external-link" aria-hidden="true"></i>].
-{: .notice--info}
-
 # <i class="fa fa-table" aria-hidden="true"></i> Table of Contents
 
 ## IPOP Quick Guide - Getting Started
@@ -13,7 +10,7 @@ title: "Use IPOP"
 |---|---|:---:|
 | Install, Run, and Remove IPOP, Manually | [Intro](https://github.com/ipop-project/ipop-project.github.io/wiki/Install,-Run,-and-Remove-IPOP,-Intro) \| [Ubuntu and Raspberry Pi](https://github.com/ipop-project/ipop-project.github.io/wiki/Install,-Run,-and-Remove-IPOP-on-Ubuntu-and-Raspberry-Pi,-Manually) \| [Windows](https://github.com/ipop-project/ipop-project.github.io/wiki/Install,-Run,-and-Remove-IPOP-on-Windows,-Manually) \| [CentOS](https://github.com/ipop-project/ipop-project.github.io/wiki/Install,-Run,-and-Remove-IPOP-on-CentOS,-Manually) | ~ 10 mins |
 | Install, Run, and Remove IPOP, Scripted | [Ubuntu, Raspberry Pi, and CentOS](https://github.com/ipop-project/ipop-project.github.io/wiki/Install,-Run,-and-Remove-IPOP-on-Ubuntu,-Raspberry-Pi-and-CentOS,-Scripted) | ~ 10 mins |
-| Use IPOP, Demonstration Video | [Ubuntu](https://github.com/ipop-project/ipop-project.github.io/wiki/https://screencast-o-matic.com/watch/cbjXbPlmdl) | ~ 4 mins |
+| Use IPOP, Demonstration Video | [Ubuntu](https://screencast-o-matic.com/watch/cbjXbPlmdl) | ~ 4 mins |
 
 ## IPOP Quick Guide - Advanced
 
@@ -24,5 +21,8 @@ title: "Use IPOP"
 | Edit IPOP Configuration File | [Intro](https://github.com/ipop-project/ipop-project.github.io/wiki/Configuration,-Intro) \| [Ubuntu, Raspberry Pi, Windows, and CentOS](https://github.com/ipop-project/ipop-project.github.io/wiki/Configuration) | < 5 mins |
 | Use IPOP Scale-Test, A Tutorial | [Ubuntu](https://github.com/ipop-project/ipop-project.github.io/wiki/Introduction-to-the-scale-test-script-usage) | ~ 30 mins |
 | Use IPOP Visualizer | [Ubuntu](https://github.com/ipop-project/ipop-project.github.io/wiki/IPOP-Network-Visualizer) | < 5 mins |
+
+**Note:** For full documentation, visit [IPOP Wiki <i class="fa fa-external-link" aria-hidden="true"></i>].
+{: .notice--info}
 
 [IPOP Wiki <i class="fa fa-external-link" aria-hidden="true"></i>]: https://github.com/ipop-project/ipop-project.github.io/wiki
