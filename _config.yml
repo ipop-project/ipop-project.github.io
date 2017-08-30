@@ -203,7 +203,7 @@ defaults:
       author_profile: false
   # _docs
   - scope:
-      path: "docs"
+      path: "docs/*"
       type: docs
     values:
       layout: splash
