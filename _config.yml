@@ -113,6 +113,7 @@ author:
 include:
   - .htaccess
   - _pages
+  - docs
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -200,15 +201,15 @@ defaults:
     values:
       layout: splash
       author_profile: false
-  # # _docs
-  # - scope:
-  #     path: ""
-  #     type: docs
-  #   values:
-  #     layout: splash
-  #     read_time: false
-  #     author_profile: false
-  #     share: false
+  # _docs
+  - scope:
+      path: "docs/*"
+      type: docs
+    values:
+      layout: splash
+  #    read_time: false
+      author_profile: false
+  #    share: false
   #     comments: false
   #     sidebar:
   #       nav: "docs"

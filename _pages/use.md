@@ -2,6 +2,8 @@
 permalink: /use/
 title: "Use IPOP"
 ---
+**Note:** For full documentation, visit [IPOP Wiki <i class="fa fa-external-link" aria-hidden="true"></i>].
+{: .notice--info}
 
 # <i class="fa fa-table" aria-hidden="true"></i> Table of Contents
 
@@ -22,8 +24,5 @@ title: "Use IPOP"
 | Edit IPOP Configuration File | [Intro](https://github.com/ipop-project/ipop-project.github.io/wiki/Configuration,-Intro) \| [Ubuntu, Raspberry Pi, Windows, and CentOS](https://github.com/ipop-project/ipop-project.github.io/wiki/Configuration) | < 5 mins |
 | Use IPOP Scale-Test, A Tutorial | [Ubuntu](https://github.com/ipop-project/ipop-project.github.io/wiki/Introduction-to-the-scale-test-script-usage) | ~ 30 mins |
 | Use IPOP Visualizer | [Ubuntu](https://github.com/ipop-project/ipop-project.github.io/wiki/IPOP-Network-Visualizer) | < 5 mins |
-
-**Note:** For full documentation, visit [IPOP Wiki <i class="fa fa-external-link" aria-hidden="true"></i>].
-{: .notice--info}
 
 [IPOP Wiki <i class="fa fa-external-link" aria-hidden="true"></i>]: https://github.com/ipop-project/ipop-project.github.io/wiki
