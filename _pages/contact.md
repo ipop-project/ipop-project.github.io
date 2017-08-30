@@ -20,7 +20,7 @@ title: "Contact"
 
 [Join or Leave the IPOP Users Mailing List <i class="fa fa-external-link" aria-hidden="true"></i>]
 
-If you have already subscribed, to send a message to all of the people currently subscribed to the list, just send email to:  
+If you have already subscribed, to send a message to all of the people currently subscribed to the list, just send the email to:  
 IPOP-USERS-L {at} LISTS.UFL.EDU
 
 # <i class="fa fa-users" aria-hidden="true"></i>Team

@@ -27,19 +27,19 @@ Laundry list of projects/topics for contributions:
 - Packet capture/injection on OpenvSwitch
 - IPOP supports existing IPv4/IPv6 applications, and enables new ones as well. We are very interested in new, creative applications that layer upon IPOP – in particular, applications that use SocialVPN in mobile device environments.
 
-# <i class="fa fa-cubes" aria-hidden="true"></i>Code Repository
+# <i class="fa fa-github" aria-hidden="true"></i>Code Repository
 
-[Code Repository - GitHub <i class="fa fa-external-link" aria-hidden="true"></i>]
+[Code Repository - GitHub <i class="fa fa-github" aria-hidden="true"></i>]
 
-# <i class="fa fa-cubes" aria-hidden="true"></i>Reporting Issue
+# <i class="fa fa-github" aria-hidden="true"></i>Reporting Issue
 
-[Reporting Issue - IPOP Wiki <i class="fa fa-external-link" aria-hidden="true"></i>]
+[Reporting Issue - GitHub <i class="fa fa-github" aria-hidden="true"></i>]
 
 # <i class="fa fa-cubes" aria-hidden="true"></i>Submitting Code
 
 [Submitting Code - IPOP Wiki <i class="fa fa-external-link" aria-hidden="true"></i>]
 
 
-[Code Repository - GitHub <i class="fa fa-external-link" aria-hidden="true"></i>]: https://github.com/ipop-project
-[Reporting Issue - IPOP Wiki <i class="fa fa-external-link" aria-hidden="true"></i>]: https://github.com/ipop-project/ipop-tincan/issues
+[Code Repository - GitHub <i class="fa fa-github" aria-hidden="true"></i>]: https://github.com/ipop-project
+[Reporting Issue - GitHub <i class="fa fa-github" aria-hidden="true"></i>]: https://github.com/ipop-project/ipop-project.github.io/issues
 [Submitting Code - IPOP Wiki <i class="fa fa-external-link" aria-hidden="true"></i>]: https://github.com/ipop-project/ipop-project.github.io/wiki/How-to-Contribute
