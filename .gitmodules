@@ -1,9 +1,0 @@
-[submodule "docs"]
-	path = docs
-	url = https://github.com/vahid-dan/ipop-project.github.io.wiki.git
-[submodule "ipop-project.github.io.wiki"]
-	path = ipop-project.github.io.wiki
-	url = https://github.com/ipop-project/ipop-project.github.io.wiki.git
-[submodule "wiki"]
-	path = wiki
-	url = https://github.com/ipop-project/ipop-project.github.io.wiki.git
