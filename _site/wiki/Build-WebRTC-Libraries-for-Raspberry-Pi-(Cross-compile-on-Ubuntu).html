@@ -1,0 +1,380 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.4.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Build WebRTC Libraries for Raspberry Pi (Cross compile on Ubuntu) - IPOP</title>
+
+
+
+
+<meta name="description" content="IP-Over-P2P, Open-source User-centric Software Virtual Network">
+
+
+
+
+<meta name="author" content="">
+
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IPOP">
+<meta property="og:title" content="Build WebRTC Libraries for Raspberry Pi (Cross compile on Ubuntu)">
+
+
+  <link rel="canonical" href="http://localhost:4000/ipop-project.github.io/wiki/Build-WebRTC-Libraries-for-Raspberry-Pi-(Cross-compile-on-Ubuntu).html">
+  <meta property="og:url" content="http://localhost:4000/ipop-project.github.io/wiki/Build-WebRTC-Libraries-for-Raspberry-Pi-(Cross-compile-on-Ubuntu).html">
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "IPOP",
+      "url" : "http://localhost:4000/ipop-project.github.io",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://localhost:4000/ipop-project.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/ipop-project.github.io/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/ipop-project.github.io/the_favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/ipop-project.github.io/the_favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/ipop-project.github.io/the_favicon/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/ipop-project.github.io/the_favicon/manifest.json">
+<link rel="mask-icon" href="http://localhost:4000/ipop-project.github.io/the_favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--wiki">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="http://localhost:4000/ipop-project.github.io/">IPOP</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/about/">About</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/download">Download</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/learn/">Learn</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/use/">Use</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/wiki/Home">Wiki</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/contribute/">Contribute</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/contact/">Contact</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Build WebRTC Libraries for Raspberry Pi (Cross compile on Ubuntu)">
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <!-- <h1 class="page__title" itemprop="headline">Build WebRTC Libraries for Raspberry Pi (Cross compile on Ubuntu)
+</h1> -->
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <h1 id="build-webrtc-libraries-for-raspberry-pi-cross-compile-on-ubuntu">Build WebRTC Libraries for Raspberry Pi (Cross compile on Ubuntu)</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Tested on</strong></td>
+      <td>Raspbian Jessie and Stretch on Raspberry Pi 3</td>
+    </tr>
+    <tr>
+      <td><strong>Time</strong></td>
+      <td>~ 30 Minutes</td>
+    </tr>
+    <tr>
+      <td><strong>Question(s)</strong></td>
+      <td>- How to build WebRTC for Raspberry Pi?<br /> - How to extract WebRTC static libraries for building IPOP?</td>
+    </tr>
+    <tr>
+      <td><strong>Objective(s)</strong></td>
+      <td>- Build the WebRTC Libraries<br /> - Extract required WebRTC Static Libraries for Building IPOP</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Note 1:</strong> If you want to run IPOP right away, use the proper version of IPOP from [our latest release].</p>
+
+<p><strong>Note 2:</strong> There are some WebRTC libraries needed to build IPOP TinCan binary. They are already built and located in [Tincan/external/lib/]. You can use them to [build IPOP TinCan binary] yourself.</p>
+
+<p>If you want to build WebRTC libraries for IPOP yourself, follow the instructions.</p>
+
+<h2 id="install-toolchain">Install Toolchain</h2>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo apt update <span class="o">&amp;&amp;</span> sudo apt install debootstrap qemu-user-static
+
+mkdir -p ~/workspace/webrtc-checkout <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/workspace/webrtc-checkout/
+
+sudo git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git /opt/depot_tools
+<span class="nb">echo</span> <span class="s2">"export PATH=/opt/depot_tools:</span><span class="se">\$</span><span class="s2">PATH"</span> | sudo tee /etc/profile.d/depot_tools.sh
+
+sudo git clone https://github.com/raspberrypi/tools.git /opt/rpi_tools
+<span class="nb">echo</span> <span class="s2">"export PATH=/opt/rpi_tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin:</span><span class="se">\$</span><span class="s2">PATH"</span> | sudo tee /etc/profile.d/rpi_tools.sh
+
+sudo chown <span class="sb">`</span>whoami<span class="sb">`</span>:<span class="sb">`</span>whoami<span class="sb">`</span> /opt/depot_tools /opt/rpi_tools
+<span class="nb">source</span> /etc/profile
+
+sudo debootstrap --arch armhf --foreign --include<span class="o">=</span>g++,libasound2-dev,libpulse-dev,libudev-dev,libexpat1-dev,libnss3-dev,libgtk2.0-dev wheezy rootfs
+sudo cp /usr/bin/qemu-arm-static rootfs/usr/bin/
+sudo chroot rootfs /debootstrap/debootstrap --second-stage
+find rootfs/usr/lib/arm-linux-gnueabihf -lname <span class="s1">'/*'</span> -printf <span class="s1">'%p %l\n'</span> | <span class="k">while </span><span class="nb">read </span>link target; <span class="k">do </span>sudo ln -snfv <span class="s2">"../../..</span><span class="k">${</span><span class="nv">target</span><span class="k">}</span><span class="s2">"</span> <span class="s2">"</span><span class="k">${</span><span class="nv">link</span><span class="k">}</span><span class="s2">"</span>; <span class="k">done
+</span>find rootfs/usr/lib/arm-linux-gnueabihf/pkgconfig -printf <span class="s2">"%f</span><span class="se">\n</span><span class="s2">"</span> | <span class="k">while </span><span class="nb">read </span>target; <span class="k">do </span>sudo ln -snfv <span class="s2">"../../lib/arm-linux-gnueabihf/pkgconfig/</span><span class="k">${</span><span class="nv">target</span><span class="k">}</span><span class="s2">"</span> rootfs/usr/share/pkgconfig/<span class="k">${</span><span class="nv">target</span><span class="k">}</span>; <span class="k">done</span>
+</code></pre>
+</div>
+<h2 id="get-webrtc">Get WebRTC</h2>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>fetch webrtc
+<span class="nb">cd </span>src/
+git checkout branch-heads/57
+gclient sync
+</code></pre>
+</div>
+<h2 id="build-webrtc">Build WebRTC</h2>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./build/install-build-deps.sh
+./build/linux/sysroot_scripts/install-sysroot.py --arch<span class="o">=</span>arm
+
+gn gen out/debug --args<span class="o">=</span><span class="s1">'target_os="linux" target_cpu="arm" enable_iterator_debugging=false is_component_build=false is_debug=true'</span>
+ninja -C out/debug boringssl field_trial_default protobuf_lite p2p base jsoncpp
+
+gn gen out/release --args<span class="o">=</span><span class="s1">'target_os="linux" target_cpu="arm" enable_iterator_debugging=false is_component_build=false is_debug=false'</span>
+ninja -C out/release boringssl field_trial_default protobuf_lite p2p base jsoncpp
+</code></pre>
+</div>
+<h2 id="extract-the-static-libraries-for-building-ipop-tincan">Extract the Static Libraries for Building IPOP TinCan</h2>
+
+<h3 id="get-tincan-codebase">Get TinCan Codebase</h3>
+
+<p>Switch to the workspace directory:</p>
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> ~/workspace/
+</code></pre>
+</div>
+<p>Create <code class="highlighter-rouge">ipop-project</code> directory and download the TinCan repository there:</p>
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>mkdir -p ipop-project/ <span class="o">&amp;&amp;</span> git clone https://github.com/ipop-project/Tincan.git ipop-project/Tincan
+</code></pre>
+</div>
+<h3 id="copy-the-webrtc-libraries-to-tincan">Copy the WebRTC Libraries to TinCan</h3>
+
+<p>These freshly built libraries will replace the existing libraries.</p>
+
+<p><strong>Debug Libraries</strong></p>
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>ar -rcs ipop-project/Tincan/external/lib/debug/arm7/rpi/libboringssl_asm.a webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/aes-armv4.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/bsaes-armv7.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/ghashv8-armx32.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/sha256-armv4.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/aesv8-armx32.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/chacha-armv4.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/poly1305_arm_asm.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/sha512-armv4.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/armv4-mont.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/ghash-armv4.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/sha1-armv4-large.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/x25519-asm-arm.o
+
+ar -rcs ipop-project/Tincan/external/lib/debug/arm7/rpi/libjsoncpp.a webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_reader.o webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_value.o webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_writer.o
+
+cp webrtc-checkout/src/out/debug/obj/third_party/boringssl/libboringssl.a ipop-project/Tincan/external/lib/debug/arm7/rpi/
+cp webrtc-checkout/src/out/debug/obj/webrtc/system_wrappers/libfield_trial_default.a ipop-project/Tincan/external/lib/debug/arm7/rpi/
+cp webrtc-checkout/src/out/debug/obj/webrtc/base/librtc_base.a ipop-project/Tincan/external/lib/debug/arm7/rpi/
+cp webrtc-checkout/src/out/debug/obj/webrtc/base/librtc_base_approved.a ipop-project/Tincan/external/lib/debug/arm7/rpi/
+cp webrtc-checkout/src/out/debug/obj/webrtc/p2p/librtc_p2p.a ipop-project/Tincan/external/lib/debug/arm7/rpi/
+cp webrtc-checkout/src/out/debug/obj/third_party/protobuf/libprotobuf_lite.a ipop-project/Tincan/external/lib/debug/arm7/rpi/
+</code></pre>
+</div>
+<p><strong>Release Libraries</strong></p>
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>ar -rcs ipop-project/Tincan/external/lib/release/arm7/rpi/libboringssl_asm.a webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/aes-armv4.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/bsaes-armv7.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/ghashv8-armx32.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/sha256-armv4.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/aesv8-armx32.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/chacha-armv4.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/poly1305_arm_asm.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/sha512-armv4.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/armv4-mont.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/ghash-armv4.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/sha1-armv4-large.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/x25519-asm-arm.o
+
+ar -rcs ipop-project/Tincan/external/lib/release/arm7/rpi/libjsoncpp.a webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_reader.o webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_value.o webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_writer.o
+
+cp webrtc-checkout/src/out/release/obj/third_party/boringssl/libboringssl.a ipop-project/Tincan/external/lib/release/arm7/rpi/
+cp webrtc-checkout/src/out/release/obj/webrtc/system_wrappers/libfield_trial_default.a ipop-project/Tincan/external/lib/release/arm7/rpi/
+cp webrtc-checkout/src/out/release/obj/webrtc/base/librtc_base.a ipop-project/Tincan/external/lib/release/arm7/rpi/
+cp webrtc-checkout/src/out/release/obj/webrtc/base/librtc_base_approved.a ipop-project/Tincan/external/lib/release/arm7/rpi/
+cp webrtc-checkout/src/out/release/obj/webrtc/p2p/librtc_p2p.a ipop-project/Tincan/external/lib/release/arm7/rpi/
+cp webrtc-checkout/src/out/release/obj/third_party/protobuf/libprotobuf_lite.a ipop-project/Tincan/external/lib/release/arm7/rpi/
+</code></pre>
+</div>
+
+<p>Now you can [build IPOP TinCan binary] on the Raspberry Pi, itself.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      
+
+      
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+     -->
+    <!-- <li><a href="http://localhost:4000/ipop-project.github.io/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
+<!--  </ul>
+</div> --> 
+
+<div class="page__footer-copyright three-fourth">
+  <div class="float-left">
+    <img src="http://localhost:4000/ipop-project.github.io/assets/images/uf_small.png" class="padding-bottom-right" /><img src="http://localhost:4000/ipop-project.github.io/assets/images/nsf_small.png" class="padding-bottom-right" />
+  </div>
+  <i class="fa fa-address-card-o" aria-hidden="true"></i>
+  <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br />
+  <a href="http://www.ece.ufl.edu/" rel="nofollow" target="_blank">Department of Electrical & Computer Engineering</a><br />
+  <a href="http://www.eng.ufl.edu/" rel="nofollow" target="_blank">College of Engineering</a>, <a href="http://www.ufl.edu/" rel="nofollow" target="_blank">University of Florida</a>
+</div>
+
+<div class="page__footer-copyright last-fourth">
+  <div>
+    <a href="http://localhost:4000/ipop-project.github.io/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="http://localhost:4000/ipop-project.github.io/mailinglist">Mailing List</a> | <a href="http://localhost:4000/ipop-project.github.io/sitemap">Sitemap</a><br />
+    <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
+    &copy; 2017 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
+    </div>
+  </div>
+</div>
+<div class="page__footer-copyright clear-both">This material is based upon work supported in part by the National Science Foundation under Grants No. 1234983, 1339737 and 1527415.</div>
+      </footer>
+    </div>
+
+    <script src="http://localhost:4000/ipop-project.github.io/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,313 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.4.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>IPOP</title>
+
+
+
+
+<meta name="description" content="IP-Over-P2P, Open-source User-centric Software Virtual Network">
+
+
+
+
+<meta name="author" content="">
+
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IPOP">
+<meta property="og:title" content="IPOP">
+
+
+  <link rel="canonical" href="http://localhost:4000/ipop-project.github.io/wiki/Planning-Your-Network.html">
+  <meta property="og:url" content="http://localhost:4000/ipop-project.github.io/wiki/Planning-Your-Network.html">
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "IPOP",
+      "url" : "http://localhost:4000/ipop-project.github.io",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://localhost:4000/ipop-project.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/ipop-project.github.io/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/ipop-project.github.io/the_favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/ipop-project.github.io/the_favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/ipop-project.github.io/the_favicon/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/ipop-project.github.io/the_favicon/manifest.json">
+<link rel="mask-icon" href="http://localhost:4000/ipop-project.github.io/the_favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--wiki">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="http://localhost:4000/ipop-project.github.io/">IPOP</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/about/">About</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/download">Download</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/learn/">Learn</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/use/">Use</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/wiki/Home">Wiki</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/contribute/">Contribute</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/contact/">Contact</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <!--  -->
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <h2 id="making-the-right-choice---socialvpn-or-groupvpn">Making the right choice - SocialVPN OR GroupVPN</h2>
+<p>Depending on your usage requirements you might want to pick either SVPN or GVPN, we give below a brief description of both the controllers and discuss scenarios where one may hold better than the other.</p>
+<h3 id="socialvpn">SocialVPN</h3>
+<p>SVPN creates direct (p2p) links between devices running SVPN belonging to social peers in a manner such that each device has it’s own view of the network network with an all to all topology i.e all participating devices will have tin-can links to all other devices. In terms of hands on usage it means-convenient configuration, you won’t have to worry to about statically allocating IPv4 addresses individually to all devices, you want to be part of your network (One configuration file fits all devices of a user in the network). This is made possible by address translation wherein each user has a local virtual private subnet e.g.(172.31.0.100/16) and all devices in her network are automatically mapped on to it. This would come in handy in a use-case where all nodes are peers with equal responsibilities like a publish-subscribe/gossip/Sync setup. Consider the topology shown in the figure below, Alice is friends with Bob, Bob is friends with Alice and Carol, and Carol is friends with Bob, so if all 3 of them installed SVPN on all devices they wanted to be a part of their network- Alice can access all devices in Bob’s cloud, Bob can access all devices in Alice’s and Carol’s cloud and Carol can access all devices in Bob’s cloud but if there is no direct relationship between any two users they cannot access each other’s devices- Alice cannot access Carol’s devices. Also because of address translation Bob will see the IPv4 addresses of devices in Alice’s and Carol’s cloud in his own subnet 192.168.10.100/24.</p>
+
+<p><img src="https://github.com/ipop-project/ipop-project.github.io/blob/master/wiki-images/svpn-topology.jpg" alt="" /><br />
+Although this approach to creating the network is more convenient, it is better suited to small networks. Each tin-can links comes with a cost in terms of computing overhead, battery consumption etc, so an all to all topology, where a large subset of devices rarely communicate might not be able to scale well/have poor resource utilization. Another limitation stems from the fact that IPv4 addresses can not be statically assigned, which implies that It would not be a good idea to use this approach where some devices are assigned special responsibilities e.g. Compute cluster where configuration have to be made w.r.t IPv4 addresses.</p>
+
+<h3 id="groupvpn">GroupVPN</h3>
+<p>GVPN creates tincan links among nodes in a manner that all nodes belonging to the group will be able to establish links to each other, unlike SVPN where a user can independently determine whom to connect to. In GVPN all devices in the group are configured statically to have their IPv4 addresses in the same subnet (no address traslation)-i.e each participating device will need to be configured with a unique address in the subnet. This kind of approach is more apt in applications such as virtual compute clusters, LAN gaming etc–Where specific nodes will need to have special responsibilities and will be identified by their virtual IPv4 addresses to get the configuration for the set-up done. To create a group all users will have to establish all to all social relationship (bi-directional) with every other user in the group and will  have to coordinate to ensure that each device uses a unique IPv4 address and a uniform subnet , This should not be a issue if each device falls under the same administrative domain.<br />
+<img src="https://github.com/ipop-project/ipop-project.github.io/blob/master/wiki-images/gvpn.jpg" alt="" /><br />
+In the above figure, note how each user uses the same subnet for all his devices and uniqueness of IPv4 addresses. Here any device can access any other device shown using its IPv4 address. GVPN supports on-demand connections-which implies that the number of links in the network are optimal (just enough to ensure full connectivity). Idle connections are trimmed and new links are created when there is a need to do so, this approach makes the topology suitable for large scale deployments.</p>
+
+<h3 id="switchmode-gvpn">Switchmode-GVPN</h3>
+<p>Switchmode GVPN is an advanced feature of GVPN, wherein IPOP software runs only on Routers/Access points. Devices connected to these access points are all clubbed together into a virtual-LAN and get all to all connectivity with every other device in the network. The access points/Routers must be configured such that the DHCP addresses they assign to the devices connected to them do not conflict – hence each AP allocates from a non-overlapping range. This approach is well suited for Home-Automation networks, where devices always stay within the range of access points. All you have to do to add a device to the network is to connect it to wireless access point running IPOP. The figure below captures the idea. Switchmode is currently supported for AR71XX, CNS3XX and X86 machines, you can download binaries for all but X86 from the <a href="https://github.com/ipop-project/Downloads/releases">downloads page</a>. If you need the x86 binary, it has to be built from source. [[Installing IPOP on OpenWRT|Installing-IPOP-on-OpenWRT]] and [[Switchmode with LXC|Switchmode-with-LXC]] will get you get started learning about running switch mode.<br />
+<img src="https://github.com/ipop-project/ipop-project.github.io/blob/master/wiki-images/switch-mode-topology.jpg" alt="" /></p>
+
+<h2 id="boots-on-the-ground">Boots on the ground</h2>
+<p>Now let’s get things started.To begin with you will need to:</p>
+<ol>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Have access to a XMPP server, Stun server and optionally a Turn server; if you do not don’t worry - you can follow the [[tutorials</td>
+          <td>Overview:-XMPP,STUN,TURN]] to understand their role and to set your own up.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Now depending upon SVPN/GVPN you will need to establish social relationships, if you are using a commercial XMPP service like dukgo.com, you should be able to set them up using a client like pidgin else for ejabberd follow these [[instructions</td>
+          <td>Deploying-XMPP-STUN-TURN-Services#using-ejabberd-xmppstun]].</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Now let us bring the IPOP network up, this can be done either [[manually</td>
+          <td>Manual-Install-on-Linux]] or by using an [[automated script</td>
+          <td>Installing-IPOP-on-Linux]].</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>
+
+<h2 id="i-want-it-my-way">I want it my way</h2>
+<p>If the characteristics of Group or Social VPN do not quite meet your usage requirements, IPOP’s modular architecture makes it possible for you to write your own controller or extend ours without putting in too much effort. However, this requires an understanding our controller framework. Please see this document [[Controller framework|Controller-Framework]] to get started.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      
+
+      
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+     -->
+    <!-- <li><a href="http://localhost:4000/ipop-project.github.io/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
+<!--  </ul>
+</div> --> 
+
+<div class="page__footer-copyright three-fourth">
+  <div class="float-left">
+    <img src="http://localhost:4000/ipop-project.github.io/assets/images/uf_small.png" class="padding-bottom-right" /><img src="http://localhost:4000/ipop-project.github.io/assets/images/nsf_small.png" class="padding-bottom-right" />
+  </div>
+  <i class="fa fa-address-card-o" aria-hidden="true"></i>
+  <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br />
+  <a href="http://www.ece.ufl.edu/" rel="nofollow" target="_blank">Department of Electrical & Computer Engineering</a><br />
+  <a href="http://www.eng.ufl.edu/" rel="nofollow" target="_blank">College of Engineering</a>, <a href="http://www.ufl.edu/" rel="nofollow" target="_blank">University of Florida</a>
+</div>
+
+<div class="page__footer-copyright last-fourth">
+  <div>
+    <a href="http://localhost:4000/ipop-project.github.io/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="http://localhost:4000/ipop-project.github.io/mailinglist">Mailing List</a> | <a href="http://localhost:4000/ipop-project.github.io/sitemap">Sitemap</a><br />
+    <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
+    &copy; 2017 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
+    </div>
+  </div>
+</div>
+<div class="page__footer-copyright clear-both">This material is based upon work supported in part by the National Science Foundation under Grants No. 1234983, 1339737 and 1527415.</div>
+      </footer>
+    </div>
+
+    <script src="http://localhost:4000/ipop-project.github.io/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>

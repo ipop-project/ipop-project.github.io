@@ -1,0 +1,445 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.4.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Build WebRTC Libraries for Windows - IPOP</title>
+
+
+
+
+<meta name="description" content="IP-Over-P2P, Open-source User-centric Software Virtual Network">
+
+
+
+
+<meta name="author" content="">
+
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IPOP">
+<meta property="og:title" content="Build WebRTC Libraries for Windows">
+
+
+  <link rel="canonical" href="http://localhost:4000/ipop-project.github.io/wiki/Build-WebRTC-Libraries-for-Windows.html">
+  <meta property="og:url" content="http://localhost:4000/ipop-project.github.io/wiki/Build-WebRTC-Libraries-for-Windows.html">
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "IPOP",
+      "url" : "http://localhost:4000/ipop-project.github.io",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://localhost:4000/ipop-project.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/ipop-project.github.io/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/ipop-project.github.io/the_favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/ipop-project.github.io/the_favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/ipop-project.github.io/the_favicon/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/ipop-project.github.io/the_favicon/manifest.json">
+<link rel="mask-icon" href="http://localhost:4000/ipop-project.github.io/the_favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--wiki">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="http://localhost:4000/ipop-project.github.io/">IPOP</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/about/">About</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/download">Download</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/learn/">Learn</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/use/">Use</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/wiki/Home">Wiki</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/contribute/">Contribute</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/contact/">Contact</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Build WebRTC Libraries for Windows">
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <!-- <h1 class="page__title" itemprop="headline">Build WebRTC Libraries for Windows
+</h1> -->
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <h1 id="build-webrtc-libraries-for-windows">Build WebRTC Libraries for Windows</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Tested on</strong></td>
+      <td>Microsoft Windows 10 x64</td>
+    </tr>
+    <tr>
+      <td><strong>Time</strong></td>
+      <td>~ 30 Minutes</td>
+    </tr>
+    <tr>
+      <td><strong>Question(s)</strong></td>
+      <td>- How to build WebRTC on Linux?<br /> - How to extract WebRTC static libraries for building IPOP?</td>
+    </tr>
+    <tr>
+      <td><strong>Objective(s)</strong></td>
+      <td>- Build the WebRTC Libraries<br /> - Extract required WebRTC Static Libraries for Building IPOP</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="download-dependencies">Download dependencies</h2>
+<ol>
+  <li>
+    <p>Install Visual Studio 2015 Update 2 or later - Community Edition should work if its license is appropriate for you. Use the Custom Install option and select:</p>
+
+    <ul>
+      <li>Visual C++, which will select three sub-categories including MFC</li>
+      <li>Universal Windows Apps Development Tools &gt; Tools</li>
+      <li>Universal Windows Apps Development Tools &gt; Windows 10 SDK (10.0.10586)</li>
+    </ul>
+  </li>
+  <li>
+    <p>Install the Chromium depot tolls</p>
+  </li>
+  <li>Download <a href="https://storage.googleapis.com/chrome-infra/depot_tools.zip">depot_tools.zip</a> and decompress it.</li>
+  <li>
+    <p>Add depot_tools to the end of your PATH:
+    * With Administrator access:</p>
+
+    <ul>
+      <li>
+        <p><code class="highlighter-rouge">Control Panel &gt; System and Security &gt; System &gt; Advanced system settings</code></p>
+      </li>
+      <li>
+        <p>Modify the PATH system variable to include depot_tools</p>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>* Without Administrator access:
+
+  * `Control Panel &gt; User Accounts &gt; User Accounts &gt; Change my environment variables`
+
+  * Add a PATH user variable: `%PATH%;C:\path\to\depot_tools`
+</code></pre>
+</div>
+
+<ol>
+  <li>Run <code class="highlighter-rouge">gclient</code> from the cmd shell. The first time it is run, it will install its own copy various tools.</li>
+</ol>
+
+<h2 id="download-the-source-code">Download the source code</h2>
+<ol>
+  <li>Create a working directory, enter it, and run fetch webrtc. This guide assumes a specific working folder structure. This operation starts from a base directory, eg., workspace and proceeds from there. References made later on expect the Tincan repo to be cloned into workspace/ipop-project/</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>  mkdir webrtc-checkout
+  <span class="nb">cd </span>webrtc-checkout
+  fetch --nohooks webrtc
+</code></pre>
+</div>
+
+<ol>
+  <li>Choose the stable release 57 rather than the most recent release by entering:
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>  <span class="nb">cd </span>src
+  git branch -r
+  git checkout branch-heads/57
+</code></pre>
+    </div>
+  </li>
+  <li>Download the code
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>  gclient sync
+</code></pre>
+    </div>
+  </li>
+</ol>
+
+<p><strong>Note:</strong> <em>The download will take a while, but it no longer downloads the Chromium repository after branch-head/57. Do not interrupt this step or you may need to start all over again (a new gclient sync may be enough, but you might also need wipe your webrtc_checkout\src folder and start over).</em></p>
+
+<h2 id="update-your-checkout">Update your checkout</h2>
+<p>To update an existing checkout, you can run</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>git rebase-update
+gclient sync
+</code></pre>
+</div>
+<p>The first command updates the primary Chromium source repository and rebases any of your local branches on top of tip-of-tree (aka the Git branch origin/master). If you don’t want to use this script, you can also just use git pull or other common Git commands to update the repo.</p>
+
+<p>The second command syncs the subrepositories to the appropriate versions and re-runs the hooks as needed.</p>
+
+<h2 id="building-webrtc-library">Building WebRTC library</h2>
+<ol>
+  <li>After downloading the code, you can start you can optionally edit build/config/compiler/BUILD.gn and set use_rtti = true. You can also set build/config/BUILDCONFIG.gn is_debug=false for a release build.</li>
+</ol>
+
+<p>The default configuration is for a 64-bit debug build:</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>  gn gen out/debug-x64 <span class="s2">"--args=use_rtti=true"</span>
+  ninja -C out/debug-x64 boringssl field_trial_default protobuf_full p2p
+</code></pre>
+</div>
+<p>To create a 64-bit release build you must edit the GN args and set is_debug = true</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>  gn gen out/release-x64 <span class="s2">"--args=is_debug = false use_rtti=true"</span>
+  ninja -C out/release-x64 boringssl field_trial_default protobuf_full p2p
+</code></pre>
+</div>
+
+<h2 id="extract-the-static-libraries">Extract the static libraries</h2>
+
+<p>Currently the libraries we need from out/Debug_x64 and out/Release_x64 are:<br />
+boringssl.lib;field_trial_default.lib;protobuf_lite.lib;rtc_base.lib;boringssl_asm.lib;
+rtc_base_approved.lib;rtc_p2p.lib;json_writer.obj;json_value.obj;json_reader.obj</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>cp ./out/debug-x64/boringssl.dll.lib ../../ipop-project/Tincan/external/lib/debug_x64/win/boringssl.lib
+cp ./out/debug-x64/obj/webrtc/system_wrappers/field_trial_default.lib ../../ipop-project/Tincan/external/lib/debug_x64/win/
+cp ./out/debug-x64/obj/webrtc/base/rtc_base.lib ../../ipop-project/Tincan/external/lib/debug_x64/win/
+cp ./out/debug-x64/obj/webrtc/base/rtc_base_approved.lib ../../ipop-project/Tincan/external/lib/debug_x64/win/
+cp ./out/debug-x64/obj/webrtc/p2p/rtc_p2p.lib ../../ipop-project/Tincan/external/lib/debug_x64/win/
+cp ./out/debug-x64/obj/third_party/protobuf/protobuf_full.lib ../../ipop-project/Tincan/external/lib/debug_x64/win/
+cp ./out/debug-x64/obj/third_party/jsoncpp/jsoncpp/json_reader.obj ../../ipop-project/Tincan/external/lib/debug_x64/win/
+cp ./out/debug-x64/obj/third_party/jsoncpp/jsoncpp/json_writer.obj ../../ipop-project/Tincan/external/lib/debug_x64/win/
+cp ./out/debug-x64/obj/third_party/jsoncpp/jsoncpp/json_value.obj ../../ipop-project/Tincan/external/lib/debug_x64/win/
+
+cp ./out/debug-x64/boringssl.dll.pdb ../../ipop-project/Tincan/external/lib/debug_x64/win/boringssl.pdb
+cp ./out/debug-x64/obj/third_party/jsoncpp/jsoncpp_cc.pdb ../../ipop-project/Tincan/external/lib/debug_x64/win/
+cp ./out/debug-x64/obj/third_party/protobuf/protobuf_full_cc.pdb ../../ipop-project/Tincan/external/lib/debug_x64/win/
+cp ./out/debug-x64/obj/webrtc/p2p/rtc_p2p_cc.pdb ../../ipop-project/Tincan/external/lib/debug_x64/win/
+cp ./out/debug-x64/obj/webrtc/base/rtc_base_cc.pdb ../../ipop-project/Tincan/external/lib/debug_x64/win/
+cp ./out/debug-x64/obj/webrtc/base/rtc_base_approved_cc.pdb ../../ipop-project/Tincan/external/lib/debug_x64/win/
+cp ./out/debug-x64/obj/webrtc/system_wrappers/field_trial_default_cc.pdb ../../ipop-project/Tincan/external/lib/debug_x64/win/
+
+cp ./out/release-x64/obj/third_party/boringssl/boringssl.lib ../../ipop-project/Tincan/external/lib/release_x64/win/
+cp ./out/release-x64/obj/third_party/boringssl/boringssl_asm.lib ../../ipop-project/Tincan/external/lib/release_x64/win/
+cp ./out/release-x64/obj/webrtc/system_wrappers/field_trial_default.lib ../../ipop-project/Tincan/external/lib/release_x64/win/
+cp ./out/release-x64/obj/webrtc/base/rtc_base.lib ../../ipop-project/Tincan/external/lib/release_x64/win/
+cp ./out/release-x64/obj/webrtc/base/rtc_base_approved.lib ../../ipop-project/Tincan/external/lib/release_x64/win/
+cp ./out/release-x64/obj/webrtc/p2p/rtc_p2p.lib ../../ipop-project/Tincan/external/lib/release_x64/win/
+cp ./out/release-x64/obj/third_party/protobuf/protobuf_full.lib ../../ipop-project/Tincan/external/lib/release_x64/win/
+cp ./out/release-x64/obj/third_party/jsoncpp/jsoncpp/json_reader.obj ../../ipop-project/Tincan/external/lib/release_x64/win/
+cp ./out/release-x64/obj/third_party/jsoncpp/jsoncpp/json_writer.obj ../../ipop-project/Tincan/external/lib/release_x64/win/
+cp ./out/release-x64/obj/third_party/jsoncpp/jsoncpp/json_value.obj ../../ipop-project/Tincan/external/lib/release_x64/win/
+
+cp ./out/release-x64/obj/third_party/boringssl/boringssl_c.pdb ../../ipop-project/Tincan/external/lib/release_x64/win/
+cp ./out/release-x64/obj/webrtc/system_wrappers/field_trial_default_cc.pdb ../../ipop-project/Tincan/external/lib/release_x64/win/
+cp ./out/release-x64/obj/third_party/jsoncpp/jsoncpp_cc.pdb ../../ipop-project/Tincan/external/lib/release_x64/win/
+cp ./out/release-x64/obj/webrtc/base/rtc_base_cc.pdb ../../ipop-project/Tincan/external/lib/release_x64/win/
+cp ./out/release-x64/obj/webrtc/base/rtc_base_approved_cc.pdb ../../ipop-project/Tincan/external/lib/release_x64/win/
+cp ./out/release-x64/obj/webrtc/p2p/rtc_p2p_cc.pdb ../../ipop-project/Tincan/external/lib/release_x64/win/
+cp ./out/release-x64/obj/third_party/protobuf/protobuf_full_cc.pdb ../../ipop-project/Tincan/external/lib/release_x64/win/
+</code></pre>
+</div>
+<h2 id="copy-the-header-files-for-this-branch-head">Copy the header files for this branch-head</h2>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mkdir ..<span class="se">\.</span>.<span class="se">\i</span>pop-project<span class="se">\T</span>incan<span class="se">\e</span>xternal<span class="se">\i</span>nclude<span class="se">\w</span>ebrtc<span class="se">\b</span>ase
+mkdir ..<span class="se">\.</span>.<span class="se">\i</span>pop-project<span class="se">\T</span>incan<span class="se">\e</span>xternal<span class="se">\i</span>nclude<span class="se">\w</span>ebrtc<span class="se">\p</span>2p<span class="se">\c</span>lient
+mkdir ..<span class="se">\.</span>.<span class="se">\i</span>pop-project<span class="se">\T</span>incan<span class="se">\e</span>xternal<span class="se">\i</span>nclude<span class="se">\w</span>ebrtc<span class="se">\p</span>2p<span class="se">\b</span>ase
+mkdir ..<span class="se">\.</span>.<span class="se">\i</span>pop-project<span class="se">\T</span>incan<span class="se">\e</span>xternal<span class="se">\i</span>nclude<span class="se">\w</span>ebrtc<span class="se">\a</span>pi<span class="se">\v</span>ideo
+mkdir ..<span class="se">\.</span>.<span class="se">\i</span>pop-project<span class="se">\T</span>incan<span class="se">\e</span>xternal<span class="se">\i</span>nclude<span class="se">\w</span>ebrtc<span class="se">\s</span>ystem_wrappers
+mkdir ..<span class="se">\.</span>.<span class="se">\i</span>pop-project<span class="se">\T</span>incan<span class="se">\e</span>xternal<span class="se">\i</span>nclude<span class="se">\j</span>son
+
+cp ./webrtc/<span class="k">*</span>.h ../../ipop-project/Tincan/external/include/webrtc/
+cp ./webrtc/base/<span class="k">*</span>.h ../../ipop-project/Tincan/external/include/webrtc/base
+cp ./webrtc/p2p/client/<span class="k">*</span>.h ../../ipop-project/Tincan/external/include/webrtc/p2p/client
+cp ./webrtc/p2p/base/<span class="k">*</span>.h ../../ipop-project/Tincan/external/include/webrtc/p2p/base
+cp ./third_party/jsoncpp/source/include/json/<span class="k">*</span>.h ../../ipop-project/Tincan/external/include/json
+cp ./webrtc/api/video/video_rotation.h ../../ipop-project/Tincan/external/include/webrtc/api/video/
+cp ./webrtc/system_wrappers/include/stringize_macros.h ../../ipop-project/Tincan/external/include/webrtc/system_wrappers/include
+</code></pre>
+</div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      
+
+      
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+     -->
+    <!-- <li><a href="http://localhost:4000/ipop-project.github.io/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
+<!--  </ul>
+</div> --> 
+
+<div class="page__footer-copyright three-fourth">
+  <div class="float-left">
+    <img src="http://localhost:4000/ipop-project.github.io/assets/images/uf_small.png" class="padding-bottom-right" /><img src="http://localhost:4000/ipop-project.github.io/assets/images/nsf_small.png" class="padding-bottom-right" />
+  </div>
+  <i class="fa fa-address-card-o" aria-hidden="true"></i>
+  <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br />
+  <a href="http://www.ece.ufl.edu/" rel="nofollow" target="_blank">Department of Electrical & Computer Engineering</a><br />
+  <a href="http://www.eng.ufl.edu/" rel="nofollow" target="_blank">College of Engineering</a>, <a href="http://www.ufl.edu/" rel="nofollow" target="_blank">University of Florida</a>
+</div>
+
+<div class="page__footer-copyright last-fourth">
+  <div>
+    <a href="http://localhost:4000/ipop-project.github.io/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="http://localhost:4000/ipop-project.github.io/mailinglist">Mailing List</a> | <a href="http://localhost:4000/ipop-project.github.io/sitemap">Sitemap</a><br />
+    <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
+    &copy; 2017 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
+    </div>
+  </div>
+</div>
+<div class="page__footer-copyright clear-both">This material is based upon work supported in part by the National Science Foundation under Grants No. 1234983, 1339737 and 1527415.</div>
+      </footer>
+    </div>
+
+    <script src="http://localhost:4000/ipop-project.github.io/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>
