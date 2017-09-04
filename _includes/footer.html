@@ -1,4 +1,4 @@
-<div class="page__footer-follow">
+<!-- <div class="page__footer-follow">
   <ul class="social-icons">
     {% if site.data.ui-text[site.locale].follow_label %}
       <li><strong>{{ site.data.ui-text[site.locale].follow_label }}</strong></li>
@@ -12,14 +12,29 @@
     {% if site.author.github %}
       <li><a href="http://github.com/{{ site.author.github }}"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
     {% endif %}
-    {% if site.author.gitlab %}
-      <li><a href="http://gitlab.com/{{ site.author.gitlab }}"><i class="fa fa-fw fa-gitlab" aria-hidden="true"></i> Gitlab</a></li>
-    {% endif %}
     {% if site.author.bitbucket %}
       <li><a href="http://bitbucket.org/{{ site.author.bitbucket }}"><i class="fa fa-fw fa-bitbucket" aria-hidden="true"></i> Bitbucket</a></li>
-    {% endif %}
-    <li><a href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ '/feed.xml' | absolute_url }}{% endif %}"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].feed_label | default: "Feed" }}</a></li>
-  </ul>
+    {% endif %} -->
+    <!-- <li><a href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ '/feed.xml' | absolute_url }}{% endif %}"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].feed_label | default: "Feed" }}</a></li> -->
+<!--  </ul>
+</div> --> 
+
+<div class="page__footer-copyright three-fourth">
+  <div class="float-left">
+    <img src="{{ site.url }}{{ site.baseurl}}/assets/images/uf_small.png" class="padding-bottom-right" /><img src="{{ site.url }}{{ site.baseurl}}/assets/images/nsf_small.png" class="padding-bottom-right" />
+  </div>
+  <i class="fa fa-address-card-o" aria-hidden="true"></i>
+  <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br />
+  <a href="http://www.ece.ufl.edu/" rel="nofollow" target="_blank">Department of Electrical & Computer Engineering</a><br />
+  <a href="http://www.eng.ufl.edu/" rel="nofollow" target="_blank">College of Engineering</a>, <a href="http://www.ufl.edu/" rel="nofollow" target="_blank">University of Florida</a>
 </div>
 
-<div class="page__footer-copyright">&copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}. {{ site.data.ui-text[site.locale].powered_by | default: "Powered by" }} <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright last-fourth">
+  <div>
+    <a href="{{ site.url }}{{ site.baseurl }}/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="{{ site.url }}{{ site.baseurl }}/mailinglist">Mailing List</a> | <a href="{{ site.url }}{{ site.baseurl }}/sitemap">Sitemap</a><br />
+    <div>{{ site.data.ui-text[site.locale].powered_by | default: "Powered by" }} <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
+    &copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }} - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
+    </div>
+  </div>
+</div>
+<div class="page__footer-copyright clear-both">This material is based upon work supported in part by the National Science Foundation under Grants No. 1234983, 1339737 and 1527415.</div>
