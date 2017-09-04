@@ -1,3 +1,6 @@
 [submodule "wiki"]
 	path = wiki
 	url = https://github.com/ipop-project/ipop-project.github.io.wiki.git
+[submodule "_wiki"]
+	path = _wiki
+	url = https://github.com/ipop-project/ipop-project.github.io.wiki.git
