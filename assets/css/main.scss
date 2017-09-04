@@ -38,83 +38,7 @@ p {
 }
 
 .page__hero--overlay .page__title, .page__hero--overlay .page__meta, .page__hero--overlay .comment__date, .page__hero--overlay .page__lead, .page__hero--overlay .btn, .page__hero--overlay #goog-wm-sb {
-    text-shadow: 4px 4px 4px rgba(0,0,0,1);
-}
-
-.one-third {
-
-  @include span(100%);
-  margin-right: 0;
-  margin-bottom: 2em;
-
-  @include breakpoint($medium) {
-    @include span(47.5%);
-    margin-right: 2.5%;
-    margin-bottom: 2em;
-  }
-
-  @include breakpoint($large) {
-    @include span(30.8333%);
-    margin-right: 2.5%;
-    margin-bottom: 2em;
-  }
-}
-
-.three-fourth {
-
-  @include span(100%);
-  margin-right: 0;
-
-  @include breakpoint($medium) {
-    @include span(72.5%);
-    margin-right: 2.5%;
-  }
-
-  @include breakpoint($large) {
-    @include span(72.5%);
-    margin-right: 2.5%;
-  }
-}
-
-.last-fourth {
-
-  @include span(100%);
-  margin-right: 0;
-  margin-top: 2em;
-  text-align: left;
-
-  @include breakpoint($medium) {
-    @include span(25%);
-    margin-right: 0;
-    margin-top: 0;
-    text-align: right;
-  }
-
-  @include breakpoint($large) {
-    @include span(25%);
-    margin-right: 0;
-    margin-top: 0;
-    text-align: right;
-  }
-}
-
-.one-half {
-
-  @include span(100%);
-  margin-right: 0;
-  margin-bottom: 2em;
-
-  @include breakpoint($medium) {
-    @include span(47.5%);
-    margin-right: 2.5%;
-    margin-bottom: 2em;
-  }
-
-  @include breakpoint($large) {
-    @include span(47.5%);
-    margin-right: 2.5%;
-    margin-bottom: 2em;
-  }
+  text-shadow: 4px 4px 4px rgba(0,0,0,1);
 }
 
 .padding-bottom-right {
@@ -187,14 +111,10 @@ a, .nav__list .nav__items a, .greedy-nav a:hover {
 }
 
 .nav__sub-title {
-  border-top: 1px solid #f2f3f3;
+/*  border-top: 1px solid #f2f3f3;
   border-bottom: none;
   padding-bottom: 0;
-  font-size: .9em;
-}
-
-.sidebar p, .sidebar li {
-  font-size: .85em;
+  font-size: .9em; */
 }
 
 .page__hero--overlay .page__title {

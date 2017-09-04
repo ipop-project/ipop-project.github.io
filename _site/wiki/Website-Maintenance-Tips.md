@@ -26,15 +26,27 @@ git commit -m "Adding wiki as submodule"
 git push
 ```
 
+# Remove Wiki Submodule
+
+Delete the relevant section from the `.gitmodules` file.
+
+Stage the .gitmodules changes `git add .gitmodules`.
+
+Delete the relevant section from `.git/config`.
+
+Run `git rm --cached path_to_submodule` (no trailing slash).
+
+Run `rm -rf .git/modules/path_to_submodule`.
+
+Commit `git commit -m "Removed submodule <name>"`.
+
+Delete the now untracked submodule files `rm -rf path_to_submodule`.
+
 # Importing Wiki into Jekyll Website
 
 - Don't use colons in the page title.
 - Place an empty line before each table.
 
-```
-vd@interface-wired-ipop:~/workspace/ipop-project.github.io/wiki$ rm Overview\:-XMPP\,STUN\,TURN.md 
-vd@interface-wired-ipop:~/workspace/ipop-project.github.io/wiki$ rm Deploying-XMPP-STUN-TURN-Services.md
-```
 In order to make relative links in wiki pages work correctly inside Jekyll weisbite, Comment out this line in `_config.yml`:
 ```
 permalink: /:categories/:title/

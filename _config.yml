@@ -6,21 +6,21 @@
 # `jekyll serve`. If you change this file, please restart the server process.
 
 # Site Settings
-locale                   : "en-US"
+locale                   : "en"
 title                    : "IPOP"
 title_separator          : "-"
-name                     : &name "IPOP" # &name is a YAML anchor which can be *referenced later
-description              : &description "IP-Over-P2P, Open-source User-centric Software Virtual Network"
+name                     : "IPOP"
+description              : "IP-Over-P2P, Open-source User-centric Software Virtual Network"
 url                      : "https://vahid-dan.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "/ipop-project.github.io" # the subpath of your site, e.g. "/blog"
-repository               : "ipop-project"
+repository               : "ipop-project" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
-  provider               : "staticman" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
+  provider               : # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
   disqus:
-    shortname            :
+    shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
     server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
   facebook:
@@ -35,7 +35,7 @@ staticman:
   filename               : comment-{@timestamp}
   format                 : "yml"
   moderation             : true
-  path                   : "_data/comments/{options.slug}"
+  path                   : "docs/_data/comments/{options.slug}" # "/_data/comments/{options.slug}" (default)
   requiredFields         : ['name', 'email', 'message']
   transforms:
     email                : "md5"
@@ -48,72 +48,71 @@ atom_feed:
   path                   : # blank (default) uses feed.xml
 
 # SEO Related
-google_site_verification : #"UQj93ERU9zgECodaaXgVpkjrFn9UrDMEzVamacSoQ8Y" # Replace this with your ID, or delete
+google_site_verification :
 bing_site_verification   :
 alexa_site_verification  :
 yandex_site_verification :
 
 # Social Sharing
 twitter:
-  username               : #&twitter "mmistakes"
+  username               :
 facebook:
-  username               : #&facebook "michaelrose"
+  username               :
   app_id                 :
   publisher              :
-og_image                 : #"/assets/images/site-logo.png" # Open Graph/Twitter default site image
-# For specifying social profiles, used in _includes/seo.html
+og_image                 : # Open Graph/Twitter default site image
+# For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
   type                   : # Person or Organization (defaults to Person)
   name                   : # If the user or organization name differs from the site's name
   links: # An array of links to social media profiles
-  # - "https://twitter.com/mmistakes"
-  # - "https://facebook.com/michaelrose"
 
 # Analytics
 analytics:
-  provider               : #"google-universal" # false (default), "google", "google-universal", "custom"
+  provider               : false # false (default), "google", "google-universal", "custom"
   google:
-    tracking_id          : #"UA-2011187-3" # Replace this with your ID, or delete
+    tracking_id          :
 
 
 # Site Author
 author:
-  name             : #ACIS Lab # *name is a YAML reference pointing to the &anchor earlier
-  avatar           : #"/assets/images/uf-logo-200x200.png"
-  bio              : #"Advanced Computing and Information Systems Laboratory<br />Department of Electrical & Computer Engineering<br />College of Engineering, University of Florida"
-  location         : #"Gainesville, FL"
+  name             : # "Your Name"
+  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  bio              : # "I am an amazing person."
+  location         : # "Somewhere"
   email            :
-  uri              : #"https://www.acis.ufl.edu"
+  uri              :
   bitbucket        :
   codepen          :
   dribbble         :
   flickr           :
-  facebook         : #ACIS01
+  facebook         :
   foursquare       :
-  github           : #"GRAPLE"
+  github           :
+  gitlab           :
   google_plus      :
   keybase          :
-  instagram        : #"mmistakes"
+  instagram        :
   lastfm           :
   linkedin         :
   pinterest        :
   soundcloud       :
-  stackoverflow    : # http://stackoverflow.com/users/123456/username
+  stackoverflow    : # "123456/username" (the last part of your profile url, e.g. http://stackoverflow.com/users/123456/username)
   steam            :
   tumblr           :
-  twitter          : #*twitter
+  twitter          :
   vine             :
   weibo            :
   xing             :
-  youtube          :
+  youtube          : # "https://youtube.com/c/MichaelRoseDesign"
 
 
 # Reading Files
 include:
   - .htaccess
   - _pages
-  - docs
+  - wiki
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -138,6 +137,8 @@ exclude:
   - Rakefile
   - README
   - tmp
+  - /docs # ignore Minimal Mistakes /docs
+  - /test # ignore Minimal Mistakes /test
 keep_files:
   - .git
   - .svn
@@ -165,81 +166,6 @@ kramdown:
   enable_coderay: false
 
 
-# Collections
-#collections:
-#  docs:
-#    output: true
-#    permalink: /:collection/:path/
-#  recipes:
-#    output: true
-#    permalink: /:collection/:path/
-#  pets:
-#    output: true
-#    permalink: /:collection/:path/
-#  portfolio:
-#    output: true
-#    permalink: /:collection/:path/
-
-
-# Defaults
-defaults:
-  # _posts
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: splash
-      author_profile: false
-      read_time: false
-      comments: false
-      share: false
-      related: false
-  # _pages
-  - scope:
-      path: "_pages"
-      type: pages
-    values:
-      layout: splash
-      author_profile: false
-  # _docs
-  - scope:
-      path: "wiki"
-    values:
-      layout: wiki
-      author_profile: false
-  #    read_time: false
-  #    share: false
-  #     comments: false
-  #     sidebar:
-  #       nav: "docs"
-  # # _recipes
-  # - scope:
-  #     path: ""
-  #     type: recipes
-  #   values:
-  #     layout: splash
-  #     author_profile: true
-  #     share: true
-  #     comments: true
-  # # _pets
-  # - scope:
-  #     path: ""
-  #     type: pets
-  #   values:
-  #     layout: splash
-  #     author_profile: true
-  #     share: true
-  #     comment: true
-  # # _portfolio
-  # - scope:
-  #     path: ""
-  #     type: portfolio
-  #   values:
-  #     layout: splash
-  #     author_profile: false
-  #     share: true
-
-
 # Sass/SCSS
 sass:
   sass_dir: _sass
@@ -247,10 +173,10 @@ sass:
 
 
 # Outputting
-# permalink: /:categories/:title/
+permalink: /:categories/:title
 # paginate: 5 # amount of posts to show
 # paginate_path: /page:num/
-timezone: America/New_York # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone: # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 
 # Plugins
@@ -260,7 +186,6 @@ gems:
   - jekyll-gist
   - jekyll-feed
   - jemoji
-  - jekyll-extlinks
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -269,7 +194,6 @@ whitelist:
   - jekyll-gist
   - jekyll-feed
   - jemoji
-  - jekyll-extlinks
 
 
 # Archives
@@ -282,8 +206,6 @@ whitelist:
 #  - <base_path>/tags/my-awesome-tag/index.html ~> path: /tags/
 #  - <base_path/categories/my-awesome-category/index.html ~> path: /categories/
 #  - <base_path/my-awesome-category/index.html ~> path: /
-
-
 category_archive:
   type: liquid
   path: /categories/
@@ -310,6 +232,47 @@ compress_html:
   ignore:
     envs: development
 
-# Jekyll ExtLinks Plugin
-#extlinks:
-#  attributes: {rel: nofollow, target: _blank}
+
+# Defaults
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: splash
+      author_profile: false
+      read_time: false
+      comments: # true
+      share: false
+      related: false
+  # _pages
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: splash
+      author_profile: false
+      read_time: false
+      comments: # true
+      share: false
+      related: false
+  # wiki
+  - scope:
+      path: "wiki"
+    values:
+      layout: wiki
+      author_profile: false
+      read_time: false
+      comments: # true
+      share: false
+      related: false
+      sidebar:
+        nav: "wiki"
+
+
+gems:
+  - jekyll-optional-front-matter
+
+optional_front_matter:
+  remove_originals: true

@@ -29,7 +29,7 @@ main:
   - title: Use
     url: /use/
   - title: Wiki
-    url: /wiki/Home
+    url: /wiki/Home.html
   - title: Contribute
     url: /contribute/
   - title: Contact
@@ -107,18 +107,49 @@ contact:
 
 
 wiki:
-  - title: IPOP Tutorial
-    url: https://github.com/ipop-project/ipop-project.github.io/wiki/All-inclusive-IPOP-GroupVPN-Tutorial
-  - title: Downloads
-    url: https://github.com/ipop-project/downloads/releases
-  - title: Installing IPOP
-    url: https://github.com/ipop-project/ipop-project.github.io/wiki/Installation
-  - title: Building IPOP
-    url: https://github.com/ipop-project/ipop-project.github.io/wiki/Building-the-Code
-  - title: FAQs
-    url: https://github.com/ipop-project/ipop-project.github.io/wiki/FAQs
-  - title: Known Issues
-    url: https://github.com/ipop-project/ipop-project.github.io/wiki/Known-Issues
+  - title: Getting Started
+    children:
+      - title: "Quick-Start Guide"
+        url: /docs/quick-start-guide/
+      - title: "Structure"
+        url: /docs/structure/
+      - title: "Installation"
+        url: /docs/installation/
+      - title: "Upgrading"
+        url: /docs/upgrading/
+
+  - title: Customization
+    children:
+      - title: "Configuration"
+        url: /docs/configuration/
+      - title: "Navigation"
+        url: /docs/navigation/
+      - title: "UI Text"
+        url: /docs/ui-text/
+      - title: "Authors"
+        url: /docs/authors/
+      - title: "Layouts"
+        url: /docs/layouts/
+
+  - title: Content
+    children:
+      - title: "Working with Posts"
+        url: /docs/posts/
+      - title: "Working with Pages"
+        url: /docs/pages/
+      - title: "Working with Collections"
+        url: /docs/collections/
+      - title: "Helpers"
+        url: /docs/helpers/
+      - title: "Utility Classes"
+        url: /docs/utility-classes/
+
+  - title: Extras
+    children:
+      - title: "Stylesheets"
+        url: /docs/stylesheets/
+      - title: "JavaScript"
+        url: /docs/javascript/
 
 ## sidebar navigation list sample
 #sidebar-sample:
