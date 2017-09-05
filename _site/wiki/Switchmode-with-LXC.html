@@ -137,9 +137,6 @@
             <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/learn/">Learn</a></li>
           
             
-            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/use/">Use</a></li>
-          
-            
             <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/wiki/">Wiki</a></li>
           
             
@@ -361,10 +358,6 @@
   
   </div>
 
-  
-  <a id="heading11" class="anchor" href="#heading1-1" aria-hidden="true">
-    <span class="octicon octicon-link"></span>
-  </a>
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     
@@ -373,13 +366,6 @@
     
 
     <div class="page__inner-wrap">
-      
-        <header>
-          
-          
-        </header>
-      
-
       <section class="page__content" itemprop="text">
         <p>In switchmode, IPOP supports handling of layer-2 (L2) Ethernet frames. In this mode, IPOP nodes function as a switch and make all the connected IPOP nodes and associated virtual network interface be on the same Layer 2 network.
 Note that IP and MAC address should be carefully assigned to avoid address conflicts.</p>
@@ -462,27 +448,9 @@ By simply setting below fields, and run IPOP without attaching to the bridge.</p
 <p>Unlike host mode, which maps IP address with TinCan link by controller. Switchmode maps MAC address to the TinCan link by the ARP traffic in the tap device. Conside a case when a node 10.0.3.5 sends packets to 10.0.3.4 of above figure. Host of 10.0.3.5 first broadcasts ARP message looking for 10.0.3.4. IPOP observe this broadcast frame(destination address ff:ff:ff:ff:ff:ff) then sends to every TInCan link it has. On receipient of the ARP message from the remote side, it updates MAC t able to associate the source MAC address to TinCan link it came from. Then, host 10.0.3.4 replies with ARP reply message, then it traverses (since the destination MAC address already link to its TinCan tunnel) back to the LAN of host 10.0.3.5. Then the source LAN also updates MAC table of this ARP reply message.</p>
 
 
-        
       </section>
-
-      <footer class="page__meta">
-        
-        
-
-
-        
-      </footer>
-
-      
-
-      
     </div>
-
-    
   </article>
-
-  
-  
 </div>
 
 
@@ -504,7 +472,7 @@ By simply setting below fields, and run IPOP without attaching to the bridge.</p
 <!--  </ul>
 </div> --> 
 
-<div class="page__footer-copyright three-fourth">
+<div class="page__footer-copyright float-left">
   <div class="float-left">
     <img src="http://localhost:4000/ipop-project.github.io/assets/images/uf_small.png" class="padding-bottom-right" /><img src="http://localhost:4000/ipop-project.github.io/assets/images/nsf_small.png" class="padding-bottom-right" />
   </div>
@@ -514,7 +482,7 @@ By simply setting below fields, and run IPOP without attaching to the bridge.</p
   <a href="http://www.eng.ufl.edu/" rel="nofollow" target="_blank">College of Engineering</a>, <a href="http://www.ufl.edu/" rel="nofollow" target="_blank">University of Florida</a>
 </div>
 
-<div class="page__footer-copyright last-fourth">
+<div class="page__footer-copyright float-right">
   <div>
     <a href="http://localhost:4000/ipop-project.github.io/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="http://localhost:4000/ipop-project.github.io/mailinglist">Mailing List</a> | <a href="http://localhost:4000/ipop-project.github.io/sitemap">Sitemap</a><br />
     <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />

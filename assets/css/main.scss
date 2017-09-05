@@ -50,10 +50,6 @@ p {
   text-align: right;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  margin: 2em 0 1em;
-}
-
 figcaption {
   margin-bottom: 1em;
   color: inherit;
@@ -153,8 +149,21 @@ h1, h2, h3, h4, h5, h6 {
   font-family: museo-slab,Georgia,"Times New Roman",Times,serif;
   font-weight: 500;
   color: #286c8d;
+  margin: 1.3em 0 1em;
 }
 
 body {
   font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.page__content p {
+  margin: 0 0 1em;
+}
+
+h3 {
+  font-size: 1.17em;
+}
+
+.page {
+  padding-right: 0;
 }

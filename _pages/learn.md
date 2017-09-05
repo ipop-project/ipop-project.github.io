@@ -1,6 +1,6 @@
 ---
 permalink: /learn/
-title: "Lear about IPOP"
+title: "Learn about IPOP"
 ---
 {% include toc %}
 

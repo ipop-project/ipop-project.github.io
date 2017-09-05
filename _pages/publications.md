@@ -1,12 +1,6 @@
 ---
 permalink: /publications/
 title: "Publications"
-header:
-  overlay_image: /assets/images/header.jpg
-  overlay_filter: rgba(127, 127, 0, 0.75)
-excerpt: "IPOP Publications"
-sidebar:
-  nav: "learn"
 ---
 Help IPOP continue to be a successful project by making sure that, if you use IPOP-TinCan code in your research, you reference the project’s web site (ipop-project.org) and the following articles in your publications:
 
@@ -14,13 +8,13 @@ Pierre St Juste, Kyuho Jeong, Heungsik Eom, Corey Baker, Renato Figueiredo, ‘T
 
 Arijit Ganguly, Abhishek Agrawal, P. Oscar Boykin and Renato Figueiredo. ‘IP over P2P: Enabling Self-Configuring Virtual IP Networks for Grid Computing’. In Proceedings of the 20th IEEE International Parallel and Distributed Processing Symposium (IPDPS). Rhodes Island, Greece, 2006.
 
-## IPOP-TinCan publications
+# <i class="fa fa-cubes" aria-hidden="true"></i>IPOP-TinCan publications
 
 Razavi, K, Ion, A, Tato, G, Jeong, K, Figueiredo, RJ, Pierre, G, Kielmann, T, “Kangaroo: A Tenant-Centric Software-Defined Cloud Infrastructure”, IEEE International Conference on Cloud Engineering (IC2E), 2015
 
 Pierre St Juste, Kyuho Jeong, Heungsik Eom, Corey Baker, Renato Figueiredo, ‘TinCan: User-Defined P2P Virtual Network Overlays for Ad-hoc Collaboration‘, ICST Transactions on Collaborative Computing, Volume 14 Issue 2, 08/2014
 
-## IPOP-Brunet publications
+# <i class="fa fa-cubes" aria-hidden="true"></i>IPOP-Brunet publications
 
 David I Wolinsky, Pierre St. Juste, Oscar Boykin, and Renato Figueiredo, ‘Addressing the P2P Bootstrap Problem for Small Overlay Networks’, In the Proceedings of the 10th IEEE International Conference on Peer-to-Peer Computing 2010 (P2P’10), 08/2010.
 
@@ -35,6 +29,3 @@ Arijit Ganguly, David Wolinsky, P. Oscar Boykin, Renato Figueiredo. ‘Decentral
 Arijit Ganguly, Abhishek Agrawal, P. Oscar Boykin, Renato Figueiredo. ‘WOW: Self-Organizing Wide Area Overlay Networks of Virtual Workstations”. In Proceedings of the 15th IEEE International Symposium on High Performance Distributed Computing (HPDC), pages 30-41, 2006.
 
 Arijit Ganguly, Abhishek Agrawal, P. Oscar Boykin and Renato Figueiredo. ‘IP over P2P: Enabling Self-Configuring Virtual IP Networks for Grid Computing’. In Proceedings of the 20th IEEE International Parallel and Distributed Processing Symposium (IPDPS). Rhodes Island, Greece, 2006.
-
-
-[IPOP-WhitePaper-1605]: ../assets/docs/IPOP-WhitePaper-1605.pdf
