@@ -368,11 +368,7 @@
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
         <!-- <h1>On This Page</h1> -->
-        <ul class="section-nav">
-<li class="toc-entry toc-h2"><a href="#activate-github-repositories">Activate GitHub Repositories</a></li>
-<li class="toc-entry toc-h2"><a href="#write-configuration-file-to-your-repository">Write configuration file to your repository</a></li>
-<li class="toc-entry toc-h2"><a href="#trigger-your-first-build-with-a-git-push">Trigger your first build with a git push</a></li>
-</ul><p>Travis CI is a hosted continuous integration platform that is free for all open source projects hosted on Github. With just a file called <code class="highlighter-rouge">.travis.yml</code> containing some information about our project, we can trigger automated builds with every change to our code.</p>
+        <p>Travis CI is a hosted continuous integration platform that is free for all open source projects hosted on Github. With just a file called <code class="highlighter-rouge">.travis.yml</code> containing some information about our project, we can trigger automated builds with every change to our code.</p>
 
 <p>These instructions are based on following links:</p>
 <ul>
@@ -380,8 +376,7 @@
   <li><a href="https://docs.travis-ci.com/">https://docs.travis-ci.com/</a></li>
 </ul>
 
-<h2 id="activate-github-repositories">
-<a id="activate-github-repositories" class="anchor" href="#activate-github-repositories" aria-hidden="true"><span class="octicon octicon-link"></span></a>Activate GitHub Repositories</h2>
+<h2 id="activate-github-repositories">Activate GitHub Repositories</h2>
 <ol>
   <li>
     <p>Sign in to Travis CI with your GitHub account, accepting the GitHub access permissions confirmation.</p>
@@ -394,8 +389,7 @@
   </li>
 </ol>
 
-<h2 id="write-configuration-file-to-your-repository">
-<a id="write-configuration-file-to-your-repository" class="anchor" href="#write-configuration-file-to-your-repository" aria-hidden="true"><span class="octicon octicon-link"></span></a>Write configuration file to your repository</h2>
+<h2 id="write-configuration-file-to-your-repository">Write configuration file to your repository</h2>
 <p>In order for Travis CI to build your project, you’ll need to write a file named <code class="highlighter-rouge">.travis.yml</code>.</p>
 
 <ol>
@@ -411,8 +405,7 @@
 
 <ol>
   <li>Here is a sample <code class="highlighter-rouge">.travis.yml</code> configuration file for ipop-tincan repository:
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>  language: cpp
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>  language: cpp
   compiler:
   - g++
   os:
@@ -430,8 +423,7 @@
   </li>
 </ol>
 
-<h2 id="trigger-your-first-build-with-a-git-push">
-<a id="trigger-your-first-build-with-a-git-push" class="anchor" href="#trigger-your-first-build-with-a-git-push" aria-hidden="true"><span class="octicon octicon-link"></span></a>Trigger your first build with a git push</h2>
+<h2 id="trigger-your-first-build-with-a-git-push">Trigger your first build with a git push</h2>
 
 <ol>
   <li>To start a build, perform one of the following:

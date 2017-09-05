@@ -368,18 +368,7 @@
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
         <!-- <h1>On This Page</h1> -->
-        <ul class="section-nav">
-<li class="toc-entry toc-h2"><a href="#introduction">Introduction</a></li>
-<li class="toc-entry toc-h2">
-<a href="#setting-up-the-network">Setting up the Network</a>
-<ul>
-<li class="toc-entry toc-h3"><a href="#start-outeripop">Start OuterIPoP</a></li>
-<li class="toc-entry toc-h3"><a href="#start-inneripop">Start InnerIPoP</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="introduction">
-<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
+        <h2 id="introduction">Introduction</h2>
 <p>This page details the process of setting up a environment with two IPoP networks, with one of them being tunneled via the other. This approach might be warranted in scenarios where extra layer of security is needed, for example - The outer network can be secured via static IPSec policies. In the following paragraphs we will walk through the set-up but before we do that, let us lay down some terminologies.<br>
 <strong>OuterIPoP</strong> - As the name suggests all the traffic of the second IPoP network is tunneled through this network.<br>
 <strong>InnerIpoP</strong> - The inner virtual network, switch-mode can be enabled on this one, providing a gateway like environment. <br>
@@ -387,11 +376,9 @@
 <strong>contr_port</strong> - port on which controller listens for udp messages coming from tincan.  <br>
 <strong>network_ignore_list</strong> - interfaces which are not considered while establishing p2p connection by IPoP.</p>
 
-<h2 id="setting-up-the-network">
-<a id="setting-up-the-network" class="anchor" href="#setting-up-the-network" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setting up the Network</h2>
+<h2 id="setting-up-the-network">Setting up the Network</h2>
 <p>It should be borne in mind that the inner and outer networks are two independent identities having separate XMPP relations and IP address range. We are going to setup two instances of IPoP differing only in configuration.</p>
-<h3 id="start-outeripop">
-<a id="start-outeripop" class="anchor" href="#start-outeripop" aria-hidden="true"><span class="octicon octicon-link"></span></a>Start OuterIPoP</h3>
+<h3 id="start-outeripop">Start OuterIPoP</h3>
 <div class="language-bash highlighter-rouge">
 <pre class="highlight"><code> sudo sh -c <span class="s1">'./ipop-tincan tunnel-tap 5800 1&gt; out.log 2&gt; err.log &amp;'</span>
 </code></pre>
@@ -496,8 +483,7 @@
           RX bytes:0 <span class="o">(</span>0.0 B<span class="o">)</span>  TX bytes:7676 <span class="o">(</span>7.6 KB<span class="o">)</span>
 </code></pre>
 </div>
-<h3 id="start-inneripop">
-<a id="start-inneripop" class="anchor" href="#start-inneripop" aria-hidden="true"><span class="octicon octicon-link"></span></a>Start InnerIPoP</h3>
+<h3 id="start-inneripop">Start InnerIPoP</h3>
 <p>Please note OuterIPoP has to be started before InnerIPoP, Start tincan for InnerIPoP</p>
 <div class="language-bash highlighter-rouge">
 <pre class="highlight"><code>sudo sh -c <span class="s1">'./ipop-tincan ipop 5805 1&gt; out.log 2&gt; err.log &amp;'</span>

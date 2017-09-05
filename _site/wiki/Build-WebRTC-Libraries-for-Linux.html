@@ -368,23 +368,7 @@
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
         <!-- <h1>On This Page</h1> -->
-        <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#build-webrtc-libraries-for-linux">Build WebRTC Libraries for Linux</a>
-<ul>
-<li class="toc-entry toc-h2"><a href="#install-toolchain">Install Toolchain</a></li>
-<li class="toc-entry toc-h2"><a href="#download-the-webrtc-source-code">Download the WebRTC source code</a></li>
-<li class="toc-entry toc-h2"><a href="#optional-update-your-checkout">(Optional) Update your checkout</a></li>
-<li class="toc-entry toc-h2"><a href="#build-webrtc-libraries">Build WebRTC libraries</a></li>
-<li class="toc-entry toc-h2"><a href="#extract-the-static-libraries">Extract the static libraries</a>
-<ul>
-<li class="toc-entry toc-h3"><a href="#get-tincan-source-code">Get TinCan Source Code</a></li>
-<li class="toc-entry toc-h3"><a href="#copy-the-webrtc-libraries-to-tincan">Copy the WebRTC Libraries to TinCan</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul><h1 id="build-webrtc-libraries-for-linux">
-<a id="build-webrtc-libraries-for-linux" class="anchor" href="#build-webrtc-libraries-for-linux" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build WebRTC Libraries for Linux</h1>
+        <h1 id="build-webrtc-libraries-for-linux">Build WebRTC Libraries for Linux</h1>
 
 <table>
   <thead>
@@ -404,41 +388,36 @@
     </tr>
     <tr>
       <td><strong>Question(s)</strong></td>
-      <td>- How to build WebRTC on Linux?<br> - How to extract WebRTC static libraries for building IPOP?</td>
+      <td>- How to build WebRTC on Linux?<br /> - How to extract WebRTC static libraries for building IPOP?</td>
     </tr>
     <tr>
       <td><strong>Objective(s)</strong></td>
-      <td>- Build the WebRTC Libraries<br> - Extract required WebRTC Static Libraries for Building IPOP</td>
+      <td>- Build the WebRTC Libraries<br /> - Extract required WebRTC Static Libraries for Building IPOP</td>
     </tr>
   </tbody>
 </table>
 
-<h2 id="install-toolchain">
-<a id="install-toolchain" class="anchor" href="#install-toolchain" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install Toolchain</h2>
+<h2 id="install-toolchain">Install Toolchain</h2>
 
 <p>Install the Chromium depot tools</p>
 
 <p>First, get the repository of <code class="highlighter-rouge">depot_tools</code>:</p>
 
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>  git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>  git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 </code></pre>
 </div>
 <p>Then, add <code class="highlighter-rouge">depot_tools</code> to your PATH:</p>
 
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>  <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/depot_tools:<span class="s2">"</span><span class="nv">$PATH</span><span class="s2">"</span>
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>  <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/depot_tools:<span class="s2">"</span><span class="nv">$PATH</span><span class="s2">"</span>
 </code></pre>
 </div>
 
-<h2 id="download-the-webrtc-source-code">
-<a id="download-the-webrtc-source-code" class="anchor" href="#download-the-webrtc-source-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download the WebRTC source code</h2>
+<h2 id="download-the-webrtc-source-code">Download the WebRTC source code</h2>
 <ol>
   <li>Create a working directory, enter it, and run <code class="highlighter-rouge">fetch webrtc</code>:</li>
 </ol>
 
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>  mkdir webrtc-checkout
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>  mkdir webrtc-checkout
   <span class="nb">cd </span>webrtc-checkout
   fetch --no-history --nohooks webrtc
 </code></pre>
@@ -446,15 +425,13 @@
 
 <ol>
   <li>These instructions work on branch-heads/57.
-    <div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>  <span class="nb">cd </span>src
+    <div class="language-shell highlighter-rouge"><pre class="highlight"><code>  <span class="nb">cd </span>src
   git checkout branch-heads/57
 </code></pre>
     </div>
   </li>
   <li>Download the code
-    <div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>  gclient sync
+    <div class="language-shell highlighter-rouge"><pre class="highlight"><code>  gclient sync
 </code></pre>
     </div>
   </li>
@@ -462,11 +439,9 @@
 
 <p><strong>Note:</strong> <em>The download will take a while, but it no longer downloads the Chromium repository after branch-head/57. Do not interrupt this step or you may need to start all over again (a new gclient sync may be enough, but you might also need to wipe your webrtc_checkout\src folder and start over).</em></p>
 
-<h2 id="optional-update-your-checkout">
-<a id="optional-update-your-checkout" class="anchor" href="#optional-update-your-checkout" aria-hidden="true"><span class="octicon octicon-link"></span></a>(Optional) Update your checkout</h2>
+<h2 id="optional-update-your-checkout">(Optional) Update your checkout</h2>
 <p>To update an existing checkout, you can run</p>
-<div class="highlighter-rouge">
-<pre class="highlight"><code>git rebase-update
+<div class="highlighter-rouge"><pre class="highlight"><code>git rebase-update
 gclient sync
 </code></pre>
 </div>
@@ -474,49 +449,40 @@ gclient sync
 
 <p>The second command syncs the sub-repositories to the appropriate versions and re-runs the hooks as needed.</p>
 
-<h2 id="build-webrtc-libraries">
-<a id="build-webrtc-libraries" class="anchor" href="#build-webrtc-libraries" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build WebRTC libraries</h2>
+<h2 id="build-webrtc-libraries">Build WebRTC libraries</h2>
 <p>These gn flags are critical for compatiabilty with tincan. Turn off iterator_debugging or the mangled symbol names will not match; it causes a debug prefix to added to STL container names. Also, all the pieces of libboringssl do not get assembled. My approach to was to turn off component builds and switch from a shared to a static library and then manually create the libboringssl_asm.a file. The default configuration is for a 64-bit debug build:</p>
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>  gn gen out/debug-x64 <span class="s2">"--args=enable_iterator_debugging=false is_component_build=false"</span>
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>  gn gen out/debug-x64 <span class="s2">"--args=enable_iterator_debugging=false is_component_build=false"</span>
   ninja -C out/debug-x64/ boringssl field_trial_default protobuf_lite p2p base jsoncpp
 </code></pre>
 </div>
 <p>To create a 64-bit release build you must set is_debug = false</p>
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>  gn gen out/release-x64 <span class="s2">"--args=enable_iterator_debugging=false is_component_build=false is_debug=false"</span>
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>  gn gen out/release-x64 <span class="s2">"--args=enable_iterator_debugging=false is_component_build=false is_debug=false"</span>
   ninja -C out/release-x64/ boringssl field_trial_default protobuf_lite p2p base jsoncpp
 </code></pre>
 </div>
 
-<h2 id="extract-the-static-libraries">
-<a id="extract-the-static-libraries" class="anchor" href="#extract-the-static-libraries" aria-hidden="true"><span class="octicon octicon-link"></span></a>Extract the static libraries</h2>
+<h2 id="extract-the-static-libraries">Extract the static libraries</h2>
 
-<h3 id="get-tincan-source-code">
-<a id="get-tincan-source-code" class="anchor" href="#get-tincan-source-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get TinCan Source Code</h3>
+<h3 id="get-tincan-source-code">Get TinCan Source Code</h3>
 
 <p>Switch to the workspace directory:</p>
 
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code><span class="nb">cd</span> ~/workspace/
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> ~/workspace/
 </code></pre>
 </div>
 <p>Create <code class="highlighter-rouge">ipop-project</code> directory and download the TinCan repository there:</p>
 
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>mkdir -p ipop-project/ <span class="o">&amp;&amp;</span> git clone https://github.com/ipop-project/Tincan.git ipop-project/Tincan
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>mkdir -p ipop-project/ <span class="o">&amp;&amp;</span> git clone https://github.com/ipop-project/Tincan.git ipop-project/Tincan
 </code></pre>
 </div>
 
-<h3 id="copy-the-webrtc-libraries-to-tincan">
-<a id="copy-the-webrtc-libraries-to-tincan" class="anchor" href="#copy-the-webrtc-libraries-to-tincan" aria-hidden="true"><span class="octicon octicon-link"></span></a>Copy the WebRTC Libraries to TinCan</h3>
+<h3 id="copy-the-webrtc-libraries-to-tincan">Copy the WebRTC Libraries to TinCan</h3>
 
 <p>These freshly built libraries will replace the existing libraries.</p>
 
 <p>Currently the libraries we need from out/Debug_x64 and out/Release_x64 are:</p>
 
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>ar -rcs /home/kcratie/workspace/ipop-project/Tincan/external/lib/debug_x64/linux/libboringssl_asm.a out/debug-x64/obj/third_party/boringssl/boringssl_asm/aes-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/aesni-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/bsaes-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/vpaes-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/rsaz-avx2.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/x86_64-mont.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/x86_64-mont5.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/chacha-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/p256-x86_64-asm.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/md5-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/aesni-gcm-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/ghash-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/rdrand-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/sha1-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/sha256-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/sha512-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/x25519-asm-x86_64.o
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>ar -rcs /home/kcratie/workspace/ipop-project/Tincan/external/lib/debug_x64/linux/libboringssl_asm.a out/debug-x64/obj/third_party/boringssl/boringssl_asm/aes-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/aesni-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/bsaes-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/vpaes-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/rsaz-avx2.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/x86_64-mont.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/x86_64-mont5.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/chacha-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/p256-x86_64-asm.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/md5-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/aesni-gcm-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/ghash-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/rdrand-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/sha1-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/sha256-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/sha512-x86_64.o out/debug-x64/obj/third_party/boringssl/boringssl_asm/x25519-asm-x86_64.o
 
 ar -rcs /home/kcratie/workspace/ipop-project/Tincan/external/lib/debug_x64/linux/libjsoncpp.a out/debug-x64/obj/third_party/jsoncpp/jsoncpp/json_reader.o out/debug-x64/obj/third_party/jsoncpp/jsoncpp/json_value.o out/debug-x64/obj/third_party/jsoncpp/jsoncpp/json_writer.o
 
@@ -541,7 +507,7 @@ cp ./out/release-x64/obj/third_party/protobuf/libprotobuf_lite.a ../../ipop-proj
 </code></pre>
 </div>
 
-<hr>
+<hr />
 
 <p>*These instructions are derived from following links and through experimentation with WebRTC itself. They may change as depot_tools and WebRTC are updated by their respective developers.</p>
 

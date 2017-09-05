@@ -368,16 +368,7 @@
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
         <!-- <h1>On This Page</h1> -->
-        <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#build-ipop-for-centos">Build IPOP for CentOS</a>
-<ul>
-<li class="toc-entry toc-h2"><a href="#download-and-install-dependencies">Download and Install Dependencies</a></li>
-<li class="toc-entry toc-h2"><a href="#build-ipop">Build IPOP</a></li>
-<li class="toc-entry toc-h2"><a href="#copy-configuration-file">Copy Configuration File</a></li>
-</ul>
-</li>
-</ul><h1 id="build-ipop-for-centos">
-<a id="build-ipop-for-centos" class="anchor" href="#build-ipop-for-centos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build IPOP for CentOS</h1>
+        <h1 id="build-ipop-for-centos">Build IPOP for CentOS</h1>
 
 <table>
   <thead>
@@ -406,11 +397,9 @@
   </tbody>
 </table>
 
-<h2 id="download-and-install-dependencies">
-<a id="download-and-install-dependencies" class="anchor" href="#download-and-install-dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download and Install Dependencies</h2>
+<h2 id="download-and-install-dependencies">Download and Install Dependencies</h2>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>su
+<div class="highlighter-rouge"><pre class="highlight"><code>su
 yum -y update
 yum install -y centos-release-scl-rh
 yum install -y devtoolset-3-gcc-c++ rh-python35
@@ -424,13 +413,11 @@ pip install sleekxmpp psutil pystun
 </code></pre>
 </div>
 
-<h2 id="build-ipop">
-<a id="build-ipop" class="anchor" href="#build-ipop" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build IPOP</h2>
+<h2 id="build-ipop">Build IPOP</h2>
 
 <p>Run the following commands as a regular (non-root) user:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>scl enable rh-python35 bash
+<div class="highlighter-rouge"><pre class="highlight"><code>scl enable rh-python35 bash
 scl enable devtoolset-3 bash
 mkdir -p ~/workspace/ipop-project ~/workspace/ipop-vpn/config
 cd workspace/ipop-project/
@@ -445,12 +432,10 @@ cp -rf ./controller/ ../../ipop-vpn/
 </code></pre>
 </div>
 
-<h2 id="copy-configuration-file">
-<a id="copy-configuration-file" class="anchor" href="#copy-configuration-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Copy Configuration File</h2>
+<h2 id="copy-configuration-file">Copy Configuration File</h2>
 
 <p>You will need a valid configuration file (ipop-config.json) to run IPOP. Go to the directory you have your config file and copy the file to the <code class="highlighter-rouge">config</code> directory:</p>
-<div class="highlighter-rouge">
-<pre class="highlight"><code>cp ipop-config.json ~/workspace/ipop-vpn/config
+<div class="highlighter-rouge"><pre class="highlight"><code>cp ipop-config.json ~/workspace/ipop-vpn/config
 </code></pre>
 </div>
 

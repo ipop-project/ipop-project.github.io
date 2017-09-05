@@ -368,20 +368,11 @@
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
         <!-- <h1>On This Page</h1> -->
-        <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#deploying-the-static-jekyll-website-from-local-repository-to-github-gh-pages-branch">Deploying the Static Jekyll Website from Local Repository to GitHub gh-pages Branch</a>
-<ul>
-<li class="toc-entry toc-h2"><a href="#install-and-run-jekyll-github-deploy">Install and Run Jekyll Github Deploy</a></li>
-</ul>
-</li>
-<li class="toc-entry toc-h1"><a href="#add-table-of-contents-to-the-wiki-pages">Add Table of Contents to the Wiki Pages</a></li>
-</ul><h1 id="deploying-the-static-jekyll-website-from-local-repository-to-github-gh-pages-branch">
-<a id="deploying-the-static-jekyll-website-from-local-repository-to-github-gh-pages-branch" class="anchor" href="#deploying-the-static-jekyll-website-from-local-repository-to-github-gh-pages-branch" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deploying the Static Jekyll Website from Local Repository to GitHub gh-pages Branch</h1>
+        <h1 id="deploying-the-static-jekyll-website-from-local-repository-to-github-gh-pages-branch">Deploying the Static Jekyll Website from Local Repository to GitHub gh-pages Branch</h1>
 
 <p>While using custom or unsupported plugins, it is necessary to upload the static website files, already built on the local repository to the GitHub repository and choose the website to be loaded from that.</p>
 
-<h2 id="install-and-run-jekyll-github-deploy">
-<a id="install-and-run-jekyll-github-deploy" class="anchor" href="#install-and-run-jekyll-github-deploy" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install and Run Jekyll Github Deploy</h2>
+<h2 id="install-and-run-jekyll-github-deploy">Install and Run Jekyll Github Deploy</h2>
 
 <p><code class="highlighter-rouge">gem install jgd</code></p>
 
@@ -401,8 +392,7 @@ In the main repo:
 </code></pre>
 <p>git submodule add https://github.com/ipop-project/ipop-project.github.io.wiki.git wiki
 git commit -m “Wiki Added as a Submodule”</p>
-<div class="highlighter-rouge">
-<pre class="highlight"><code>
+<div class="highlighter-rouge"><pre class="highlight"><code>
 # Remove Wiki Submodule
 
 Delete the relevant section from the `.gitmodules` file.
@@ -435,8 +425,7 @@ In order to make relative links in wiki pages work correctly inside Jekyll weisb
 </code></pre>
 </div>
 <p>permalink: /:categories/:title/</p>
-<div class="highlighter-rouge">
-<pre class="highlight"><code>
+<div class="highlighter-rouge"><pre class="highlight"><code>
 # Redirect Wiki Home
 
 ## Utilizing a Redirected Layout
@@ -460,8 +449,7 @@ This second technique would allow you to set up redirects for your pages without
 
 <p>Once you have this layout ready, then to set up redirect from any page, all you need to do is specify redirected as your layout in its YAML front matter and specify the destination in redirect_to as shown below. in <code class="highlighter-rouge">wiki.md</code>:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>---
+<div class="highlighter-rouge"><pre class="highlight"><code>---
 layout: redirected
 sitemap: false
 permalink: /wiki/
@@ -474,8 +462,7 @@ redirect_to:  Home.html
 
 <p><a href="https://superdevresources.com/redirects-jekyll-github-pages/">Reference</a></p>
 
-<h1 id="add-table-of-contents-to-the-wiki-pages">
-<a id="add-table-of-contents-to-the-wiki-pages" class="anchor" href="#add-table-of-contents-to-the-wiki-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add Table of Contents to the Wiki Pages</h1>
+<h1 id="add-table-of-contents-to-the-wiki-pages">Add Table of Contents to the Wiki Pages</h1>
 
 <p><a href="https://github.com/toshimaru/jekyll-toc">jekyll-toc</a></p>
 

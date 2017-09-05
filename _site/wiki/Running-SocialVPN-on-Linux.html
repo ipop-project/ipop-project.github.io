@@ -368,58 +368,46 @@
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
         <!-- <h1>On This Page</h1> -->
-        <ul class="section-nav">
-<li class="toc-entry toc-h3"><a href="#obtaining-socialvpn">Obtaining SocialVPN</a></li>
-<li class="toc-entry toc-h3"><a href="#configuring-socialvpn">Configuring SocialVPN</a></li>
-<li class="toc-entry toc-h3"><a href="#running-socialvpn">Running SocialVPN</a></li>
-<li class="toc-entry toc-h3"><a href="#stopping-socialvpn">Stopping SocialVPN</a></li>
-</ul><p>The following instructions are for Ubuntu 12.04/Debian Wheezy (64-bit) or higher. Visit the <a href="https://github.com/ipop-project/downloads/releases">downloads repository</a> to obtain IPOP builds for additional platforms.</p>
+        <p>The following instructions are for Ubuntu 12.04/Debian Wheezy (64-bit) or higher. Visit the <a href="https://github.com/ipop-project/downloads/releases">downloads repository</a> to obtain IPOP builds for additional platforms.</p>
 
-<h3 id="obtaining-socialvpn">
-<a id="obtaining-socialvpn" class="anchor" href="#obtaining-socialvpn" aria-hidden="true"><span class="octicon octicon-link"></span></a>Obtaining SocialVPN</h3>
+<h3 id="obtaining-socialvpn">Obtaining SocialVPN</h3>
 
 <ol>
   <li>
     <p>Download GroupVPN from the <a href="https://github.com/ipop-project/downloads/releases">downloads repository</a>.</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code> wget https://github.com/ipop-project/Downloads/releases/download/v16.01.0/ipop-v16.01.0_ubuntu.tar.gz
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> wget https://github.com/ipop-project/Downloads/releases/download/v16.01.0/ipop-v16.01.0_ubuntu.tar.gz
  tar xf ipop-v16.01.0_ubuntu.tar.gz
 </code></pre>
     </div>
   </li>
 </ol>
 
-<h3 id="configuring-socialvpn">
-<a id="configuring-socialvpn" class="anchor" href="#configuring-socialvpn" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuring SocialVPN</h3>
+<h3 id="configuring-socialvpn">Configuring SocialVPN</h3>
 
 <ol>
   <li>
     <p>Create a configuration file for SocialVPN</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code> cp config/sample-svpn-config.json config/svpn-config.json
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> cp config/sample-svpn-config.json config/svpn-config.json
 </code></pre>
     </div>
   </li>
   <li>
     <p>Update <code class="highlighter-rouge">config/svpn-config.json</code> according to your needs. The <code class="highlighter-rouge">ip4</code>, <code class="highlighter-rouge">xmpp_username</code>, <code class="highlighter-rouge">xmpp_password</code>, and <code class="highlighter-rouge">xmpp_host</code> flags are required. See the <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Controller-Configuration">configuration page</a> for more information about the configuration options available for SocialVPN.</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code> nano config/svpn-config.json
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> nano config/svpn-config.json
 </code></pre>
     </div>
 
-    <div class="language-json highlighter-rouge">
-<pre class="highlight"><code><span class="w"> </span><span class="err">...</span><span class="w">
+    <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="w"> </span><span class="err">...</span><span class="w">
      </span><span class="s2">"CFx"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
          </span><span class="nt">"xmpp_username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"username@dukgo.com"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"xmpp_password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"password123"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"xmpp_host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dukgo.com"</span><span class="p">,</span><span class="w">
 </span></code></pre>
     </div>
-    <div class="language-json highlighter-rouge">
-<pre class="highlight"><code><span class="w"> </span><span class="err">...</span><span class="w">
+    <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="w"> </span><span class="err">...</span><span class="w">
      </span><span class="s2">"AddressMapper"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"ip4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"172.31.0.100"</span><span class="p">,</span><span class="w">
 </span></code></pre>
@@ -427,23 +415,20 @@
   </li>
 </ol>
 
-<h3 id="running-socialvpn">
-<a id="running-socialvpn" class="anchor" href="#running-socialvpn" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running SocialVPN</h3>
+<h3 id="running-socialvpn">Running SocialVPN</h3>
 
 <ol>
   <li>
     <p>Launch the ipop-tincan program</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>sudo ./ipop-tincan &amp;&gt; tin.log &amp;
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo ./ipop-tincan &amp;&gt; tin.log &amp;
 </code></pre>
     </div>
   </li>
   <li>
     <p>Run the controller using the <code class="highlighter-rouge">config/svpn-config.json</code> configuration</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code><span class="nb">cd </span>controllers
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd </span>controllers
 python -m controller.Controller -c config/svpn-config.json &amp;&gt; ctl.log &amp;
 </code></pre>
     </div>
@@ -451,16 +436,14 @@ python -m controller.Controller -c config/svpn-config.json &amp;&gt; ctl.log &am
   <li>
     <p>Check on the current status of your network using netcat</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code><span class="nb">echo</span> -e <span class="s1">'\x02\x01{"m":"get_state"}'</span> | netcat -q 1 -u 127.0.0.1 5800
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">echo</span> -e <span class="s1">'\x02\x01{"m":"get_state"}'</span> | netcat -q 1 -u 127.0.0.1 5800
 </code></pre>
     </div>
   </li>
   <li>
     <p>Check the network devices and IPv4 address for your device</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>ifconfig ipop
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>ifconfig ipop
 </code></pre>
     </div>
 
@@ -470,15 +453,13 @@ python -m controller.Controller -c config/svpn-config.json &amp;&gt; ctl.log &am
 
 <p><strong>Run SocialVPN on another machine using the same credentials and they will connect to each other.</strong></p>
 
-<h3 id="stopping-socialvpn">
-<a id="stopping-socialvpn" class="anchor" href="#stopping-socialvpn" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stopping SocialVPN</h3>
+<h3 id="stopping-socialvpn">Stopping SocialVPN</h3>
 
 <ol>
   <li>
     <p>Kill SocialVPN</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>sudo killall ipop-tincan
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo killall ipop-tincan
 ps aux | grep -v grep | grep controller.Controller | awk <span class="s1">'{print $2}'</span> | xargs sudo <span class="nb">kill</span> -9
 </code></pre>
     </div>

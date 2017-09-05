@@ -368,11 +368,7 @@
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
         <!-- <h1>On This Page</h1> -->
-        <ul class="section-nav">
-<li class="toc-entry toc-h2"><a href="#download-dependencies">Download dependencies</a></li>
-<li class="toc-entry toc-h2"><a href="#download-source-code">Download source code</a></li>
-<li class="toc-entry toc-h2"><a href="#build-ipop-tincan-for-linux">Build ipop-tincan for Linux</a></li>
-</ul><p>Tested on Ubuntu 14.04</p>
+        <p>Tested on Ubuntu 14.04</p>
 
 <p>These instructions are derived from these links:</p>
 
@@ -383,16 +379,14 @@
   <li>http://www.html5rocks.com/en/tutorials/webrtc/basics/</li>
 </ul>
 
-<h2 id="download-dependencies">
-<a id="download-dependencies" class="anchor" href="#download-dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download dependencies</h2>
+<h2 id="download-dependencies">Download dependencies</h2>
 <ol>
   <li>
     <p>Install dependencies</p>
 
     <p>a. For Ubuntu and Debian</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>sudo apt-get update
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo apt-get update
 sudo apt-get install default-jdk pkg-config git subversion make gcc g++ python
 sudo apt-get install libexpat1-dev libgtk2.0-dev libnss3-dev libssl-dev 
 </code></pre>
@@ -401,8 +395,7 @@ sudo apt-get install libexpat1-dev libgtk2.0-dev libnss3-dev libssl-dev
   <li>
     <p>Download depot_tools for chromium repo</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>mkdir libjingle; <span class="nb">cd </span>libjingle
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>mkdir libjingle; <span class="nb">cd </span>libjingle
 git clone --depth 1 https://chromium.googlesource.com/chromium/tools/depot_tools.git
 </code></pre>
     </div>
@@ -412,8 +405,7 @@ git clone --depth 1 https://chromium.googlesource.com/chromium/tools/depot_tools
 
     <p>a. For Ubuntu and Debian</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code><span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/lib/jvm/default-java
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/lib/jvm/default-java
 <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">/depot_tools:</span><span class="nv">$PATH</span><span class="s2">"</span>
 <span class="nb">export </span><span class="nv">GYP_DEFINES</span><span class="o">=</span><span class="s2">"use_openssl=1"</span>
 </code></pre>
@@ -422,38 +414,33 @@ git clone --depth 1 https://chromium.googlesource.com/chromium/tools/depot_tools
   <li>
     <p>(Optional) For 32-bit compilation set target_arch</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code> <span class="nb">export </span><span class="nv">GYP_DEFINES</span><span class="o">=</span><span class="s2">"</span><span class="nv">$GYP_DEFINES</span><span class="s2"> target_arch=ia32"</span>
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> <span class="nb">export </span><span class="nv">GYP_DEFINES</span><span class="o">=</span><span class="s2">"</span><span class="nv">$GYP_DEFINES</span><span class="s2"> target_arch=ia32"</span>
 </code></pre>
     </div>
   </li>
 </ol>
 
-<h2 id="download-source-code">
-<a id="download-source-code" class="anchor" href="#download-source-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download source code</h2>
+<h2 id="download-source-code">Download source code</h2>
 
 <ol>
   <li>
     <p>Configure gclient to download libjingle code.</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>gclient config --name<span class="o">=</span>trunk https://webrtc.googlecode.com/svn/branches/3.52
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>gclient config --name<span class="o">=</span>trunk https://webrtc.googlecode.com/svn/branches/3.52
 </code></pre>
     </div>
   </li>
   <li>
     <p>Download libjingle and dependencies (this may take a while). You may probably see some errors like this: <em><code class="highlighter-rouge">Error: Command 'svn checkout http://src.chromium.org/svn/trunk/src/third_party/expat@245382 /users/PengH/libjingle/trunk/third_party/expat --revision 245382 --non-interactive --force --ignore-externals' returned non-zero exit status 1 in /users/PengH/libjingle</code></em>. This is because the chromium has moved the libjingle-3.52 from <strong>http</strong> to <strong>https</strong>. Please ignore it for now and follow the instruction.</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>gclient sync --force
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>gclient sync --force
 </code></pre>
     </div>
   </li>
   <li>
     <p>Download ipop-tincan from github.com/ipop-project</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code><span class="nb">cd </span>trunk/talk; mkdir ipop-project; <span class="nb">cd </span>ipop-project
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd </span>trunk/talk; mkdir ipop-project; <span class="nb">cd </span>ipop-project
 git clone --depth 1 https://github.com/ipop-project/ipop-tap.git
 git clone --depth 1 https://github.com/ipop-project/ipop-tincan.git
 </code></pre>
@@ -462,16 +449,14 @@ git clone --depth 1 https://github.com/ipop-project/ipop-tincan.git
   <li>
     <p>Return to libjingle trunk directory (/path_to_trunk/trunk/)</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code><span class="nb">cd</span> ../../
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> ../../
 </code></pre>
     </div>
   </li>
   <li>
     <p>Copy modified gyp files to trunk/talk directory</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>rm -f DEPS all.gyp talk/libjingle.gyp talk/ipop-tincan.gyp
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>rm -f DEPS all.gyp talk/libjingle.gyp talk/ipop-tincan.gyp
 cp talk/ipop-project/ipop-tincan/build/ipop-tincan.gyp talk/
 cp talk/ipop-project/ipop-tincan/build/libjingle.gyp talk/
 cp talk/ipop-project/ipop-tincan/build/all.gyp .
@@ -482,13 +467,11 @@ cp talk/ipop-project/ipop-tincan/build/DEPS .
   <li>
     <p>Update some configuration files to pull the libjingle-3.52 from https</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code> nano DEPS
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> nano DEPS
 </code></pre>
     </div>
 
-    <div class="highlighter-rouge">
-<pre class="highlight"><code> line13: "chromium_trunk" : "http://src.chromium.org/svn/trunk", 
+    <div class="highlighter-rouge"><pre class="highlight"><code> line13: "chromium_trunk" : "http://src.chromium.org/svn/trunk", 
  -&gt;
  line13: "chromium_trunk" : "https://src.chromium.org/svn/trunk", 
 </code></pre>
@@ -497,22 +480,19 @@ cp talk/ipop-project/ipop-tincan/build/DEPS .
   <li>
     <p>Run the <strong>gclient sync</strong> command again to continue the downloading libjingle libs and dependencies</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code> gclient sync --force
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> gclient sync --force
 </code></pre>
     </div>
   </li>
   <li>
     <p>From step 6, you will get two directories called <strong>chromium_deps</strong> and <strong>chromium_gn</strong> in the /path/to/libjingle/ directory (same dir with trunk). Now enter the chromium_deps dir to make some changes.</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code> <span class="nb">cd</span> ../chromium_deps
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> <span class="nb">cd</span> ../chromium_deps
  nano DEPS
 </code></pre>
     </div>
 
-    <div class="highlighter-rouge">
-<pre class="highlight"><code> line20: "llvm_url": "http://src.chromium.org/llvm-project", 
+    <div class="highlighter-rouge"><pre class="highlight"><code> line20: "llvm_url": "http://src.chromium.org/llvm-project", 
  -&gt;
  line20: "llvm_url": "https://src.chromium.org/llvm-project", 
 </code></pre>
@@ -521,39 +501,34 @@ cp talk/ipop-project/ipop-tincan/build/DEPS .
   <li>
     <p>Now you are good to go. Please run the <strong>gclient sync</strong> again to finish the downloading (this might take a while)</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code> <span class="nb">cd</span> ../trunk
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> <span class="nb">cd</span> ../trunk
  gclient sync --force
 </code></pre>
     </div>
   </li>
 </ol>
 
-<h2 id="build-ipop-tincan-for-linux">
-<a id="build-ipop-tincan-for-linux" class="anchor" href="#build-ipop-tincan-for-linux" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build ipop-tincan for Linux</h2>
+<h2 id="build-ipop-tincan-for-linux">Build ipop-tincan for Linux</h2>
 
 <ol>
   <li>
     <p>Generate ninja build files</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>gclient runhooks --force
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>gclient runhooks --force
 </code></pre>
     </div>
   </li>
   <li>
     <p>Build tincan for linux (binary localed at out/Release/ipop-tincan)</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>ninja -C out/Release ipop-tincan
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>ninja -C out/Release ipop-tincan
 </code></pre>
     </div>
   </li>
   <li>
     <p>To build debug version with gdb symbols (but creates 25 MB binary)</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>ninja -C out/Debug ipop-tincan
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>ninja -C out/Debug ipop-tincan
 </code></pre>
     </div>
   </li>

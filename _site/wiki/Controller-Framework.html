@@ -368,43 +368,13 @@
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
         <!-- <h1>On This Page</h1> -->
-        <ul class="section-nav">
-<li class="toc-entry toc-h3"><a href="#ipop-controller-framework-architecture">IPOP Controller Framework Architecture</a></li>
-<li class="toc-entry toc-h3"><a href="#introduction">Introduction</a>
-<ul>
-<li class="toc-entry toc-h4"><a href="#example-use-cases">Example use Cases</a></li>
-</ul>
-</li>
-<li class="toc-entry toc-h3"><a href="#components">Components</a></li>
-<li class="toc-entry toc-h3"><a href="#inter-modular-communication">Inter Modular Communication</a></li>
-<li class="toc-entry toc-h3"><a href="#configuration">Configuration</a></li>
-<li class="toc-entry toc-h3"><a href="#technical-details">Technical Details</a>
-<ul>
-<li class="toc-entry toc-h4"><a href="#cfxpy">CFX.py</a></li>
-<li class="toc-entry toc-h4"><a href="#cfxhandlepy">CFxHandle.py</a></li>
-<li class="toc-entry toc-h4"><a href="#cbtpy">CBT.py</a></li>
-<li class="toc-entry toc-h4"><a href="#controllermodulepy">ControllerModule.py</a></li>
-<li class="toc-entry toc-h4"><a href="#controller-modules">Controller Modules</a>
-<ul>
-<li class="toc-entry toc-h5"><a href="#common">Common</a></li>
-<li class="toc-entry toc-h5"><a href="#groupvpn">GroupVPN</a></li>
-<li class="toc-entry toc-h5"><a href="#socialvpn">SocialVPN</a></li>
-</ul>
-</li>
-<li class="toc-entry toc-h4"><a href="#some-other-possible-controller-modules">Some other possible controller modules</a></li>
-<li class="toc-entry toc-h4"><a href="#configuration-1">Configuration</a></li>
-</ul>
-</li>
-</ul><h3 id="ipop-controller-framework-architecture">
-<a id="ipop-controller-framework-architecture" class="anchor" href="#ipop-controller-framework-architecture" aria-hidden="true"><span class="octicon octicon-link"></span></a>IPOP Controller Framework Architecture</h3>
+        <h3 id="ipop-controller-framework-architecture">IPOP Controller Framework Architecture</h3>
 
-<h3 id="introduction">
-<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h3>
+<h3 id="introduction">Introduction</h3>
 
 <p>With  the current implementation of the IPOP controller, extending and create custom controllers is a difficult task and sometimes intimidating for the end users. To make the process of creating a custom controller easy, a new controller framework is being developed. The new controller framework allows the users to create their own controllers by simply plugging in the required modules, each performing various functions of an IPOP controller(e.g. IP address translation, topology management, routing, multicasting).</p>
 
-<h4 id="example-use-cases">
-<a id="example-use-cases" class="anchor" href="#example-use-cases" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example use Cases</h4>
+<h4 id="example-use-cases">Example use Cases</h4>
 
 <p>Consider a GVPN controller for a small VPN (10s of nodes). A user may wish to configure a controller that implements proactive establishment of an all-to-all mesh topology among endpoints, routing is unnecessary as messages are simply forwarded across a Tincan link (at the tincan module), implements multicast by forwarding to all local tincan links, and supports static DNS mapping of names to IPOP addresses independently at each controller by encoding IP addresses into DNS names.</p>
 
@@ -412,8 +382,7 @@
 
 <p>While these two controllers would expose a GVPN to applications and share common traits (e.g. the same OSN), the design requirements for the different networks would lead to different approaches to topology management, routing, and multicasting. The small-VPN controller would focus on simplicity and fast responses, while the large-VPN controller would focus on scalability,</p>
 
-<h3 id="components">
-<a id="components" class="anchor" href="#components" aria-hidden="true"><span class="octicon octicon-link"></span></a>Components</h3>
+<h3 id="components">Components</h3>
 
 <p>The new controller framework has 2 major components:</p>
 <ul>
@@ -452,8 +421,7 @@
   </li>
 </ul>
 
-<h3 id="inter-modular-communication">
-<a id="inter-modular-communication" class="anchor" href="#inter-modular-communication" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inter Modular Communication</h3>
+<h3 id="inter-modular-communication">Inter Modular Communication</h3>
 
 <p>In many cases, a CM might need data/services from another CM. In such cases, the CMs need a way to communicate with each other. The objective of IMC, within the context of the IPOP controller system, is to facilitate in a structured and coordinated fashion, the processing of operations or requests that require action within more than a single module.</p>
 
@@ -479,15 +447,13 @@
 
 <p>The routing module leverages the infrastructure of the topology and link management layers but it does not necessarily need to directly invoke their facilities. Multi-hop routing is influenced by the nature of the underlying topology. If the topology allowed unlimited direct links then there would be very little routing to be done. It is when no direct link to a node exist in the overlay network that multi-hop is invoked. The CFx is notified of a packet being sent to an IP address which is not known (no link). The CFx creates a CBT for this event and delivers it to the multi-hop routing (MHR) module. MHR will perform discovery by communicating with other peer MHR modules and then attempt to either send the packet to its destination or fail it as undeliverable. This communication would be done using CBTs to the CFx to Tincan.</p>
 
-<h3 id="configuration">
-<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h3>
+<h3 id="configuration">Configuration</h3>
 
 <p>The new controller framework is a configuration driven model. The configuration for the CFx and CMs is specified by a configuration file. The CFx parses the configuration and dynamically loads all the CMs listed in the configuration. In some cases, a CM might have some other CMs as dependencies. In such cases,the dependency CMs will be initialized before this CM is initialized. The list of dependencies of a CM is specified in its part of the configuration of the controller.</p>
 
 <p>Example Config:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code><span class="p">{</span><span class="w">
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"CFx"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"xmpp_username"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
         </span><span class="nt">"xmpp_password"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -506,11 +472,9 @@
 </span></code></pre>
 </div>
 
-<h3 id="technical-details">
-<a id="technical-details" class="anchor" href="#technical-details" aria-hidden="true"><span class="octicon octicon-link"></span></a>Technical Details</h3>
+<h3 id="technical-details">Technical Details</h3>
 
-<h4 id="cfxpy">
-<a id="cfxpy" class="anchor" href="#cfxpy" aria-hidden="true"><span class="octicon octicon-link"></span></a>CFX.py</h4>
+<h4 id="cfxpy">CFX.py</h4>
 <p>The CFx parses config given by the user (from the configuration file), and then initializes the controller by creating the controller sockets and making initialization TincanAPI calls like register_svc(), set_cb_endpoint(), set_local_ip() etc. After parsing the config file, the CFx dynamically loads all the listed CMs, by creating their objects and respective CFxHandles(explained later), using importlib. The CMs can specify their dependencies and the CFx will make sure that the dependencies of a module are loaded before the module gets itself loaded. The CFx can also detect circular dependencies. The CFx also facilitates IMC and acts as an intermediate for inter modular communication. The CFx exposes a submitCBT() function to the CFxHandle, which allows the CM to issue a CBT to a CM from which it requires services/data. Lastly, the CFx also waits for shutdown signals, and ensures graceful termination of the controller modules. This is achieved by creating a signal handler using the signal library.</p>
 
 <table>
@@ -552,31 +516,25 @@
   </tbody>
 </table>
 
-<h4 id="cfxhandlepy">
-<a id="cfxhandlepy" class="anchor" href="#cfxhandlepy" aria-hidden="true"><span class="octicon octicon-link"></span></a>CFxHandle.py<br>
-</h4>
+<h4 id="cfxhandlepy">CFxHandle.py<br /></h4>
 
 <p>The CFx creates a CFxHandle object for every controller module as explained previously. CFxHandle is basically an interface between the CM and CFx. The CFxHandle maintains the CBT queue of the CM. CFxHandle creates a different thread where the processCBT() function is called in daemon mode to process the CBTs present in the queue. processCBT() function takes a CBT as a parameter which is given by the CFxHandle by pulling out an element from the CBT queue. The CFxHandle also creates a different thread to execute the timer_method() of a CM at a given frequency. The CFxHandle exposes two functions: submitCBT(), and createCBT() to the CMs to issue a CBT and create a CBT respectively. The CFx initializes the CFxHandles which inturn initialize the CMs.</p>
 
-<h4 id="cbtpy">
-<a id="cbtpy" class="anchor" href="#cbtpy" aria-hidden="true"><span class="octicon octicon-link"></span></a>CBT.py</h4>
+<h4 id="cbtpy">CBT.py</h4>
 
 <p>This module contains the CBT class. createCBT() calls make an object of this class and returns it to the CM. The constructor of the CBT class takes in the fields also optionally. The unique ID of the CBT is generated using uuid.uuid4()</p>
 
-<h4 id="controllermodulepy">
-<a id="controllermodulepy" class="anchor" href="#controllermodulepy" aria-hidden="true"><span class="octicon octicon-link"></span></a>ControllerModule.py</h4>
+<h4 id="controllermodulepy">ControllerModule.py</h4>
 
 <p>This module contains the abstract class ControllerModule, which all the Controller Modules should inherit, forcing them to override processCBT(), initialize() and terminate().</p>
 
-<h4 id="controller-modules">
-<a id="controller-modules" class="anchor" href="#controller-modules" aria-hidden="true"><span class="octicon octicon-link"></span></a>Controller Modules</h4>
+<h4 id="controller-modules">Controller Modules</h4>
 
 <p>All the controller modules must inherit from the Abstract Base Class ControllerModule and override processCBT(), initialize(), timer_method() and terminate() functions. If the CM doesn’t need any timer functionality, it can simply “pass” the implementation of the timer_method().</p>
 
 <p>Some modules are integral to the system as they provide fundamental services, as such they can be relied on to be present in a typical system configuration. The following are the CMs that are essential to build a functional controller:</p>
 
-<h5 id="common">
-<a id="common" class="anchor" href="#common" aria-hidden="true"><span class="octicon octicon-link"></span></a>Common</h5>
+<h5 id="common">Common</h5>
 
 <ul>
   <li>
@@ -704,8 +662,7 @@
   </li>
 </ul>
 
-<h5 id="groupvpn">
-<a id="groupvpn" class="anchor" href="#groupvpn" aria-hidden="true"><span class="octicon octicon-link"></span></a>GroupVPN</h5>
+<h5 id="groupvpn">GroupVPN</h5>
 
 <ul>
   <li>
@@ -716,15 +673,13 @@
   </li>
 </ul>
 
-<h5 id="socialvpn">
-<a id="socialvpn" class="anchor" href="#socialvpn" aria-hidden="true"><span class="octicon octicon-link"></span></a>SocialVPN</h5>
+<h5 id="socialvpn">SocialVPN</h5>
 
 <ul>
   <li>
     <p><strong>AddressMapper</strong>: In SocialVPN, it’s possible to statically assign addresses to SocialVPN peers. It can be done through an additional configuration file that can be loaded with the -p argument (e.g. -p ip_config.json). In this file, you specify the UID of a node, the virtual IP address, and a label, as in the following example:</p>
 
-    <div class="highlighter-rouge">
-<pre class="highlight"><code>  [
+    <div class="highlighter-rouge"><pre class="highlight"><code>  [
       {
           "uid": "54f2b14f80e5374f8af7ad1b4838145ea7eaaf57",
           "ipv4": "172.31.0.101",
@@ -840,8 +795,7 @@
   </li>
 </ul>
 
-<h4 id="some-other-possible-controller-modules">
-<a id="some-other-possible-controller-modules" class="anchor" href="#some-other-possible-controller-modules" aria-hidden="true"><span class="octicon octicon-link"></span></a>Some other possible controller modules</h4>
+<h4 id="some-other-possible-controller-modules">Some other possible controller modules</h4>
 
 <ul>
   <li>
@@ -892,8 +846,7 @@ determines the destination, and which module to deliver (e.g. overlay-route)</p>
   </li>
 </ul>
 
-<h4 id="configuration-1">
-<a id="configuration-1" class="anchor" href="#configuration-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h4>
+<h4 id="configuration-1">Configuration</h4>
 
 <p>This file contains configuration for the CFx as well as the Controller Modules. The CFx parses this file and dynamically loads all the CMs listed in the file. Each module gets its configuration as a parameter in the constructor when the object is created.</p>
 

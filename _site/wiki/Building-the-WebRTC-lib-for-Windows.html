@@ -368,14 +368,7 @@
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
         <!-- <h1>On This Page</h1> -->
-        <ul class="section-nav">
-<li class="toc-entry toc-h2"><a href="#download-dependencies">Download dependencies</a></li>
-<li class="toc-entry toc-h2"><a href="#download-the-source-code">Download the source code</a></li>
-<li class="toc-entry toc-h2"><a href="#update-your-checkout">Update your checkout</a></li>
-<li class="toc-entry toc-h2"><a href="#building-webrtc-library">Building WebRTC library</a></li>
-<li class="toc-entry toc-h2"><a href="#extract-the-static-libraries">Extract the static libraries</a></li>
-<li class="toc-entry toc-h2"><a href="#copy-the-header-files-for-this-branch-head">Copy the header files for this branch-head</a></li>
-</ul><p>This guide is specific to the WebRTC release that is being compiled. It has been tested on 64-bit Windows 10 to build WebRTC branch-head/57.</p>
+        <p>This guide is specific to the WebRTC release that is being compiled. It has been tested on 64-bit Windows 10 to build WebRTC branch-head/57.</p>
 
 <p>These instructions are derived from following links:</p>
 
@@ -387,8 +380,7 @@
   <li><a href="https://chromium.googlesource.com/chromium/src/+/master/tools/gn/docs/quick_start.md">https://chromium.googlesource.com/chromium/src/+/master/tools/gn/docs/quick_start.md</a></li>
 </ul>
 
-<h2 id="download-dependencies">
-<a id="download-dependencies" class="anchor" href="#download-dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download dependencies</h2>
+<h2 id="download-dependencies">Download dependencies</h2>
 <ol>
   <li>
     <p>Install Visual Studio 2015 Update 2 or later - Community Edition should work if its license is appropriate for you. Use the Custom Install option and select:</p>
@@ -418,8 +410,7 @@
   </li>
 </ol>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>* Without Administrator access:
+<div class="highlighter-rouge"><pre class="highlight"><code>* Without Administrator access:
 
   * `Control Panel &gt; User Accounts &gt; User Accounts &gt; Change my environment variables`
 
@@ -431,14 +422,12 @@
   <li>Run <code class="highlighter-rouge">gclient</code> from the cmd shell. The first time it is run, it will install its own copy various tools.</li>
 </ol>
 
-<h2 id="download-the-source-code">
-<a id="download-the-source-code" class="anchor" href="#download-the-source-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download the source code</h2>
+<h2 id="download-the-source-code">Download the source code</h2>
 <ol>
   <li>Create a working directory, enter it, and run fetch webrtc. This guide assumes a specific working folder structure. This operation starts from a base directory, eg., workspace and proceeds from there. References made later on expect the Tincan repo to be cloned into workspace/ipop-project/</li>
 </ol>
 
-<div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>  mkdir webrtc-checkout
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>  mkdir webrtc-checkout
   <span class="nb">cd </span>webrtc-checkout
   fetch --nohooks webrtc
 </code></pre>
@@ -446,16 +435,14 @@
 
 <ol>
   <li>Choose the stable release 57 rather than the most recent release by entering:
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>  <span class="nb">cd </span>src
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>  <span class="nb">cd </span>src
   git branch -r
   git checkout branch-heads/57
 </code></pre>
     </div>
   </li>
   <li>Download the code
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>  gclient sync
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>  gclient sync
 </code></pre>
     </div>
   </li>
@@ -463,11 +450,9 @@
 
 <p><strong>Note:</strong> <em>The download will take a while, but it no longer downloads the Chromium repository after branch-head/57. Do not interrupt this step or you may need to start all over again (a new gclient sync may be enough, but you might also need wipe your webrtc_checkout\src folder and start over).</em></p>
 
-<h2 id="update-your-checkout">
-<a id="update-your-checkout" class="anchor" href="#update-your-checkout" aria-hidden="true"><span class="octicon octicon-link"></span></a>Update your checkout</h2>
+<h2 id="update-your-checkout">Update your checkout</h2>
 <p>To update an existing checkout, you can run</p>
-<div class="highlighter-rouge">
-<pre class="highlight"><code>git rebase-update
+<div class="highlighter-rouge"><pre class="highlight"><code>git rebase-update
 gclient sync
 </code></pre>
 </div>
@@ -475,33 +460,28 @@ gclient sync
 
 <p>The second command syncs the subrepositories to the appropriate versions and re-runs the hooks as needed.</p>
 
-<h2 id="building-webrtc-library">
-<a id="building-webrtc-library" class="anchor" href="#building-webrtc-library" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building WebRTC library</h2>
+<h2 id="building-webrtc-library">Building WebRTC library</h2>
 <ol>
   <li>After downloading the code, you can start you can optionally edit build/config/compiler/BUILD.gn and set use_rtti = true. You can also set build/config/BUILDCONFIG.gn is_debug=false for a release build.</li>
 </ol>
 
 <p>The default configuration is for a 64-bit debug build:</p>
-<div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>  gn gen out/debug-x64 <span class="s2">"--args=use_rtti=true"</span>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>  gn gen out/debug-x64 <span class="s2">"--args=use_rtti=true"</span>
   ninja -C out/debug-x64 boringssl field_trial_default protobuf_full p2p
 </code></pre>
 </div>
 <p>To create a 64-bit release build you must edit the GN args and set is_debug = true</p>
-<div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>  gn gen out/release-x64 <span class="s2">"--args=is_debug = false use_rtti=true"</span>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>  gn gen out/release-x64 <span class="s2">"--args=is_debug = false use_rtti=true"</span>
   ninja -C out/release-x64 boringssl field_trial_default protobuf_full p2p
 </code></pre>
 </div>
 
-<h2 id="extract-the-static-libraries">
-<a id="extract-the-static-libraries" class="anchor" href="#extract-the-static-libraries" aria-hidden="true"><span class="octicon octicon-link"></span></a>Extract the static libraries</h2>
+<h2 id="extract-the-static-libraries">Extract the static libraries</h2>
 
-<p>Currently the libraries we need from out/Debug_x64 and out/Release_x64 are:<br>
+<p>Currently the libraries we need from out/Debug_x64 and out/Release_x64 are:<br />
 boringssl.lib;field_trial_default.lib;protobuf_lite.lib;rtc_base.lib;boringssl_asm.lib;
 rtc_base_approved.lib;rtc_p2p.lib;json_writer.obj;json_value.obj;json_reader.obj</p>
-<div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>cp ./out/debug-x64/boringssl.dll.lib ../../ipop-project/Tincan/external/lib/debug_x64/win/boringssl.lib
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>cp ./out/debug-x64/boringssl.dll.lib ../../ipop-project/Tincan/external/lib/debug_x64/win/boringssl.lib
 cp ./out/debug-x64/obj/webrtc/system_wrappers/field_trial_default.lib ../../ipop-project/Tincan/external/lib/debug_x64/win/
 cp ./out/debug-x64/obj/webrtc/base/rtc_base.lib ../../ipop-project/Tincan/external/lib/debug_x64/win/
 cp ./out/debug-x64/obj/webrtc/base/rtc_base_approved.lib ../../ipop-project/Tincan/external/lib/debug_x64/win/
@@ -539,11 +519,9 @@ cp ./out/release-x64/obj/webrtc/p2p/rtc_p2p_cc.pdb ../../ipop-project/Tincan/ext
 cp ./out/release-x64/obj/third_party/protobuf/protobuf_full_cc.pdb ../../ipop-project/Tincan/external/lib/release_x64/win/
 </code></pre>
 </div>
-<h2 id="copy-the-header-files-for-this-branch-head">
-<a id="copy-the-header-files-for-this-branch-head" class="anchor" href="#copy-the-header-files-for-this-branch-head" aria-hidden="true"><span class="octicon octicon-link"></span></a>Copy the header files for this branch-head</h2>
+<h2 id="copy-the-header-files-for-this-branch-head">Copy the header files for this branch-head</h2>
 
-<div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>mkdir ..<span class="se">\.</span>.<span class="se">\i</span>pop-project<span class="se">\T</span>incan<span class="se">\e</span>xternal<span class="se">\i</span>nclude<span class="se">\w</span>ebrtc<span class="se">\b</span>ase
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mkdir ..<span class="se">\.</span>.<span class="se">\i</span>pop-project<span class="se">\T</span>incan<span class="se">\e</span>xternal<span class="se">\i</span>nclude<span class="se">\w</span>ebrtc<span class="se">\b</span>ase
 mkdir ..<span class="se">\.</span>.<span class="se">\i</span>pop-project<span class="se">\T</span>incan<span class="se">\e</span>xternal<span class="se">\i</span>nclude<span class="se">\w</span>ebrtc<span class="se">\p</span>2p<span class="se">\c</span>lient
 mkdir ..<span class="se">\.</span>.<span class="se">\i</span>pop-project<span class="se">\T</span>incan<span class="se">\e</span>xternal<span class="se">\i</span>nclude<span class="se">\w</span>ebrtc<span class="se">\p</span>2p<span class="se">\b</span>ase
 mkdir ..<span class="se">\.</span>.<span class="se">\i</span>pop-project<span class="se">\T</span>incan<span class="se">\e</span>xternal<span class="se">\i</span>nclude<span class="se">\w</span>ebrtc<span class="se">\a</span>pi<span class="se">\v</span>ideo

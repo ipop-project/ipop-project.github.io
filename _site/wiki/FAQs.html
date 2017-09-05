@@ -368,8 +368,7 @@
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
         <!-- <h1>On This Page</h1> -->
-        <ul class="section-nav">
-</ul><ol>
+        <ol>
   <li>
     <p><strong>What are the main differences between SocialVPN and GroupVPN?</strong></p>
 
@@ -414,8 +413,7 @@
       </tbody>
     </table>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code> <span class="nb">echo</span> -e <span class="s1">'\x02\x01{"m":"get_state"}'</span> | netcat -q 1 -u 127.0.0.1 5800
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> <span class="nb">echo</span> -e <span class="s1">'\x02\x01{"m":"get_state"}'</span> | netcat -q 1 -u 127.0.0.1 5800
 </code></pre>
     </div>
 
@@ -426,8 +424,7 @@
 
     <p>If you would like to statically assign addresses to SocialVPN peers, you can do so through an additional configuration file that can be loaded with the -p argument (e.g. -p ip_config.json). In this file, you specify the UID of a node, the virtual IP address, and a label, as in the following example:</p>
 
-    <div class="highlighter-rouge">
-<pre class="highlight"><code> [
+    <div class="highlighter-rouge"><pre class="highlight"><code> [
      {
          "uid": "54f2b14f80e5374f8af7ad1b4838145ea7eaaf57",
          "ipv4": "172.31.0.101",
@@ -449,18 +446,14 @@
 nextwork performance due to I/O overhead in the packet handling thread</strong>. The logging level is 
 determined in the JSON configuration file by adding the following parameters:</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code> <span class="s2">"controller_logging"</span> : <span class="s2">"DEBUG"</span>,
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> <span class="s2">"controller_logging"</span> : <span class="s2">"DEBUG"</span>,
  <span class="s2">"tincan_logging"</span>: 2
 </code></pre>
     </div>
     <ul>
-      <li>
-<strong>logging_level</strong> - sets the Python logging module for the controller with possible values
-<em>DEBUG</em>, <em>INFO</em>, <em>WARNING</em>, <em>ERROR</em>, <em>CRITICAL</em>
-</li>
-      <li>
-<strong>logging</strong> - set the logging level for IPOP-Tincan, <em>0</em> = no logging, <em>1</em> = error logging,
+      <li><strong>logging_level</strong> - sets the Python logging module for the controller with possible values
+<em>DEBUG</em>, <em>INFO</em>, <em>WARNING</em>, <em>ERROR</em>, <em>CRITICAL</em></li>
+      <li><strong>logging</strong> - set the logging level for IPOP-Tincan, <em>0</em> = no logging, <em>1</em> = error logging,
 <em>2</em> = info logging (recommended), <em>3</em> = verbose logging</li>
     </ul>
   </li>
@@ -486,7 +479,7 @@ determined in the JSON configuration file by adding the following parameters:</p
 
     <p>We currently have no interface to support Google’s 2FA. As an alternative, you can set up an “Application Specific Password”. This is a long, random password that can be revoked at any time. <a href="https://www.google.com/settings/security">Go to your account management page</a>, and click on the “Security” tab. Click on the “Settings” option for “App passwords”. There you should be able to create a new application-specific password for IPOP.</p>
 
-    <p><img src="http://i.imgur.com/DB1YK9X.png" alt="Example 2FA setup page"></p>
+    <p><img src="http://i.imgur.com/DB1YK9X.png" alt="Example 2FA setup page" /></p>
 
     <p>Use this password when setting up IPOP, instead of your normal Google password.</p>
   </li>
@@ -495,8 +488,7 @@ determined in the JSON configuration file by adding the following parameters:</p
 
     <p>Our implementation requires IPv6 to function properly. You can easily enable it with the following command</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>sudo modprobe ipv6
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo modprobe ipv6
 </code></pre>
     </div>
   </li>

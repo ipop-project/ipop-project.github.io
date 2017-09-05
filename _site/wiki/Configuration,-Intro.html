@@ -368,19 +368,9 @@
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
         <!-- <h1>On This Page</h1> -->
-        <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#configuration-intro">Configuration, Intro</a>
-<ul>
-<li class="toc-entry toc-h2"><a href="#basic-configuration">Basic Configuration</a></li>
-<li class="toc-entry toc-h2"><a href="#advanced-configuration">Advanced Configuration</a></li>
-<li class="toc-entry toc-h2"><a href="#sample-configuration-file">Sample Configuration File</a></li>
-</ul>
-</li>
-</ul><h1 id="configuration-intro">
-<a id="configuration-intro" class="anchor" href="#configuration-intro" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration, Intro</h1>
+        <h1 id="configuration-intro">Configuration, Intro</h1>
 
-<h2 id="basic-configuration">
-<a id="basic-configuration" class="anchor" href="#basic-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Configuration</h2>
+<h2 id="basic-configuration">Basic Configuration</h2>
 
 <p>Watch <a href="https://screencast-o-matic.com/watch/cbjXbPlmdl">Use IPOP, Demonstration Video</a> to find out how you can apply the basic configuration for IPOP.</p>
 
@@ -388,15 +378,13 @@
 
 <p>Setup your account and make a copy of the sample configuration file:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>cp config/sample-gvpn-config.json config/ipop-config.json
+<div class="highlighter-rouge"><pre class="highlight"><code>cp config/sample-gvpn-config.json config/ipop-config.json
 </code></pre>
 </div>
 
 <p>Then enter the account information in <code class="highlighter-rouge">config/ipop-config.json</code>. If you want to use IPOP with the default configuration, you just need to edit the file and enter “Username”, “Password” and “AddressHost” in “XmppDetails” under “XmppClient”. For instance, the last part of the configuration file will look like this:</p>
 
-<div class="language-json highlighter-rouge">
-<pre class="highlight"><code><span class="err">.</span><span class="w">
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="err">.</span><span class="w">
 </span><span class="err">.</span><span class="w">
 </span><span class="err">.</span><span class="w">
   </span><span class="s2">"XmppClient"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -421,18 +409,15 @@
 
 <p>You may also want to change the default IP which is currently “IP4”: “10.254.0.10” in “Vnets” under “TincanInterface”. Each IPOP node must have a unique IP address in the network.</p>
 
-<h2 id="advanced-configuration">
-<a id="advanced-configuration" class="anchor" href="#advanced-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced Configuration</h2>
+<h2 id="advanced-configuration">Advanced Configuration</h2>
 
 <p>For documentation on advanced configuration go to <a href="Configuration">Configuration wiki page</a>.</p>
 
-<h2 id="sample-configuration-file">
-<a id="sample-configuration-file" class="anchor" href="#sample-configuration-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sample Configuration File</h2>
+<h2 id="sample-configuration-file">Sample Configuration File</h2>
 
 <p>There is a sample configuration file at <code class="highlighter-rouge">config/sample-gvpn-config.json</code>:</p>
 
-<div class="language-json highlighter-rouge">
-<pre class="highlight"><code><span class="p">{</span><span class="w">
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"CFx"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"Model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GroupVPN"</span><span class="w">
   </span><span class="p">},</span><span class="w">

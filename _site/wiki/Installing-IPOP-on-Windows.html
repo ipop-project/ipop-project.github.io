@@ -368,18 +368,9 @@
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
         <!-- <h1>On This Page</h1> -->
-        <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#installing-ipop-vpn-on-windows">Installing IPOP-VPN on Windows</a>
-<ul>
-<li class="toc-entry toc-h2"><a href="#quick-start-installation">Quick start Installation</a></li>
-<li class="toc-entry toc-h2"><a href="#manual-setup">Manual Setup</a></li>
-</ul>
-</li>
-</ul><h1 id="installing-ipop-vpn-on-windows">
-<a id="installing-ipop-vpn-on-windows" class="anchor" href="#installing-ipop-vpn-on-windows" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing IPOP-VPN on Windows</h1>
+        <h1 id="installing-ipop-vpn-on-windows">Installing IPOP-VPN on Windows</h1>
 
-<h2 id="quick-start-installation">
-<a id="quick-start-installation" class="anchor" href="#quick-start-installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick start Installation</h2>
+<h2 id="quick-start-installation">Quick start Installation</h2>
 <p>The most convenient way to get IPOP installed on Windows 10 is run the <em>ipop-set.ps1</em> powershell script included in the IPOP ZIP file. Note that you need to have Administrator privileges to install IPOP-VPN.</p>
 
 <ol>
@@ -393,8 +384,7 @@
     <p>Start an Admin Windows Powershell and change to the ipop-vpn directory previously created</p>
   </li>
   <li>Enter the following commands:
-    <div class="highlighter-rouge">
-<pre class="highlight"><code> PowerShell -ExecutionPolicy Unrestricted
+    <div class="highlighter-rouge"><pre class="highlight"><code> PowerShell -ExecutionPolicy Unrestricted
  .\ipop-setup
 </code></pre>
     </div>
@@ -403,8 +393,7 @@
     <p>Follow the prompts to install and setup IPOP</p>
   </li>
   <li>While installing Social VPN, copy the “ip4” entry from “AddressMapper” to “CFx”, e.g.,
-    <div class="highlighter-rouge">
-<pre class="highlight"><code> ip4": "172.31.0.100" 
+    <div class="highlighter-rouge"><pre class="highlight"><code> ip4": "172.31.0.100" 
 </code></pre>
     </div>
   </li>
@@ -416,8 +405,7 @@
 <p>##TLDR
 If you are using an earlier version of Windows such as 7, 8, Server 2008, or 2012, you will need to manually setup IPOP. Below are the necessary steps to accomplish this.</p>
 
-<h2 id="manual-setup">
-<a id="manual-setup" class="anchor" href="#manual-setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Manual Setup</h2>
+<h2 id="manual-setup">Manual Setup</h2>
 <ol>
   <li>
     <p>Install <a href="https://download.microsoft.com/download/5/B/C/5BC5DBB3-652D-4DCE-B14A-475AB85EEF6E/vcredist_x86.exe'">MS Visual C++ x86 Redistributable Packages for Visual Studio 2010</a>.</p>
@@ -434,13 +422,11 @@ If you are using an earlier version of Windows such as 7, 8, Server 2008, or 201
   <li>
     <p>Extract the contents of the archive to a directory, e.g., ipop-vpn</p>
   </li>
-  <li>Decide if you want to run <a href="Planning%20Your%20Network">GroupVPN or Social VPN</a> and copy the appropriate sample config to the ipop-vpn directory. Use one of the following for group or social VPN respectively:
-    <div class="highlighter-rouge">
-<pre class="highlight"><code> cp .\controller\modules\sample-gvpn-config.json .\config.json
+  <li>Decide if you want to run <a href="Planning Your Network">GroupVPN or Social VPN</a> and copy the appropriate sample config to the ipop-vpn directory. Use one of the following for group or social VPN respectively:
+    <div class="highlighter-rouge"><pre class="highlight"><code> cp .\controller\modules\sample-gvpn-config.json .\config.json
 </code></pre>
     </div>
-    <div class="highlighter-rouge">
-<pre class="highlight"><code> cp .\controller\modules\sample-svpn-config.json .\config.json
+    <div class="highlighter-rouge"><pre class="highlight"><code> cp .\controller\modules\sample-svpn-config.json .\config.json
 </code></pre>
     </div>
   </li>

@@ -368,20 +368,11 @@
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
         <!-- <h1>On This Page</h1> -->
-        <ul class="section-nav">
-<ul>
-<li class="toc-entry toc-h3"><a href="#note-these-instructions-are-only-for-building-the-source-code-at-the-head-of-the-tincan-repository-master-branch-we-are-unable-to-provide-instructions-for-building-previous-versions">NOTE: These instructions are only for building the source code at the HEAD of the Tincan repository Master branch. We are unable to provide instructions for building previous versions.</a></li>
-</ul>
-<li class="toc-entry toc-h2"><a href="#install-dependencies">Install dependencies</a></li>
-<li class="toc-entry toc-h2"><a href="#clone-tincan-repo-and-build-source-code">Clone Tincan repo and build source code.</a></li>
-</ul><h3 id="note-these-instructions-are-only-for-building-the-source-code-at-the-head-of-the-tincan-repository-master-branch-we-are-unable-to-provide-instructions-for-building-previous-versions">
-<a id="note-these-instructions-are-only-for-building-the-source-code-at-the-head-of-the-tincan-repository-master-branch-we-are-unable-to-provide-instructions-for-building-previous-versions" class="anchor" href="#note-these-instructions-are-only-for-building-the-source-code-at-the-head-of-the-tincan-repository-master-branch-we-are-unable-to-provide-instructions-for-building-previous-versions" aria-hidden="true"><span class="octicon octicon-link"></span></a>NOTE: These instructions are only for building the <a href="https://github.com/ipop-project/Tincan">source code</a> at the HEAD of the Tincan repository Master branch. We are unable to provide instructions for building previous versions.</h3>
-<h2 id="install-dependencies">
-<a id="install-dependencies" class="anchor" href="#install-dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install dependencies</h2>
+        <h3 id="note-these-instructions-are-only-for-building-the-source-code-at-the-head-of-the-tincan-repository-master-branch-we-are-unable-to-provide-instructions-for-building-previous-versions">NOTE: These instructions are only for building the <a href="https://github.com/ipop-project/Tincan">source code</a> at the HEAD of the Tincan repository Master branch. We are unable to provide instructions for building previous versions.</h3>
+<h2 id="install-dependencies">Install dependencies</h2>
 <ol>
   <li>On Ubuntu 16.04
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>sudo apt-get install -y software-properties-common git make libssl-dev g++-4.9  
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo apt-get install -y software-properties-common git make libssl-dev g++-4.9  
 sudo rm /usr/bin/g++
 sudo ln -s /usr/bin/g++-4.9 /usr/bin/g++ 
 </code></pre>
@@ -390,8 +381,7 @@ sudo ln -s /usr/bin/g++-4.9 /usr/bin/g++
   <li>
     <p>On CentOS 7</p>
 
-    <div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>  su
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>  su
   yum -y update
   yum install -y centos-release-scl-rh
   yum install -y devtoolset-3-gcc-c++ rh-python35
@@ -402,13 +392,11 @@ sudo ln -s /usr/bin/g++-4.9 /usr/bin/g++
   </li>
 </ol>
 
-<h2 id="clone-tincan-repo-and-build-source-code">
-<a id="clone-tincan-repo-and-build-source-code" class="anchor" href="#clone-tincan-repo-and-build-source-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Clone Tincan repo and build source code.</h2>
-<p>If building on CentOS 7 update line 13 of your Makefile. <br>
+<h2 id="clone-tincan-repo-and-build-source-code">Clone Tincan repo and build source code.</h2>
+<p>If building on CentOS 7 update line 13 of your Makefile. <br />
 <code class="highlighter-rouge">LDIR = ../../external/lib/release/x64/centos</code></p>
 
-<div class="language-bash highlighter-rouge">
-<pre class="highlight"><code>  mkdir -p ~/workspace/ipop-project
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>  mkdir -p ~/workspace/ipop-project
   <span class="nb">cd</span> ~/workspace/ipop-project/
   git clone https://github.com/ipop-project/Tincan
   <span class="nb">cd </span>Tincan
