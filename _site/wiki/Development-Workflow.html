@@ -367,7 +367,9 @@
 
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
-        <p>For code contributors, the process of developing and committing code to IPOP is outlined below.</p>
+        <h1>On This Page</h1>
+        <ul class="section-nav">
+</ul><p>For code contributors, the process of developing and committing code to IPOP is outlined below.</p>
 
 <p><a href="http://git-scm.com/docs/gittutorial"><strong>Handy reference for Git commands</strong></a></p>
 
@@ -379,7 +381,8 @@
     <p>Clone your newly-forked repo to your local machine (use the clone
 URL from the repository page on GitHub):</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ git clone git@github.com:&lt;username&gt;/ipop-tincan.git
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>$ git clone git@github.com:&lt;username&gt;/ipop-tincan.git
 $ cd ipop-tincan
 </code></pre>
     </div>
@@ -391,7 +394,8 @@ $ cd ipop-tincan
 for the corresponding
 <a href="https://github.com/ipop-project/">ipop-project</a> repository):</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ git remote add upstream https://github.com/ipop-project/ipop-tincan.git
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>$ git remote add upstream https://github.com/ipop-project/ipop-tincan.git
 </code></pre>
     </div>
 
@@ -400,7 +404,8 @@ for the corresponding
   <li>
     <p>Create a branch for the feature you will work on:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ git checkout -b my-feature
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>$ git checkout -b my-feature
 </code></pre>
     </div>
   </li>
@@ -408,7 +413,8 @@ for the corresponding
     <p>Develop on the <strong>my-feature</strong> branch. Commit changes to <strong>my-feature</strong>
 branch:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ git add .
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>$ git add .
 $ git commit -m "commit message"
 </code></pre>
     </div>
@@ -422,7 +428,8 @@ from the rest of the commit message.</p>
   <li>
     <p>Push your branch to GitHub periodically.</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ git push origin my-feature
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>$ git push origin my-feature
 </code></pre>
     </div>
 
@@ -434,7 +441,8 @@ should <strong>rebase</strong>, as described below.</p>
   <li>
     <p>Fetch upstream changes that were done by other contributors:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ git fetch upstream
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>$ git fetch upstream
 </code></pre>
     </div>
   </li>
@@ -442,7 +450,8 @@ should <strong>rebase</strong>, as described below.</p>
     <p>If you need to incorporate new upstream changes into your branch,
 <strong>rebase</strong> your branch on top of the upstream master:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ git rebase upstream/master
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>$ git rebase upstream/master
 </code></pre>
     </div>
 
@@ -451,7 +460,8 @@ that case it will stop and allow you to fix the conflicts. After
 fixing conflicts, use <code class="highlighter-rouge">git add .</code> to update the index with those
 contents, and then run:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ git rebase --continue
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>$ git rebase --continue
 </code></pre>
     </div>
 
@@ -461,7 +471,8 @@ will tell you what you need to do to continue.</p>
   <li>
     <p>Push your branch to GitHub.</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ git push origin my-feature
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>$ git push origin my-feature
 </code></pre>
     </div>
 
@@ -472,7 +483,8 @@ commits you pushed earlier. In that case you will have to use the
 using!</strong> (In that scenario, you should just create a new branch and
 push it.)</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ git push origin my-feature --force
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>$ git push origin my-feature --force
 </code></pre>
     </div>
   </li>
@@ -485,7 +497,7 @@ request</a>.</p>
 <p>For more information on Git workflows and commands, see the resources
 here: <a href="http://git-scm.com/documentation/external-links">http://git-scm.com/documentation/external-links</a></p>
 
-<hr />
+<hr>
 
 <p>This document is based on
 <a href="https://github.com/sevntu-checkstyle/sevntu.checkstyle/wiki/Development-workflow-with-Git%3A-Fork,-Branching,-Commits,-and-Pull-Request">https://github.com/sevntu-checkstyle/sevntu.checkstyle/wiki/Development-workflow-with-Git%3A-Fork,-Branching,-Commits,-and-Pull-Request</a>.</p>

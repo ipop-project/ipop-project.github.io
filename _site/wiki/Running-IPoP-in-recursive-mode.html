@@ -1,12 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <!--
   Minimal Mistakes Jekyll Theme 4.5.1 by Michael Rose
   Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
--->
-<html lang="en" class="no-js">
+--><html lang="en" class="no-js">
   <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
 
 <!-- begin SEO -->
@@ -172,7 +172,7 @@
 
 <nav class="nav__list">
   
-  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <input id="ac-toc" name="accordion-toc" type="checkbox">
   <label for="ac-toc">Toggle Menu</label>
   <ul class="nav__items">
     
@@ -367,22 +367,38 @@
 
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
-        <h2 id="introduction">Introduction</h2>
-<p>This page details the process of setting up a environment with two IPoP networks, with one of them being tunneled via the other. This approach might be warranted in scenarios where extra layer of security is needed, for example - The outer network can be secured via static IPSec policies. In the following paragraphs we will walk through the set-up but before we do that, let us lay down some terminologies.<br />
-<strong>OuterIPoP</strong> - As the name suggests all the traffic of the second IPoP network is tunneled through this network.<br />
-<strong>InnerIpoP</strong> - The inner virtual network, switch-mode can be enabled on this one, providing a gateway like environment. <br />
-<strong>svpn_port</strong> - This is the port on which tincan listens for UDP messages coming from the controller.<br />
-<strong>contr_port</strong> - port on which controller listens for udp messages coming from tincan.  <br />
+        <h1>On This Page</h1>
+        <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#introduction">Introduction</a></li>
+<li class="toc-entry toc-h2">
+<a href="#setting-up-the-network">Setting up the Network</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#start-outeripop">Start OuterIPoP</a></li>
+<li class="toc-entry toc-h3"><a href="#start-inneripop">Start InnerIPoP</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="introduction">
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
+<p>This page details the process of setting up a environment with two IPoP networks, with one of them being tunneled via the other. This approach might be warranted in scenarios where extra layer of security is needed, for example - The outer network can be secured via static IPSec policies. In the following paragraphs we will walk through the set-up but before we do that, let us lay down some terminologies.<br>
+<strong>OuterIPoP</strong> - As the name suggests all the traffic of the second IPoP network is tunneled through this network.<br>
+<strong>InnerIpoP</strong> - The inner virtual network, switch-mode can be enabled on this one, providing a gateway like environment. <br>
+<strong>svpn_port</strong> - This is the port on which tincan listens for UDP messages coming from the controller.<br>
+<strong>contr_port</strong> - port on which controller listens for udp messages coming from tincan.  <br>
 <strong>network_ignore_list</strong> - interfaces which are not considered while establishing p2p connection by IPoP.</p>
 
-<h2 id="setting-up-the-network">Setting up the Network</h2>
+<h2 id="setting-up-the-network">
+<a id="setting-up-the-network" class="anchor" href="#setting-up-the-network" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setting up the Network</h2>
 <p>It should be borne in mind that the inner and outer networks are two independent identities having separate XMPP relations and IP address range. We are going to setup two instances of IPoP differing only in configuration.</p>
-<h3 id="start-outeripop">Start OuterIPoP</h3>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo sh -c <span class="s1">'./ipop-tincan tunnel-tap 5800 1&gt; out.log 2&gt; err.log &amp;'</span>
+<h3 id="start-outeripop">
+<a id="start-outeripop" class="anchor" href="#start-outeripop" aria-hidden="true"><span class="octicon octicon-link"></span></a>Start OuterIPoP</h3>
+<div class="language-bash highlighter-rouge">
+<pre class="highlight"><code> sudo sh -c <span class="s1">'./ipop-tincan tunnel-tap 5800 1&gt; out.log 2&gt; err.log &amp;'</span>
 </code></pre>
 </div>
 <p>The above command sets up a tap interface, with tincan listening on port 5800 and the name of interface being tunnel-tap.</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>tunnel-tap Link encap:Ethernet  HWaddr 42:c0:41:21:31:b3  
+<div class="language-bash highlighter-rouge">
+<pre class="highlight"><code>tunnel-tap Link encap:Ethernet  HWaddr 42:c0:41:21:31:b3  
           BROADCAST MULTICAST  MTU:1500  Metric:1
           RX packets:0 errors:0 dropped:0 overruns:0 frame:0
           TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
@@ -391,7 +407,8 @@
 </code></pre>
 </div>
 <p>Next we need to configure the controller, setting up the xmpp credentias, IPv4 address/range , svpn_port, contr_port and network ignore list. The network ignore list should contain the name of the InnerIPoP tap interface, it’s ok to do it even before the InnerIPoP tap interface instantiated. The controller file for gvpn is as shown below-</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">{</span>
+<div class="language-bash highlighter-rouge">
+<pre class="highlight"><code><span class="o">{</span>
   <span class="s2">"CFx"</span>: <span class="o">{</span>
     <span class="s2">"xmpp_username"</span>: <span class="s2">"xxxx@xxxx.com"</span>,
     <span class="s2">"xmpp_password"</span>: <span class="s2">"xxxx"</span>,
@@ -461,12 +478,14 @@
 </div>
 <p>Next start the controller.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>python -m controller.Controller -c config/gvpn-config.json &amp;&gt; ctl.log &amp;
+<div class="language-bash highlighter-rouge">
+<pre class="highlight"><code>python -m controller.Controller -c config/gvpn-config.json &amp;&gt; ctl.log &amp;
 </code></pre>
 </div>
 <p>Now the outer interface should have the IP and range assigned to it.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>tunnel-tap Link encap:Ethernet  HWaddr 42:c0:41:21:31:b3  
+<div class="language-bash highlighter-rouge">
+<pre class="highlight"><code>tunnel-tap Link encap:Ethernet  HWaddr 42:c0:41:21:31:b3  
           inet addr:192.168.1.100  Bcast:192.168.255.255  Mask:255.255.0.0
           inet6 addr: fd50:dbc:41f2:4a3c:25c9:651:c297:fef3/64 Scope:Global
           inet6 addr: fe80::40c0:41ff:fe21:31b3/64 Scope:Link
@@ -477,18 +496,21 @@
           RX bytes:0 <span class="o">(</span>0.0 B<span class="o">)</span>  TX bytes:7676 <span class="o">(</span>7.6 KB<span class="o">)</span>
 </code></pre>
 </div>
-<h3 id="start-inneripop">Start InnerIPoP</h3>
+<h3 id="start-inneripop">
+<a id="start-inneripop" class="anchor" href="#start-inneripop" aria-hidden="true"><span class="octicon octicon-link"></span></a>Start InnerIPoP</h3>
 <p>Please note OuterIPoP has to be started before InnerIPoP, Start tincan for InnerIPoP</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo sh -c <span class="s1">'./ipop-tincan ipop 5805 1&gt; out.log 2&gt; err.log &amp;'</span>
+<div class="language-bash highlighter-rouge">
+<pre class="highlight"><code>sudo sh -c <span class="s1">'./ipop-tincan ipop 5805 1&gt; out.log 2&gt; err.log &amp;'</span>
 </code></pre>
 </div>
-<p>tap interface name “ipop” is created and tincan listens on UDP port 5805.<br />
+<p>tap interface name “ipop” is created and tincan listens on UDP port 5805.<br>
 Next we are going to start the controller, To force InnerIPoP to use the tap interface set up by OuterIPoP as the only gateway we need to put all other gateway interfaces like eth0 etc in the Network_Ignore_List. Also note that if switch-mode is being used the IPv4 address/range for this interface has to match with that of the bridged network. In this example we are using switchmode in LXC setup.</p>
 
 <p>Note that the lxcbr0 and eth0 interfaces are ignored, and that the address given to the STUN service is simply pointing to a dummy endpoint in the tunnel-tap address space - there does not need to be any STUN server running, this configuration entry is just to ensure that InnerIPOP nodes only advertise endpoints in the tunnel-tap address space to peers. Since these address are not NATed, there is no need for a STUN service.</p>
 
 <p>Below is the configuration file for gvpn. Make sure that svpn_port and contr_port do not conflict with OuterIPoP or any other applications.–</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="o">{</span>
+<div class="language-bash highlighter-rouge">
+<pre class="highlight"><code><span class="o">{</span>
   <span class="s2">"CFx"</span>: <span class="o">{</span>
     <span class="s2">"xmpp_username"</span>: <span class="s2">"yyyy@yyyy"</span>,
     <span class="s2">"xmpp_password"</span>: <span class="s2">"yyyy"</span>,
@@ -558,11 +580,13 @@ Next we are going to start the controller, To force InnerIPoP to use the tap int
 </code></pre>
 </div>
 <p>Start the controller-</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>python -m controller.Controller -c config/gvpn-config.json &amp;&gt; ctl.log &amp;
+<div class="language-bash highlighter-rouge">
+<pre class="highlight"><code>python -m controller.Controller -c config/gvpn-config.json &amp;&gt; ctl.log &amp;
 </code></pre>
 </div>
 <p>Both the interfaces should be up and configured–</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@sam-T520:~/ipopRecursive/innerIpop$ </span>ifconfig -a
+<div class="language-bash highlighter-rouge">
+<pre class="highlight"><code><span class="gp">sam@sam-T520:~/ipopRecursive/innerIpop$ </span>ifconfig -a
 eth0      Link encap:Ethernet  HWaddr f0:de:f1:54:d2:2e  
           inet addr:10.244.19.126  Bcast:10.244.19.255  Mask:255.255.255.0
           inet6 addr: fe80::f2de:f1ff:fe54:d22e/64 Scope:Link
@@ -648,12 +672,14 @@ wlan0     Link encap:Ethernet  HWaddr a0:88:b4:18:a0:b0
 </code></pre>
 </div>
 <p>Now attach the bridged interface to InnerIPoP tap interface</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo brctl addif lxcbr0 ipop
+<div class="language-bash highlighter-rouge">
+<pre class="highlight"><code>sudo brctl addif lxcbr0 ipop
 </code></pre>
 </div>
 
 <p>Repeat the same procedure , with corresponding IPv4 addresses on the peer machine. If everything worked fine the bridged instances should be able to connect to each other successfully. As pointed out before now you can choose a IPSec framework of your choice to enforce IPSec policies on IPv4 addresses of the OuterIPoP interfaces, static outer IPv4 addresses makes the process of making configurations for IPSec much more convenient and hassle free. To verify if traffic is being encapsulated try to capture the traffic on OuterIPoP interface while sending traffic between the containers/bridged nodes on either sides, you would see something like below–</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo tcpdump -i tunnel-tap
+<div class="language-bash highlighter-rouge">
+<pre class="highlight"><code>sudo tcpdump -i tunnel-tap
 tcpdump: verbose output suppressed, use -v or -vv <span class="k">for </span>full protocol decode
 listening on looptap, link-type EN10MB <span class="o">(</span>Ethernet<span class="o">)</span>, capture size 65535 bytes
 15:31:33.873408 IP 192.168.1.101 &gt; 192.168.1.100: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0d54f597,seq<span class="o">=</span>0x1a3a<span class="o">)</span>, length 156
@@ -669,8 +695,8 @@ listening on looptap, link-type EN10MB <span class="o">(</span>Ethernet<span cla
 15:31:34.833661 IP 192.168.1.101 &gt; 192.168.1.100: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0d54f597,seq<span class="o">=</span>0x1a3f<span class="o">)</span>, length 156
 </code></pre>
 </div>
-<p>Here 192.168.1.101 and 192.168.1.100 are the IPv4 addresses of outer IPoP network.<br />
-The page below shows the procedure to configure IPSec using Racoon in recursive IPoP environment.<br />
+<p>Here 192.168.1.101 and 192.168.1.100 are the IPv4 addresses of outer IPoP network.<br>
+The page below shows the procedure to configure IPSec using Racoon in recursive IPoP environment.<br>
 <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/IPSec-on-IPoP-GVPN">IPSec on IPoP GVPN</a></p>
 
 
@@ -700,19 +726,19 @@ The page below shows the procedure to configure IPSec using Racoon in recursive 
 
 <div class="page__footer-copyright float-left">
   <div class="float-left">
-    <img src="http://localhost:4000/ipop-project.github.io/assets/images/uf_small.png" class="padding-bottom-right" /><img src="http://localhost:4000/ipop-project.github.io/assets/images/nsf_small.png" class="padding-bottom-right" />
+    <img src="http://localhost:4000/ipop-project.github.io/assets/images/uf_small.png" class="padding-bottom-right"><img src="http://localhost:4000/ipop-project.github.io/assets/images/nsf_small.png" class="padding-bottom-right">
   </div>
   <i class="fa fa-address-card-o" aria-hidden="true"></i>
-  <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br />
-  <a href="http://www.ece.ufl.edu/" rel="nofollow" target="_blank">Department of Electrical & Computer Engineering</a><br />
+  <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br>
+  <a href="http://www.ece.ufl.edu/" rel="nofollow" target="_blank">Department of Electrical &amp; Computer Engineering</a><br>
   <a href="http://www.eng.ufl.edu/" rel="nofollow" target="_blank">College of Engineering</a>, <a href="http://www.ufl.edu/" rel="nofollow" target="_blank">University of Florida</a>
 </div>
 
 <div class="page__footer-copyright float-right">
   <div>
-    <a href="http://localhost:4000/ipop-project.github.io/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="http://localhost:4000/ipop-project.github.io/mailinglist">Mailing List</a> | <a href="http://localhost:4000/ipop-project.github.io/sitemap">Sitemap</a><br />
-    <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
-    &copy; 2017 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
+    <a href="http://localhost:4000/ipop-project.github.io/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="http://localhost:4000/ipop-project.github.io/mailinglist">Mailing List</a> | <a href="http://localhost:4000/ipop-project.github.io/sitemap">Sitemap</a><br>
+    <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br>
+    © 2017 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
     </div>
   </div>
 </div>

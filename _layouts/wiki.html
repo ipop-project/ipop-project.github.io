@@ -1,5 +1,6 @@
 ---
 layout: default
+toc: true
 ---
 
 {% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
@@ -25,7 +26,8 @@ layout: default
 
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
-        {{ content }}
+        {% if page.toc %}<h1>On This Page</h1>{% endif %}
+        {{ content | toc }}
       </section>
     </div>
   </article>

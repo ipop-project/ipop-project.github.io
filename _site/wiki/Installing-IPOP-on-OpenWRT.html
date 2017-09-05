@@ -367,34 +367,48 @@
 
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
-        <h3 id="running-gvpn-switchmode-on-openwrt-routers">Running GVPN Switchmode on Openwrt Routers</h3>
-<p>This documentation applies to generic Openwrt based routers, has been tested on AR71XX, X86 and CNS3XX based platforms. For a high level view of switch mode refer to the following link–<br />
+        <h1>On This Page</h1>
+        <ul class="section-nav">
+<ul>
+<li class="toc-entry toc-h3"><a href="#running-gvpn-switchmode-on-openwrt-routers">Running GVPN Switchmode on Openwrt Routers</a></li>
+</ul>
+<li class="toc-entry toc-h2"><a href="#get-dependency-packages">Get dependency packages</a></li>
+<li class="toc-entry toc-h2"><a href="#getting-things-started">Getting things started</a></li>
+</ul><h3 id="running-gvpn-switchmode-on-openwrt-routers">
+<a id="running-gvpn-switchmode-on-openwrt-routers" class="anchor" href="#running-gvpn-switchmode-on-openwrt-routers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running GVPN Switchmode on Openwrt Routers</h3>
+<p>This documentation applies to generic Openwrt based routers, has been tested on AR71XX, X86 and CNS3XX based platforms. For a high level view of switch mode refer to the following link–<br>
 <a href="https://github.com/ipop-project/documentation/wiki/Switchmode-%28new%29">switch-mode</a></p>
 
-<h2 id="get-dependency-packages">Get dependency packages</h2>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code> opkg update; opkg install python python-mini librt libstdcpp kmod-tun kmod-ipv6 libpthread wget python-pip 
+<h2 id="get-dependency-packages">
+<a id="get-dependency-packages" class="anchor" href="#get-dependency-packages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get dependency packages</h2>
+<div class="language-bash highlighter-rouge">
+<pre class="highlight"><code> opkg update; opkg install python python-mini librt libstdcpp kmod-tun kmod-ipv6 libpthread wget python-pip 
 </code></pre>
 </div>
-<p>If you have enough storage, one way is to have extFS on uSD card or USB drive, i would suggest installing the full python package. Also some times a reboot is required to bring kernel modules online.<br />
+<p>If you have enough storage, one way is to have extFS on uSD card or USB drive, i would suggest installing the full python package. Also some times a reboot is required to bring kernel modules online.<br>
 Next , you will have to install sleekxmpp</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>pip install sleekxmpp
+<div class="language-bash highlighter-rouge">
+<pre class="highlight"><code>pip install sleekxmpp
 </code></pre>
 </div>
-<p>In order for sleekxmpp to verify the identity of XMPP server using TLS you will have to set up SSL certificates, sleekxmpp tries to look for them in /etc/ssl/certs, you can follow the following link to set them up-<br />
-<a href="https://wiki.openwrt.org/doc/howto/wget-ssl-certs">SSL and Certificates in wget</a>  <br />
+<p>In order for sleekxmpp to verify the identity of XMPP server using TLS you will have to set up SSL certificates, sleekxmpp tries to look for them in /etc/ssl/certs, you can follow the following link to set them up-<br>
+<a href="https://wiki.openwrt.org/doc/howto/wget-ssl-certs">SSL and Certificates in wget</a>  <br>
 However, it still does not create a ca-certificates.crt file, a quick work around is to copy the file from some other TRUSTED machine.</p>
 
-<h2 id="getting-things-started">Getting things started</h2>
+<h2 id="getting-things-started">
+<a id="getting-things-started" class="anchor" href="#getting-things-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting things started</h2>
 
-<p>See building code section on wiki page to build the code for your platform, and download the latest controllers, if you have not done it yet (OR) You can use our IPK packages for AR71XX and Gateworks Laguna2388-4 board.<br />
+<p>See building code section on wiki page to build the code for your platform, and download the latest controllers, if you have not done it yet (OR) You can use our IPK packages for AR71XX and Gateworks Laguna2388-4 board.<br>
 Once you have the binary and controllers we can start with configuration,to begin with one has to ensure that the subnet in which router allocates addresses to the client and the IPOP subnet and address are in the same range. Also ensure that addresses allocated to clients do not conflict with others in the IPOP network.Below is a sample config file. 
 Note that you need to specify “switchmode” . The steps shown below assume that the the installation has been carried out with the IPK packages</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>  opkg install &lt;IPOP-Pkg&gt;.ipk
+<div class="language-bash highlighter-rouge">
+<pre class="highlight"><code>  opkg install &lt;IPOP-Pkg&gt;.ipk
 </code></pre>
 </div>
 <p>In case you manually built and installed the software-be mindful of the directory structure. Basic commands to execute the setup  will stay the same.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">root@OpenWrt:/etc/controllers/controller/modules# </span>cat gvpn-config.json 
+<div class="language-bash highlighter-rouge">
+<pre class="highlight"><code><span class="gp">root@OpenWrt:/etc/controllers/controller/modules# </span>cat gvpn-config.json 
 <span class="o">{</span>
     <span class="s2">"CFx"</span>: <span class="o">{</span>
         <span class="s2">"xmpp_username"</span>: <span class="s2">"xxxx@dukgo.com"</span>,
@@ -459,14 +473,16 @@ Note that you need to specify “switchmode” . The steps shown below assume th
 </div>
 
 <p>Go back to the “controllers” directory and start tin-can and controller.</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>  root@OpenWrt:/etc/controllers# <span class="nb">pwd</span>
+<div class="language-bash highlighter-rouge">
+<pre class="highlight"><code>  root@OpenWrt:/etc/controllers# <span class="nb">pwd</span>
   /etc/controllers
   root@OpenWrt:/etc/controllers# ipop-tincan &amp;&gt; tin.log &amp;
   root@OpenWrt:/etc/controllers# python -m controller.Controller -c controller/modules/gvpn-config.json &amp;&gt; log.txt &amp;
 </code></pre>
 </div>
 <p>Now you should be able to see the below interface up, in a few seconds–</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>ipop      Link encap:Ethernet  HWaddr 86:0B:CB:E6:04:0F  
+<div class="language-bash highlighter-rouge">
+<pre class="highlight"><code>ipop      Link encap:Ethernet  HWaddr 86:0B:CB:E6:04:0F  
           inet addr:192.168.1.201  Bcast:192.168.1.255  Mask:255.255.255.0
           inet6 addr: fe80::840b:cbff:fee6:40f/64 Scope:Link
           inet6 addr: fd50:dbc:41f2:4a3c:a0db:c314:a0f1:6d19/64 Scope:Global
@@ -479,7 +495,8 @@ Note that you need to specify “switchmode” . The steps shown below assume th
 </div>
 
 <p>Attach it to the bridged interface on your router.</p>
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">root</span><span class="nd">@OpenWrt</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">controllers</span><span class="o">/</span><span class="n">src</span><span class="c"># brctl show</span>
+<div class="language-python highlighter-rouge">
+<pre class="highlight"><code><span class="n">root</span><span class="nd">@OpenWrt</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">controllers</span><span class="o">/</span><span class="n">src</span><span class="c"># brctl show</span>
 <span class="n">bridge</span> <span class="n">name</span>	<span class="n">bridge</span> <span class="nb">id</span>		<span class="n">STP</span> <span class="n">enabled</span>	<span class="n">interfaces</span>
 <span class="n">br</span><span class="o">-</span><span class="n">lan</span>		<span class="mi">7</span><span class="n">fff</span><span class="o">.</span><span class="mo">00</span><span class="n">d01283f0dd</span>	<span class="n">no</span>		<span class="n">eth0</span>
 							<span class="n">wlan0</span>

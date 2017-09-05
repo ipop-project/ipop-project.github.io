@@ -367,14 +367,24 @@
 
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
-        <h1 id="configuration">Configuration</h1>
+        <h1>On This Page</h1>
+        <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#configuration">Configuration</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#required-external-configuration-file-keys">Required External Configuration File Keys</a></li>
+<li class="toc-entry toc-h2"><a href="#optionaldefault-keys">Optional/Default Keys</a></li>
+</ul>
+</li>
+</ul><h1 id="configuration">
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h1>
 
 <p>An external configuration file is needed when running IPOP. A
 <a href="https://github.com/ipop-project/Controllers/blob/master/controller/sample-gvpn-config.json">sample configuration file</a> is provided with the Controllers source code. Default configuration settings are provided in <a href="https://github.com/ipop-project/Controllers/blob/master/controller/framework/fxlib.py">fxlib.py</a>.</p>
 
 <p>The external configuration file and the settings in fxlib.py are merged. If a key is provided in both files, the key in the external configuration file will take precedence.</p>
 
-<h2 id="required-external-configuration-file-keys">Required External Configuration File Keys</h2>
+<h2 id="required-external-configuration-file-keys">
+<a id="required-external-configuration-file-keys" class="anchor" href="#required-external-configuration-file-keys" aria-hidden="true"><span class="octicon octicon-link"></span></a>Required External Configuration File Keys</h2>
 
 <table>
   <thead>
@@ -471,7 +481,8 @@
   </tbody>
 </table>
 
-<h2 id="optionaldefault-keys">Optional/Default Keys</h2>
+<h2 id="optionaldefault-keys">
+<a id="optionaldefault-keys" class="anchor" href="#optionaldefault-keys" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optional/Default Keys</h2>
 
 <table>
   <thead>
@@ -560,12 +571,14 @@
     <tr>
       <td>TincanInterface.Stun</td>
       <td>None</td>
-      <td>List of usable STUN servers e.g.: <code class="highlighter-rouge">["stun.l.google.com:19302"]</code></td>
+      <td>List of usable STUN servers e.g.: <code class="highlighter-rouge">["stun.l.google.com:19302"]</code>
+</td>
     </tr>
     <tr>
       <td>TincanInterface.Turn</td>
       <td>None</td>
-      <td>List of usable TURN servers with transport address, username, and password in format <code class="highlighter-rouge">[{ "Address": "***:19302", "User": "***", "Password": "***"}]</code></td>
+      <td>List of usable TURN servers with transport address, username, and password in format <code class="highlighter-rouge">[{ "Address": "***:19302", "User": "***", "Password": "***"}]</code>
+</td>
     </tr>
     <tr>
       <td>Logger.LogLevel</td>

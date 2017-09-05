@@ -367,7 +367,34 @@
 
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
-        <table>
+        <h1>On This Page</h1>
+        <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#description">Description</a></li>
+<li class="toc-entry toc-h2"><a href="#usage">Usage</a>
+<ul>
+<ul>
+<li class="toc-entry toc-h4"><a href="#preparing-your-virtual-machine">Preparing your virtual machine</a></li>
+<li class="toc-entry toc-h4"><a href="#download-the-automated-test-script-on-host">Download the automated test script on Host</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#scale-test---setting-up-the-environment">Scale test - setting up the environment</a></li>
+<li class="toc-entry toc-h5"><a href="#scale-test---starting-execution">Scale test - starting execution</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h4"><a href="#start-ipop-network-and-query-for-its-status">Start IPOP network and query for its status</a></li>
+<li class="toc-entry toc-h4"><a href="#validation-and-testing-tools">Validation and testing tools.</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#status">status</a></li>
+<li class="toc-entry toc-h5"><a href="#all-to-all-connectivity">all to all connectivity</a></li>
+<li class="toc-entry toc-h5"><a href="#pair-wise-connectivity">pair-wise connectivity</a></li>
+<li class="toc-entry toc-h5"><a href="#performance-metrics-via-iperf">Performance metrics via iperf</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h4"><a href="#consolidated-logs-for-debugging">Consolidated logs for debugging</a></li>
+<li class="toc-entry toc-h4"><a href="#references">References</a></li>
+</ul>
+</ul>
+</li>
+</ul><table>
   <thead>
     <tr>
       <th> </th>
@@ -385,32 +412,39 @@
     </tr>
     <tr>
       <td><strong>Objective</strong></td>
-      <td>- Install and execute Ipop scale test for validating functionality and debugging. <br /> - Visualize topology based on configuration parameters.</td>
+      <td>- Install and execute Ipop scale test for validating functionality and debugging. <br> - Visualize topology based on configuration parameters.</td>
     </tr>
   </tbody>
 </table>
 
-<h2 id="description">Description</h2>
+<h2 id="description">
+<a id="description" class="anchor" href="#description" aria-hidden="true"><span class="octicon octicon-link"></span></a>Description</h2>
 
 <p>This tutorial guides you through the deployment IPOP scale test, a handy tool to validate functionality and performance of an IPOP network deployed locally. This tool can be used for debugging post modifications made to the source code and to visualize behavioral aspects of topology based on set topology parameters. It is pre-configured to work within a single Ubuntu 16.04 VMware/VirtualBox VM to make it easy for anyone to reproduce it on their own computers and test-drive IPOP network. The tutorial deploys all services IPOP uses (XMPP, STUN, TURN), as well as 10 IPOP nodes on 10 LXC containers within the VM.</p>
 
-<h2 id="usage">Usage</h2>
+<h2 id="usage">
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
 
-<h4 id="preparing-your-virtual-machine">Preparing your virtual machine</h4>
+<h4 id="preparing-your-virtual-machine">
+<a id="preparing-your-virtual-machine" class="anchor" href="#preparing-your-virtual-machine" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preparing your virtual machine</h4>
 
 <p>You will need a 64-bit Ubuntu 16.04 VM to run this tutorial. It has been tested on <a href="http://www.osboxes.org/ubuntu/#ubuntu-16-04-vmware">this osboxes.org VMware image</a></p>
 
-<h4 id="download-the-automated-test-script-on-host">Download the automated test script on Host</h4>
+<h4 id="download-the-automated-test-script-on-host">
+<a id="download-the-automated-test-script-on-host" class="anchor" href="#download-the-automated-test-script-on-host" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download the automated test script on Host</h4>
 <p>(note: if you use the osboxes.org VMware Ubuntu 16.04 image, the default root password is: osboxes.org )
 This tutorial uses scale-test, an automated test script that install and configures all software needed to run a test IPOP network of a few nodes.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>cd
+<div class="highlighter-rouge">
+<pre class="highlight"><code>cd
 git clone https://github.com/ipop-project/Release-Management
 </code></pre>
 </div>
 
-<h5 id="scale-test---setting-up-the-environment">Scale test - setting up the environment</h5>
-<div class="highlighter-rouge"><pre class="highlight"><code>cd ./Release-Management/Test/ipop-scale-test
+<h5 id="scale-test---setting-up-the-environment">
+<a id="scale-test---setting-up-the-environment" class="anchor" href="#scale-test---setting-up-the-environment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scale test - setting up the environment</h5>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>cd ./Release-Management/Test/ipop-scale-test
 osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
 Enter from the following options:
     configure                      : install/prepare default container
@@ -431,7 +465,8 @@ Enter from the following options:
 &gt; configure
 </code></pre>
 </div>
-<h5 id="scale-test---starting-execution">Scale test - starting execution</h5>
+<h5 id="scale-test---starting-execution">
+<a id="scale-test---starting-execution" class="anchor" href="#scale-test---starting-execution" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scale test - starting execution</h5>
 <p>This step will</p>
 <ul>
   <li>Create and start containers.</li>
@@ -441,7 +476,8 @@ Enter from the following options:
   <li>Configure topology parameters such as successor links, chords, on-demand and inbound links.</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
+<div class="highlighter-rouge">
+<pre class="highlight"><code>osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
 Enter from the following options:
     configure                      : install/prepare default container
     containers-create              : create and start containers
@@ -498,9 +534,11 @@ osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$
 </code></pre>
 </div>
 
-<h4 id="start-ipop-network-and-query-for-its-status">Start IPOP network and query for its status</h4>
+<h4 id="start-ipop-network-and-query-for-its-status">
+<a id="start-ipop-network-and-query-for-its-status" class="anchor" href="#start-ipop-network-and-query-for-its-status" aria-hidden="true"><span class="octicon octicon-link"></span></a>Start IPOP network and query for its status</h4>
 <p>In this phase we will start IPOP processes inside the containers we created in the previous step and then query for the status of those processes.</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
+<div class="highlighter-rouge">
+<pre class="highlight"><code>osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
 Enter from the following options:
     configure                      : install/prepare default container
     containers-create              : create and start containers
@@ -573,10 +611,12 @@ osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$
 
 </code></pre>
 </div>
-<h4 id="validation-and-testing-tools">Validation and testing tools.</h4>
+<h4 id="validation-and-testing-tools">
+<a id="validation-and-testing-tools" class="anchor" href="#validation-and-testing-tools" aria-hidden="true"><span class="octicon octicon-link"></span></a>Validation and testing tools.</h4>
 <p>This phase entails use of features for validating functional correctness and performance metrics under a tool suite called ipop-tests. We are going to go through some of its features.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
+<div class="highlighter-rouge">
+<pre class="highlight"><code>osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
 Enter from the following options:
     configure                      : install/prepare default container
     containers-create              : create and start containers
@@ -605,8 +645,10 @@ EOF  churn  exit  exportdata  help  iperf  ping  pingall  status
 
 <p>As seen above, with the use of this tool one can verify all to all connectivity (pingall), pairwise connectivity (ping), query for IPOP addresses on individual nodes (status) and collect performance metrics (iperf).</p>
 
-<h5 id="status">status</h5>
-<div class="highlighter-rouge"><pre class="highlight"><code>(scale-test) status
+<h5 id="status">
+<a id="status" class="anchor" href="#status" aria-hidden="true"><span class="octicon octicon-link"></span></a>status</h5>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>(scale-test) status
 Container: node1 is running | ip addresses: (u'10.0.3.243', u'10.254.0.1')
 Container: node10 is running | ip addresses: (u'10.0.3.192', u'10.254.0.10')
 Container: node2 is running | ip addresses: (u'10.0.3.253', u'10.254.0.2')
@@ -620,8 +662,10 @@ Container: node9 is running | ip addresses: (u'10.0.3.215', u'10.254.0.9')
 (scale-test) 
 </code></pre>
 </div>
-<h5 id="all-to-all-connectivity">all to all connectivity</h5>
-<div class="highlighter-rouge"><pre class="highlight"><code>(scale-test) pingall
+<h5 id="all-to-all-connectivity">
+<a id="all-to-all-connectivity" class="anchor" href="#all-to-all-connectivity" aria-hidden="true"><span class="octicon octicon-link"></span></a>all to all connectivity</h5>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>(scale-test) pingall
 Staring pingall with default packet count of 2.
 node1 -&gt; node10 with packet loss 0.0%
 node1 -&gt; node2 with packet loss 0.0%
@@ -716,8 +760,10 @@ node9 -&gt; node8 with packet loss 0.0%
 (scale-test) 
 </code></pre>
 </div>
-<h5 id="pair-wise-connectivity">pair-wise connectivity</h5>
-<div class="highlighter-rouge"><pre class="highlight"><code>(scale-test) ping node1 node2 10
+<h5 id="pair-wise-connectivity">
+<a id="pair-wise-connectivity" class="anchor" href="#pair-wise-connectivity" aria-hidden="true"><span class="octicon octicon-link"></span></a>pair-wise connectivity</h5>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>(scale-test) ping node1 node2 10
 PING 10.254.0.2 (10.254.0.2) 56(84) bytes of data.
 64 bytes from 10.254.0.2: icmp_seq=1 ttl=64 time=30.7 ms
 64 bytes from 10.254.0.2: icmp_seq=2 ttl=64 time=1.94 ms
@@ -738,8 +784,10 @@ rtt min/avg/max/mdev = 0.754/4.376/30.733/8.796 ms
 
 </code></pre>
 </div>
-<h5 id="performance-metrics-via-iperf">Performance metrics via iperf</h5>
-<div class="highlighter-rouge"><pre class="highlight"><code>(scale-test) iperf node3 node8
+<h5 id="performance-metrics-via-iperf">
+<a id="performance-metrics-via-iperf" class="anchor" href="#performance-metrics-via-iperf" aria-hidden="true"><span class="octicon octicon-link"></span></a>Performance metrics via iperf</h5>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>(scale-test) iperf node3 node8
 {
 	"start":	{
 		"connected":	[{
@@ -928,8 +976,10 @@ rtt min/avg/max/mdev = 0.754/4.376/30.733/8.796 ms
 
 </code></pre>
 </div>
-<h4 id="consolidated-logs-for-debugging">Consolidated logs for debugging</h4>
-<div class="highlighter-rouge"><pre class="highlight"><code>osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
+<h4 id="consolidated-logs-for-debugging">
+<a id="consolidated-logs-for-debugging" class="anchor" href="#consolidated-logs-for-debugging" aria-hidden="true"><span class="octicon octicon-link"></span></a>Consolidated logs for debugging</h4>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
 Enter from the following options:
     configure                      : install/prepare default container
     containers-create              : create and start containers
@@ -968,7 +1018,8 @@ osboxes@osboxes:~/Release-Management/Test/ipop-scale-test/logs$
 </code></pre>
 </div>
 
-<h4 id="references">References</h4>
+<h4 id="references">
+<a id="references" class="anchor" href="#references" aria-hidden="true"><span class="octicon octicon-link"></span></a>References</h4>
 
 <p>[1] <a href="http://ipop-project.org/">IPOP</a></p>
 

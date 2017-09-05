@@ -367,9 +367,13 @@
 
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
-        <p>You will need a valid configuration file (ipop-config.json) to run ipop!</p>
+        <h1>On This Page</h1>
+        <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#download-dependencies">Download Dependencies</a></li>
+</ul><p>You will need a valid configuration file (ipop-config.json) to run ipop!</p>
 
-<h2 id="download-dependencies">Download Dependencies</h2>
+<h2 id="download-dependencies">
+<a id="download-dependencies" class="anchor" href="#download-dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download Dependencies</h2>
 
 <ol>
   <li>Install Dependencies</li>
@@ -377,7 +381,8 @@
 
 <p>a. For Ubuntu 14</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>  sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+<div class="highlighter-rouge">
+<pre class="highlight"><code>  sudo add-apt-repository ppa:ubuntu-toolchain-r/test
   sudo apt-get update -y
   sudo apt-get -y upgrade
   sudo apt-get install -y software-properties-common git make libssl-dev make g++-4.9 
@@ -390,7 +395,8 @@
 
 <p>b. For CentOS 7</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>  su
+<div class="highlighter-rouge">
+<pre class="highlight"><code>  su
   yum -y update
   yum install -y centos-release-scl-rh
   yum install -y devtoolset-3-gcc-c++ rh-python35
@@ -407,12 +413,14 @@
 <p>Open a new terminal as the regular (non-root) user</p>
 
 <p>If on CentOS 7</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>      scl enable rh-python35 bash
+<div class="highlighter-rouge">
+<pre class="highlight"><code>      scl enable rh-python35 bash
       scl enable devtoolset-3 bash
 </code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>  mkdir -p workspace/ipop-project
+<div class="highlighter-rouge">
+<pre class="highlight"><code>  mkdir -p workspace/ipop-project
   mkdir -p workspace/ipop-vpn/config
   cd workspace/ipop-project/
   git clone https://github.com/ipop-project/ipop-tincan
@@ -433,13 +441,15 @@
 <p>In another new terminal</p>
 
 <p>If on CentOS 7</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>      scl enable rh-python35 bash
+<div class="highlighter-rouge">
+<pre class="highlight"><code>      scl enable rh-python35 bash
 </code></pre>
 </div>
 
 <p>Copy over your config file</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>  cd workspace/ipop-vpn/
+<div class="highlighter-rouge">
+<pre class="highlight"><code>  cd workspace/ipop-vpn/
   python -m controller.Controller -c ./config/ipop-config.json
 </code></pre>
 </div>
@@ -447,7 +457,8 @@
 <p>Check your firewall, both host and guest if virtualized.</p>
 
 <p>Terminate IPOP-VPN</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo killall ipop-tincan  
+<div class="highlighter-rouge">
+<pre class="highlight"><code>sudo killall ipop-tincan  
 ps aux | grep -v grep | grep controller.Controller | awk '{print $2}' | xargs sudo kill -9 
 </code></pre>
 </div>
@@ -457,7 +468,8 @@ Requires Visual Studio 15 Community Ed or greater with C++ tools.
 If using community edition you must install C++ tools separately from VS add/remove programs.
 Install Win 10 SDK, depending on the build revision you get you may have to retarget solution from project solution.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>  mkdir -p workspace/ipop-project
+<div class="highlighter-rouge">
+<pre class="highlight"><code>  mkdir -p workspace/ipop-project
   mkdir -p workspace/ipop-vpn/config
   cd workspace/ipop-project/
   git clone https://github.com/ipop-project/ipop-tincan
@@ -476,7 +488,8 @@ Install Win 10 SDK, depending on the build revision you get you may have to reta
 <p>and extract to workspace/ipop-vpn.</p>
 
 <p>Run power shell window as admin</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>PowerShell.exe -ExecutionPolicy Unrestricted
+<div class="highlighter-rouge">
+<pre class="highlight"><code>PowerShell.exe -ExecutionPolicy Unrestricted
 ipop-setup.ps1
 </code></pre>
 </div>

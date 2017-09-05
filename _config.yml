@@ -180,12 +180,14 @@ timezone: # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 
 # Plugins
-gems:
+plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
   - jemoji
+  - jekyll-optional-front-matter
+  - jekyll-toc
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -194,7 +196,8 @@ whitelist:
   - jekyll-gist
   - jekyll-feed
   - jemoji
-
+  - jekyll-optional-front-matter
+  - jekyll-toc
 
 # Archives
 #  Type
@@ -267,12 +270,10 @@ defaults:
       comments: # true
       share: false
       related: false
+      toc: true
       sidebar:
         nav: "wiki"
 
-
-gems:
-  - jekyll-optional-front-matter
 
 optional_front_matter:
   remove_originals: true

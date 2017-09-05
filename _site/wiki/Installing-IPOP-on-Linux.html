@@ -367,35 +367,54 @@
 
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
-        <h1 id="installing-ipop-vpn-on-linux-ubuntu-or-centos">Installing IPOP-VPN on Linux (Ubuntu or CentOS)</h1>
+        <h1>On This Page</h1>
+        <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#installing-ipop-vpn-on-linux-ubuntu-or-centos">Installing IPOP-VPN on Linux (Ubuntu or CentOS)</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#prerequisite">Prerequisite</a></li>
+<li class="toc-entry toc-h2"><a href="#launching-the-ipop-vpn-installer">Launching the IPOP-VPN Installer</a></li>
+<li class="toc-entry toc-h2"><a href="#using-ipop">Using IPOP</a></li>
+<li class="toc-entry toc-h2"><a href="#log-files">Log Files</a></li>
+<li class="toc-entry toc-h2"><a href="#manual-configuration">Manual Configuration</a></li>
+<li class="toc-entry toc-h2"><a href="#manual-installation">Manual Installation</a></li>
+</ul>
+</li>
+</ul><h1 id="installing-ipop-vpn-on-linux-ubuntu-or-centos">
+<a id="installing-ipop-vpn-on-linux-ubuntu-or-centos" class="anchor" href="#installing-ipop-vpn-on-linux-ubuntu-or-centos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing IPOP-VPN on Linux (Ubuntu or CentOS)</h1>
 
 <p>Note: You need to have root access to run some of the following commands. Running the IPOP Installer with just adding <code class="highlighter-rouge">sudo</code> to the beginning of the command is NOT enough. Switch to interactive root shell:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo -i
+<div class="highlighter-rouge">
+<pre class="highlight"><code>sudo -i
 </code></pre>
 </div>
 
-<h2 id="prerequisite">Prerequisite</h2>
+<h2 id="prerequisite">
+<a id="prerequisite" class="anchor" href="#prerequisite" aria-hidden="true"><span class="octicon octicon-link"></span></a>Prerequisite</h2>
 
 <p>If the ‘wget’ package is not installed, you will need to install it:</p>
 
 <p><strong>In Ubuntu:</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>apt-get install wget
+<div class="highlighter-rouge">
+<pre class="highlight"><code>apt-get install wget
 </code></pre>
 </div>
 
 <p><strong>In CentOS:</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>yum install wget
+<div class="highlighter-rouge">
+<pre class="highlight"><code>yum install wget
 </code></pre>
 </div>
 
-<h2 id="launching-the-ipop-vpn-installer">Launching the IPOP-VPN Installer</h2>
+<h2 id="launching-the-ipop-vpn-installer">
+<a id="launching-the-ipop-vpn-installer" class="anchor" href="#launching-the-ipop-vpn-installer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Launching the IPOP-VPN Installer</h2>
 
 <p>To start the IPOP Installer, run the following command:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>wget -O - https://raw.githubusercontent.com/ipop-project/Release-Management/v16.08.0/Deployment/linux/installer | /bin/bash
+<div class="highlighter-rouge">
+<pre class="highlight"><code>wget -O - https://raw.githubusercontent.com/ipop-project/Release-Management/v16.08.0/Deployment/linux/installer | /bin/bash
 </code></pre>
 </div>
 
@@ -403,11 +422,13 @@
 
 <p>Note: Make sure you have already switched to interactive root shell using <code class="highlighter-rouge">sudo -i</code> before running the above command. Running it with just adding <code class="highlighter-rouge">sudo</code> to the beginning is NOT enough.</p>
 
-<h2 id="using-ipop">Using IPOP</h2>
+<h2 id="using-ipop">
+<a id="using-ipop" class="anchor" href="#using-ipop" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using IPOP</h2>
 
 <p>First, change current directory to the installation directory:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>cd /opt/ipop
+<div class="highlighter-rouge">
+<pre class="highlight"><code>cd /opt/ipop
 </code></pre>
 </div>
 
@@ -415,44 +436,52 @@
 
 <p><strong>Install IPOP:</strong> (If you have already installed IPOP using IPOP Installer, you don’t need to re-install it. So just skip this command.)</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>./ipop install
+<div class="highlighter-rouge">
+<pre class="highlight"><code>./ipop install
 </code></pre>
 </div>
 
 <p><strong>Configure IPOP:</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>./ipop config
+<div class="highlighter-rouge">
+<pre class="highlight"><code>./ipop config
 </code></pre>
 </div>
 
 <p><strong>Start IPOP:</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>./ipop start
+<div class="highlighter-rouge">
+<pre class="highlight"><code>./ipop start
 </code></pre>
 </div>
 
 <p><strong>Get IPOP Node Status:</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>./ipop status (This option is not available in this release.)
+<div class="highlighter-rouge">
+<pre class="highlight"><code>./ipop status (This option is not available in this release.)
 </code></pre>
 </div>
 
 <p><strong>Stop IPOP:</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>./ipop stop
+<div class="highlighter-rouge">
+<pre class="highlight"><code>./ipop stop
 </code></pre>
 </div>
 
-<h2 id="log-files">Log Files</h2>
+<h2 id="log-files">
+<a id="log-files" class="anchor" href="#log-files" aria-hidden="true"><span class="octicon octicon-link"></span></a>Log Files</h2>
 
 <p>If anything went wrong while using IPOP, the log files are located at <code class="highlighter-rouge">/opt/ipop/log</code>.</p>
 
-<h2 id="manual-configuration">Manual Configuration</h2>
+<h2 id="manual-configuration">
+<a id="manual-configuration" class="anchor" href="#manual-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Manual Configuration</h2>
 
 <p>If you ever need to change the configurations manually, the sample configuration files are located in <code class="highlighter-rouge">/opt/ipop/config</code>. IPOP reads the configurations from <code class="highlighter-rouge">/opt/ipop/config/config.json</code> which will automatically be created after running <code class="highlighter-rouge">./ipop config</code> and following the prompts. Keep in mind you need to stop IPOP and then start it again after changing the configurations.
 See the <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Controller-Configuration">configuration page</a> for more information about the configuration options available for IPOP-VPN.</p>
 
-<h2 id="manual-installation">Manual Installation</h2>
+<h2 id="manual-installation">
+<a id="manual-installation" class="anchor" href="#manual-installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Manual Installation</h2>
 <p>If you need to perform a manual installation of IPOP-VPN, detailed instructions are available on the <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Manual-Install-on-Linux">Manual Installation Page | Manual Install on Linux</a>.</p>
 
       </section>

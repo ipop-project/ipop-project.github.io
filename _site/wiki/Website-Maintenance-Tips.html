@@ -367,11 +367,21 @@
 
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
-        <h1 id="deploying-the-static-jekyll-website-from-local-repository-to-github-gh-pages-branch">Deploying the Static Jekyll Website from Local Repository to GitHub gh-pages Branch</h1>
+        <h1>On This Page</h1>
+        <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#deploying-the-static-jekyll-website-from-local-repository-to-github-gh-pages-branch">Deploying the Static Jekyll Website from Local Repository to GitHub gh-pages Branch</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#install-and-run-jekyll-github-deploy">Install and Run Jekyll Github Deploy</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#add-table-of-contents-to-the-wiki-pages">Add Table of Contents to the Wiki Pages</a></li>
+</ul><h1 id="deploying-the-static-jekyll-website-from-local-repository-to-github-gh-pages-branch">
+<a id="deploying-the-static-jekyll-website-from-local-repository-to-github-gh-pages-branch" class="anchor" href="#deploying-the-static-jekyll-website-from-local-repository-to-github-gh-pages-branch" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deploying the Static Jekyll Website from Local Repository to GitHub gh-pages Branch</h1>
 
 <p>While using custom or unsupported plugins, it is necessary to upload the static website files, already built on the local repository to the GitHub repository and choose the website to be loaded from that.</p>
 
-<h2 id="install-and-run-jekyll-github-deploy">Install and Run Jekyll Github Deploy</h2>
+<h2 id="install-and-run-jekyll-github-deploy">
+<a id="install-and-run-jekyll-github-deploy" class="anchor" href="#install-and-run-jekyll-github-deploy" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install and Run Jekyll Github Deploy</h2>
 
 <p><code class="highlighter-rouge">gem install jgd</code></p>
 
@@ -390,9 +400,9 @@ In the main repo:
 
 </code></pre>
 <p>git submodule add https://github.com/ipop-project/ipop-project.github.io.wiki.git wiki
-git commit -m “Adding wiki as submodule”
-git push</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>
+git commit -m “Wiki Added as a Submodule”</p>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>
 # Remove Wiki Submodule
 
 Delete the relevant section from the `.gitmodules` file.
@@ -401,24 +411,75 @@ Stage the .gitmodules changes `git add .gitmodules`.
 
 Delete the relevant section from `.git/config`.
 
-Run `git rm --cached path_to_submodule` (no trailing slash).
+Run `git rm --cached wiki`.
 
-Run `rm -rf .git/modules/path_to_submodule`.
+Run `rm -rf .git/modules/wiki`.
 
-Commit `git commit -m "Removed submodule &lt;name&gt;"`.
+Commit `git commit -m "Wiki Submodule Removed"`.
 
-Delete the now untracked submodule files `rm -rf path_to_submodule`.
+Delete the now untracked submodule files `rm -rf wiki`.
+
+[Reference](https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial#Removal)
+
+# Add YAML Front Matter to Wiki MarkDown Source Files
+
+Use [Jekyll Optional Front Matter](https://github.com/benbalter/jekyll-optional-front-matter
+) plugin.
 
 # Importing Wiki into Jekyll Website
 
 - Don't use colons in the page title.
 - Place an empty line before each table.
 
-In order to make relative links in wiki pages work correctly inside Jekyll weisbite, Comment out this line in `_config.yml`:
+In order to make relative links in wiki pages work correctly inside Jekyll weisbite, remove the `/` from the end of the following line in `_config.yml`:
 </code></pre>
 </div>
-<p>permalink: /:categories/:title/
-```</p>
+<p>permalink: /:categories/:title/</p>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>
+# Redirect Wiki Home
+
+## Utilizing a Redirected Layout
+This second technique would allow you to set up redirects for your pages without resorting to any plugin. All you need to do is create a layout named redirected.html in your _layouts folder. The content of this layout would be as shown below:
+
+```html
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"canonical"</span> <span class="na">href=</span><span class="s">""</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"content-type"</span> <span class="na">content=</span><span class="s">"text/html; charset=utf-8"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"refresh"</span> <span class="na">content=</span><span class="s">"0;url="</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;</span>Redirecting ...<span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;script&gt;</span><span class="nx">location</span><span class="o">=</span><span class="s1">''</span><span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+</div>
+
+<p>Once you have this layout ready, then to set up redirect from any page, all you need to do is specify redirected as your layout in its YAML front matter and specify the destination in redirect_to as shown below. in <code class="highlighter-rouge">wiki.md</code>:</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>---
+layout: redirected
+sitemap: false
+permalink: /wiki/
+redirect_to:  Home.html
+---
+</code></pre>
+</div>
+
+<p>Note that, I have also included sitemap: false in the front matter as I don’t want the redirected pages to be included in the sitemap.</p>
+
+<p><a href="https://superdevresources.com/redirects-jekyll-github-pages/">Reference</a></p>
+
+<h1 id="add-table-of-contents-to-the-wiki-pages">
+<a id="add-table-of-contents-to-the-wiki-pages" class="anchor" href="#add-table-of-contents-to-the-wiki-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add Table of Contents to the Wiki Pages</h1>
+
+<p><a href="https://github.com/toshimaru/jekyll-toc">jekyll-toc</a></p>
+
+<p>To make it appear in all the wiki pages automatically, add <code class="highlighter-rouge">toc: true</code> to the wiki layout settings defaults in <code class="highlighter-rouge">_config.yml</code>.</p>
 
       </section>
     </div>

@@ -367,24 +367,40 @@
 
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
-        <h2 id="making-the-right-choice---socialvpn-or-groupvpn">Making the right choice - SocialVPN OR GroupVPN</h2>
+        <h1>On This Page</h1>
+        <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#making-the-right-choice---socialvpn-or-groupvpn">Making the right choice - SocialVPN OR GroupVPN</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#socialvpn">SocialVPN</a></li>
+<li class="toc-entry toc-h3"><a href="#groupvpn">GroupVPN</a></li>
+<li class="toc-entry toc-h3"><a href="#switchmode-gvpn">Switchmode-GVPN</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#boots-on-the-ground">Boots on the ground</a></li>
+<li class="toc-entry toc-h2"><a href="#i-want-it-my-way">I want it my way</a></li>
+</ul><h2 id="making-the-right-choice---socialvpn-or-groupvpn">
+<a id="making-the-right-choice---socialvpn-or-groupvpn" class="anchor" href="#making-the-right-choice---socialvpn-or-groupvpn" aria-hidden="true"><span class="octicon octicon-link"></span></a>Making the right choice - SocialVPN OR GroupVPN</h2>
 <p>Depending on your usage requirements you might want to pick either SVPN or GVPN, we give below a brief description of both the controllers and discuss scenarios where one may hold better than the other.</p>
-<h3 id="socialvpn">SocialVPN</h3>
+<h3 id="socialvpn">
+<a id="socialvpn" class="anchor" href="#socialvpn" aria-hidden="true"><span class="octicon octicon-link"></span></a>SocialVPN</h3>
 <p>SVPN creates direct (p2p) links between devices running SVPN belonging to social peers in a manner such that each device has it’s own view of the network network with an all to all topology i.e all participating devices will have tin-can links to all other devices. In terms of hands on usage it means-convenient configuration, you won’t have to worry to about statically allocating IPv4 addresses individually to all devices, you want to be part of your network (One configuration file fits all devices of a user in the network). This is made possible by address translation wherein each user has a local virtual private subnet e.g.(172.31.0.100/16) and all devices in her network are automatically mapped on to it. This would come in handy in a use-case where all nodes are peers with equal responsibilities like a publish-subscribe/gossip/Sync setup. Consider the topology shown in the figure below, Alice is friends with Bob, Bob is friends with Alice and Carol, and Carol is friends with Bob, so if all 3 of them installed SVPN on all devices they wanted to be a part of their network- Alice can access all devices in Bob’s cloud, Bob can access all devices in Alice’s and Carol’s cloud and Carol can access all devices in Bob’s cloud but if there is no direct relationship between any two users they cannot access each other’s devices- Alice cannot access Carol’s devices. Also because of address translation Bob will see the IPv4 addresses of devices in Alice’s and Carol’s cloud in his own subnet 192.168.10.100/24.</p>
 
-<p><img src="https://github.com/ipop-project/ipop-project.github.io/blob/master/wiki-images/svpn-topology.jpg" alt="" /><br />
+<p><img src="https://github.com/ipop-project/ipop-project.github.io/blob/master/wiki-images/svpn-topology.jpg" alt=""><br>
 Although this approach to creating the network is more convenient, it is better suited to small networks. Each tin-can links comes with a cost in terms of computing overhead, battery consumption etc, so an all to all topology, where a large subset of devices rarely communicate might not be able to scale well/have poor resource utilization. Another limitation stems from the fact that IPv4 addresses can not be statically assigned, which implies that It would not be a good idea to use this approach where some devices are assigned special responsibilities e.g. Compute cluster where configuration have to be made w.r.t IPv4 addresses.</p>
 
-<h3 id="groupvpn">GroupVPN</h3>
-<p>GVPN creates tincan links among nodes in a manner that all nodes belonging to the group will be able to establish links to each other, unlike SVPN where a user can independently determine whom to connect to. In GVPN all devices in the group are configured statically to have their IPv4 addresses in the same subnet (no address traslation)-i.e each participating device will need to be configured with a unique address in the subnet. This kind of approach is more apt in applications such as virtual compute clusters, LAN gaming etc–Where specific nodes will need to have special responsibilities and will be identified by their virtual IPv4 addresses to get the configuration for the set-up done. To create a group all users will have to establish all to all social relationship (bi-directional) with every other user in the group and will  have to coordinate to ensure that each device uses a unique IPv4 address and a uniform subnet , This should not be a issue if each device falls under the same administrative domain.<br />
-<img src="https://github.com/ipop-project/ipop-project.github.io/blob/master/wiki-images/gvpn.jpg" alt="" /><br />
+<h3 id="groupvpn">
+<a id="groupvpn" class="anchor" href="#groupvpn" aria-hidden="true"><span class="octicon octicon-link"></span></a>GroupVPN</h3>
+<p>GVPN creates tincan links among nodes in a manner that all nodes belonging to the group will be able to establish links to each other, unlike SVPN where a user can independently determine whom to connect to. In GVPN all devices in the group are configured statically to have their IPv4 addresses in the same subnet (no address traslation)-i.e each participating device will need to be configured with a unique address in the subnet. This kind of approach is more apt in applications such as virtual compute clusters, LAN gaming etc–Where specific nodes will need to have special responsibilities and will be identified by their virtual IPv4 addresses to get the configuration for the set-up done. To create a group all users will have to establish all to all social relationship (bi-directional) with every other user in the group and will  have to coordinate to ensure that each device uses a unique IPv4 address and a uniform subnet , This should not be a issue if each device falls under the same administrative domain.<br>
+<img src="https://github.com/ipop-project/ipop-project.github.io/blob/master/wiki-images/gvpn.jpg" alt=""><br>
 In the above figure, note how each user uses the same subnet for all his devices and uniqueness of IPv4 addresses. Here any device can access any other device shown using its IPv4 address. GVPN supports on-demand connections-which implies that the number of links in the network are optimal (just enough to ensure full connectivity). Idle connections are trimmed and new links are created when there is a need to do so, this approach makes the topology suitable for large scale deployments.</p>
 
-<h3 id="switchmode-gvpn">Switchmode-GVPN</h3>
-<p>Switchmode GVPN is an advanced feature of GVPN, wherein IPOP software runs only on Routers/Access points. Devices connected to these access points are all clubbed together into a virtual-LAN and get all to all connectivity with every other device in the network. The access points/Routers must be configured such that the DHCP addresses they assign to the devices connected to them do not conflict – hence each AP allocates from a non-overlapping range. This approach is well suited for Home-Automation networks, where devices always stay within the range of access points. All you have to do to add a device to the network is to connect it to wireless access point running IPOP. The figure below captures the idea. Switchmode is currently supported for AR71XX, CNS3XX and X86 machines, you can download binaries for all but X86 from the <a href="https://github.com/ipop-project/Downloads/releases">downloads page</a>. If you need the x86 binary, it has to be built from source. [[Installing IPOP on OpenWRT|Installing-IPOP-on-OpenWRT]] and [[Switchmode with LXC|Switchmode-with-LXC]] will get you get started learning about running switch mode.<br />
-<img src="https://github.com/ipop-project/ipop-project.github.io/blob/master/wiki-images/switch-mode-topology.jpg" alt="" /></p>
+<h3 id="switchmode-gvpn">
+<a id="switchmode-gvpn" class="anchor" href="#switchmode-gvpn" aria-hidden="true"><span class="octicon octicon-link"></span></a>Switchmode-GVPN</h3>
+<p>Switchmode GVPN is an advanced feature of GVPN, wherein IPOP software runs only on Routers/Access points. Devices connected to these access points are all clubbed together into a virtual-LAN and get all to all connectivity with every other device in the network. The access points/Routers must be configured such that the DHCP addresses they assign to the devices connected to them do not conflict – hence each AP allocates from a non-overlapping range. This approach is well suited for Home-Automation networks, where devices always stay within the range of access points. All you have to do to add a device to the network is to connect it to wireless access point running IPOP. The figure below captures the idea. Switchmode is currently supported for AR71XX, CNS3XX and X86 machines, you can download binaries for all but X86 from the <a href="https://github.com/ipop-project/Downloads/releases">downloads page</a>. If you need the x86 binary, it has to be built from source. [[Installing IPOP on OpenWRT|Installing-IPOP-on-OpenWRT]] and [[Switchmode with LXC|Switchmode-with-LXC]] will get you get started learning about running switch mode.<br>
+<img src="https://github.com/ipop-project/ipop-project.github.io/blob/master/wiki-images/switch-mode-topology.jpg" alt=""></p>
 
-<h2 id="boots-on-the-ground">Boots on the ground</h2>
+<h2 id="boots-on-the-ground">
+<a id="boots-on-the-ground" class="anchor" href="#boots-on-the-ground" aria-hidden="true"><span class="octicon octicon-link"></span></a>Boots on the ground</h2>
 <p>Now let’s get things started.To begin with you will need to:</p>
 <ol>
   <li>
@@ -420,7 +436,8 @@ In the above figure, note how each user uses the same subnet for all his devices
   </li>
 </ol>
 
-<h2 id="i-want-it-my-way">I want it my way</h2>
+<h2 id="i-want-it-my-way">
+<a id="i-want-it-my-way" class="anchor" href="#i-want-it-my-way" aria-hidden="true"><span class="octicon octicon-link"></span></a>I want it my way</h2>
 <p>If the characteristics of Group or Social VPN do not quite meet your usage requirements, IPOP’s modular architecture makes it possible for you to write your own controller or extend ours without putting in too much effort. However, this requires an understanding our controller framework. Please see this document [[Controller framework|Controller-Framework]] to get started.</p>
 
       </section>
