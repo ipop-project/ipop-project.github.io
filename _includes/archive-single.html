@@ -23,7 +23,10 @@
           alt="">
       </div>
     {% endif %}
-    <h4 class="archive__item-title" itemprop="headline">
+    Path Begins 12:47
+    <strong>{{ post.path }}</strong>
+    Path Ends
+    <h3 class="archive__item-title" itemprop="headline">
       {% if post.link %}
         Path Begins
         <strong>{{ post.path }}</strong>
@@ -33,7 +36,7 @@
       {% else %}
         <a href="{{ post.url | absolute_url }}" rel="permalink">{{ title }}</a>
       {% endif %}
-    </h4>
+    </h3>
     {% if post.read_time %}
       <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</p>
     {% endif %}
