@@ -85,6 +85,9 @@
 <loc>http://localhost:4000/ipop-project.github.io/videos/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/ipop-project.github.io/wikipages/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/ipop-project.github.io/xmpp-osn-bindings/</loc>
 </url>
 <url>
@@ -257,6 +260,6 @@
 </url>
 <url>
 <loc>http://localhost:4000/ipop-project.github.io/assets/docs/IPOP-WhitePaper-1605.pdf</loc>
-<lastmod>2017-08-27T13:55:55-04:00</lastmod>
+<lastmod>2017-08-28T07:42:32-04:00</lastmod>
 </url>
 </urlset>
