@@ -23,14 +23,9 @@
           alt="">
       </div>
     {% endif %}
-    Path Begins 12:47
-    <strong>{{ post.path }}</strong>
-    Path Ends
+    1:56 - Path: {{ post.path }} - URL: {{ post.url }} - Title: {{ post.title }} - Link: {{ post.link }}
     <h3 class="archive__item-title" itemprop="headline">
       {% if post.link %}
-        Path Begins
-        <strong>{{ post.path }}</strong>
-        Path Ends
         <a href="{{ post.link }}">{{ title }}</a> <a href="{{ post.url | absolute_url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
         }
       {% else %}

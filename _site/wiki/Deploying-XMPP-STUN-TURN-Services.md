@@ -88,10 +88,10 @@ https://github.com/ipop-project/ipop-project.github.io/wiki/Introduction-to-the-
 		                        starttls, {certfile, "/etc/ejabberd/ejabberd.pem"}
 		                       ]},
 
-		  { {3478, udp}, ejabberd_stun, [] },
+		  { {3478, udp}, ejabberd_stun, []},
 		...
 		```
-		Note: only add ```{ {3478, udp}, ejabberd_stun, [] },```.
+		Note: only add ```{ {3478, udp}, ejabberd_stun, []},```.
 
 	2. For ejabberd 14.07 or later:
 
