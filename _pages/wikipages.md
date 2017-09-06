@@ -7,7 +7,7 @@ permalink: /wikipages/
 
 <h1>Wiki Pages</h1>
 {% for post in site.pages %}
-  {% if post.path contains "wiki" %}
+  {% if post.path contains "/wiki/" %}
     {% include archive-single.html %}
   {% endif %}
 {% endfor %}
