@@ -367,24 +367,26 @@
 
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
-        <h1 id="deploying-the-static-jekyll-website-from-local-repository-to-github-gh-pages-branch">Deploying the Static Jekyll Website from Local Repository to GitHub gh-pages Branch</h1>
+        <h1 id="website-maintenance-tips">Website Maintenance Tips</h1>
+
+<h2 id="deploying-the-static-jekyll-website-from-local-repository-to-github-gh-pages-branch">Deploying the Static Jekyll Website from Local Repository to GitHub gh-pages Branch</h2>
 
 <p>While using custom or unsupported plugins, it is necessary to upload the static website files, already built on the local repository to the GitHub repository and choose the website to be loaded from that.</p>
 
-<h2 id="install-and-run-jekyll-github-deploy">Install and Run Jekyll Github Deploy</h2>
+<h3 id="install-and-run-jekyll-github-deploy">Install and Run Jekyll Github Deploy</h3>
 
 <p><code class="highlighter-rouge">gem install jgd</code></p>
 
 <pre><code class="language-jgd```">
-# Change GitHub Settings
+## Change GitHub Settings
 
 ```Settings &gt; GitHub Pages &gt; Source &gt; gh-pages branch &gt; Save```
 
-# Page Layouts
+## Page Layouts
 
 Page layout for pages without the sidebar is 'splash'. Default page layout can be changed in '_config.yml'.
 
-# Add Wiki as Submodule
+## Add Wiki as Submodule
 
 In the main repo:
 
@@ -392,7 +394,7 @@ In the main repo:
 <p>git submodule add https://github.com/ipop-project/ipop-project.github.io.wiki.git wiki
 git commit -m “Wiki Added as a Submodule”</p>
 <div class="highlighter-rouge"><pre class="highlight"><code>
-# Remove Wiki Submodule
+## Remove Wiki Submodule
 
 Delete the relevant section from the `.gitmodules` file.
 
@@ -400,7 +402,7 @@ Stage the .gitmodules changes `git add .gitmodules`.
 
 Delete the relevant section from `.git/config`.
 
-Run `git rm --cached wiki`.
+Run `git rm --cached wiki/`.
 
 Run `rm -rf .git/modules/wiki`.
 
@@ -410,12 +412,12 @@ Delete the now untracked submodule files `rm -rf wiki`.
 
 [Reference](https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial#Removal)
 
-# Add YAML Front Matter to Wiki MarkDown Source Files
+## Add YAML Front Matter to Wiki MarkDown Source Files
 
 Use [Jekyll Optional Front Matter](https://github.com/benbalter/jekyll-optional-front-matter
 ) plugin.
 
-# Importing Wiki into Jekyll Website
+## Importing Wiki into Jekyll Website
 
 - Don't use colons in the page title.
 - Place an empty line before each table.
@@ -425,9 +427,10 @@ In order to make relative links in wiki pages work correctly inside Jekyll weisb
 </div>
 <p>permalink: /:categories/:title/</p>
 <div class="highlighter-rouge"><pre class="highlight"><code>
-# Redirect Wiki Home
+## Redirect Wiki Home
 
-## Utilizing a Redirected Layout
+### Utilizing a Redirected Layout
+
 This second technique would allow you to set up redirects for your pages without resorting to any plugin. All you need to do is create a layout named redirected.html in your _layouts folder. The content of this layout would be as shown below:
 
 ```html
@@ -461,7 +464,7 @@ redirect_to:  Home.html
 
 <p><a href="https://superdevresources.com/redirects-jekyll-github-pages/">Reference</a></p>
 
-<h1 id="add-table-of-contents-to-the-wiki-pages">Add Table of Contents to the Wiki Pages</h1>
+<h2 id="add-table-of-contents-to-the-wiki-pages">Add Table of Contents to the Wiki Pages</h2>
 
 <p><a href="https://github.com/toshimaru/jekyll-toc">jekyll-toc</a></p>
 

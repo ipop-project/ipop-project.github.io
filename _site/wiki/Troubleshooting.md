@@ -1,3 +1,5 @@
+# Troubleshooting
+
 If you run into errors/crashes, please proceed as follows:
 
 Try to recreate the problem and obtain log files:
