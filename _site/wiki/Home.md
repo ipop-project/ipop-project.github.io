@@ -11,6 +11,7 @@ IPOP (IP-Over-P2P) is an open-source user-centric software virtual network allow
 | Install, Run, and Remove IPOP, Manually | [Intro](Install,-Run,-and-Remove-IPOP,-Intro) \| [Ubuntu and Raspberry Pi](Install,-Run,-and-Remove-IPOP-on-Ubuntu-and-Raspberry-Pi,-Manually) \| [Windows](Install,-Run,-and-Remove-IPOP-on-Windows,-Manually) \| [CentOS](Install,-Run,-and-Remove-IPOP-on-CentOS,-Manually) | ~ 10 mins |
 | Install, Run, and Remove IPOP, Scripted | [Ubuntu, Raspberry Pi, and CentOS](Install,-Run,-and-Remove-IPOP-on-Ubuntu,-Raspberry-Pi-and-CentOS,-Scripted) | ~ 10 mins |
 | Use IPOP, Demonstration Video | [Ubuntu](https://screencast-o-matic.com/watch/cbjXbPlmdl) | ~ 4 mins |
+| IPOP Scale-test Walk-through | [Ubuntu](IPOP-Scale-test-Walk-through) | ~ 40 mins |
 
 ### IPOP Quick Guide - Advanced
 
