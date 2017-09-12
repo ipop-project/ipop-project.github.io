@@ -28,7 +28,7 @@ IPOP-USERS-L {at} LISTS.UFL.EDU
 ## Current Members
 
 ![Dr. Renato J. Figueiredo](../assets/images/renato.jpg){: .float-left .profile-img .clear-both}
-<h3><a href="https://www.acis.ufl.edu/people/renatof">Dr. Renato J. Figeuiredo <i class="fa fa-external-link" aria-hidden="true"></i></a></h3>
+<h3><a href="https://www.acis.ufl.edu/people/renatof">Dr. Renato J. Figueiredo <i class="fa fa-external-link" aria-hidden="true"></i></a></h3>
 Professor, ACIS Lab, University of Florida  
 The Project’s Principal Investigator
 
