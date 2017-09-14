@@ -1,0 +1,318 @@
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.5.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>IPOP</title>
+
+
+
+
+<meta name="description" content="IP-Over-P2P, Open-source User-centric Software Virtual Network">
+
+
+
+
+<meta name="author" content="">
+
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="IPOP">
+<meta property="og:title" content="IPOP">
+
+
+  <link rel="canonical" href="https://vahid-dan.github.io/ipop-project.github.io/wiki/Installing-IPOP-on-Windows">
+  <meta property="og:url" content="https://vahid-dan.github.io/ipop-project.github.io/wiki/Installing-IPOP-on-Windows">
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "IPOP",
+      "url" : "https://vahid-dan.github.io/ipop-project.github.io",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="https://vahid-dan.github.io/ipop-project.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://vahid-dan.github.io/ipop-project.github.io/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--wiki">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="https://vahid-dan.github.io/ipop-project.github.io/">IPOP</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/about/">About</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/download">Download</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/learn/">Learn</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/wiki/">Wiki</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/contribute/">Contribute</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/contact/">Contact</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    
+
+
+
+
+<div id="main" role="main">
+  <div class="sidebar">
+    <nav class="nav__list">
+      <div class="wiki-top-links">
+        <a href="../wiki">Wiki Home</a> / <a href="../wikipages">Wiki Pages</a>
+      </div>
+    </nav>
+  </div>
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      <section class="page__content" itemprop="text">
+
+
+        <h1 id="installing-ipop-vpn-on-windows">Installing IPOP-VPN on Windows</h1>
+
+<h2 id="quick-start-installation">Quick start Installation</h2>
+<p>The most convenient way to get IPOP installed on Windows 10 is run the <em>ipop-set.ps1</em> powershell script included in the IPOP ZIP file. Note that you need to have Administrator privileges to install IPOP-VPN.</p>
+
+<ol>
+  <li>
+    <p>Download <a href="https://github.com/ipop-project/Downloads/releases/download/v16.08.0/ipop-v16.08.1_win.zip">IPOP-VPN for Windows</a>.</p>
+  </li>
+  <li>
+    <p>Extract the contents of the archive to a directory, e.g., ipop-vpn</p>
+  </li>
+  <li>
+    <p>Start an Admin Windows Powershell and change to the ipop-vpn directory previously created</p>
+  </li>
+  <li>Enter the following commands:
+    <div class="highlighter-rouge"><pre class="highlight"><code> PowerShell -ExecutionPolicy Unrestricted
+ .\ipop-setup
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Follow the prompts to install and setup IPOP</p>
+  </li>
+  <li>While installing Social VPN, copy the “ip4” entry from “AddressMapper” to “CFx”, e.g.,
+    <div class="highlighter-rouge"><pre class="highlight"><code> ip4": "172.31.0.100" 
+</code></pre>
+    </div>
+  </li>
+  <li>Finally, double click ipop-start to run IPOP. Closing this console window will terminate IPOP.</li>
+</ol>
+
+<p>Note: A Windows Firewall exception is created for IPOP-VPN, but you have to create your own for exceptions for other services such as ICMP Echo (ping).</p>
+
+<p>##TLDR
+If you are using an earlier version of Windows such as 7, 8, Server 2008, or 2012, you will need to manually setup IPOP. Below are the necessary steps to accomplish this.</p>
+
+<h2 id="manual-setup">Manual Setup</h2>
+<ol>
+  <li>
+    <p>Install <a href="https://download.microsoft.com/download/5/B/C/5BC5DBB3-652D-4DCE-B14A-475AB85EEF6E/vcredist_x86.exe'">MS Visual C++ x86 Redistributable Packages for Visual Studio 2010</a>.</p>
+  </li>
+  <li>
+    <p>Install <a href="https://www.python.org/ftp/python/3.5.2/python-3.5.2-amd64-webinstall.exe">Python 3.5 for Windows</a>.</p>
+  </li>
+  <li>
+    <p>Install <a href="https://swupdate.openvpn.org/community/releases/tap-windows-9.21.2.exe">tap-installer from OpenVPN</a>.</p>
+  </li>
+  <li>
+    <p>Download <a href="https://github.com/ipop-project/Downloads/releases/download/v16.08.1/ipop-v16.08.1_win.zip">IPOP-VPN for Windows</a>.</p>
+  </li>
+  <li>
+    <p>Extract the contents of the archive to a directory, e.g., ipop-vpn</p>
+  </li>
+  <li>Decide if you want to run <a href="Planning Your Network">GroupVPN or Social VPN</a> and copy the appropriate sample config to the ipop-vpn directory. Use one of the following for group or social VPN respectively:
+    <div class="highlighter-rouge"><pre class="highlight"><code> cp .\controller\modules\sample-gvpn-config.json .\config.json
+</code></pre>
+    </div>
+    <div class="highlighter-rouge"><pre class="highlight"><code> cp .\controller\modules\sample-svpn-config.json .\config.json
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Update your <a href="Configuration">config file</a> with your XMPP credentials and other details. For SocialVPN you only need to add the XMPP server IP, your XMPP client user id and password. For GroupVPN you will need to add your static virtual IP.</p>
+  </li>
+  <li>
+    <p>Install Sleek XMPP. Python will have to be in your PATH environment or you will need to provide the path to the pip executable.
+pip install sleekxmpp</p>
+  </li>
+  <li>
+    <p>Rename the TAP-Windows Adapter to <em>ipop</em>. From the Control Panel choose <em>View network status and tasks</em> under Network and Internet. On the right side-bar click <em>change adapter settings</em>. Select the <em>TAP Windows Adapter V9</em> and rename it to “ipop”.</p>
+  </li>
+  <li>
+    <p>Configure the IPOP Adapter IPv4 interface with a static IP address and subnet mask that will be use for the virtual network. Alternatively you can download download <a href="https://github.com/ipop-project/Release-Management/blob/master/Deployment/win/setup_interface.bat">set_interface</a> and [win32_netsh_setup] (https://github.com/ipop-project/Release-Management/blob/master/Deployment/win/win32_netsh_setup.py) to your IPOP directory and run the _setup_interface.bat _ batch file as Admin.</p>
+  </li>
+  <li>Finally, double click ipop-start to run IPOP</li>
+</ol>
+
+
+
+      </section>
+    </div>
+  </article>
+</div>
+
+
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+     -->
+    <!-- <li><a href="https://vahid-dan.github.io/ipop-project.github.io/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
+<!--  </ul>
+</div> --> 
+
+<div class="page__footer-copyright float-left">
+  <div class="float-left">
+    <img src="https://vahid-dan.github.io/ipop-project.github.io/assets/images/uf_small.png" class="padding-bottom-right" /><img src="https://vahid-dan.github.io/ipop-project.github.io/assets/images/nsf_small.png" class="padding-bottom-right" />
+  </div>
+  <i class="fa fa-address-card-o" aria-hidden="true"></i>
+  <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br />
+  <a href="http://www.ece.ufl.edu/" rel="nofollow" target="_blank">Department of Electrical & Computer Engineering</a><br />
+  <a href="http://www.eng.ufl.edu/" rel="nofollow" target="_blank">College of Engineering</a>, <a href="http://www.ufl.edu/" rel="nofollow" target="_blank">University of Florida</a>
+</div>
+
+<div class="page__footer-copyright float-right">
+  <div>
+    <a href="https://vahid-dan.github.io/ipop-project.github.io/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="https://vahid-dan.github.io/ipop-project.github.io/contact/#mailing-list-subscription">Mailing List</a> | <a href="https://vahid-dan.github.io/ipop-project.github.io/sitemap">Sitemap</a><br />
+    <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
+    &copy; 2017 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
+    </div>
+  </div>
+</div>
+<div class="page__footer-copyright clear-both">This material is based upon work supported in part by the National Science Foundation under Grants No. 1234983, 1339737 and 1527415.</div>
+      </footer>
+    </div>
+
+    <script src="https://vahid-dan.github.io/ipop-project.github.io/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>
+
