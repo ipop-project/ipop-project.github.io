@@ -1,0 +1,628 @@
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.5.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>IPOP</title>
+
+
+
+
+<meta name="description" content="IP-Over-P2P, Open-source User-centric Software Virtual Network">
+
+
+
+
+<meta name="author" content="">
+
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="IPOP">
+<meta property="og:title" content="IPOP">
+
+
+  <link rel="canonical" href="https://vahid-dan.github.io/ipop-project.github.io/wiki/Configuration">
+  <meta property="og:url" content="https://vahid-dan.github.io/ipop-project.github.io/wiki/Configuration">
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "IPOP",
+      "url" : "https://vahid-dan.github.io/ipop-project.github.io",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="https://vahid-dan.github.io/ipop-project.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://vahid-dan.github.io/ipop-project.github.io/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--wiki">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="https://vahid-dan.github.io/ipop-project.github.io/">IPOP</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/about/">About</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/download">Download</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/learn/">Learn</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/wiki/">Wiki</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/contribute/">Contribute</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/contact/">Contact</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    
+
+
+
+
+<div id="main" role="main">
+  <div class="sidebar">
+    <nav class="nav__list">
+      <div class="wiki-top-links">
+        <a href="../wiki">Wiki Home</a> / <a href="../wikipages">Wiki Pages</a>
+      </div>
+    </nav>
+  </div>
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      <section class="page__content" itemprop="text">
+
+
+        <h1 id="configuration">Configuration</h1>
+
+<p>An external configuration file is needed when running IPOP. A
+<a href="https://github.com/ipop-project/Controllers/blob/master/controller/sample-gvpn-config.json">sample configuration file</a> is provided with the Controllers source code. Default configuration settings are provided in <a href="https://github.com/ipop-project/Controllers/blob/master/controller/framework/fxlib.py">fxlib.py</a>.</p>
+
+<p>The external configuration file and the settings in fxlib.py are merged. If a key is provided in both files, the key in the external configuration file will take precedence.</p>
+
+<h2 id="required-external-configuration-file-keys">Required External Configuration File Keys</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Qualified Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>XmppClient.XmppDetails[0].AddressHost</td>
+      <td>XMPP server domain or IP address</td>
+    </tr>
+    <tr>
+      <td>XmppClient.XmppDetails[0].Port</td>
+      <td>XMPP port</td>
+    </tr>
+    <tr>
+      <td>XmppClient.XmppDetails[0].TapName</td>
+      <td>Tap device name used matching one specified in TincanInterface.Vnets</td>
+    </tr>
+    <tr>
+      <td>XmppClient.XmppDetails[0].AuthenticationMethod</td>
+      <td>Node authentication mode (values: “password” or “x509”)</td>
+    </tr>
+    <tr>
+      <td>XmppClient.XmppDetails[0].Username</td>
+      <td>XMPP credential user ID (AuthenticationMethod=”password”)</td>
+    </tr>
+    <tr>
+      <td>XmppClient.XmppDetails[0].Password</td>
+      <td>XMPP credential password (AuthenticationMethod=”password”)</td>
+    </tr>
+    <tr>
+      <td>XmppClient.XmppDetails[0].TrustStore</td>
+      <td>Truststore path containing XMPP server certificate file (AuthenticationMethod=”x509”)</td>
+    </tr>
+    <tr>
+      <td>XmppClient.XmppDetails[0].CertDirectory</td>
+      <td>IPOP node certificate directory (AuthenticationMethod=”x509”)</td>
+    </tr>
+    <tr>
+      <td>XmppClient.XmppDetails[0].CertFile</td>
+      <td>IPOP node public key filename (AuthenticationMethod=”x509”)</td>
+    </tr>
+    <tr>
+      <td>XmppClient.XmppDetails[0].keyfile</td>
+      <td>IPOP node private key filename (AuthenticationMethod=”x509”)</td>
+    </tr>
+    <tr>
+      <td>XmppClient.XmppDetails[0].AcceptUntrustedServer</td>
+      <td>Trusted XMPP server</td>
+    </tr>
+    <tr>
+      <td>TincanInterface.Vnets[0].Name</td>
+      <td>Name of Tap Device</td>
+    </tr>
+    <tr>
+      <td>TincanInterface.Vents[0].IP4</td>
+      <td>Virtual ipv4 address given to the node</td>
+    </tr>
+    <tr>
+      <td>TincanInterface.Vnets[0].IP4PrefixLen</td>
+      <td>Virtual ipv4 address prefix</td>
+    </tr>
+    <tr>
+      <td>TincanInteface.Vnets[0].MTU4</td>
+      <td>Maximum Transmission Unit for Virtual net</td>
+    </tr>
+    <tr>
+      <td>TincanInteface.Vnets[0].XMPPModuleName</td>
+      <td>Name of XMPP Module to use</td>
+    </tr>
+    <tr>
+      <td>TincanInteface.Vnets[0].TapName</td>
+      <td>Name of Tap Device</td>
+    </tr>
+    <tr>
+      <td>TincanInteface.Vnets[0].Description</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>TincanInteface.Vnets[0].IgnoredNetworkInterfaces</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>TincanInteface.Vnets[0].L2TunnellingEnabled</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>CFx.Model</td>
+      <td>Type of VPN (“SocialVPN” or “GroupVPN”)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="optionaldefault-keys">Optional/Default Keys</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Qualified Name</th>
+      <th>Default Value</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>XmppClient.Enabled</td>
+      <td>true</td>
+      <td>Enable XmppClient module(Required by current codebase)</td>
+    </tr>
+    <tr>
+      <td>XmppClient.TimerInterval</td>
+      <td>10</td>
+      <td>Timer thread interval in seconds</td>
+    </tr>
+    <tr>
+      <td>XmppClient.MessagePerIntervalDelay</td>
+      <td>10</td>
+      <td>No. of XMPP messages after which the delay has to be increased</td>
+    </tr>
+    <tr>
+      <td>XmppClient.InitialAdvertismentDelay</td>
+      <td>5</td>
+      <td>Intitial delay for Peer XMPP messages</td>
+    </tr>
+    <tr>
+      <td>XmppClient.XmppAdvrtDelay</td>
+      <td>5</td>
+      <td>Incremental delay for XMPP messages</td>
+    </tr>
+    <tr>
+      <td>XmppClient.MaxAdvertismentDelay</td>
+      <td>30</td>
+      <td>Max XMPP Message delay</td>
+    </tr>
+    <tr>
+      <td>XmppClient.dependencies</td>
+      <td><code class="highlighter-rouge">["Logger", "TincanInterface", "XmppClient"]</code></td>
+      <td>XMPP module dependencies</td>
+    </tr>
+    <tr>
+      <td>TincanInterface.buf_size</td>
+      <td>65507</td>
+      <td>Max buffer size for Tincan Messages</td>
+    </tr>
+    <tr>
+      <td>TincanInterface.SocketReadWaitTime</td>
+      <td>15</td>
+      <td>Socket read wait time for Tincan Messages</td>
+    </tr>
+    <tr>
+      <td>TincanInterface.ctr_recv_port</td>
+      <td>5801</td>
+      <td>Controller UDP Listening Port</td>
+    </tr>
+    <tr>
+      <td>TincanInterface.ip6_prefix</td>
+      <td>“fd50:0dbc:41f2:4a3c”</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>TincanInterface.ctrl_send_port</td>
+      <td>5800</td>
+      <td>Tincan UDP Listening Port</td>
+    </tr>
+    <tr>
+      <td>TincanInterface.localhost</td>
+      <td>“127.0.0.1”</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>TincanInterface.localhost6</td>
+      <td>”::1”</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>TincanInterface.dependencies</td>
+      <td><code class="highlighter-rouge">["Logger"]</code></td>
+      <td>dependencies of TincanInterface module</td>
+    </tr>
+    <tr>
+      <td>TincanInterface.Stun</td>
+      <td>None</td>
+      <td>List of usable STUN servers e.g.: <code class="highlighter-rouge">["stun.l.google.com:19302"]</code></td>
+    </tr>
+    <tr>
+      <td>TincanInterface.Turn</td>
+      <td>None</td>
+      <td>List of usable TURN servers with transport address, username, and password in format <code class="highlighter-rouge">[{ "Address": "***:19302", "User": "***", "Password": "***"}]</code></td>
+    </tr>
+    <tr>
+      <td>Logger.LogLevel</td>
+      <td>“WARNING”</td>
+      <td>Level of logging verbosity (values: “ERROR”, “INFO”, “DEBUG”, “WARNING”)</td>
+    </tr>
+    <tr>
+      <td>Logger.LogOption</td>
+      <td>“FILE”</td>
+      <td>Method of Logging output (values: “FILE”, “CONSOLE”)</td>
+    </tr>
+    <tr>
+      <td>Logger.LogFilePath</td>
+      <td>”./logs/”</td>
+      <td>If LogOption=”FILE”, specify path log files will output</td>
+    </tr>
+    <tr>
+      <td>Logger.CtrlLogFileName</td>
+      <td>“ctrl.log”</td>
+      <td>If LogOption=”FILE”, specify file name of Controller log</td>
+    </tr>
+    <tr>
+      <td>Logger.TincanLogFileName</td>
+      <td>“tincan.log”</td>
+      <td>If LogOption=”FILE”, specify file name of Tincan log</td>
+    </tr>
+    <tr>
+      <td>Logger.LogFileSize</td>
+      <td>1000000</td>
+      <td>Log file size specified in bytes</td>
+    </tr>
+    <tr>
+      <td>Logger.ConsoleLevel</td>
+      <td>None</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Logger.BackupFileCount</td>
+      <td>5</td>
+      <td># of files to hold logging history</td>
+    </tr>
+    <tr>
+      <td>CFx.local_uid</td>
+      <td>””</td>
+      <td>Attribute to store node UID needed by Statereport and SVPN</td>
+    </tr>
+    <tr>
+      <td>CFx.uid_size</td>
+      <td>40</td>
+      <td># of bytes for node UID</td>
+    </tr>
+    <tr>
+      <td>CFx.ipopVerRel</td>
+      <td>ipopVerRel (Variable in fxlib.py)</td>
+      <td>Release Version String</td>
+    </tr>
+    <tr>
+      <td>LinkManager.Enabled</td>
+      <td>true</td>
+      <td>Enables LinkManager module (Required by current  codebase)</td>
+    </tr>
+    <tr>
+      <td>LinkManager.TimerInterval</td>
+      <td>10</td>
+      <td>Timer thread interval in seconds</td>
+    </tr>
+    <tr>
+      <td>LinkManager.InitialLinkTTL</td>
+      <td>120</td>
+      <td>Intial Time to Live for a p2p link in seconds</td>
+    </tr>
+    <tr>
+      <td>LinkManager.LinkPulse</td>
+      <td>180</td>
+      <td>Time to Live for an online p2p link in seconds</td>
+    </tr>
+    <tr>
+      <td>LinkManager.MaxConnRetry</td>
+      <td>5</td>
+      <td>Max connection retry attempts for each p2p link</td>
+    </tr>
+    <tr>
+      <td>LinkManager.dependencies</td>
+      <td><code class="highlighter-rouge">["Logger", "TincanInterface"]</code></td>
+      <td>LinkManager module dependencies</td>
+    </tr>
+    <tr>
+      <td>BroadcastForwarder.Enabled</td>
+      <td>true</td>
+      <td>Enables BroadcastForwarder module</td>
+    </tr>
+    <tr>
+      <td>BroadcastForwarder.TimerInterval</td>
+      <td>10</td>
+      <td>Timer thread interval in seconds</td>
+    </tr>
+    <tr>
+      <td>BroadcastForwarder.dependencies</td>
+      <td><code class="highlighter-rouge">["Logger", "TincanInterface", "LinkManager"]</code></td>
+      <td>BroadcastForwarder module dependencies</td>
+    </tr>
+    <tr>
+      <td>ArpCache.Enabled</td>
+      <td>true</td>
+      <td>Enables ArpCache module</td>
+    </tr>
+    <tr>
+      <td>ArpCache.dependencies</td>
+      <td><code class="highlighter-rouge">["Logger", "TincanInterface", "LinkManager"]</code></td>
+      <td>ArpCache module dependencies</td>
+    </tr>
+    <tr>
+      <td>IPMulticast.Enabled</td>
+      <td>false</td>
+      <td>Enables IPMulticast module</td>
+    </tr>
+    <tr>
+      <td>IPMulticast.dependencies</td>
+      <td><code class="highlighter-rouge">["Logger", "TincanInterface", "LinkManager"]</code></td>
+      <td>IPMulticast module dependencies</td>
+    </tr>
+    <tr>
+      <td>BaseTopologyManager.Enabled</td>
+      <td>true</td>
+      <td>Enables BaseTopologyManager module</td>
+    </tr>
+    <tr>
+      <td>BaseTopologyManager.TimerInterval</td>
+      <td>10</td>
+      <td>Timer thread interval in seconds</td>
+    </tr>
+    <tr>
+      <td>BaseTopologyManager.dependencies</td>
+      <td><code class="highlighter-rouge">["Logger", "TincanInterface", "XmppClient"]</code></td>
+      <td>BaseTopologyManager module dependencies</td>
+    </tr>
+    <tr>
+      <td>OverlayVisualizer.Enabled</td>
+      <td>false</td>
+      <td>Enables OverlayVisualizer module</td>
+    </tr>
+    <tr>
+      <td>OverlayVisualizer.TimerInterval</td>
+      <td>5</td>
+      <td>Timer thread interval in seconds</td>
+    </tr>
+    <tr>
+      <td>OverlayVisualizer.WebServiceAddress</td>
+      <td>“:8080/insertdata”</td>
+      <td>Visualizer webservice URL</td>
+    </tr>
+    <tr>
+      <td>OverlayVisualizer.NodeName</td>
+      <td>””</td>
+      <td>Interval to send data to the visualizer</td>
+    </tr>
+    <tr>
+      <td>OverlayVisualizer.dependencies</td>
+      <td><code class="highlighter-rouge">["Logger", "BaseTopologyManager"]</code></td>
+      <td>OverlayVisualizer module dependencies</td>
+    </tr>
+    <tr>
+      <td>StatReport.Enabled</td>
+      <td>false</td>
+      <td>Enables StatReport module</td>
+    </tr>
+    <tr>
+      <td>StatReport.TimerInterval</td>
+      <td>200</td>
+      <td>Timer thread interval in seconds</td>
+    </tr>
+    <tr>
+      <td>StatReport.StatServerAddress</td>
+      <td>“metrics.ipop-project.org”</td>
+      <td>Webservice to send stats</td>
+    </tr>
+    <tr>
+      <td>StatReport.StatServerPort</td>
+      <td>8080</td>
+      <td>Port of StatReport webservice</td>
+    </tr>
+    <tr>
+      <td>StatReport.dependencies</td>
+      <td><code class="highlighter-rouge">["Logger"]</code></td>
+      <td>StatReport module dependencies</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+      </section>
+    </div>
+  </article>
+</div>
+
+
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+     -->
+    <!-- <li><a href="https://vahid-dan.github.io/ipop-project.github.io/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
+<!--  </ul>
+</div> --> 
+
+<div class="page__footer-copyright float-left">
+  <div class="float-left">
+    <img src="https://vahid-dan.github.io/ipop-project.github.io/assets/images/uf_small.png" class="padding-bottom-right" /><img src="https://vahid-dan.github.io/ipop-project.github.io/assets/images/nsf_small.png" class="padding-bottom-right" />
+  </div>
+  <i class="fa fa-address-card-o" aria-hidden="true"></i>
+  <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br />
+  <a href="http://www.ece.ufl.edu/" rel="nofollow" target="_blank">Department of Electrical & Computer Engineering</a><br />
+  <a href="http://www.eng.ufl.edu/" rel="nofollow" target="_blank">College of Engineering</a>, <a href="http://www.ufl.edu/" rel="nofollow" target="_blank">University of Florida</a>
+</div>
+
+<div class="page__footer-copyright float-right">
+  <div>
+    <a href="https://vahid-dan.github.io/ipop-project.github.io/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="https://vahid-dan.github.io/ipop-project.github.io/contact/#mailing-list-subscription">Mailing List</a> | <a href="https://vahid-dan.github.io/ipop-project.github.io/sitemap">Sitemap</a><br />
+    <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
+    &copy; 2017 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
+    </div>
+  </div>
+</div>
+<div class="page__footer-copyright clear-both">This material is based upon work supported in part by the National Science Foundation under Grants No. 1234983, 1339737 and 1527415.</div>
+      </footer>
+    </div>
+
+    <script src="https://vahid-dan.github.io/ipop-project.github.io/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>
+
