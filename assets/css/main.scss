@@ -1,0 +1,194 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@charset "utf-8";
+
+@import "minimal-mistakes";
+
+.site-title {
+  font-size: larger;
+}
+
+.page__hero--overlay {
+  padding: 2em 0;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+.profile-img {
+  clear: both;
+  float: left;
+  border-radius: 4px;
+  margin: 0 1em 1em 0;
+}
+
+.clear-both {
+  clear: both;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.page__hero--overlay .page__title, .page__hero--overlay .page__meta, .page__hero--overlay .comment__date, .page__hero--overlay .page__lead, .page__hero--overlay .btn, .page__hero--overlay #goog-wm-sb {
+  text-shadow: 4px 4px 4px rgba(0,0,0,1);
+}
+
+.padding-bottom-right {
+  padding-right: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.align-right {
+  text-align: right;
+}
+
+figcaption {
+  margin-bottom: 1em;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: center;
+}
+
+.nav__list .nav__items {
+  font-size: 1.50rem;
+}
+
+.nav__list .nav__items .active {
+  margin-left: 0;
+}
+
+.masthead {
+  border-bottom: 5px solid #E28F41;
+}
+
+.page__footer {
+  border-top: 5px solid #6C9AC3;
+  color: #6C9AC3;
+}
+
+a, .nav__list .nav__items a, .greedy-nav a:hover {
+  color: #6C9AC3;
+}
+
+.greedy-nav a.site-title {
+  color: #6C9AC3;
+  font-size: 2em;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.greedy-nav button, .greedy-nav .visible-links a:before {
+  background-color: #6C9AC3;
+}
+
+.greedy-nav a {
+  color: #E28F41;
+  margin: 0px 1rem;
+}
+
+.greedy-nav .visible-links {
+  padding-right: 1.5rem;
+}
+
+.page__footer .fa {
+  color: inherit;
+}
+
+.footnote {
+  font-size: .75em;
+}
+
+.nav__sub-title {
+/*  border-top: 1px solid #f2f3f3;
+  border-bottom: none;
+  padding-bottom: 0;
+  font-size: .9em; */
+}
+
+.page__hero--overlay .page__title {
+  font-size: 2em;
+}
+
+.page__hero--overlay {
+  padding: 1em 0;
+}
+
+.toc__menu>li:last-child a {
+  border-bottom: 1px solid #f2f3f3;
+}
+
+.users-logo {
+  margin: 0 1em 1em 0;
+}
+
+.fa {
+  color: #E28F41;
+  font-size: .7em;
+  margin-right: .5em;
+}
+
+.nav__title .fa {
+  color: #fff;
+  font-size: 1em;
+}
+
+#markdown-toc .fa {
+  color: inherit;
+  font-size: .8em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: museo-slab,Georgia,"Times New Roman",Times,serif;
+  font-weight: 500;
+  color: #286c8d;
+}
+
+body {
+  font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.page__content p {
+  margin: 0 0 1em;
+}
+
+h1 {
+  font-size: 1.65em;
+}
+
+h2 {
+  font-size: 1.4em;
+}
+
+h3 {
+  font-size: 1.15em;
+}
+
+.page {
+  padding-right: 0;
+}
+
+.layout--wiki .sidebar .nav__list strong {
+  display: block;
+  margin: 0.5rem 0;
+  padding: 0.5rem 0;
+  font-family: -apple-system,".SFNSText-Regular","San Francisco","Roboto","Segoe UI","Helvetica Neue","Lucida Grande",Arial,sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-bottom: 1px solid #f2f3f3;
+}
+
+.layout--wiki .sidebar .wiki-top-links {
+  font-size: .775em;
+}
+
+.layout--wiki .sidebar li {
+  font-size: .85em;
+}

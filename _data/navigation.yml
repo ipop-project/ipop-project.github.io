@@ -1,0 +1,193 @@
+# example navigation
+#foo:
+#  - title: "Parent Link 1"
+#    url: /parent-1-page-url/
+#    children:
+#      - title: "Child Link 1"
+#        url: /child-1-page-url/
+#      - title: "Child Link 2"
+#        url: /child-2-page-url/
+#  - title: "Parent Link 2"
+#    url: /parent-2-page-url/
+#    children:
+#      - title: "Child Link 1"
+#        url: /child-1-page-url/
+#      - title: "Child Link 2"
+#        url: /child-2-page-url/
+#      - title: "Child Link 3"
+#        url: /child-3-page-url/
+
+
+# main links
+main:
+  - title: About
+    url: /about/
+  - title: Download
+    url: /download
+  - title: Learn
+    url: /learn/
+  - title: Wiki
+    url: /wiki/
+  - title: Contribute
+    url: /contribute/
+  - title: Contact
+    url: /contact/
+
+
+# sidebar links
+about:
+  - title: Project History
+    url: /history/
+  - title: Usage Scenarios
+    url: /usage/
+  - title: IPOP Users
+    url: /users/
+  - title: Sponsors
+    url: /sponsors/
+
+
+learn:
+ - title: Architecture
+   children:
+     - title: TinCan Architecture
+       url: /tincan/
+     - title: Controllers Architecture
+       url: /controllers/
+     - title: Controller-TinCan API
+       url: https://github.com/ipop-project/ipop-project.github.io/wiki/Controller-API
+ - title: XMPP/OSN Bindings
+   url: /xmpp-osn-bindings/
+ - title: NAT Traversal
+   url: /nat-traversal/
+ - title: Controllers
+   children:
+     - title: GroupVPN
+       url: /groupvpn/
+     - title: SocialVPN
+       url: /socialvpn/
+ - title: Publications
+   url: /publications/
+ - title: IPOP WhitePaper
+   url: /assets/docs/IPOP-WhitePaper-1605.pdf
+ - title: videos
+   url: /videos/
+
+
+use:
+  - title: IPOP Tutorial
+    url: https://github.com/ipop-project/ipop-project.github.io/wiki/All-inclusive-IPOP-GroupVPN-Tutorial
+  - title: Downloads
+    url: https://github.com/ipop-project/downloads/releases
+  - title: Installing IPOP
+    url: https://github.com/ipop-project/ipop-project.github.io/wiki/Installation
+  - title: Building IPOP
+    url: https://github.com/ipop-project/ipop-project.github.io/wiki/Building-the-Code
+  - title: FAQs
+    url: https://github.com/ipop-project/ipop-project.github.io/wiki/FAQs
+  - title: Known Issues
+    url: https://github.com/ipop-project/ipop-project.github.io/wiki/Known-Issues
+
+
+contribute:
+  - title: Code Repository
+    url: http://github.com/ipop-project
+  - title: Reporting Issue
+    url: https://github.com/ipop-project/ipop-tincan/issues
+  - title: Submitting Code
+    url: https://github.com/ipop-project/ipop-project.github.io/wiki/How-to-Contribute
+
+
+contact:
+  - title: Mailing List
+    url: /mailinglist/
+  - title: Team
+    url: /team/
+
+
+wiki:
+  - title: Getting Started
+    children:
+      - title: "Quick-Start Guide"
+        url: /docs/quick-start-guide/
+      - title: "Structure"
+        url: /docs/structure/
+      - title: "Installation"
+        url: /docs/installation/
+      - title: "Upgrading"
+        url: /docs/upgrading/
+
+  - title: Customization
+    children:
+      - title: "Configuration"
+        url: /docs/configuration/
+      - title: "Navigation"
+        url: /docs/navigation/
+      - title: "UI Text"
+        url: /docs/ui-text/
+      - title: "Authors"
+        url: /docs/authors/
+      - title: "Layouts"
+        url: /docs/layouts/
+
+  - title: Content
+    children:
+      - title: "Working with Posts"
+        url: /docs/posts/
+      - title: "Working with Pages"
+        url: /docs/pages/
+      - title: "Working with Collections"
+        url: /docs/collections/
+      - title: "Helpers"
+        url: /docs/helpers/
+      - title: "Utility Classes"
+        url: /docs/utility-classes/
+
+  - title: Extras
+    children:
+      - title: "Stylesheets"
+        url: /docs/stylesheets/
+      - title: "JavaScript"
+        url: /docs/javascript/
+
+## sidebar navigation list sample
+#sidebar-sample:
+#  - title: "Parent Page A"
+#    children:
+#      - title: "Child Page A1"
+#        url: /
+#      - title: "Child Page A2"
+#        url: /
+#      - title: "Child Page A3"
+#        url: /
+#      - title: "Child Page A4"
+#        url: /
+#  - title: "Parent Page B"
+#    children:
+#      - title: "Child Page B1"
+#        url: /
+#      - title: "Child Page B2"
+#        url: /
+#      - title: "Child Page B3"
+#        url: /
+#      - title: "Child Page B4"
+#        url: /
+#      - title: "Child Page B5"
+#        url: /
+#  - title: "Parent Page C"
+#    children:
+#      - title: "Child Page C1"
+#        url: /
+#      - title: "Child Page C2"
+#        url: /
+#      - title: "Child Page C3"
+#        url: /
+#      - title: "Child Page C4"
+#        url: /
+#      - title: "Child Page C5"
+#        url: /
+#  - title: "Parent Page D"
+#    children:
+#      - title: "Child Page D1"
+#        url: /
+#      - title: "Child Page D2"
+#        url: /
