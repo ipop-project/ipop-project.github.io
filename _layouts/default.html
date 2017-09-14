@@ -1,6 +1,6 @@
 ---
 ---
-
+{% if page.url != '/wiki/_Sidebar' %}
 <!doctype html>
 <!--
   Minimal Mistakes Jekyll Theme 4.5.1 by Michael Rose
@@ -18,9 +18,11 @@
 
     {% include browser-upgrade.html %}
     {% include masthead.html %}
+{% endif %}
 
     {{ content }}
 
+{% if page.url != '/wiki/_Sidebar' %}
     <div class="page__footer">
       <footer>
         {% include footer/custom.html %}
@@ -32,3 +34,4 @@
 
   </body>
 </html>
+{% endif %}

@@ -112,7 +112,7 @@ author:
 include:
   - .htaccess
   - _pages
-  - wiki
+  - _Sidebar
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -271,8 +271,6 @@ defaults:
       comments: # true
       share: false
       related: false
-      sidebar:
-        nav: "wiki"
 
 
 optional_front_matter:

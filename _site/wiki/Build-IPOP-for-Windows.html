@@ -1,3 +1,4 @@
+
 <!doctype html>
 <!--
   Minimal Mistakes Jekyll Theme 4.5.1 by Michael Rose
@@ -36,8 +37,8 @@
 <meta property="og:title" content="IPOP">
 
 
-  <link rel="canonical" href="https://vahid-dan.github.io/ipop-project.github.io/wiki/Build-IPOP-for-Windows">
-  <meta property="og:url" content="https://vahid-dan.github.io/ipop-project.github.io/wiki/Build-IPOP-for-Windows">
+  <link rel="canonical" href="http://localhost:4000/ipop-project.github.io/wiki/Build-IPOP-for-Windows">
+  <meta property="og:url" content="http://localhost:4000/ipop-project.github.io/wiki/Build-IPOP-for-Windows">
 
 
 
@@ -65,7 +66,7 @@
       "@context" : "http://schema.org",
       "@type" : "Person",
       "name" : "IPOP",
-      "url" : "https://vahid-dan.github.io/ipop-project.github.io",
+      "url" : "http://localhost:4000/ipop-project.github.io",
       "sameAs" : null
     }
   </script>
@@ -78,7 +79,7 @@
 <!-- end SEO -->
 
 
-<link href="https://vahid-dan.github.io/ipop-project.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
+<link href="http://localhost:4000/ipop-project.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
 
 <!-- http://t.co/dKP3o1e -->
 <meta name="HandheldFriendly" content="True">
@@ -90,7 +91,7 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="https://vahid-dan.github.io/ipop-project.github.io/assets/css/main.css">
+<link rel="stylesheet" href="http://localhost:4000/ipop-project.github.io/assets/css/main.css">
 
 <!--[if lte IE 9]>
   <style>
@@ -124,26 +125,26 @@
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <a class="site-title" href="https://vahid-dan.github.io/ipop-project.github.io/">IPOP</a>
+        <a class="site-title" href="http://localhost:4000/ipop-project.github.io/">IPOP</a>
         <ul class="visible-links">
           
             
-            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/about/">About</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/about/">About</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/download">Download</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/download">Download</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/learn/">Learn</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/learn/">Learn</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/wiki/">Wiki</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/wiki/">Wiki</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/contribute/">Contribute</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/contribute/">Contribute</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/contact/">Contact</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/contact/">Contact</a></li>
           
         </ul>
         <button><div class="navicon"></div></button>
@@ -153,211 +154,77 @@
   </div>
 </div>
 
+
     
+
 
 
 
 <div id="main" role="main">
-  
-  <div class="sidebar sticky">
-  
-  
-    
-      
-      
-      
-    
-    
-      
-
-<nav class="nav__list">
-  
-  <input id="ac-toc" name="accordion-toc" type="checkbox" />
-  <label for="ac-toc">Toggle Menu</label>
-  <ul class="nav__items">
-    
-      <li>
-        
-          <span class="nav__sub-title">Getting Started</span>
+  <div class="sidebar">
+    <nav class="nav__list">
+      <div class="wiki-top-links">
+        <a href="../wiki">Wiki Home</a> / <a href="../wikipages">Wiki Pages</a>
+      </div>
         
 
-        
+    
+
+
+
+
+
         <ul>
-          
-            
-            
+  <li><strong>Deploying IPOP-VPN</strong>
+    <ul>
+      <li><a href="Installation">Installation</a></li>
+      <li><a href="Configuration">Configuration</a></li>
+      <li><a href="Deploying-XMPP-STUN-TURN-Services">Deploying XMPP STUN TURN Services</a></li>
+    </ul>
+  </li>
+  <li><strong>Tutorials</strong>
+    <ul>
+      <li><a href=".">GroupVPN Tutorial</a></li>
+      <li><a href="Switchmode-with-LXC">Running IPOP in Switchmode</a></li>
+    </ul>
+  </li>
+  <li><strong>Contributing to the IPOP Project</strong>
+    <ul>
+      <li><a href="How-to-Contribute">How to Contribute</a></li>
+    </ul>
+  </li>
+  <li><strong>Development Guide</strong>
+    <ul>
+      <li><a href="Development-Workflow">Development Workflow</a></li>
+      <li><a href="Coding-Guidelines">Coding Guidelines</a></li>
+      <li><a href="Building-the-Code">Building the Code</a></li>
+      <li><a href="Testing-Your-Build">Testing Your Build</a></li>
+      <li><a href="Controller-Framework">Controller-Framework</a></li>
+      <li><a href="Controller-API">Controller API</a></li>
+      <li><a href="Building-the-WebRTC-lib-for-Linux">Building the WebRTC lib for Linux</a></li>
+      <li><a href="Building-the-WebRTC-lib-for-Windows">Building the WebRTC lib for Windows</a></li>
+    </ul>
+  </li>
+  <li><strong>General Documentation</strong>
+    <ul>
+      <li><a href="FAQs">FAQs</a></li>
+      <li><a href="Troubleshooting">Troubleshooting</a></li>
+      <li><a href="Planning-Your-Network">Planning Your Network</a></li>
+      <li><a href="Coding-Challenges">Coding Challenges</a></li>
+      <li><a href="Known-Issues">Known Issues</a></li>
+      <li><a href="Getting-Help">Getting Help</a></li>
+    </ul>
+  </li>
+</ul>
 
-            
-            
 
-            <li><a href="https://vahid-dan.github.io/ipop-project.github.io/docs/quick-start-guide/" class="">Quick-Start Guide</a></li>
-          
-            
-            
 
-            
-            
 
-            <li><a href="https://vahid-dan.github.io/ipop-project.github.io/docs/structure/" class="">Structure</a></li>
-          
-            
-            
 
-            
-            
 
-            <li><a href="https://vahid-dan.github.io/ipop-project.github.io/docs/installation/" class="">Installation</a></li>
-          
-            
-            
 
-            
-            
-
-            <li><a href="https://vahid-dan.github.io/ipop-project.github.io/docs/upgrading/" class="">Upgrading</a></li>
-          
-        </ul>
-        
-      </li>
-    
-      <li>
-        
-          <span class="nav__sub-title">Customization</span>
-        
-
-        
-        <ul>
-          
-            
-            
-
-            
-            
-
-            <li><a href="https://vahid-dan.github.io/ipop-project.github.io/docs/configuration/" class="">Configuration</a></li>
-          
-            
-            
-
-            
-            
-
-            <li><a href="https://vahid-dan.github.io/ipop-project.github.io/docs/navigation/" class="">Navigation</a></li>
-          
-            
-            
-
-            
-            
-
-            <li><a href="https://vahid-dan.github.io/ipop-project.github.io/docs/ui-text/" class="">UI Text</a></li>
-          
-            
-            
-
-            
-            
-
-            <li><a href="https://vahid-dan.github.io/ipop-project.github.io/docs/authors/" class="">Authors</a></li>
-          
-            
-            
-
-            
-            
-
-            <li><a href="https://vahid-dan.github.io/ipop-project.github.io/docs/layouts/" class="">Layouts</a></li>
-          
-        </ul>
-        
-      </li>
-    
-      <li>
-        
-          <span class="nav__sub-title">Content</span>
-        
-
-        
-        <ul>
-          
-            
-            
-
-            
-            
-
-            <li><a href="https://vahid-dan.github.io/ipop-project.github.io/docs/posts/" class="">Working with Posts</a></li>
-          
-            
-            
-
-            
-            
-
-            <li><a href="https://vahid-dan.github.io/ipop-project.github.io/docs/pages/" class="">Working with Pages</a></li>
-          
-            
-            
-
-            
-            
-
-            <li><a href="https://vahid-dan.github.io/ipop-project.github.io/docs/collections/" class="">Working with Collections</a></li>
-          
-            
-            
-
-            
-            
-
-            <li><a href="https://vahid-dan.github.io/ipop-project.github.io/docs/helpers/" class="">Helpers</a></li>
-          
-            
-            
-
-            
-            
-
-            <li><a href="https://vahid-dan.github.io/ipop-project.github.io/docs/utility-classes/" class="">Utility Classes</a></li>
-          
-        </ul>
-        
-      </li>
-    
-      <li>
-        
-          <span class="nav__sub-title">Extras</span>
-        
-
-        
-        <ul>
-          
-            
-            
-
-            
-            
-
-            <li><a href="https://vahid-dan.github.io/ipop-project.github.io/docs/stylesheets/" class="">Stylesheets</a></li>
-          
-            
-            
-
-            
-            
-
-            <li><a href="https://vahid-dan.github.io/ipop-project.github.io/docs/javascript/" class="">JavaScript</a></li>
-          
-        </ul>
-        
-      </li>
-    
-  </ul>
-</nav>
-    
-  
+    </nav>
   </div>
-
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     
@@ -367,6 +234,8 @@
 
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
+
+
         <h1 id="build-ipop-for-windows">Build IPOP for Windows</h1>
 
 <table>
@@ -423,10 +292,14 @@ ipop-setup.ps1
 </div>
 <p>Copy your config file when prompted.</p>
 
+
+
       </section>
     </div>
   </article>
 </div>
+
+
 
 
     <div class="page__footer">
@@ -443,13 +316,13 @@ ipop-setup.ps1
     
     
      -->
-    <!-- <li><a href="https://vahid-dan.github.io/ipop-project.github.io/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
+    <!-- <li><a href="http://localhost:4000/ipop-project.github.io/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
 <!--  </ul>
 </div> --> 
 
 <div class="page__footer-copyright float-left">
   <div class="float-left">
-    <img src="https://vahid-dan.github.io/ipop-project.github.io/assets/images/uf_small.png" class="padding-bottom-right" /><img src="https://vahid-dan.github.io/ipop-project.github.io/assets/images/nsf_small.png" class="padding-bottom-right" />
+    <img src="http://localhost:4000/ipop-project.github.io/assets/images/uf_small.png" class="padding-bottom-right" /><img src="http://localhost:4000/ipop-project.github.io/assets/images/nsf_small.png" class="padding-bottom-right" />
   </div>
   <i class="fa fa-address-card-o" aria-hidden="true"></i>
   <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br />
@@ -459,7 +332,7 @@ ipop-setup.ps1
 
 <div class="page__footer-copyright float-right">
   <div>
-    <a href="https://vahid-dan.github.io/ipop-project.github.io/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="https://vahid-dan.github.io/ipop-project.github.io/contact/#mailing-list-subscription">Mailing List</a> | <a href="https://vahid-dan.github.io/ipop-project.github.io/sitemap">Sitemap</a><br />
+    <a href="http://localhost:4000/ipop-project.github.io/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="http://localhost:4000/ipop-project.github.io/contact/#mailing-list-subscription">Mailing List</a> | <a href="http://localhost:4000/ipop-project.github.io/sitemap">Sitemap</a><br />
     <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
     &copy; 2017 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
     </div>
@@ -469,7 +342,7 @@ ipop-setup.ps1
       </footer>
     </div>
 
-    <script src="https://vahid-dan.github.io/ipop-project.github.io/assets/js/main.min.js"></script>
+    <script src="http://localhost:4000/ipop-project.github.io/assets/js/main.min.js"></script>
 
 
 
@@ -477,3 +350,4 @@ ipop-setup.ps1
 
   </body>
 </html>
+

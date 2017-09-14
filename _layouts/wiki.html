@@ -14,8 +14,16 @@ layout: default
   {% endunless %}
 {% endif %}
 
+{% if page.url != '/wiki/_Sidebar' %}
 <div id="main" role="main">
-  {% include sidebar.html %}
+  <div class="sidebar">
+    <nav class="nav__list">
+      <div class="wiki-top-links">
+        <a href="../wiki">Wiki Home</a> / <a href="../wikipages">Wiki Pages</a>
+      </div>
+        {% include_absolute _site/wiki/_Sidebar.html %}
+    </nav>
+  </div>
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
@@ -25,8 +33,13 @@ layout: default
 
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
+{% endif %}
+
         {{ content }}
+
+{% if page.url != '/wiki/_Sidebar' %}
       </section>
     </div>
   </article>
 </div>
+{% endif %}

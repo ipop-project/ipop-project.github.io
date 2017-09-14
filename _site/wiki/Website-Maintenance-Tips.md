@@ -64,7 +64,7 @@ permalink: /:categories/:title/
 
 ### Utilizing a Redirected Layout
 
-This second technique would allow you to set up redirects for your pages without resorting to any plugin. All you need to do is create a layout named redirected.html in your _layouts folder. The content of this layout would be as shown below:
+This technique would allow you to set up redirects for your pages without resorting to any plugin. All you need to do is create a layout named redirected.html in your _layouts folder. The content of this layout would be as shown below:
 
 ```html
 <!DOCTYPE html>
@@ -88,7 +88,7 @@ Once you have this layout ready, then to set up redirect from any page, all you 
 layout: redirected
 sitemap: false
 permalink: /wiki/
-redirect_to:  Home.html
+redirect_to:  Home
 ---
 ```
 

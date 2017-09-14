@@ -149,7 +149,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: museo-slab,Georgia,"Times New Roman",Times,serif;
   font-weight: 500;
   color: #286c8d;
-  margin: 1.3em 0 1em;
 }
 
 body {
@@ -174,4 +173,22 @@ h3 {
 
 .page {
   padding-right: 0;
+}
+
+.layout--wiki .sidebar .nav__list strong {
+  display: block;
+  margin: 0.5rem 0;
+  padding: 0.5rem 0;
+  font-family: -apple-system,".SFNSText-Regular","San Francisco","Roboto","Segoe UI","Helvetica Neue","Lucida Grande",Arial,sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-bottom: 1px solid #f2f3f3;
+}
+
+.layout--wiki .sidebar .wiki-top-links {
+  font-size: .775em;
+}
+
+.layout--wiki .sidebar li {
+  font-size: .85em;
 }
