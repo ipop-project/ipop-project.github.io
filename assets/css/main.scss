@@ -192,3 +192,20 @@ h3 {
 .layout--wiki .sidebar li {
   font-size: .85em;
 }
+
+.page__content .section-nav {
+  font-size:.7em;
+  border-bottom: 3px solid #f2f3f3;
+  margin-bottom: 2em;
+}
+
+.toc-title {
+  display: block;
+  margin: 0 0 0.5rem;
+  padding: 0 0 0.5rem;
+  font-family: -apple-system,".SFNSText-Regular","San Francisco","Roboto","Segoe UI","Helvetica Neue","Lucida Grande",Arial,sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-bottom: 1px solid #f2f3f3;
+  color: #777A7D;
+}

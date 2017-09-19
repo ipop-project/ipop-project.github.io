@@ -37,8 +37,8 @@
 <meta property="og:title" content="IPOP">
 
 
-  <link rel="canonical" href="https://vahid-dan.github.io/ipop-project.github.io/wiki/Development-Workflow">
-  <meta property="og:url" content="https://vahid-dan.github.io/ipop-project.github.io/wiki/Development-Workflow">
+  <link rel="canonical" href="http://localhost:4000/ipop-project.github.io/wiki/Development-Workflow">
+  <meta property="og:url" content="http://localhost:4000/ipop-project.github.io/wiki/Development-Workflow">
 
 
 
@@ -66,7 +66,7 @@
       "@context" : "http://schema.org",
       "@type" : "Person",
       "name" : "IPOP",
-      "url" : "https://vahid-dan.github.io/ipop-project.github.io",
+      "url" : "http://localhost:4000/ipop-project.github.io",
       "sameAs" : null
     }
   </script>
@@ -79,7 +79,7 @@
 <!-- end SEO -->
 
 
-<link href="https://vahid-dan.github.io/ipop-project.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
+<link href="http://localhost:4000/ipop-project.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
 
 <!-- http://t.co/dKP3o1e -->
 <meta name="HandheldFriendly" content="True">
@@ -91,7 +91,7 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="https://vahid-dan.github.io/ipop-project.github.io/assets/css/main.css">
+<link rel="stylesheet" href="http://localhost:4000/ipop-project.github.io/assets/css/main.css">
 
 <!--[if lte IE 9]>
   <style>
@@ -125,26 +125,26 @@
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <a class="site-title" href="https://vahid-dan.github.io/ipop-project.github.io/">IPOP</a>
+        <a class="site-title" href="http://localhost:4000/ipop-project.github.io/">IPOP</a>
         <ul class="visible-links">
           
             
-            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/about/">About</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/about/">About</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/download">Download</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/download">Download</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/learn/">Learn</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/learn/">Learn</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/wiki/">Wiki</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/wiki/">Wiki</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/contribute/">Contribute</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/contribute/">Contribute</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/contact/">Contact</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/contact/">Contact</a></li>
           
         </ul>
         <button><div class="navicon"></div></button>
@@ -169,7 +169,6 @@
         
 
     
-
 
 
 
@@ -223,6 +222,7 @@
 
 
 
+
     </nav>
   </div>
 
@@ -234,6 +234,141 @@
 
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
+
+        <div class="toc-title"><i class="fa fa-list-ul" aria-hidden="true"></i>On This Page</div>
+        <ul class="section-nav">
+</ul><p>For code contributors, the process of developing and committing code to IPOP is outlined below.</p>
+
+<p><a href="http://git-scm.com/docs/gittutorial"><strong>Handy reference for Git commands</strong></a></p>
+
+<ol>
+  <li>
+    <p><a href="http://help.github.com/fork-a-repo/">Fork the repo</a>.</p>
+  </li>
+  <li>
+    <p>Clone your newly-forked repo to your local machine (use the clone
+URL from the repository page on GitHub):</p>
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>$ git clone git@github.com:&lt;username&gt;/ipop-tincan.git
+$ cd ipop-tincan
+</code></pre>
+    </div>
+
+    <p>Git will refer to this repository (your fork) as <code class="highlighter-rouge">origin</code>.</p>
+  </li>
+  <li>
+    <p>Configure the upstream remote (use the clone URL from the page
+for the corresponding
+<a href="https://github.com/ipop-project/">ipop-project</a> repository):</p>
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>$ git remote add upstream https://github.com/ipop-project/ipop-tincan.git
+</code></pre>
+    </div>
+
+    <p>Git will refer to this repository as <code class="highlighter-rouge">upstream</code>.</p>
+  </li>
+  <li>
+    <p>Create a branch for the feature you will work on:</p>
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>$ git checkout -b my-feature
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Develop on the <strong>my-feature</strong> branch. Commit changes to <strong>my-feature</strong>
+branch:</p>
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>$ git add .
+$ git commit -m "commit message"
+</code></pre>
+    </div>
+
+    <p>Always keep the first line of the commit message shorter than 55
+characters. If you need to write a longer commit message, use just <code class="highlighter-rouge">git
+commit</code> (no <code class="highlighter-rouge">-m</code> flag) which will open your $EDITOR for you to write the
+commit message. Make sure to use a blank line to separate the first line
+from the rest of the commit message.</p>
+  </li>
+  <li>
+    <p>Push your branch to GitHub periodically.</p>
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>$ git push origin my-feature
+</code></pre>
+    </div>
+
+    <p>Caution: Don’t <strong>pull</strong> or <strong>merge</strong> from upstream. Doing so creates
+weird-looking merge commits and makes the history messy. Instead,
+when you want to incorporate upstream commits into your branch, you
+should <strong>rebase</strong>, as described below.</p>
+  </li>
+  <li>
+    <p>Fetch upstream changes that were done by other contributors:</p>
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>$ git fetch upstream
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>If you need to incorporate new upstream changes into your branch,
+<strong>rebase</strong> your branch on top of the upstream master:</p>
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>$ git rebase upstream/master
+</code></pre>
+    </div>
+
+    <p>In the process of the <strong>rebase</strong>, Git may discover conflicts. In
+that case it will stop and allow you to fix the conflicts. After
+fixing conflicts, use <code class="highlighter-rouge">git add .</code> to update the index with those
+contents, and then run:</p>
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>$ git rebase --continue
+</code></pre>
+    </div>
+
+    <p>Run <code class="highlighter-rouge">git status</code> liberally during a rebase if you are confused. It
+will tell you what you need to do to continue.</p>
+  </li>
+  <li>
+    <p>Push your branch to GitHub.</p>
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>$ git push origin my-feature
+</code></pre>
+    </div>
+
+    <p>If you rebased earlier, your commits will have been re-written and
+GitHub may deny your push because it would involve overwriting
+commits you pushed earlier. In that case you will have to use the
+<code class="highlighter-rouge">--force</code> flag.  <strong>Never <code class="highlighter-rouge">--force</code> to a branch that other people are
+using!</strong> (In that scenario, you should just create a new branch and
+push it.)</p>
+
+    <div class="highlighter-rouge">
+<pre class="highlight"><code>$ git push origin my-feature --force
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>When ready, send a <a href="http://help.github.com/send-pull-requests/">pull
+request</a>.</p>
+  </li>
+</ol>
+
+<p>For more information on Git workflows and commands, see the resources
+here: <a href="http://git-scm.com/documentation/external-links">http://git-scm.com/documentation/external-links</a></p>
+
+<hr>
+
+<p>This document is based on
+<a href="https://github.com/sevntu-checkstyle/sevntu.checkstyle/wiki/Development-workflow-with-Git%3A-Fork,-Branching,-Commits,-and-Pull-Request">https://github.com/sevntu-checkstyle/sevntu.checkstyle/wiki/Development-workflow-with-Git%3A-Fork,-Branching,-Commits,-and-Pull-Request</a>.</p>
 
 
         <p>For code contributors, the process of developing and committing code to IPOP is outlined below.</p>
@@ -361,6 +496,7 @@ here: <a href="http://git-scm.com/documentation/external-links">http://git-scm.c
 
 
 
+
       </section>
     </div>
   </article>
@@ -383,13 +519,13 @@ here: <a href="http://git-scm.com/documentation/external-links">http://git-scm.c
     
     
      -->
-    <!-- <li><a href="https://vahid-dan.github.io/ipop-project.github.io/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
+    <!-- <li><a href="http://localhost:4000/ipop-project.github.io/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
 <!--  </ul>
 </div> --> 
 
 <div class="page__footer-copyright float-left">
   <div class="float-left">
-    <img src="https://vahid-dan.github.io/ipop-project.github.io/assets/images/uf_small.png" class="padding-bottom-right" /><img src="https://vahid-dan.github.io/ipop-project.github.io/assets/images/nsf_small.png" class="padding-bottom-right" />
+    <img src="http://localhost:4000/ipop-project.github.io/assets/images/uf_small.png" class="padding-bottom-right" /><img src="http://localhost:4000/ipop-project.github.io/assets/images/nsf_small.png" class="padding-bottom-right" />
   </div>
   <i class="fa fa-address-card-o" aria-hidden="true"></i>
   <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br />
@@ -399,7 +535,7 @@ here: <a href="http://git-scm.com/documentation/external-links">http://git-scm.c
 
 <div class="page__footer-copyright float-right">
   <div>
-    <a href="https://vahid-dan.github.io/ipop-project.github.io/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="https://vahid-dan.github.io/ipop-project.github.io/contact/#mailing-list-subscription">Mailing List</a> | <a href="https://vahid-dan.github.io/ipop-project.github.io/sitemap">Sitemap</a><br />
+    <a href="http://localhost:4000/ipop-project.github.io/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="http://localhost:4000/ipop-project.github.io/contact/#mailing-list-subscription">Mailing List</a> | <a href="http://localhost:4000/ipop-project.github.io/sitemap">Sitemap</a><br />
     <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
     &copy; 2017 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
     </div>
@@ -409,7 +545,7 @@ here: <a href="http://git-scm.com/documentation/external-links">http://git-scm.c
       </footer>
     </div>
 
-    <script src="https://vahid-dan.github.io/ipop-project.github.io/assets/js/main.min.js"></script>
+    <script src="http://localhost:4000/ipop-project.github.io/assets/js/main.min.js"></script>
 
 
 

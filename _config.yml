@@ -190,6 +190,7 @@ plugins:
   - jekyll-feed
   - jemoji
   - jekyll-optional-front-matter
+  - jekyll-toc
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -199,6 +200,7 @@ whitelist:
   - jekyll-feed
   - jemoji
   - jekyll-optional-front-matter
+  - jekyll-toc
 
 # Archives
 #  Type
@@ -268,9 +270,9 @@ defaults:
       layout: wiki
       author_profile: false
       read_time: false
-      comments: # true
       share: false
       related: false
+      toc: true
 
 
 optional_front_matter:

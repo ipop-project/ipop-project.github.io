@@ -33,9 +33,14 @@ layout: default
 
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
+{% if page.url != '/wiki/Home' %}
+        <div class="toc-title"><i class="fa fa-list-ul" aria-hidden="true"></i>On This Page</div>
+        {{ content | toc }}
 {% endif %}
-
         {{ content }}
+{% else %}
+        {{ content }}
+{% endif %}
 
 {% if page.url != '/wiki/_Sidebar' %}
       </section>

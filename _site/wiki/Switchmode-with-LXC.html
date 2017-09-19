@@ -37,8 +37,8 @@
 <meta property="og:title" content="IPOP">
 
 
-  <link rel="canonical" href="https://vahid-dan.github.io/ipop-project.github.io/wiki/Switchmode-with-LXC">
-  <meta property="og:url" content="https://vahid-dan.github.io/ipop-project.github.io/wiki/Switchmode-with-LXC">
+  <link rel="canonical" href="http://localhost:4000/ipop-project.github.io/wiki/Switchmode-with-LXC">
+  <meta property="og:url" content="http://localhost:4000/ipop-project.github.io/wiki/Switchmode-with-LXC">
 
 
 
@@ -66,7 +66,7 @@
       "@context" : "http://schema.org",
       "@type" : "Person",
       "name" : "IPOP",
-      "url" : "https://vahid-dan.github.io/ipop-project.github.io",
+      "url" : "http://localhost:4000/ipop-project.github.io",
       "sameAs" : null
     }
   </script>
@@ -79,7 +79,7 @@
 <!-- end SEO -->
 
 
-<link href="https://vahid-dan.github.io/ipop-project.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
+<link href="http://localhost:4000/ipop-project.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
 
 <!-- http://t.co/dKP3o1e -->
 <meta name="HandheldFriendly" content="True">
@@ -91,7 +91,7 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="https://vahid-dan.github.io/ipop-project.github.io/assets/css/main.css">
+<link rel="stylesheet" href="http://localhost:4000/ipop-project.github.io/assets/css/main.css">
 
 <!--[if lte IE 9]>
   <style>
@@ -125,26 +125,26 @@
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <a class="site-title" href="https://vahid-dan.github.io/ipop-project.github.io/">IPOP</a>
+        <a class="site-title" href="http://localhost:4000/ipop-project.github.io/">IPOP</a>
         <ul class="visible-links">
           
             
-            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/about/">About</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/about/">About</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/download">Download</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/download">Download</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/learn/">Learn</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/learn/">Learn</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/wiki/">Wiki</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/wiki/">Wiki</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/contribute/">Contribute</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/contribute/">Contribute</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/contact/">Contact</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/ipop-project.github.io/contact/">Contact</a></li>
           
         </ul>
         <button><div class="navicon"></div></button>
@@ -169,7 +169,6 @@
         
 
     
-
 
 
 
@@ -223,6 +222,7 @@
 
 
 
+
     </nav>
   </div>
 
@@ -234,6 +234,104 @@
 
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
+
+        <div class="toc-title"><i class="fa fa-list-ul" aria-hidden="true"></i>On This Page</div>
+        <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#ipop-switchmode-tutorial">IPOP Switchmode Tutorial</a></li>
+<li class="toc-entry toc-h1"><a href="#stand-alone-switchmode">Stand alone Switchmode</a></li>
+<li class="toc-entry toc-h1"><a href="#switchmode-under-the-hood">Switchmode under the hood</a></li>
+</ul><p>In switchmode, IPOP supports handling of layer-2 (L2) Ethernet frames. In this mode, IPOP nodes function as a switch and make all the connected IPOP nodes and associated virtual network interface be on the same Layer 2 network.
+Note that IP and MAC address should be carefully assigned to avoid address conflicts.</p>
+
+<h1 id="ipop-switchmode-tutorial">
+<a id="ipop-switchmode-tutorial" class="anchor" href="#ipop-switchmode-tutorial" aria-hidden="true"><span class="octicon octicon-link"></span></a>IPOP Switchmode Tutorial</h1>
+
+<p>The configuration of IPOP in L2/switchmode is to a large extent the same as the default L3 IPOP setup - so first, make sure you are able to run two IPOP nodes and ping each other in the default L3 configuration before trying out switchmode. <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Manual-Install-on-Linux">You can follow this tutorial as a starting point</a>, run two IPOP nodes on two VMs, and make sure they get connected.</p>
+
+<p>The main difference is that IPOP’s configuration needs to enable switchmode, and the tap device should be bound to a bridge on the L2 segments that you plan to inter-connect.</p>
+
+<p>To test IPOP with switchmode test, we recommend following the example below using LXC containers with ubuntu 14.04 or 15.04 - this is the easiest way to run containers in VM. But, since switchmode works with Linux bridge, it works with any other cloud solutions such as openstack, ec2.</p>
+
+<p>First, bring up a Ubuntu VM and install LXC in it:</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>sudo apt-get update
+sudo apt-get install lxc
+</code></pre>
+</div>
+
+<p>If this command:</p>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>sudo lxc-ls --fancy
+</code></pre>
+</div>
+<p>emits an error, update packages with:</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>sudo apt-get upgrade
+</code></pre>
+</div>
+<p>Then, create an LXC instance and clone it:</p>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>sudo lxc-create -t ubuntu -n c0
+sudo lxc-clone c0 c1
+sudo lxc-clone c0 c2
+...
+</code></pre>
+</div>
+
+<p>The following diagram illustrates an example where you’d repeat this process in two VMs:</p>
+
+<p><img src="http://www.acis.ufl.edu/~xetron/ipop-project/switchmode0.png" alt=""></p>
+
+<p>Then restart lxc network</p>
+
+<p>Add below fields at controller config file.</p>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>   "switchmode": 1
+</code></pre>
+</div>
+<p>Run ipop-tincan and controller. 
+Then, attach ipop tap device to lxcbr0 at both ends.</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>sudo brctl addif lxcbr0 ipop
+</code></pre>
+</div>
+
+<p>(OPTIONAL)If you need to change the IP address of lxcbr0, then modify below files and restart the network service</p>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>sudo vi /etc/default/lxc-net
+sudo vi /etc/init/lxc-net.conf
+sudo service lxc-net restart
+</code></pre>
+</div>
+<p>If the lxcbr0 address does not update, reboot your machine.</p>
+
+<p>Make sure you run LXC containers on both VMs, and change their MTUs to 1280:</p>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>sudo lxc-attach --name c1
+ifconfig eth0 mtu 1280
+</code></pre>
+</div>
+
+<p>Check the IP addresses assigned to the eth0 interfaces of both containers (e.g. 10.0.3.5 and 10.0.3.7 in the diagram). After the IPOP tincan connection is established, you should be able to ping from 10.0.3.5 to ping 10.0.3.7.</p>
+
+<h1 id="stand-alone-switchmode">
+<a id="stand-alone-switchmode" class="anchor" href="#stand-alone-switchmode" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stand alone Switchmode</h1>
+
+<p>Although switchmode was intended to bind to multiple virtual network interface of the guest machine, IPOP switchmode can also run by itself providing layer 2 virutal network environment to the host machine. 
+By simply setting below fields, and run IPOP without attaching to the bridge.</p>
+<div class="highlighter-rouge">
+<pre class="highlight"><code>   "switchmode": 1
+</code></pre>
+</div>
+
+<h1 id="switchmode-under-the-hood">
+<a id="switchmode-under-the-hood" class="anchor" href="#switchmode-under-the-hood" aria-hidden="true"><span class="octicon octicon-link"></span></a>Switchmode under the hood</h1>
+
+<p>Unlike host mode, which maps IP address with TinCan link by controller. Switchmode maps MAC address to the TinCan link by the ARP traffic in the tap device. Conside a case when a node 10.0.3.5 sends packets to 10.0.3.4 of above figure. Host of 10.0.3.5 first broadcasts ARP message looking for 10.0.3.4. IPOP observe this broadcast frame(destination address ff:ff:ff:ff:ff:ff) then sends to every TInCan link it has. On receipient of the ARP message from the remote side, it updates MAC t able to associate the source MAC address to TinCan link it came from. Then, host 10.0.3.4 replies with ARP reply message, then it traverses (since the destination MAC address already link to its TinCan tunnel) back to the LAN of host 10.0.3.5. Then the source LAN also updates MAC table of this ARP reply message.</p>
+
 
 
         <p>In switchmode, IPOP supports handling of layer-2 (L2) Ethernet frames. In this mode, IPOP nodes function as a switch and make all the connected IPOP nodes and associated virtual network interface be on the same Layer 2 network.
@@ -319,6 +417,7 @@ By simply setting below fields, and run IPOP without attaching to the bridge.</p
 
 
 
+
       </section>
     </div>
   </article>
@@ -341,13 +440,13 @@ By simply setting below fields, and run IPOP without attaching to the bridge.</p
     
     
      -->
-    <!-- <li><a href="https://vahid-dan.github.io/ipop-project.github.io/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
+    <!-- <li><a href="http://localhost:4000/ipop-project.github.io/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
 <!--  </ul>
 </div> --> 
 
 <div class="page__footer-copyright float-left">
   <div class="float-left">
-    <img src="https://vahid-dan.github.io/ipop-project.github.io/assets/images/uf_small.png" class="padding-bottom-right" /><img src="https://vahid-dan.github.io/ipop-project.github.io/assets/images/nsf_small.png" class="padding-bottom-right" />
+    <img src="http://localhost:4000/ipop-project.github.io/assets/images/uf_small.png" class="padding-bottom-right" /><img src="http://localhost:4000/ipop-project.github.io/assets/images/nsf_small.png" class="padding-bottom-right" />
   </div>
   <i class="fa fa-address-card-o" aria-hidden="true"></i>
   <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br />
@@ -357,7 +456,7 @@ By simply setting below fields, and run IPOP without attaching to the bridge.</p
 
 <div class="page__footer-copyright float-right">
   <div>
-    <a href="https://vahid-dan.github.io/ipop-project.github.io/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="https://vahid-dan.github.io/ipop-project.github.io/contact/#mailing-list-subscription">Mailing List</a> | <a href="https://vahid-dan.github.io/ipop-project.github.io/sitemap">Sitemap</a><br />
+    <a href="http://localhost:4000/ipop-project.github.io/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="http://localhost:4000/ipop-project.github.io/contact/#mailing-list-subscription">Mailing List</a> | <a href="http://localhost:4000/ipop-project.github.io/sitemap">Sitemap</a><br />
     <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
     &copy; 2017 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
     </div>
@@ -367,7 +466,7 @@ By simply setting below fields, and run IPOP without attaching to the bridge.</p
       </footer>
     </div>
 
-    <script src="https://vahid-dan.github.io/ipop-project.github.io/assets/js/main.min.js"></script>
+    <script src="http://localhost:4000/ipop-project.github.io/assets/js/main.min.js"></script>
 
 
 
