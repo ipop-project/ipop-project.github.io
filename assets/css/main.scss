@@ -189,8 +189,16 @@ h3 {
   font-size: .775em;
 }
 
+.display-unset {
+  display: unset !important;
+}
+
 .layout--wiki .sidebar li {
   font-size: .85em;
+}
+
+.layout--wiki .sidebar {
+  clear: unset;
 }
 
 .page__content .section-nav {

@@ -16,15 +16,6 @@ layout: default
 
 {% if page.url != '/wiki/_Sidebar' %}
 <div id="main" role="main">
-  <div class="sidebar">
-    <nav class="nav__list">
-      <div class="wiki-top-links">
-        <a href="../wiki">Wiki Index</a> / <a href="../wikipages">Wiki Pages</a>
-      </div>
-        {% include_absolute _site/wiki/_Sidebar.html %}
-    </nav>
-  </div>
-
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
     {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
@@ -46,5 +37,13 @@ layout: default
       </section>
     </div>
   </article>
+    <div class="sidebar">
+    <nav class="nav__list">
+      <div class="wiki-top-links">
+        <a href="../wiki" class="display-unset">Wiki Index</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
+      </div>
+        {% include_absolute _site/wiki/_Sidebar.html %}
+    </nav>
+  </div>
 </div>
 {% endif %}
