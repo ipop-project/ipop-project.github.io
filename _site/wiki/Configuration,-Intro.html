@@ -159,7 +159,6 @@
 
 
 
-
 <div id="main" role="main">
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     
@@ -170,8 +169,10 @@
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
 
-        <div class="toc-title"><i class="fa fa-list-ul" aria-hidden="true"></i>On This Page</div>
-        <ul class="section-nav">
+        <aside class="sidebar__right">
+          <nav class="toc">
+            <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+            <ul class="section-nav">
 <li class="toc-entry toc-h1"><a href="#configuration-intro">Configuration, Intro</a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#basic-configuration">Basic Configuration</a></li>
@@ -179,115 +180,9 @@
 <li class="toc-entry toc-h2"><a href="#sample-configuration-file">Sample Configuration File</a></li>
 </ul>
 </li>
-</ul><h1 id="configuration-intro">
-<a id="configuration-intro" class="anchor" href="#configuration-intro" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration, Intro</h1>
-
-<h2 id="basic-configuration">
-<a id="basic-configuration" class="anchor" href="#basic-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Configuration</h2>
-
-<p>Watch <a href="https://screencast-o-matic.com/watch/cbjXbPlmdl">Use IPOP, Demonstration Video</a> to find out how you can apply the basic configuration for IPOP.</p>
-
-<p>In short, for basic configuration, you need to have an XMPP account. You can setup an XMPP server yourself on your machine or use a free public XMPP service. There is a list of free popular XMPP services in the <a href="https://xmpp.org/getting-started/">XMPP official website</a>.</p>
-
-<p>Setup your account and make a copy of the sample configuration file:</p>
-
-<div class="highlighter-rouge">
-<pre class="highlight"><code>cp config/sample-gvpn-config.json config/ipop-config.json
-</code></pre>
-</div>
-
-<p>Then enter the account information in <code class="highlighter-rouge">config/ipop-config.json</code>. If you want to use IPOP with the default configuration, you just need to edit the file and enter “Username”, “Password” and “AddressHost” in “XmppDetails” under “XmppClient”. For instance, the last part of the configuration file will look like this:</p>
-
-<div class="language-json highlighter-rouge">
-<pre class="highlight"><code><span class="err">.</span><span class="w">
-</span><span class="err">.</span><span class="w">
-</span><span class="err">.</span><span class="w">
-  </span><span class="s2">"XmppClient"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"XmppDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"Username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;your_account_username&gt;@&lt;xmpp-server.ext&gt;"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"Password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;your_account_password&gt;"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"AddressHost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;xmpp-server.ext&gt;"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"Port"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5222"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"TapName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ipop_tap0"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"AuthenticationMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"password"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"AcceptUntrustedServer"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"TimerInterval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="err">}</span><span class="w">
-</span></code></pre>
-</div>
-
-<p><strong>Note:</strong> Remember to add “@<xmpp-server.ext>" to the end of "<your_account_username>".</your_account_username></xmpp-server.ext></p>
-
-<p>You may also want to change the default IP which is currently “IP4”: “10.254.0.10” in “Vnets” under “TincanInterface”. Each IPOP node must have a unique IP address in the network.</p>
-
-<h2 id="advanced-configuration">
-<a id="advanced-configuration" class="anchor" href="#advanced-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced Configuration</h2>
-
-<p>For documentation on advanced configuration go to <a href="Configuration">Configuration wiki page</a>.</p>
-
-<h2 id="sample-configuration-file">
-<a id="sample-configuration-file" class="anchor" href="#sample-configuration-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sample Configuration File</h2>
-
-<p>There is a sample configuration file at <code class="highlighter-rouge">config/sample-gvpn-config.json</code>:</p>
-
-<div class="language-json highlighter-rouge">
-<pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"CFx"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"Model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GroupVPN"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"Logger"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"Enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"LogLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WARNING"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"LogOption"</span><span class="p">:</span><span class="w"> </span><span class="s2">"File"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"LogFilePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./logs/"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"CtrlLogFileName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ctrl.log"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"TincanLogFileName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tincan.log"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"LogFileSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000000</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"BackupLogFileCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"TincanInterface"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"ctrl_recv_port"</span><span class="p">:</span><span class="w"> </span><span class="mi">5801</span><span class="p">,</span><span class="w">  
-    </span><span class="nt">"localhost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"ctrl_send_port"</span><span class="p">:</span><span class="w"> </span><span class="mi">5800</span><span class="p">,</span><span class="w">  
-    </span><span class="nt">"localhost6"</span><span class="p">:</span><span class="w"> </span><span class="s2">"::1"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Logger"</span><span class="p">],</span><span class="w">
-    </span><span class="nt">"Vnets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"Name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"ipop_tap0"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"IP4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.254.0.10"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"IP4PrefixLen"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"MTU4"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"XMPPModuleName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XmppClient"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"TapName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ipop_tap0"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"Description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Beta 2 Test Network"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"IgnoredNetInterfaces"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"ipop_tap0"</span><span class="w"> </span><span class="p">],</span><span class="w">
-        </span><span class="nt">"L2TunnellingEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"Stun"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"stun.l.google.com:19302"</span><span class="w"> </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"XmppClient"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"XmppDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"Username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"***"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"Password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"***"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"AddressHost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"***"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"Port"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5222"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"TapName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ipop_tap0"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"AuthenticationMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"password"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"AcceptUntrustedServer"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"TimerInterval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
-
+</ul>
+          </nav>
+        </aside>
 
         <h1 id="configuration-intro">Configuration, Intro</h1>
 
@@ -405,7 +300,6 @@
         
 
     
-
 
 
 

@@ -159,7 +159,6 @@
 
 
 
-
 <div id="main" role="main">
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     
@@ -170,99 +169,19 @@
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
 
-        <div class="toc-title"><i class="fa fa-list-ul" aria-hidden="true"></i>On This Page</div>
-        <ul class="section-nav">
+        <aside class="sidebar__right">
+          <nav class="toc">
+            <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+            <ul class="section-nav">
 <li class="toc-entry toc-h1"><a href="#installing-ipop-vpn-on-windows">Installing IPOP-VPN on Windows</a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#quick-start-installation">Quick start Installation</a></li>
 <li class="toc-entry toc-h2"><a href="#manual-setup">Manual Setup</a></li>
 </ul>
 </li>
-</ul><h1 id="installing-ipop-vpn-on-windows">
-<a id="installing-ipop-vpn-on-windows" class="anchor" href="#installing-ipop-vpn-on-windows" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing IPOP-VPN on Windows</h1>
-
-<h2 id="quick-start-installation">
-<a id="quick-start-installation" class="anchor" href="#quick-start-installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick start Installation</h2>
-<p>The most convenient way to get IPOP installed on Windows 10 is run the <em>ipop-set.ps1</em> powershell script included in the IPOP ZIP file. Note that you need to have Administrator privileges to install IPOP-VPN.</p>
-
-<ol>
-  <li>
-    <p>Download <a href="https://github.com/ipop-project/Downloads/releases/download/v16.08.0/ipop-v16.08.1_win.zip">IPOP-VPN for Windows</a>.</p>
-  </li>
-  <li>
-    <p>Extract the contents of the archive to a directory, e.g., ipop-vpn</p>
-  </li>
-  <li>
-    <p>Start an Admin Windows Powershell and change to the ipop-vpn directory previously created</p>
-  </li>
-  <li>Enter the following commands:
-    <div class="highlighter-rouge">
-<pre class="highlight"><code> PowerShell -ExecutionPolicy Unrestricted
- .\ipop-setup
-</code></pre>
-    </div>
-  </li>
-  <li>
-    <p>Follow the prompts to install and setup IPOP</p>
-  </li>
-  <li>While installing Social VPN, copy the “ip4” entry from “AddressMapper” to “CFx”, e.g.,
-    <div class="highlighter-rouge">
-<pre class="highlight"><code> ip4": "172.31.0.100" 
-</code></pre>
-    </div>
-  </li>
-  <li>Finally, double click ipop-start to run IPOP. Closing this console window will terminate IPOP.</li>
-</ol>
-
-<p>Note: A Windows Firewall exception is created for IPOP-VPN, but you have to create your own for exceptions for other services such as ICMP Echo (ping).</p>
-
-<p>##TLDR
-If you are using an earlier version of Windows such as 7, 8, Server 2008, or 2012, you will need to manually setup IPOP. Below are the necessary steps to accomplish this.</p>
-
-<h2 id="manual-setup">
-<a id="manual-setup" class="anchor" href="#manual-setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Manual Setup</h2>
-<ol>
-  <li>
-    <p>Install <a href="https://download.microsoft.com/download/5/B/C/5BC5DBB3-652D-4DCE-B14A-475AB85EEF6E/vcredist_x86.exe'">MS Visual C++ x86 Redistributable Packages for Visual Studio 2010</a>.</p>
-  </li>
-  <li>
-    <p>Install <a href="https://www.python.org/ftp/python/3.5.2/python-3.5.2-amd64-webinstall.exe">Python 3.5 for Windows</a>.</p>
-  </li>
-  <li>
-    <p>Install <a href="https://swupdate.openvpn.org/community/releases/tap-windows-9.21.2.exe">tap-installer from OpenVPN</a>.</p>
-  </li>
-  <li>
-    <p>Download <a href="https://github.com/ipop-project/Downloads/releases/download/v16.08.1/ipop-v16.08.1_win.zip">IPOP-VPN for Windows</a>.</p>
-  </li>
-  <li>
-    <p>Extract the contents of the archive to a directory, e.g., ipop-vpn</p>
-  </li>
-  <li>Decide if you want to run <a href="Planning%20Your%20Network">GroupVPN or Social VPN</a> and copy the appropriate sample config to the ipop-vpn directory. Use one of the following for group or social VPN respectively:
-    <div class="highlighter-rouge">
-<pre class="highlight"><code> cp .\controller\modules\sample-gvpn-config.json .\config.json
-</code></pre>
-    </div>
-    <div class="highlighter-rouge">
-<pre class="highlight"><code> cp .\controller\modules\sample-svpn-config.json .\config.json
-</code></pre>
-    </div>
-  </li>
-  <li>
-    <p>Update your <a href="Configuration">config file</a> with your XMPP credentials and other details. For SocialVPN you only need to add the XMPP server IP, your XMPP client user id and password. For GroupVPN you will need to add your static virtual IP.</p>
-  </li>
-  <li>
-    <p>Install Sleek XMPP. Python will have to be in your PATH environment or you will need to provide the path to the pip executable.
-pip install sleekxmpp</p>
-  </li>
-  <li>
-    <p>Rename the TAP-Windows Adapter to <em>ipop</em>. From the Control Panel choose <em>View network status and tasks</em> under Network and Internet. On the right side-bar click <em>change adapter settings</em>. Select the <em>TAP Windows Adapter V9</em> and rename it to “ipop”.</p>
-  </li>
-  <li>
-    <p>Configure the IPOP Adapter IPv4 interface with a static IP address and subnet mask that will be use for the virtual network. Alternatively you can download download <a href="https://github.com/ipop-project/Release-Management/blob/master/Deployment/win/setup_interface.bat">set_interface</a> and [win32_netsh_setup] (https://github.com/ipop-project/Release-Management/blob/master/Deployment/win/win32_netsh_setup.py) to your IPOP directory and run the _setup_interface.bat _ batch file as Admin.</p>
-  </li>
-  <li>Finally, double click ipop-start to run IPOP</li>
-</ol>
-
+</ul>
+          </nav>
+        </aside>
 
         <h1 id="installing-ipop-vpn-on-windows">Installing IPOP-VPN on Windows</h1>
 
@@ -356,7 +275,6 @@ pip install sleekxmpp</p>
         
 
     
-
 
 
 

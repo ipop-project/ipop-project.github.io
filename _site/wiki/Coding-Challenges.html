@@ -159,7 +159,6 @@
 
 
 
-
 <div id="main" role="main">
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     
@@ -170,8 +169,10 @@
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
 
-        <div class="toc-title"><i class="fa fa-list-ul" aria-hidden="true"></i>On This Page</div>
-        <ul class="section-nav">
+        <aside class="sidebar__right">
+          <nav class="toc">
+            <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+            <ul class="section-nav">
 <li class="toc-entry toc-h2"><a href="#overview">Overview:</a></li>
 <li class="toc-entry toc-h2"><a href="#1-overlay-multicast-and-routing-modules">1) Overlay multicast and routing modules</a>
 <ul>
@@ -183,113 +184,9 @@
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#2-traffic-based-upcall--traffic-statistics-modules">2) Traffic Based Upcall / Traffic Statistics Modules</a></li>
-</ul><h2 id="overview">
-<a id="overview" class="anchor" href="#overview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overview:</h2>
-
-<p><a href="http://ipop-project.org">IPOP</a> is an open-source user-centric software virtual network allowing end users to define and create their own virtual private networks (VPNs). IPOP virtual networks provide end-to-end IP tunneling over “TinCan” links setup and managed through a control API to create various software-defined VPN overlays. IPOP builds upon the Jingle WebRTC library to create such links, which are then use as a basis to create a P2P routing overlay for easy-to-deploy VPNs with P2P links.</p>
-
-<p>The IPOP project has a very successful participation in the undergrad and graduate volunteer community, and we are looking forward to working with bright, motivated students for another summer.</p>
-
-<p>One of the key outcomes of the GSoC’15 was a complete overhaul of the IPOP <code class="highlighter-rouge">controller</code> framework, where the logic related to configuration, creation, management of P2P VPN links, overlay construction and routing, virtual network address assignment/mapping, among others, is implemented (in Python). This is now part of the release 16.01 of the IPOP codebase.</p>
-
-<p>This summers projects fall largely into the category of design of useful modules that can plug into this new framework. These modules have different levels of complexity/expected coding time, and volunteers are free to take on one or more modules. These include:</p>
-
-<h2 id="1-overlay-multicast-and-routing-modules">
-<a id="1-overlay-multicast-and-routing-modules" class="anchor" href="#1-overlay-multicast-and-routing-modules" aria-hidden="true"><span class="octicon octicon-link"></span></a>1) Overlay multicast and routing modules</h2>
-
-<p><strong>Summary</strong>: IPOP virtual networks form overlays connecting nodes in a peer-to-peer fashion with libjingle-based tunnels. For scalability reasons, it is necessary to allow routing across multiple overlay <code class="highlighter-rouge">hops</code> - in particular, for multicast messages (e.g. the ARP protocol when IPOP is configured to run in Layer-2 mode). IPOP needs to be extended with modules to support multicasting - with possibly different multicasting approaches tailored to different overlay topologies</p>
-
-<p><strong>Requirements</strong>: The overlay multicast modules needs to implement the following primitives:</p>
-
-<h3 id="core-multicast-module-cmm">
-<a id="core-multicast-module-cmm" class="anchor" href="#core-multicast-module-cmm" aria-hidden="true"><span class="octicon octicon-link"></span></a>Core multicast module (CMM)</h3>
-<ul>
-  <li>The CMM is implemented as a module loaded to the IPOP controller framework</li>
-  <li>The CMM takes as inputs a unique message ID, a payload, a list of neighbors to deliver to, and the name of a destination multicast module (DMM) to deliver to handle multicast messages</li>
-  <li>The CMM sends messages to the CMM modules of immediate-neighbor IPOP nodes, using Inter-Controller Communication (ICC), where they are delivered to the DMM</li>
 </ul>
-
-<h3 id="structured-multicast-module-smm">
-<a id="structured-multicast-module-smm" class="anchor" href="#structured-multicast-module-smm" aria-hidden="true"><span class="octicon octicon-link"></span></a>Structured multicast module (SMM)</h3>
-<ul>
-  <li>SMM multicasts messages across a structured P2P overlay network (e.g. Chord topology)</li>
-  <li>SMM is implemented as a module loaded to the IPOP controller framework</li>
-  <li>The SMM module takes as inputs a unique message ID, a payload, and a range of UUIDs of nodes to deliver to</li>
-  <li>The SMM module partitions the range of the UUIDs it receives across <code class="highlighter-rouge">n' sub-ranges, one for each of its </code>n’ neighbors, and uses CMM to forward multicast messages to each neighbor with each appropriate sub-range</li>
-</ul>
-
-<h3 id="token-limited-flooding-module-tlfm">
-<a id="token-limited-flooding-module-tlfm" class="anchor" href="#token-limited-flooding-module-tlfm" aria-hidden="true"><span class="octicon octicon-link"></span></a>Token-limited flooding module (TLFM)</h3>
-<ul>
-  <li>TLFM multicasts messages across an arbitrary P2P overlay network (e.g. social network graph)</li>
-  <li>TLFM is implemented as a module loaded to the IPOP controller framework</li>
-  <li>The TLFM module takes as inputs a unique message ID, a payload, and a a number of tokens</li>
-  <li>The TLFM module records processing of this message ID, selects <code class="highlighter-rouge">k&lt;=n</code> out of its <code class="highlighter-rouge">n</code> neighbors, and uses CMM to forward multicast messages to each <code class="highlighter-rouge">k</code> neighbor</li>
-</ul>
-
-<h3 id="source-routed-path-discovery-module-spdm">
-<a id="source-routed-path-discovery-module-spdm" class="anchor" href="#source-routed-path-discovery-module-spdm" aria-hidden="true"><span class="octicon octicon-link"></span></a>Source-routed path discovery module (SPDM)</h3>
-<ul>
-  <li>SPDM uses multicast messages to discover intermediary nodes in a path between a source and a destination</li>
-  <li>SPDM is used as a basis for implementing source-based routing for unstructured overlays</li>
-  <li>SPDM uses TLFM to token-limited flood a message with the destination node’s UUID</li>
-  <li>SPDM modules append the payload with the UUIDi of a node visited before forwarding, so when the destination UUID is reached, it can send the path back to the source</li>
-</ul>
-
-<h3 id="source-routing-unicast-module-srum">
-<a id="source-routing-unicast-module-srum" class="anchor" href="#source-routing-unicast-module-srum" aria-hidden="true"><span class="octicon octicon-link"></span></a>Source-routing unicast module (SRUM)</h3>
-<ul>
-  <li>SRUM sends unicast messages to a destination by explicitly identifying the path to be traversed</li>
-  <li>SRUM can be used as a basis for implementing routing in unstructured overlay networks such as SocialVPN</li>
-  <li>SRUM uses SPDM to discover a path to a destination UUID (if it exists)</li>
-  <li>SRUM also manages a UUID-indexed path cache to avoid the need for continuous discovery - the policies for invalidation/eviction of cache entries need to be defined</li>
-  <li>SRUM forwards unicast messages to the next SRUM hop in the source-routes path, towards the destination</li>
-</ul>
-
-<p><strong>Mentor</strong>:<br>
-Saumitra Aditya</p>
-
-<p><strong>Skills needed</strong>:<br>
-Strong command over Python, basic understanding of computer networks and software design.</p>
-
-<p><strong>Deliverables</strong>:<br>
-Various IPOP controller modules (CMM, SMM, TLFM, SPDM, SRUM), covering the above listed requirements.</p>
-
-<h2 id="2-traffic-based-upcall--traffic-statistics-modules">
-<a id="2-traffic-based-upcall--traffic-statistics-modules" class="anchor" href="#2-traffic-based-upcall--traffic-statistics-modules" aria-hidden="true"><span class="octicon octicon-link"></span></a>2) Traffic Based Upcall / Traffic Statistics Modules</h2>
-
-<p>Ipop-tap resides in lowest level in ipop-tincan handling byte level logic operation and modification. It is hard for controller to know what kind of traffic (TCP or UDP) streams and how intense the stream is running through ipop-tap. This task is implementing configurable flow table in ipop-tap. This module should be configured through controller.</p>
-
-<p>Features</p>
-<ul>
-  <li>Required to be configured through controller</li>
-  <li>Statistics can be retrieved tincan-controller API</li>
-  <li>Upon programmed, ipop-tap counts the number of packets passed, byte size and table idle time.</li>
-  <li>Theoretically, unlimited number of flow table can be programmed.</li>
-  <li>Requires separate thread to update table idle time and mean time traffic</li>
-</ul>
-
-<p>e.g.
- <img src="https://cloud.githubusercontent.com/assets/3869507/13115070/592f5420-d564-11e5-908a-1801f4eda7fd.png" alt=""></p>
-
-<p><strong>Skills needed</strong>:</p>
-<ul>
-  <li>C : 80% of code work. Mostly on network programming with byte-level operations</li>
-  <li>C++ : 5% of coding</li>
-  <li>Python : 15% of coding</li>
-  <li>Understanding on network protocols such as ARP, NDP, ICMP, TCP and UDP</li>
-  <li>A little understanding on software defined system</li>
-</ul>
-
-<p><strong>Deliverable</strong></p>
-<ul>
-  <li>Designing flow table structure</li>
-  <li>APIs for controller</li>
-  <li>Separate thread for update the flow table traffic statistics (n_bytes, n_packets and Mbps)</li>
-  <li>Unit-test alongside with any implementation</li>
-</ul>
-
-
+          </nav>
+        </aside>
 
         <h2 id="overview">Overview:</h2>
 
@@ -404,7 +301,6 @@ Various IPOP controller modules (CMM, SMM, TLFM, SPDM, SRUM), covering the above
         
 
     
-
 
 
 

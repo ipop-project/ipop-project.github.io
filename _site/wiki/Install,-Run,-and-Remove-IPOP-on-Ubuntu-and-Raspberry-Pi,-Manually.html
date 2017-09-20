@@ -159,7 +159,6 @@
 
 
 
-
 <div id="main" role="main">
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     
@@ -170,8 +169,10 @@
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
 
-        <div class="toc-title"><i class="fa fa-list-ul" aria-hidden="true"></i>On This Page</div>
-        <ul class="section-nav">
+        <aside class="sidebar__right">
+          <nav class="toc">
+            <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+            <ul class="section-nav">
 <li class="toc-entry toc-h1"><a href="#install-run-and-remove-ipop-on-ubuntu-and-raspberry-pi-manually">Install, Run, and Remove IPOP on Ubuntu and Raspberry Pi, Manually</a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#download-and-install-dependencies">Download and Install Dependencies</a></li>
@@ -193,140 +194,9 @@
 </ul>
 </li>
 <li class="toc-entry toc-h1"><a href="#key-points-summary">Key Points Summary</a></li>
-</ul><h1 id="install-run-and-remove-ipop-on-ubuntu-and-raspberry-pi-manually">
-<a id="install-run-and-remove-ipop-on-ubuntu-and-raspberry-pi-manually" class="anchor" href="#install-run-and-remove-ipop-on-ubuntu-and-raspberry-pi-manually" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install, Run, and Remove IPOP on Ubuntu and Raspberry Pi, Manually</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th> </th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Tested on</strong></td>
-      <td>Ubuntu 14.04 and 16.04 x64 and Raspbian Jessie and Stretch on Raspberry Pi 3</td>
-    </tr>
-    <tr>
-      <td><strong>Time</strong></td>
-      <td>~ 10 Minutes</td>
-    </tr>
-    <tr>
-      <td><strong>Question(s)</strong></td>
-      <td>- How to install IPOP?<br> - How to run IPOP?<br> - How to remove IPOP?</td>
-    </tr>
-    <tr>
-      <td><strong>Objective(s)</strong></td>
-      <td>- Install IPOP<br> - Run IPOP<br> - Stop IPOP<br> - Remove IPOP</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="download-and-install-dependencies">
-<a id="download-and-install-dependencies" class="anchor" href="#download-and-install-dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download and Install Dependencies</h2>
-
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>sudo apt-get update -y
-sudo apt-get install -y software-properties-common libssl-dev
-sudo apt-get install -y python3 python-pip python-dev
-sudo pip install sleekxmpp psutil pystun
-</code></pre>
-</div>
-
-<h2 id="get-ipop-binary">
-<a id="get-ipop-binary" class="anchor" href="#get-ipop-binary" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get IPOP Binary</h2>
-
-<p>Download the proper version of IPOP from <a href="https://github.com/ipop-project/Downloads/releases">our latest release</a>.</p>
-
-<p>Then go to the download directory and extract the file (Put in the actual file name):</p>
-
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>tar -xzvf ipop-vxxx.tar.gz
-<span class="nb">cd </span>ipop-vxxx
-</code></pre>
-</div>
-
-<h2 id="copy-configuration-file">
-<a id="copy-configuration-file" class="anchor" href="#copy-configuration-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Copy Configuration File</h2>
-
-<p>You will need a valid configuration file (ipop-config.json) to run IPOP. Go to the directory you have your config file and copy the file to the <code class="highlighter-rouge">config</code> directory:</p>
-
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>cp PATH/TO/CONFIGFILE/ipop-config.json config/
-</code></pre>
-</div>
-
-<h2 id="run-ipop">
-<a id="run-ipop" class="anchor" href="#run-ipop" aria-hidden="true"><span class="octicon octicon-link"></span></a>Run IPOP</h2>
-
-<h3 id="run-ipop-tincan">
-<a id="run-ipop-tincan" class="anchor" href="#run-ipop-tincan" aria-hidden="true"><span class="octicon octicon-link"></span></a>Run IPOP TinCan</h3>
-
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>sudo ./ipop-tincan &amp;
-</code></pre>
-</div>
-
-<h3 id="run-ipop-controller">
-<a id="run-ipop-controller" class="anchor" href="#run-ipop-controller" aria-hidden="true"><span class="octicon octicon-link"></span></a>Run IPOP Controller</h3>
-
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>python -m controller.Controller -c ./config/ipop-config.json &amp;
-</code></pre>
-</div>
-
-<p>Now, if everything is going well, IPOP should be run.</p>
-
-<h2 id="stop-ipop">
-<a id="stop-ipop" class="anchor" href="#stop-ipop" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stop IPOP</h2>
-
-<h3 id="stop-ipop-tincan">
-<a id="stop-ipop-tincan" class="anchor" href="#stop-ipop-tincan" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stop IPOP Tincan</h3>
-
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>sudo killall ipop-tincan  
-</code></pre>
-</div>
-
-<h3 id="stop-ipop-controller">
-<a id="stop-ipop-controller" class="anchor" href="#stop-ipop-controller" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stop IPOP Controller</h3>
-
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>ps aux | grep -v grep | grep controller.Controller | awk <span class="s1">'{print $2}'</span> | xargs sudo <span class="nb">kill</span> -9
-</code></pre>
-</div>
-
-<h2 id="remove-ipop">
-<a id="remove-ipop" class="anchor" href="#remove-ipop" aria-hidden="true"><span class="octicon octicon-link"></span></a>Remove IPOP</h2>
-
-<p>To uninstall IPOP, its is safe to stop it first and then remove the IPOP execution directory.</p>
-
-<hr>
-
-<h1 id="key-points-summary">
-<a id="key-points-summary" class="anchor" href="#key-points-summary" aria-hidden="true"><span class="octicon octicon-link"></span></a>Key Points Summary</h1>
-
-<ul>
-  <li>Run IPOP:</li>
 </ul>
-
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>sudo ./ipop-tincan &amp;
-python -m controller.Controller -c ./config/ipop-config.json &amp;
-</code></pre>
-</div>
-<ul>
-  <li>Stop IPOP:</li>
-</ul>
-
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>sudo killall ipop-tincan  
-ps aux | grep -v grep | grep controller.Controller | awk <span class="s1">'{print $2}'</span> | xargs sudo <span class="nb">kill</span> -9
-</code></pre>
-</div>
-
-
+          </nav>
+        </aside>
 
         <h1 id="install-run-and-remove-ipop-on-ubuntu-and-raspberry-pi-manually">Install, Run, and Remove IPOP on Ubuntu and Raspberry Pi, Manually</h1>
 
@@ -455,7 +325,6 @@ ps aux | grep -v grep | grep controller.Controller | awk <span class="s1">'{prin
         
 
     
-
 
 
 

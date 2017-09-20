@@ -159,7 +159,6 @@
 
 
 
-
 <div id="main" role="main">
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     
@@ -170,68 +169,14 @@
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
 
-        <div class="toc-title"><i class="fa fa-list-ul" aria-hidden="true"></i>On This Page</div>
-        <ul class="section-nav">
+        <aside class="sidebar__right">
+          <nav class="toc">
+            <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+            <ul class="section-nav">
 <li class="toc-entry toc-h1"><a href="#build-ipop-for-windows">Build IPOP for Windows</a></li>
-</ul><h1 id="build-ipop-for-windows">
-<a id="build-ipop-for-windows" class="anchor" href="#build-ipop-for-windows" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build IPOP for Windows</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th> </th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Tested on</strong></td>
-      <td>Microsoft Windows 10 x64</td>
-    </tr>
-    <tr>
-      <td><strong>Time</strong></td>
-      <td>~ 10 Minutes</td>
-    </tr>
-    <tr>
-      <td><strong>Question(s)</strong></td>
-      <td>- How to build IPOP?</td>
-    </tr>
-    <tr>
-      <td><strong>Objective(s)</strong></td>
-      <td>- Build IPOP Source Code</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Requires Visual Studio 15 Community Ed or greater with C++ tools.
-If using community edition you must install C++ tools separately from VS add/remove programs.
-Install Win 10 SDK, depending on the build revision you get you may have to retarget solution from project solution.</p>
-
-<div class="highlighter-rouge">
-<pre class="highlight"><code>  mkdir -p workspace/ipop-project
-  mkdir -p workspace/ipop-vpn/config
-  cd workspace/ipop-project/
-  git clone https://github.com/ipop-project/Tincan
-  git clone https://github.com/ipop-project/Controllers
-  cd Tincan
-  cd ../Controllers
-</code></pre>
-</div>
-
-<p>Open the VS Tincan solution located at workspace/ipop-project/ipop-tincan/trunk/build/tincan.sln</p>
-
-<p>Grab this <a href="https://www.dropbox.com/s/1tonispv0autc91/ipop-vpn_windlls.zip?dl=0">zip</a></p>
-
-<p>and extract to workspace/ipop-vpn.</p>
-
-<p>Run power shell window as admin</p>
-<div class="highlighter-rouge">
-<pre class="highlight"><code>PowerShell.exe -ExecutionPolicy Unrestricted
-ipop-setup.ps1
-</code></pre>
-</div>
-<p>Copy your config file when prompted.</p>
-
+</ul>
+          </nav>
+        </aside>
 
         <h1 id="build-ipop-for-windows">Build IPOP for Windows</h1>
 
@@ -303,7 +248,6 @@ ipop-setup.ps1
         
 
     
-
 
 
 

@@ -159,7 +159,6 @@
 
 
 
-
 <div id="main" role="main">
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     
@@ -170,8 +169,10 @@
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
 
-        <div class="toc-title"><i class="fa fa-list-ul" aria-hidden="true"></i>On This Page</div>
-        <ul class="section-nav">
+        <aside class="sidebar__right">
+          <nav class="toc">
+            <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+            <ul class="section-nav">
 <li class="toc-entry toc-h1"><a href="#build-webrtc-libraries-for-raspberry-pi-cross-compile-on-ubuntu">Build WebRTC Libraries for Raspberry Pi (Cross compile on Ubuntu)</a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#install-toolchain">Install Toolchain</a></li>
@@ -185,142 +186,9 @@
 </li>
 </ul>
 </li>
-</ul><h1 id="build-webrtc-libraries-for-raspberry-pi-cross-compile-on-ubuntu">
-<a id="build-webrtc-libraries-for-raspberry-pi-cross-compile-on-ubuntu" class="anchor" href="#build-webrtc-libraries-for-raspberry-pi-cross-compile-on-ubuntu" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build WebRTC Libraries for Raspberry Pi (Cross compile on Ubuntu)</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th> </th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Tested on</strong></td>
-      <td>Raspbian Jessie and Stretch on Raspberry Pi 3</td>
-    </tr>
-    <tr>
-      <td><strong>Time</strong></td>
-      <td>~ 30 Minutes</td>
-    </tr>
-    <tr>
-      <td><strong>Question(s)</strong></td>
-      <td>- How to build WebRTC for Raspberry Pi?<br> - How to extract WebRTC static libraries for building IPOP?</td>
-    </tr>
-    <tr>
-      <td><strong>Objective(s)</strong></td>
-      <td>- Build the WebRTC Libraries<br> - Extract required WebRTC Static Libraries for Building IPOP</td>
-    </tr>
-  </tbody>
-</table>
-
-<p><strong>Note 1:</strong> If you want to run IPOP right away, use the proper version of IPOP from [our latest release].</p>
-
-<p><strong>Note 2:</strong> There are some WebRTC libraries needed to build IPOP TinCan binary. They are already built and located in [Tincan/external/lib/]. You can use them to [build IPOP TinCan binary] yourself.</p>
-
-<p>If you want to build WebRTC libraries for IPOP yourself, follow the instructions.</p>
-
-<h2 id="install-toolchain">
-<a id="install-toolchain" class="anchor" href="#install-toolchain" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install Toolchain</h2>
-
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>sudo apt update <span class="o">&amp;&amp;</span> sudo apt install debootstrap qemu-user-static
-
-mkdir -p ~/workspace/webrtc-checkout <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/workspace/webrtc-checkout/
-
-sudo git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git /opt/depot_tools
-<span class="nb">echo</span> <span class="s2">"export PATH=/opt/depot_tools:</span><span class="se">\$</span><span class="s2">PATH"</span> | sudo tee /etc/profile.d/depot_tools.sh
-
-sudo git clone https://github.com/raspberrypi/tools.git /opt/rpi_tools
-<span class="nb">echo</span> <span class="s2">"export PATH=/opt/rpi_tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin:</span><span class="se">\$</span><span class="s2">PATH"</span> | sudo tee /etc/profile.d/rpi_tools.sh
-
-sudo chown <span class="sb">`</span>whoami<span class="sb">`</span>:<span class="sb">`</span>whoami<span class="sb">`</span> /opt/depot_tools /opt/rpi_tools
-<span class="nb">source</span> /etc/profile
-
-sudo debootstrap --arch armhf --foreign --include<span class="o">=</span>g++,libasound2-dev,libpulse-dev,libudev-dev,libexpat1-dev,libnss3-dev,libgtk2.0-dev wheezy rootfs
-sudo cp /usr/bin/qemu-arm-static rootfs/usr/bin/
-sudo chroot rootfs /debootstrap/debootstrap --second-stage
-find rootfs/usr/lib/arm-linux-gnueabihf -lname <span class="s1">'/*'</span> -printf <span class="s1">'%p %l\n'</span> | <span class="k">while </span><span class="nb">read </span>link target; <span class="k">do </span>sudo ln -snfv <span class="s2">"../../..</span><span class="k">${</span><span class="nv">target</span><span class="k">}</span><span class="s2">"</span> <span class="s2">"</span><span class="k">${</span><span class="nv">link</span><span class="k">}</span><span class="s2">"</span>; <span class="k">done
-</span>find rootfs/usr/lib/arm-linux-gnueabihf/pkgconfig -printf <span class="s2">"%f</span><span class="se">\n</span><span class="s2">"</span> | <span class="k">while </span><span class="nb">read </span>target; <span class="k">do </span>sudo ln -snfv <span class="s2">"../../lib/arm-linux-gnueabihf/pkgconfig/</span><span class="k">${</span><span class="nv">target</span><span class="k">}</span><span class="s2">"</span> rootfs/usr/share/pkgconfig/<span class="k">${</span><span class="nv">target</span><span class="k">}</span>; <span class="k">done</span>
-</code></pre>
-</div>
-<h2 id="get-webrtc">
-<a id="get-webrtc" class="anchor" href="#get-webrtc" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get WebRTC</h2>
-
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>fetch webrtc
-<span class="nb">cd </span>src/
-git checkout branch-heads/57
-gclient sync
-</code></pre>
-</div>
-<h2 id="build-webrtc">
-<a id="build-webrtc" class="anchor" href="#build-webrtc" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build WebRTC</h2>
-
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>./build/install-build-deps.sh
-./build/linux/sysroot_scripts/install-sysroot.py --arch<span class="o">=</span>arm
-
-gn gen out/debug --args<span class="o">=</span><span class="s1">'target_os="linux" target_cpu="arm" enable_iterator_debugging=false is_component_build=false is_debug=true'</span>
-ninja -C out/debug boringssl field_trial_default protobuf_lite p2p base jsoncpp
-
-gn gen out/release --args<span class="o">=</span><span class="s1">'target_os="linux" target_cpu="arm" enable_iterator_debugging=false is_component_build=false is_debug=false'</span>
-ninja -C out/release boringssl field_trial_default protobuf_lite p2p base jsoncpp
-</code></pre>
-</div>
-<h2 id="extract-the-static-libraries-for-building-ipop-tincan">
-<a id="extract-the-static-libraries-for-building-ipop-tincan" class="anchor" href="#extract-the-static-libraries-for-building-ipop-tincan" aria-hidden="true"><span class="octicon octicon-link"></span></a>Extract the Static Libraries for Building IPOP TinCan</h2>
-
-<h3 id="get-tincan-codebase">
-<a id="get-tincan-codebase" class="anchor" href="#get-tincan-codebase" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get TinCan Codebase</h3>
-
-<p>Switch to the workspace directory:</p>
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code><span class="nb">cd</span> ~/workspace/
-</code></pre>
-</div>
-<p>Create <code class="highlighter-rouge">ipop-project</code> directory and download the TinCan repository there:</p>
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>mkdir -p ipop-project/ <span class="o">&amp;&amp;</span> git clone https://github.com/ipop-project/Tincan.git ipop-project/Tincan
-</code></pre>
-</div>
-<h3 id="copy-the-webrtc-libraries-to-tincan">
-<a id="copy-the-webrtc-libraries-to-tincan" class="anchor" href="#copy-the-webrtc-libraries-to-tincan" aria-hidden="true"><span class="octicon octicon-link"></span></a>Copy the WebRTC Libraries to TinCan</h3>
-
-<p>These freshly built libraries will replace the existing libraries.</p>
-
-<p><strong>Debug Libraries</strong></p>
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>ar -rcs ipop-project/Tincan/external/lib/debug/arm7/rpi/libboringssl_asm.a webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/aes-armv4.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/bsaes-armv7.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/ghashv8-armx32.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/sha256-armv4.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/aesv8-armx32.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/chacha-armv4.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/poly1305_arm_asm.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/sha512-armv4.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/armv4-mont.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/ghash-armv4.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/sha1-armv4-large.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/x25519-asm-arm.o
-
-ar -rcs ipop-project/Tincan/external/lib/debug/arm7/rpi/libjsoncpp.a webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_reader.o webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_value.o webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_writer.o
-
-cp webrtc-checkout/src/out/debug/obj/third_party/boringssl/libboringssl.a ipop-project/Tincan/external/lib/debug/arm7/rpi/
-cp webrtc-checkout/src/out/debug/obj/webrtc/system_wrappers/libfield_trial_default.a ipop-project/Tincan/external/lib/debug/arm7/rpi/
-cp webrtc-checkout/src/out/debug/obj/webrtc/base/librtc_base.a ipop-project/Tincan/external/lib/debug/arm7/rpi/
-cp webrtc-checkout/src/out/debug/obj/webrtc/base/librtc_base_approved.a ipop-project/Tincan/external/lib/debug/arm7/rpi/
-cp webrtc-checkout/src/out/debug/obj/webrtc/p2p/librtc_p2p.a ipop-project/Tincan/external/lib/debug/arm7/rpi/
-cp webrtc-checkout/src/out/debug/obj/third_party/protobuf/libprotobuf_lite.a ipop-project/Tincan/external/lib/debug/arm7/rpi/
-</code></pre>
-</div>
-<p><strong>Release Libraries</strong></p>
-<div class="language-shell highlighter-rouge">
-<pre class="highlight"><code>ar -rcs ipop-project/Tincan/external/lib/release/arm7/rpi/libboringssl_asm.a webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/aes-armv4.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/bsaes-armv7.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/ghashv8-armx32.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/sha256-armv4.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/aesv8-armx32.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/chacha-armv4.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/poly1305_arm_asm.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/sha512-armv4.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/armv4-mont.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/ghash-armv4.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/sha1-armv4-large.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/x25519-asm-arm.o
-
-ar -rcs ipop-project/Tincan/external/lib/release/arm7/rpi/libjsoncpp.a webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_reader.o webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_value.o webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_writer.o
-
-cp webrtc-checkout/src/out/release/obj/third_party/boringssl/libboringssl.a ipop-project/Tincan/external/lib/release/arm7/rpi/
-cp webrtc-checkout/src/out/release/obj/webrtc/system_wrappers/libfield_trial_default.a ipop-project/Tincan/external/lib/release/arm7/rpi/
-cp webrtc-checkout/src/out/release/obj/webrtc/base/librtc_base.a ipop-project/Tincan/external/lib/release/arm7/rpi/
-cp webrtc-checkout/src/out/release/obj/webrtc/base/librtc_base_approved.a ipop-project/Tincan/external/lib/release/arm7/rpi/
-cp webrtc-checkout/src/out/release/obj/webrtc/p2p/librtc_p2p.a ipop-project/Tincan/external/lib/release/arm7/rpi/
-cp webrtc-checkout/src/out/release/obj/third_party/protobuf/libprotobuf_lite.a ipop-project/Tincan/external/lib/release/arm7/rpi/
-</code></pre>
-</div>
-
-<p>Now you can [build IPOP TinCan binary] on the Raspberry Pi, itself.</p>
-
+</ul>
+          </nav>
+        </aside>
 
         <h1 id="build-webrtc-libraries-for-raspberry-pi-cross-compile-on-ubuntu">Build WebRTC Libraries for Raspberry Pi (Cross compile on Ubuntu)</h1>
 
@@ -458,7 +326,6 @@ cp webrtc-checkout/src/out/release/obj/third_party/protobuf/libprotobuf_lite.a i
         
 
     
-
 
 
 

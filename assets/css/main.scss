@@ -171,8 +171,20 @@ h3 {
   font-size: 1.15em;
 }
 
-.page {
-  padding-right: 0;
+.layout--wiki .sidebar__right {
+  position: relative;
+  float: right;
+  margin-right: unset;
+  z-index: unset;
+  margin-right: unset;
+}
+
+.layout--wiki .page {
+  padding-right: unset;
+}
+
+.layout--wiki table {
+  width: unset;
 }
 
 .layout--wiki .sidebar .nav__list strong {
@@ -189,10 +201,6 @@ h3 {
   font-size: .775em;
 }
 
-.display-unset {
-  display: unset !important;
-}
-
 .layout--wiki .sidebar li {
   font-size: .85em;
 }
@@ -201,21 +209,29 @@ h3 {
   clear: unset;
 }
 
-.page__content .section-nav {
-  font-size:.7em;
-  border-bottom: 3px solid #f2f3f3;
-  margin-bottom: 2em;
-  display: none; /* Temporarily Hidden */
+.layout--wiki .section-nav a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #7a8288;
+  font-size: .56em;
+  line-height: 1.5;
+  border-bottom: 1px solid #f2f3f3;
 }
 
-.toc-title {
-  display: block;
-  margin: 0 0 0.5rem;
-  padding: 0 0 0.5rem;
-  font-family: -apple-system,".SFNSText-Regular","San Francisco","Roboto","Segoe UI","Helvetica Neue","Lucida Grande",Arial,sans-serif;
+.layout--wiki .section-nav a>.toc-h2 {
+  border-bottom: none !important;
+}
+
+.toc-h1 {
   font-weight: bold;
-  text-transform: uppercase;
+}
+
+.toc-h2 {
+  padding-left: .9rem !important;
+  font-weight: normal;
   border-bottom: 1px solid #f2f3f3;
-  color: #777A7D;
-  display: none; /* Temporarily Hidden */
+}
+
+.toc-h3 {
+  display: none !important;
 }

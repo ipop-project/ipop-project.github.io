@@ -159,7 +159,6 @@
 
 
 
-
 <div id="main" role="main">
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     
@@ -170,135 +169,14 @@
     <div class="page__inner-wrap">
       <section class="page__content" itemprop="text">
 
-        <div class="toc-title"><i class="fa fa-list-ul" aria-hidden="true"></i>On This Page</div>
-        <ul class="section-nav">
+        <aside class="sidebar__right">
+          <nav class="toc">
+            <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+            <ul class="section-nav">
 <li class="toc-entry toc-h2"><a href="#download-dependencies">Download Dependencies</a></li>
-</ul><p>You will need a valid configuration file (ipop-config.json) to run ipop!</p>
-
-<h2 id="download-dependencies">
-<a id="download-dependencies" class="anchor" href="#download-dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download Dependencies</h2>
-
-<ol>
-  <li>Install Dependencies</li>
-</ol>
-
-<p>a. For Ubuntu 14</p>
-
-<div class="highlighter-rouge">
-<pre class="highlight"><code>  sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-  sudo apt-get update -y
-  sudo apt-get -y upgrade
-  sudo apt-get install -y software-properties-common git make libssl-dev make g++-4.9 
-  sudo apt-get install -y python3 python-pip python-dev
-  sudo pip install sleekxmpp psutil pystun
-  sudo rm /usr/bin/g++
-  sudo ln -s /usr/bin/g++-4.9 /usr/bin/g++ 
-</code></pre>
-</div>
-
-<p>b. For CentOS 7</p>
-
-<div class="highlighter-rouge">
-<pre class="highlight"><code>  su
-  yum -y update
-  yum install -y centos-release-scl-rh
-  yum install -y devtoolset-3-gcc-c++ rh-python35
-  yum install -y git nss-devel openssl-devel
-  scl enable devtoolset-3 bash
-  scl enable rh-python35 bash
-  curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
-  python get-pip.py
-  yum install -y python-devel.x86_64
-  pip install sleekxmpp psutil pystun
-</code></pre>
-</div>
-
-<p>Open a new terminal as the regular (non-root) user</p>
-
-<p>If on CentOS 7</p>
-<div class="highlighter-rouge">
-<pre class="highlight"><code>      scl enable rh-python35 bash
-      scl enable devtoolset-3 bash
-</code></pre>
-</div>
-
-<div class="highlighter-rouge">
-<pre class="highlight"><code>  mkdir -p workspace/ipop-project
-  mkdir -p workspace/ipop-vpn/config
-  cd workspace/ipop-project/
-  git clone https://github.com/ipop-project/ipop-tincan
-  git clone https://github.com/ipop-project/controllers
-  cd ipop-tincan
-  git checkout v2_wip
-  cd trunk/build/
-  make
-  cp -f ../out/debug/ipop-tincan ../../../../ipop-vpn/
-  cd ../../../controllers
-  git checkout v2_wip
-  cp -rf ./controller/ ../../ipop-vpn/
-  cd ../../ipop-vpn
-  sudo ./ipop-tincan
-</code></pre>
-</div>
-
-<p>In another new terminal</p>
-
-<p>If on CentOS 7</p>
-<div class="highlighter-rouge">
-<pre class="highlight"><code>      scl enable rh-python35 bash
-</code></pre>
-</div>
-
-<p>Copy over your config file</p>
-
-<div class="highlighter-rouge">
-<pre class="highlight"><code>  cd workspace/ipop-vpn/
-  python -m controller.Controller -c ./config/ipop-config.json
-</code></pre>
-</div>
-
-<p>Check your firewall, both host and guest if virtualized.</p>
-
-<p>Terminate IPOP-VPN</p>
-<div class="highlighter-rouge">
-<pre class="highlight"><code>sudo killall ipop-tincan  
-ps aux | grep -v grep | grep controller.Controller | awk '{print $2}' | xargs sudo kill -9 
-</code></pre>
-</div>
-
-<p>On Windows 10
-Requires Visual Studio 15 Community Ed or greater with C++ tools.
-If using community edition you must install C++ tools separately from VS add/remove programs.
-Install Win 10 SDK, depending on the build revision you get you may have to retarget solution from project solution.</p>
-
-<div class="highlighter-rouge">
-<pre class="highlight"><code>  mkdir -p workspace/ipop-project
-  mkdir -p workspace/ipop-vpn/config
-  cd workspace/ipop-project/
-  git clone https://github.com/ipop-project/ipop-tincan
-  git clone https://github.com/ipop-project/controllers
-  cd ipop-tincan
-  git checkout v2_wip
-  cd ../controllers
-  git checkout v2_wip
-</code></pre>
-</div>
-
-<p>Open the VS Tincan solution located at workspace/ipop-project/ipop-tincan/trunk/build/tincan.sln</p>
-
-<p>Grab this <a href="https://www.dropbox.com/s/1tonispv0autc91/ipop-vpn_windlls.zip?dl=0">zip</a></p>
-
-<p>and extract to workspace/ipop-vpn.</p>
-
-<p>Run power shell window as admin</p>
-<div class="highlighter-rouge">
-<pre class="highlight"><code>PowerShell.exe -ExecutionPolicy Unrestricted
-ipop-setup.ps1
-</code></pre>
-</div>
-<p>Copy your config file when prompted.</p>
-
-
+</ul>
+          </nav>
+        </aside>
 
         <p>You will need a valid configuration file (ipop-config.json) to run ipop!</p>
 
@@ -430,7 +308,6 @@ ipop-setup.ps1
         
 
     
-
 
 
 
