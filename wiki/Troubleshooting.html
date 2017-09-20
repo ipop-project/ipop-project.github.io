@@ -159,12 +159,50 @@
 
 
 
-
 <div id="main" role="main">
-  <div class="sidebar">
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      <section class="page__content" itemprop="text">
+
+        <aside class="sidebar__right">
+          <nav class="toc">
+            <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+            <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+          </nav>
+        </aside>
+
+        <h1 id="troubleshooting">Troubleshooting</h1>
+
+<p>If you run into errors/crashes, please proceed as follows:</p>
+
+<p>Try to recreate the problem and obtain log files:</p>
+
+<p>Providing a log file is very useful. The logging level is determined in the JSON configuration file by adding the following parameters:</p>
+
+<p>“controller_logging” : “DEBUG”,
+“tincan_logging”: 2
+logging_level - sets the Python logging module for the controller with possible values DEBUG, INFO, WARNING, ERROR, CRITICAL
+logging - set the logging level for IPOP-Tincan, 0 = no logging, 1 = error logging, 2 = info logging (recommended), 3 = verbose logging</p>
+
+<p>Additionally, provide the IPOP-VPN version and the platform being used.</p>
+
+
+
+
+      </section>
+    </div>
+  </article>
+    <div class="sidebar">
     <nav class="nav__list">
       <div class="wiki-top-links">
-        <a href="../wiki">Wiki Index</a> / <a href="../wikipages">Wiki Pages</a>
+        <a href="../wiki" class="display-unset">Wiki Index</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
       </div>
         
 
@@ -225,37 +263,6 @@
 
     </nav>
   </div>
-
-  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    
-    
-    
-
-    <div class="page__inner-wrap">
-      <section class="page__content" itemprop="text">
-
-
-        <h1 id="troubleshooting">Troubleshooting</h1>
-
-<p>If you run into errors/crashes, please proceed as follows:</p>
-
-<p>Try to recreate the problem and obtain log files:</p>
-
-<p>Providing a log file is very useful. The logging level is determined in the JSON configuration file by adding the following parameters:</p>
-
-<p>“controller_logging” : “DEBUG”,
-“tincan_logging”: 2
-logging_level - sets the Python logging module for the controller with possible values DEBUG, INFO, WARNING, ERROR, CRITICAL
-logging - set the logging level for IPOP-Tincan, 0 = no logging, 1 = error logging, 2 = info logging (recommended), 3 = verbose logging</p>
-
-<p>Additionally, provide the IPOP-VPN version and the platform being used.</p>
-
-
-
-      </section>
-    </div>
-  </article>
 </div>
 
 

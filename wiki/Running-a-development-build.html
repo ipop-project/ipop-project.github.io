@@ -159,12 +159,84 @@
 
 
 
-
 <div id="main" role="main">
-  <div class="sidebar">
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      <section class="page__content" itemprop="text">
+
+        <aside class="sidebar__right">
+          <nav class="toc">
+            <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+            <ul class="section-nav">
+<li class="toc-entry toc-h3"><a href="#note-this-guide-is-for-running-the-current-development-build-if-you-are-interested-in-the-existing-stable-release-please-use-this-installation-guide">NOTE: This guide is for running the current development build. If you are interested in the existing stable release please use this installation guide.</a></li>
+</ul>
+          </nav>
+        </aside>
+
+        <h3 id="note-this-guide-is-for-running-the-current-development-build-if-you-are-interested-in-the-existing-stable-release-please-use-this-installation-guide">NOTE: This guide is for running the current development build. If you are interested in the existing stable release please use this <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Installation">installation</a> guide.</h3>
+
+<ol>
+  <li>
+    <p>See the <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Building-the-Code">instructions</a> for building Tincan</p>
+  </li>
+  <li>Install dependencies
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo apt-get install -y python3 python-pip python-dev
+sudo pip install --upgrade pip
+sudo pip install sleekxmpp psutil
+</code></pre>
+    </div>
+  </li>
+  <li>Clone Controller
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>mkdir -p ~/workspace/ipop-project
+mkdir -p ~/workspace/ipop-vpn/config
+<span class="nb">cd</span> ~/workspace/ipop-project/
+git clone https://github.com/ipop-project/Controllers
+<span class="nb">cd</span> ./Controllers
+git checkout master
+cp -rf ./controller/ ../../ipop-vpn/
+<span class="nb">cd</span> ../../ipop-vpn
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Copy the Tincan executable you previously created.<br />
+<code class="highlighter-rouge">cp -f ~/workspace/ipop-project/Tincan/trunk/out/release/x64/ipop-tincan ~/workspace/ipop-vpn</code></p>
+  </li>
+  <li>
+    <p>Copy and edit your config file.<br />
+See <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Configuration">Configuring</a> your network more details, but the only the XMPP details are necessary to get started.<br />
+<code class="highlighter-rouge">cp ~/workspace/ipop-project/Controllers/controller/sample-gvpn-config.json ~/workspace/ipop-vpn/config/ipop-config.json</code></p>
+  </li>
+  <li>Start the IPOP-VPN processes
+Check your firewall, both host and guest if virtualized.
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo ./ipop-tincan &amp;
+python -m controller.Controller -c ./config/ipop-config.json &amp;
+</code></pre>
+    </div>
+  </li>
+  <li>Terminate IPOP-VPN
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo killall ipop-tincan  
+ps aux | grep -v grep | grep controller.Controller | awk <span class="s1">'{print $2}'</span> | xargs sudo <span class="nb">kill</span> -9 
+</code></pre>
+    </div>
+  </li>
+</ol>
+
+
+
+
+      </section>
+    </div>
+  </article>
+    <div class="sidebar">
     <nav class="nav__list">
       <div class="wiki-top-links">
-        <a href="../wiki">Wiki Index</a> / <a href="../wikipages">Wiki Pages</a>
+        <a href="../wiki" class="display-unset">Wiki Index</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
       </div>
         
 
@@ -225,71 +297,6 @@
 
     </nav>
   </div>
-
-  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    
-    
-    
-
-    <div class="page__inner-wrap">
-      <section class="page__content" itemprop="text">
-
-
-        <h3 id="note-this-guide-is-for-running-the-current-development-build-if-you-are-interested-in-the-existing-stable-release-please-use-this-installation-guide">NOTE: This guide is for running the current development build. If you are interested in the existing stable release please use this <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Installation">installation</a> guide.</h3>
-
-<ol>
-  <li>
-    <p>See the <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Building-the-Code">instructions</a> for building Tincan</p>
-  </li>
-  <li>Install dependencies
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo apt-get install -y python3 python-pip python-dev
-sudo pip install --upgrade pip
-sudo pip install sleekxmpp psutil
-</code></pre>
-    </div>
-  </li>
-  <li>Clone Controller
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>mkdir -p ~/workspace/ipop-project
-mkdir -p ~/workspace/ipop-vpn/config
-<span class="nb">cd</span> ~/workspace/ipop-project/
-git clone https://github.com/ipop-project/Controllers
-<span class="nb">cd</span> ./Controllers
-git checkout master
-cp -rf ./controller/ ../../ipop-vpn/
-<span class="nb">cd</span> ../../ipop-vpn
-</code></pre>
-    </div>
-  </li>
-  <li>
-    <p>Copy the Tincan executable you previously created.<br />
-<code class="highlighter-rouge">cp -f ~/workspace/ipop-project/Tincan/trunk/out/release/x64/ipop-tincan ~/workspace/ipop-vpn</code></p>
-  </li>
-  <li>
-    <p>Copy and edit your config file.<br />
-See <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Configuration">Configuring</a> your network more details, but the only the XMPP details are necessary to get started.<br />
-<code class="highlighter-rouge">cp ~/workspace/ipop-project/Controllers/controller/sample-gvpn-config.json ~/workspace/ipop-vpn/config/ipop-config.json</code></p>
-  </li>
-  <li>Start the IPOP-VPN processes
-Check your firewall, both host and guest if virtualized.
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo ./ipop-tincan &amp;
-python -m controller.Controller -c ./config/ipop-config.json &amp;
-</code></pre>
-    </div>
-  </li>
-  <li>Terminate IPOP-VPN
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo killall ipop-tincan  
-ps aux | grep -v grep | grep controller.Controller | awk <span class="s1">'{print $2}'</span> | xargs sudo <span class="nb">kill</span> -9 
-</code></pre>
-    </div>
-  </li>
-</ol>
-
-
-
-      </section>
-    </div>
-  </article>
 </div>
 
 

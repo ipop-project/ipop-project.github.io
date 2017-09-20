@@ -159,12 +159,82 @@
 
 
 
-
 <div id="main" role="main">
-  <div class="sidebar">
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      <section class="page__content" itemprop="text">
+
+        <aside class="sidebar__right">
+          <nav class="toc">
+            <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+            <ul class="section-nav">
+<li class="toc-entry toc-h3"><a href="#objectives">Objectives</a></li>
+<li class="toc-entry toc-h3"><a href="#design">Design</a></li>
+<li class="toc-entry toc-h3"><a href="#example">Example</a></li>
+</ul>
+          </nav>
+        </aside>
+
+        <p>This page discusses the methodology for testing and evaluating IPOP. Visit the <a href="https://github.com/ipop-project/Release-Management/tree/master/Test">testing repository</a> for the source of the test suite.</p>
+
+<h3 id="objectives">Objectives</h3>
+
+<p>The objectives of the test suite are to provide the following:</p>
+
+<ul>
+  <li>Automated and scalable deployment of IPOP instances</li>
+  <li>Productivity
+    <ul>
+      <li>Test and visualize the correctness of the IPOP source</li>
+    </ul>
+  </li>
+  <li>Performance evaluation
+    <ul>
+      <li>The latency and throughput of the network</li>
+    </ul>
+  </li>
+  <li>Dependability evaluation
+    <ul>
+      <li>The robustness of a dynamic network</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="design">Design</h3>
+
+<p>The test-suite was designed using a two-level <em>master-worker</em> model, as shown in <strong>Figure 1</strong>. In the first level, a host computer (<em>master</em>) orchestrates a set of physical nodes (<em>workers</em>) via SSH/SFTP. In the second level, each physical node (<em>master</em>) commands a set of Linux containers (LXCs) (<em>workers</em>). Collectively, the host computer controls a large number of LXCs that scales with the number of physical nodes. Each LXC runs an instance of IPOP to collectively realize an IPOP network.</p>
+
+<p>To eliminate dependencies that are external to this system, one physical node assumes the role of <em>server</em> and deploys ejabberd (for XMPP/STUN) and turnserver (for TURN) to service the IPOP instances.</p>
+
+<p>The host computer is able to command specific IPOP instances for network stimulation. For example, an IPOP instance can be run or stopped to simulate nodes entering or leaving the network; IPOP instances can be instructed to interact with other instances to simulate inter-node communication. Additionally, the IPOP instances provide local information about the network to the host computer to interpret the state of the network. For example, each IPOP instance can provide a list of its neighbouring peers so that the host computer can visualize the network topology; individual IPOP instances can report details such as transmission latency, packet loss, or resource utilization for performance and dependability analysis.</p>
+
+<p><img src="https://github.com/ipop-project/ipop-project.github.io/blob/master/wiki-images/ipop-scale-test-architecture.png" alt="" /></p>
+
+<p><strong>Figure 1.</strong> IPOP scale-test architecture</p>
+
+<h3 id="example">Example</h3>
+
+<p>To improve the dependability of IPOP GroupVPN, a recovery mechanism is implemented to restore the structured peer-to-peer topology after the network has been partitioned. Using the test suite, we are able to test the correctness of this mechanism, as shown in <strong>Figure 2</strong>. In (<em>a</em>), the network topology is well formed. In (<em>b</em>), four IPOP instances are stopped to simulate the partitioning of the network into two halves. In (<em>c</em>), after some time, the two network partitions have reunited and will eventually restore the network topology.</p>
+
+<p><img src="https://github.com/ipop-project/ipop-project.github.io/blob/master/wiki-images/ipop-topology-recovery.png" alt="" /></p>
+
+<p><strong>Figure 2.</strong> Simulation of the IPOP GroupVPN recovery mechanism</p>
+
+
+
+
+      </section>
+    </div>
+  </article>
+    <div class="sidebar">
     <nav class="nav__list">
       <div class="wiki-top-links">
-        <a href="../wiki">Wiki Index</a> / <a href="../wikipages">Wiki Pages</a>
+        <a href="../wiki" class="display-unset">Wiki Index</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
       </div>
         
 
@@ -225,67 +295,6 @@
 
     </nav>
   </div>
-
-  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    
-    
-    
-
-    <div class="page__inner-wrap">
-      <section class="page__content" itemprop="text">
-
-
-        <p>This page discusses the methodology for testing and evaluating IPOP. Visit the <a href="https://github.com/ipop-project/Release-Management/tree/master/Test">testing repository</a> for the source of the test suite.</p>
-
-<h3 id="objectives">Objectives</h3>
-
-<p>The objectives of the test suite are to provide the following:</p>
-
-<ul>
-  <li>Automated and scalable deployment of IPOP instances</li>
-  <li>Productivity
-    <ul>
-      <li>Test and visualize the correctness of the IPOP source</li>
-    </ul>
-  </li>
-  <li>Performance evaluation
-    <ul>
-      <li>The latency and throughput of the network</li>
-    </ul>
-  </li>
-  <li>Dependability evaluation
-    <ul>
-      <li>The robustness of a dynamic network</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="design">Design</h3>
-
-<p>The test-suite was designed using a two-level <em>master-worker</em> model, as shown in <strong>Figure 1</strong>. In the first level, a host computer (<em>master</em>) orchestrates a set of physical nodes (<em>workers</em>) via SSH/SFTP. In the second level, each physical node (<em>master</em>) commands a set of Linux containers (LXCs) (<em>workers</em>). Collectively, the host computer controls a large number of LXCs that scales with the number of physical nodes. Each LXC runs an instance of IPOP to collectively realize an IPOP network.</p>
-
-<p>To eliminate dependencies that are external to this system, one physical node assumes the role of <em>server</em> and deploys ejabberd (for XMPP/STUN) and turnserver (for TURN) to service the IPOP instances.</p>
-
-<p>The host computer is able to command specific IPOP instances for network stimulation. For example, an IPOP instance can be run or stopped to simulate nodes entering or leaving the network; IPOP instances can be instructed to interact with other instances to simulate inter-node communication. Additionally, the IPOP instances provide local information about the network to the host computer to interpret the state of the network. For example, each IPOP instance can provide a list of its neighbouring peers so that the host computer can visualize the network topology; individual IPOP instances can report details such as transmission latency, packet loss, or resource utilization for performance and dependability analysis.</p>
-
-<p><img src="https://github.com/ipop-project/ipop-project.github.io/blob/master/wiki-images/ipop-scale-test-architecture.png" alt="" /></p>
-
-<p><strong>Figure 1.</strong> IPOP scale-test architecture</p>
-
-<h3 id="example">Example</h3>
-
-<p>To improve the dependability of IPOP GroupVPN, a recovery mechanism is implemented to restore the structured peer-to-peer topology after the network has been partitioned. Using the test suite, we are able to test the correctness of this mechanism, as shown in <strong>Figure 2</strong>. In (<em>a</em>), the network topology is well formed. In (<em>b</em>), four IPOP instances are stopped to simulate the partitioning of the network into two halves. In (<em>c</em>), after some time, the two network partitions have reunited and will eventually restore the network topology.</p>
-
-<p><img src="https://github.com/ipop-project/ipop-project.github.io/blob/master/wiki-images/ipop-topology-recovery.png" alt="" /></p>
-
-<p><strong>Figure 2.</strong> Simulation of the IPOP GroupVPN recovery mechanism</p>
-
-
-
-      </section>
-    </div>
-  </article>
 </div>
 
 
