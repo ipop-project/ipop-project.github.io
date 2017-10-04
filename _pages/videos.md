@@ -1,6 +1,8 @@
 ---
 permalink: /videos/
 title: "Videos"
+header:
+  overlay_color: "#3C829B"
 ---
 {% include toc %}
 

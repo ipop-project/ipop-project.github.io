@@ -1,6 +1,8 @@
 ---
 permalink: /about/
 title: "About IPOP"
+header:
+  overlay_color: "#3C829B"
 ---
 {% include toc %}
 

@@ -1,6 +1,8 @@
 ---
 permalink: /contribute/
 title: "Contribute"
+header:
+  overlay_color: "#3C829B"
 ---
 {% include toc %}
 

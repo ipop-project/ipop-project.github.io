@@ -268,10 +268,6 @@ defaults:
       path: "wiki"
     values:
       layout: wiki
-      author_profile: false
-      read_time: false
-      share: false
-      related: false
       toc: true
 
 
