@@ -208,7 +208,7 @@ layout: default
       <div class="wiki-top-links">
         <a href="../wiki">Wiki Home</a> / <a href="../wikipages">Wiki Pages</a>
       </div>
-        { % include_absolute _site/wiki/_Sidebar.html %} <!-- REMOVE THE SPACE BETWEEN { and % BEFOR PUBLISHING. -->
+        { include_absolute _site/wiki/_Sidebar.html } <!-- ADD % AFTER { AND BEFOR }. -->
     </nav>
   </div>
 
