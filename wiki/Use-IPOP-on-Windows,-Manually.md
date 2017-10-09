@@ -1,4 +1,6 @@
-# Install, Run, and Remove IPOP on Windows, Manually
+# Use IPOP on Windows, Manually
+
+**Warning: This document may be out of date.**
 
 | | Description |
 |---|---|

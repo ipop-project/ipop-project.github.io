@@ -37,8 +37,8 @@
 <meta property="og:title" content="IPOP">
 
 
-  <link rel="canonical" href="https://vahid-dan.github.io/ipop-project.github.io/wiki/Introduction-to-the-Scale-Test-Script-Usage">
-  <meta property="og:url" content="https://vahid-dan.github.io/ipop-project.github.io/wiki/Introduction-to-the-Scale-Test-Script-Usage">
+  <link rel="canonical" href="https://vahid-dan.github.io/ipop-project.github.io/wiki/Introduction-to-the-Scale-test-Script-Usage">
+  <meta property="og:url" content="https://vahid-dan.github.io/ipop-project.github.io/wiki/Introduction-to-the-Scale-test-Script-Usage">
 
 
 
@@ -182,7 +182,7 @@
           <nav class="toc">
             <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
             <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#introduction-to-the-scale-test-script-usage">Introduction to the Scale Test Script Usage</a>
+<li class="toc-entry toc-h1"><a href="#introduction-to-the-scale-test-script-usage">Introduction to the Scale-test Script Usage</a>
 <ul>
 <ul>
 <li class="toc-entry toc-h3"><a href="#modes">Modes</a></li>
@@ -202,9 +202,9 @@
           </nav>
         </aside>
 
-        <h1 id="introduction-to-the-scale-test-script-usage">Introduction to the Scale Test Script Usage</h1>
+        <h1 id="introduction-to-the-scale-test-script-usage">Introduction to the Scale-test Script Usage</h1>
 
-<p>Scale-Test can be found in Release Management repo under test directory: https://github.com/ipop-project/Release-Management</p>
+<p>Scale-test can be found in Release Management repo under test directory: https://github.com/ipop-project/Release-Management</p>
 
 <p><strong>Note: Current version only tested on Ubuntu 16.04 VM</strong></p>
 
@@ -217,23 +217,25 @@
   </li>
   <li>IPOP Switch-Mode test (In Development)
     <ul>
-      <li>Create instance of IPOP-VPN on host machine which is added to lxc-bridge to connect un-managed containers to IPOP-VPN
-        <h3 id="setup-for-ipop-groupvpn-test">Setup for IPOP GroupVPN test</h3>
-        <ol>
-          <li><code class="highlighter-rouge">git clone https://github.com/ipop-project/Release-Management</code></li>
-          <li><code class="highlighter-rouge">cd  ./Release-Management/Test/ipop-scale-test</code></li>
-          <li>Run scale test script, Enter <code class="highlighter-rouge">./scale_test.sh</code></li>
-          <li>When prompted for mode selection, type <code class="highlighter-rouge">classic</code></li>
-          <li>Run <code class="highlighter-rouge">configure</code> (Install dependencies needed on host machine and for default container from which nodes are cloned from with the <code class="highlighter-rouge">containers-create</code> command)</li>
-          <li>Next <code class="highlighter-rouge">containers-create</code> (Create and start specified number of containers, build IPOP src, choose IPOP network topology configuration and copy built IPOP files to each container)</li>
-          <li>If visualizer option was enabled while running <code class="highlighter-rouge">containers-create</code> command run <code class="highlighter-rouge">visualizer-start</code> (Starts up two processes on host machine one running Net Visualizer found at http://localhost:8888/IPOP)</li>
-          <li>Run <code class="highlighter-rouge">ipop-run</code>(Start up IPOP processes on lxc nodes)
-            <h3 id="setup-for-ipop-switch-mode">Setup for IPOP Switch-Mode</h3>
-          </li>
-        </ol>
-      </li>
+      <li>Create instance of IPOP-VPN on host machine which is added to lxc-bridge to connect un-managed containers to IPOP-VPN</li>
     </ul>
   </li>
+</ul>
+
+<h3 id="setup-for-ipop-groupvpn-test">Setup for IPOP GroupVPN test</h3>
+<ol>
+  <li><code class="highlighter-rouge">git clone https://github.com/ipop-project/Release-Management</code></li>
+  <li><code class="highlighter-rouge">cd  ./Release-Management/Test/ipop-scale-test</code></li>
+  <li>Run scale test script, Enter <code class="highlighter-rouge">./scale_test.sh</code></li>
+  <li>When prompted for mode selection, type <code class="highlighter-rouge">classic</code></li>
+  <li>Run <code class="highlighter-rouge">configure</code> (Install dependencies needed on host machine and for default container from which nodes are cloned from with the <code class="highlighter-rouge">containers-create</code> command)</li>
+  <li>Next <code class="highlighter-rouge">containers-create</code> (Create and start specified number of containers, build IPOP src, choose IPOP network topology configuration and copy built IPOP files to each container)</li>
+  <li>If visualizer option was enabled while running <code class="highlighter-rouge">containers-create</code> command run <code class="highlighter-rouge">visualizer-start</code> (Starts up two processes on host machine one running Net Visualizer found at http://localhost:8888/IPOP)</li>
+  <li>Run <code class="highlighter-rouge">ipop-run</code>(Start up IPOP processes on lxc nodes)</li>
+</ol>
+
+<h3 id="setup-for-ipop-switch-mode">Setup for IPOP Switch-Mode</h3>
+<ul>
   <li>The steps for setting up IPOP-VPN in scale test environment are the same as setting up the scale test for GroupVPN Mode with exception to:
     <ul>
       <li>When prompted for mode selection, type <code class="highlighter-rouge">switch</code></li>
@@ -387,7 +389,7 @@ tar -xf robo3t-1.1.1-linux-x86_64-c93c6b0.tar.gz <span class="c">#Unzip src to s
     <div class="sidebar">
     <nav class="nav__list">
       <div class="wiki-top-links">
-        <a href="../wiki" class="display-unset">Wiki Index</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
+        <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
       </div>
         
 

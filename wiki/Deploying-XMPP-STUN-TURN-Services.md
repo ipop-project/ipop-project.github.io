@@ -267,36 +267,3 @@ https://github.com/ipop-project/ipop-project.github.io/wiki/Introduction-to-the-
 	```bash
 	netstat -aupn | grep 19302
 	```
-
-## IPOP Configuration for SocialVPN and GroupVPN
-
-1. Modify the `xmpp_username`, `xmpp_password`, `xmpp_host`, and `stun` flags to use the XMPP/STUN services provided by ejabberd
-
-	```json
-	...
-	    "CFx": {
-	        "xmpp_username": "ipopuser@ejabberd",
-	        "xmpp_password": "password",
-	        "xmpp_host": "<ip-address-of-ejabberd>",
-	```
-	```json
-	...
-	    "TincanSender": {
-	        "stun": ["<ip-address-of-ejabberd>:3478"],
-	```
-
-2. If you want to use your own STUN service independent from ejabberd, just change the address to your STUN server address. For example, TURN itself supports STUN service, so just use the turnserver for STUN.
-
-	```json
-	...
-	    "TincanSender": {
-		"stun": ["<ip-address-of-your-turnserver>:19302"],
-	```
-
-2. Modify the `turn` flag to use the TURN service provided by turnserver
-
-	```json
-	...
-	    "TincanSender": {
-	        "turn": [{"server": "<turnserver>:19302", "user": "ipopuser", "pass": "password"}],
-	```

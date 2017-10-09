@@ -182,11 +182,14 @@
           <nav class="toc">
             <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
             <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#faqs">FAQs</a></li>
 </ul>
           </nav>
         </aside>
 
-        <ol>
+        <h1 id="faqs">FAQs</h1>
+
+<ol>
   <li>
     <p><strong>What are the main differences between SocialVPN and GroupVPN?</strong></p>
 
@@ -218,24 +221,6 @@
     <p><strong>When should I use GroupVPN in switch mode?</strong></p>
 
     <p>GroupVPN in switch mode is recommended when you wish to connect several virtual machines or containers running on the same server to a GroupVPN - in which case, you can run GroupVPN in the host itself in switchmode, and bind the IPOP tap device to a Linux bridge.</p>
-  </li>
-  <li>
-    <p><strong>How do I check the IP address of peers in my SocialVPN?</strong></p>
-
-    <table>
-      <tbody>
-        <tr>
-          <td>Currently, this can be done by issuing a get_state [[controller API</td>
-          <td>Controller API]] call to the running tincan process. In Linux this can be done with the command line:</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> <span class="nb">echo</span> -e <span class="s1">'\x02\x01{"m":"get_state"}'</span> | netcat -q 1 -u 127.0.0.1 5800
-</code></pre>
-    </div>
-
-    <p>A feature for future releases is to provide a Web-based interface to browse the status of peers.</p>
   </li>
   <li>
     <p><strong>How do I configure the IP address of peers in my SocialVPN?</strong></p>
@@ -313,14 +298,14 @@ determined in the JSON configuration file by adding the following parameters:</p
   <li>
     <p><strong>How do I report an issue/bug?</strong></p>
 
-    <p>We use Github’s issue tracker: https://github.com/ipop-project/ipop-tincan/issues</p>
+    <p>We use Github’s issue tracker: https://github.com/ipop-project/ipop-project.github.io/issues</p>
 
     <p>When reporting a bug, please make sure you enable debug logging (as described above) and collect output files from tincan and controller.</p>
   </li>
   <li>
     <p><strong>How do I reference/acknowledge IPOP in a publication?</strong></p>
 
-    <p>Please refer to: http://ipop-project.org/learn/publications</p>
+    <p>Please refer to: http://ipop-project.org/learn/#publications</p>
   </li>
 </ol>
 
@@ -333,7 +318,7 @@ determined in the JSON configuration file by adding the following parameters:</p
     <div class="sidebar">
     <nav class="nav__list">
       <div class="wiki-top-links">
-        <a href="../wiki" class="display-unset">Wiki Index</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
+        <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
       </div>
         
 

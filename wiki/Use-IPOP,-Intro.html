@@ -37,8 +37,8 @@
 <meta property="og:title" content="IPOP">
 
 
-  <link rel="canonical" href="https://vahid-dan.github.io/ipop-project.github.io/wiki/Install,-Run,-and-Remove-IPOP-on-Ubuntu-and-Raspberry-Pi,-Manually">
-  <meta property="og:url" content="https://vahid-dan.github.io/ipop-project.github.io/wiki/Install,-Run,-and-Remove-IPOP-on-Ubuntu-and-Raspberry-Pi,-Manually">
+  <link rel="canonical" href="https://vahid-dan.github.io/ipop-project.github.io/wiki/Use-IPOP,-Intro">
+  <meta property="og:url" content="https://vahid-dan.github.io/ipop-project.github.io/wiki/Use-IPOP,-Intro">
 
 
 
@@ -182,143 +182,31 @@
           <nav class="toc">
             <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
             <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#install-run-and-remove-ipop-on-ubuntu-and-raspberry-pi-manually">Install, Run, and Remove IPOP on Ubuntu and Raspberry Pi, Manually</a>
+<li class="toc-entry toc-h1"><a href="#use-ipop-intro">Use IPOP, Intro</a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#download-and-install-dependencies">Download and Install Dependencies</a></li>
-<li class="toc-entry toc-h2"><a href="#get-ipop-binary">Get IPOP Binary</a></li>
-<li class="toc-entry toc-h2"><a href="#copy-configuration-file">Copy Configuration File</a></li>
-<li class="toc-entry toc-h2"><a href="#run-ipop">Run IPOP</a>
-<ul>
-<li class="toc-entry toc-h3"><a href="#run-ipop-tincan">Run IPOP TinCan</a></li>
-<li class="toc-entry toc-h3"><a href="#run-ipop-controller">Run IPOP Controller</a></li>
+<li class="toc-entry toc-h2"><a href="#supported-operating-systems-and-platforms">Supported Operating Systems and Platforms</a></li>
+<li class="toc-entry toc-h2"><a href="#other-operating-systems-and-platforms">Other Operating Systems and Platforms</a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h2"><a href="#stop-ipop">Stop IPOP</a>
-<ul>
-<li class="toc-entry toc-h3"><a href="#stop-ipop-tincan">Stop IPOP Tincan</a></li>
-<li class="toc-entry toc-h3"><a href="#stop-ipop-controller">Stop IPOP Controller</a></li>
-</ul>
-</li>
-<li class="toc-entry toc-h2"><a href="#remove-ipop">Remove IPOP</a></li>
-</ul>
-</li>
-<li class="toc-entry toc-h1"><a href="#key-points-summary">Key Points Summary</a></li>
 </ul>
           </nav>
         </aside>
 
-        <h1 id="install-run-and-remove-ipop-on-ubuntu-and-raspberry-pi-manually">Install, Run, and Remove IPOP on Ubuntu and Raspberry Pi, Manually</h1>
+        <h1 id="use-ipop-intro">Use IPOP, Intro</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th> </th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Tested on</strong></td>
-      <td>Ubuntu 14.04 and 16.04 x64 and Raspbian Jessie and Stretch on Raspberry Pi 3</td>
-    </tr>
-    <tr>
-      <td><strong>Time</strong></td>
-      <td>~ 10 Minutes</td>
-    </tr>
-    <tr>
-      <td><strong>Question(s)</strong></td>
-      <td>- How to install IPOP?<br /> - How to run IPOP?<br /> - How to remove IPOP?</td>
-    </tr>
-    <tr>
-      <td><strong>Objective(s)</strong></td>
-      <td>- Install IPOP<br /> - Run IPOP<br /> - Stop IPOP<br /> - Remove IPOP</td>
-    </tr>
-  </tbody>
-</table>
+<h2 id="supported-operating-systems-and-platforms">Supported Operating Systems and Platforms</h2>
 
-<h2 id="download-and-install-dependencies">Download and Install Dependencies</h2>
-
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo apt-get update -y
-sudo apt-get install -y software-properties-common libssl-dev
-sudo apt-get install -y python3 python-pip python-dev
-sudo pip install sleekxmpp psutil pystun
-</code></pre>
-</div>
-
-<h2 id="get-ipop-binary">Get IPOP Binary</h2>
-
-<p>Download the proper version of IPOP from <a href="https://github.com/ipop-project/Downloads/releases">our latest release</a>.</p>
-
-<p>Then go to the download directory and extract the file (Put in the actual file name):</p>
-
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>tar -xzvf ipop-vxxx.tar.gz
-<span class="nb">cd </span>ipop-vxxx
-</code></pre>
-</div>
-
-<h2 id="copy-configuration-file">Copy Configuration File</h2>
-
-<p>You will need a valid configuration file (ipop-config.json) to run IPOP. Go to the directory you have your config file and copy the file to the <code class="highlighter-rouge">config</code> directory:</p>
-
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>cp PATH/TO/CONFIGFILE/ipop-config.json config/
-</code></pre>
-</div>
-
-<h2 id="run-ipop">Run IPOP</h2>
-
-<h3 id="run-ipop-tincan">Run IPOP TinCan</h3>
-
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo ./ipop-tincan &amp;
-</code></pre>
-</div>
-
-<h3 id="run-ipop-controller">Run IPOP Controller</h3>
-
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>python -m controller.Controller -c ./config/ipop-config.json &amp;
-</code></pre>
-</div>
-
-<p>Now, if everything is going well, IPOP should be run.</p>
-
-<h2 id="stop-ipop">Stop IPOP</h2>
-
-<h3 id="stop-ipop-tincan">Stop IPOP Tincan</h3>
-
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo killall ipop-tincan  
-</code></pre>
-</div>
-
-<h3 id="stop-ipop-controller">Stop IPOP Controller</h3>
-
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>ps aux | grep -v grep | grep controller.Controller | awk <span class="s1">'{print $2}'</span> | xargs sudo <span class="nb">kill</span> -9
-</code></pre>
-</div>
-
-<h2 id="remove-ipop">Remove IPOP</h2>
-
-<p>To uninstall IPOP, its is safe to stop it first and then remove the IPOP execution directory.</p>
-
-<hr />
-
-<h1 id="key-points-summary">Key Points Summary</h1>
-
+<p>We currently support the following operating systems and platforms:</p>
 <ul>
-  <li>Run IPOP:</li>
+  <li><a href="Use-IPOP-on-Ubuntu-and-Raspberry-Pi,-Manually">Ubuntu 14.04 and 16.04 - x64</a></li>
+  <li><a href="Use-IPOP-on-Ubuntu-and-Raspberry-Pi,-Manually">Raspbian Jessie and Stretch on Raspberry Pi 3 - ARM7</a></li>
+  <li><a href="Use-IPOP-on-Windows,-Manually">Microsoft Windows 10 - x64</a></li>
+  <li><a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Use-IPOP-on-CentOS,-Manually">CentOS 7 - x64</a></li>
 </ul>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo ./ipop-tincan &amp;
-python -m controller.Controller -c ./config/ipop-config.json &amp;
-</code></pre>
-</div>
-<ul>
-  <li>Stop IPOP:</li>
-</ul>
+<h2 id="other-operating-systems-and-platforms">Other Operating Systems and Platforms</h2>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo killall ipop-tincan  
-ps aux | grep -v grep | grep controller.Controller | awk <span class="s1">'{print $2}'</span> | xargs sudo <span class="nb">kill</span> -9
-</code></pre>
-</div>
-
+<p>If the requirements are met, for other versions and flavors of Ubuntu or other Debian-based Linux distros, our Ubuntu release should work out-of-the-box. Other versions of Raspberry Pi such as Raspberry Pi 2 and Raspberry Pi Zero and also other Debian-based operating systems on ARM architecture, such as Orange Pi, will most probably work with our Raspberry Pi 3 release. If it didn’t work, you may need to build IPOP code manually on that machine. There is a chance you also need to build WebRTC static libraries before that.</p>
 
 
 
@@ -329,7 +217,7 @@ ps aux | grep -v grep | grep controller.Controller | awk <span class="s1">'{prin
     <div class="sidebar">
     <nav class="nav__list">
       <div class="wiki-top-links">
-        <a href="../wiki" class="display-unset">Wiki Index</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
+        <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
       </div>
         
 

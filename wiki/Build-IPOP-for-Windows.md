@@ -1,5 +1,7 @@
 # Build IPOP for Windows
 
+**Warning: This document may be out of date.**
+
 | | Description |
 |---|---|
 | **Tested on** | Microsoft Windows 10 x64 |

@@ -1,9 +1,9 @@
-# IPOP Scale-test Walk-through
+# IPOP Scale-test Walkthrough
 
 |  | Description |
 |---|---|
 | **Tested on** | Ubuntu 16.04 Desktop x64 |
-| **Time** | ~40 Minutes |
+| **Time** | ~ 40 Minutes |
 | **Objective**| - Install and execute Ipop scale test for validating functionality and debugging. <br /> - Visualize topology based on configuration parameters.|  
   
 ## Description

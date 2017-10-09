@@ -8,17 +8,17 @@ IPOP (IP-Over-P2P) is an open-source user-centric software virtual network allow
 
 | Title | Operating System / Platform | Time |
 |---|---|:---:|
-| Install, Run, and Remove IPOP, Manually | [Intro](Install,-Run,-and-Remove-IPOP,-Intro) \| [Ubuntu and Raspberry Pi](Install,-Run,-and-Remove-IPOP-on-Ubuntu-and-Raspberry-Pi,-Manually) \| [Windows](Install,-Run,-and-Remove-IPOP-on-Windows,-Manually) \| [CentOS](Install,-Run,-and-Remove-IPOP-on-CentOS,-Manually) | ~ 10 mins |
-| Install, Run, and Remove IPOP, Scripted | [Ubuntu, Raspberry Pi, and CentOS](Install,-Run,-and-Remove-IPOP-on-Ubuntu,-Raspberry-Pi-and-CentOS,-Scripted) | ~ 10 mins |
-| Use IPOP, Demonstration Video | [Ubuntu](https://screencast-o-matic.com/watch/cbjXbPlmdl) | ~ 4 mins |
-| IPOP Scale-test Walk-through | [Ubuntu](IPOP-Scale-test-Walk-through) | ~ 40 mins |
+| Use IPOP, Manually | [Intro](Use-IPOP,-Intro) \| [Ubuntu & Raspberry Pi](Use-IPOP-on-Ubuntu-and-Raspberry-Pi,-Manually) \| [Windows](Use-IPOP-on-Windows,-Manually) \| [CentOS](Use-IPOP-on-CentOS,-Manually) | ~ 10 mins |
+| Use IPOP, Scripted | [Ubuntu, Raspberry Pi, & CentOS](Use-IPOP-on-Ubuntu,-Raspberry-Pi-and-CentOS,-Scripted) | ~ 10 mins |
+| Use IPOP, Demo Video | [Ubuntu](https://screencast-o-matic.com/watch/cbjXbPlmdl) | ~ 4 mins |
+| Scale-test Walkthrough | [Ubuntu](IPOP-Scale-test-Walkthrough) | ~ 40 mins |
 
 ### IPOP Quick Guide - Advanced
 
 | Title | Operating System / Platform | Time |
 |---|---|:---:|
-| Build WebRTC Libraries | [Intro](Build-WebRTC-Libraries,-Intro) \| [Ubuntu and CentOS](Build-WebRTC-Libraries-for-Linux) \| [Raspberry Pi](Build-WebRTC-Libraries-for-Raspberry-Pi-(Cross-compile-on-Ubuntu)) \| [Windows](Build-WebRTC-Libraries-for-Windows) |  ~ 30 mins |
+| Build WebRTC Libraries | [Intro](Build-WebRTC-Libraries,-Intro) \| [Ubuntu & CentOS](Build-WebRTC-Libraries-for-Linux) \| [Raspberry Pi](Build-WebRTC-Libraries-for-Raspberry-Pi-(Cross-compile-on-Ubuntu)) \| [Windows](Build-WebRTC-Libraries-for-Windows) |  ~ 30 mins |
 | Build IPOP Code | [Intro](Build-IPOP,-Intro) \| [Ubuntu](Build-IPOP-for-Ubuntu) \| [Raspberry Pi](Build-IPOP-for-Raspbian-on-Raspberry-Pi) \| [Windows](Build-IPOP-for-Windows) \| [CentOS](Build-IPOP-for-CentOS) | ~ 10 mins |
-| Edit IPOP Configuration File | [Intro](Configuration,-Intro) \| [Ubuntu, Raspberry Pi, Windows, and CentOS](Configuration) | < 5 mins |
-| Use IPOP Scale-Test, A Tutorial | [Ubuntu](Introduction-to-the-Scale-Test-Script-Usage) | ~ 30 mins |
-| Use IPOP Visualizer | [Ubuntu](IPOP-Network-Visualizer) | < 5 mins |
+| Edit IPOP Configuration | [Intro](Configuration,-Intro) \| [Ubuntu, Raspberry Pi, Windows, & CentOS](Configuration) | < 5 mins |
+| IPOP Scale-test Tutorial | [Ubuntu](Introduction-to-the-Scale-Test-Script-Usage) | ~ 30 mins |
+| IPOP Network Visualizer | [Ubuntu](IPOP-Network-Visualizer) | < 5 mins |

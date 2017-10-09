@@ -187,7 +187,6 @@
 <li class="toc-entry toc-h2"><a href="#using-ipop-scale-test-xmppstunturn">Using IPOP Scale-Test (XMPP/STUN/TURN)</a></li>
 <li class="toc-entry toc-h2"><a href="#using-ejabberd-xmppstun">Using ejabberd (XMPP/STUN)</a></li>
 <li class="toc-entry toc-h2"><a href="#using-turnserver-turn">Using turnserver (TURN)</a></li>
-<li class="toc-entry toc-h2"><a href="#ipop-configuration-for-socialvpn-and-groupvpn">IPOP Configuration for SocialVPN and GroupVPN</a></li>
 </ul>
 </li>
 </ul>
@@ -505,45 +504,6 @@ https://github.com/ipop-project/ipop-project.github.io/wiki/Introduction-to-the-
   </li>
 </ol>
 
-<h2 id="ipop-configuration-for-socialvpn-and-groupvpn">IPOP Configuration for SocialVPN and GroupVPN</h2>
-
-<ol>
-  <li>
-    <p>Modify the <code class="highlighter-rouge">xmpp_username</code>, <code class="highlighter-rouge">xmpp_password</code>, <code class="highlighter-rouge">xmpp_host</code>, and <code class="highlighter-rouge">stun</code> flags to use the XMPP/STUN services provided by ejabberd</p>
-
-    <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="w"> </span><span class="err">...</span><span class="w">
-     </span><span class="s2">"CFx"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-         </span><span class="nt">"xmpp_username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ipopuser@ejabberd"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"xmpp_password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"password"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"xmpp_host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;ip-address-of-ejabberd&gt;"</span><span class="p">,</span><span class="w">
-</span></code></pre>
-    </div>
-    <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="w"> </span><span class="err">...</span><span class="w">
-     </span><span class="s2">"TincanSender"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-         </span><span class="nt">"stun"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"&lt;ip-address-of-ejabberd&gt;:3478"</span><span class="p">],</span><span class="w">
-</span></code></pre>
-    </div>
-  </li>
-  <li>
-    <p>If you want to use your own STUN service independent from ejabberd, just change the address to your STUN server address. For example, TURN itself supports STUN service, so just use the turnserver for STUN.</p>
-
-    <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="w"> </span><span class="err">...</span><span class="w">
-     </span><span class="s2">"TincanSender"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-     </span><span class="nt">"stun"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"&lt;ip-address-of-your-turnserver&gt;:19302"</span><span class="p">],</span><span class="w">
-</span></code></pre>
-    </div>
-  </li>
-  <li>
-    <p>Modify the <code class="highlighter-rouge">turn</code> flag to use the TURN service provided by turnserver</p>
-
-    <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="w"> </span><span class="err">...</span><span class="w">
-     </span><span class="s2">"TincanSender"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-         </span><span class="nt">"turn"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nt">"server"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;turnserver&gt;:19302"</span><span class="p">,</span><span class="w"> </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ipopuser"</span><span class="p">,</span><span class="w"> </span><span class="nt">"pass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"password"</span><span class="p">}],</span><span class="w">
-</span></code></pre>
-    </div>
-  </li>
-</ol>
-
 
 
 
@@ -553,7 +513,7 @@ https://github.com/ipop-project/ipop-project.github.io/wiki/Introduction-to-the-
     <div class="sidebar">
     <nav class="nav__list">
       <div class="wiki-top-links">
-        <a href="../wiki" class="display-unset">Wiki Index</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
+        <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
       </div>
         
 

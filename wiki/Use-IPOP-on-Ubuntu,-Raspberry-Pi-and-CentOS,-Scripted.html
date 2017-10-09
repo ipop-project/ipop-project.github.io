@@ -37,8 +37,8 @@
 <meta property="og:title" content="IPOP">
 
 
-  <link rel="canonical" href="https://vahid-dan.github.io/ipop-project.github.io/wiki/Build-the-Code-for-Ubuntu">
-  <meta property="og:url" content="https://vahid-dan.github.io/ipop-project.github.io/wiki/Build-the-Code-for-Ubuntu">
+  <link rel="canonical" href="https://vahid-dan.github.io/ipop-project.github.io/wiki/Use-IPOP-on-Ubuntu,-Raspberry-Pi-and-CentOS,-Scripted">
+  <meta property="og:url" content="https://vahid-dan.github.io/ipop-project.github.io/wiki/Use-IPOP-on-Ubuntu,-Raspberry-Pi-and-CentOS,-Scripted">
 
 
 
@@ -182,182 +182,159 @@
           <nav class="toc">
             <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
             <ul class="section-nav">
-<li class="toc-entry toc-h2"><a href="#download-dependencies">Download dependencies</a></li>
-<li class="toc-entry toc-h2"><a href="#download-source-code">Download source code</a></li>
-<li class="toc-entry toc-h2"><a href="#build-ipop-tincan-for-linux">Build ipop-tincan for Linux</a></li>
+<li class="toc-entry toc-h1"><a href="#use-ipop-on-ubuntu-raspberry-pi-and-centos-scripted">Use IPOP on Ubuntu, Raspberry Pi and CentOS, Scripted</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#prerequisite">Prerequisite</a></li>
+<li class="toc-entry toc-h2"><a href="#launching-the-ipop-vpn-installer">Launching the IPOP-VPN Installer</a></li>
+<li class="toc-entry toc-h2"><a href="#using-ipop">Using IPOP</a></li>
+<li class="toc-entry toc-h2"><a href="#log-files">Log Files</a></li>
+<li class="toc-entry toc-h2"><a href="#manual-configuration">Manual Configuration</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#key-points-summary">Key Points Summary</a></li>
 </ul>
           </nav>
         </aside>
 
-        <p>Tested on Ubuntu 14.04</p>
+        <h1 id="use-ipop-on-ubuntu-raspberry-pi-and-centos-scripted">Use IPOP on Ubuntu, Raspberry Pi and CentOS, Scripted</h1>
 
-<p>These instructions are derived from these links:</p>
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Tested on</strong></td>
+      <td>Ubuntu 14.04 and 16.04 x64, Raspbian Stretch and Jessie on Raspberry Pi 3 and CentOS 7</td>
+    </tr>
+    <tr>
+      <td><strong>Time</strong></td>
+      <td>~ 10 Minutes</td>
+    </tr>
+    <tr>
+      <td><strong>Question(s)</strong></td>
+      <td>- How to install IPOP?<br /> - How to setup IPOP basic configuration?<br /> - How to run IPOP?<br /> - How to remove IPOP?</td>
+    </tr>
+    <tr>
+      <td><strong>Objective(s)</strong></td>
+      <td>- Install IPOP<br /> - Run IPOP<br /> - Stop IPOP<br /> - Remove IPOP</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Note:</strong> You need to have root access to run some of the following commands. Running the IPOP Installer with just adding <code class="highlighter-rouge">sudo</code> to the beginning of the command is NOT enough. Switch to interactive root shell:</p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo -i
+</code></pre>
+</div>
+
+<h2 id="prerequisite">Prerequisite</h2>
+
+<p>If the <code class="highlighter-rouge">wget</code> package is not installed, you will need to install it:</p>
+
+<p><strong>In Ubuntu:</strong></p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>apt-get install wget
+</code></pre>
+</div>
+
+<p><strong>In CentOS:</strong></p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>yum install wget
+</code></pre>
+</div>
+
+<h2 id="launching-the-ipop-vpn-installer">Launching the IPOP-VPN Installer</h2>
+
+<p>To start the IPOP Installer, run the following command:</p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>wget -O - https://raw.githubusercontent.com/ipop-project/Release-Management/master/Deployment/linux/installer | /bin/bash
+</code></pre>
+</div>
+
+<p>The default installation directory will be <code class="highlighter-rouge">/opt/ipop</code> and you can use <code class="highlighter-rouge">ipop</code> executable script to control IPOP.</p>
+
+<p>Note: Make sure you have already switched to interactive root shell using <code class="highlighter-rouge">sudo -i</code> before running the above command. Running it with just adding <code class="highlighter-rouge">sudo</code> to the beginning is NOT enough.</p>
+
+<h2 id="using-ipop">Using IPOP</h2>
+
+<p>First, change current directory to the installation directory:</p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> /opt/ipop
+</code></pre>
+</div>
+
+<p>Execute IPOP which is <code class="highlighter-rouge">ipop</code> executable script right in the installation directory with following parameters:</p>
+
+<p><strong>Install IPOP:</strong> (If you have already installed IPOP using IPOP Installer, you don’t need to re-install it. So just skip this command.)</p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop install
+</code></pre>
+</div>
+
+<p><strong>Configure IPOP:</strong></p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop config
+</code></pre>
+</div>
+
+<p><strong>Start IPOP:</strong></p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop start
+</code></pre>
+</div>
+
+<p><strong>Get IPOP Node Status:</strong></p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop status <span class="o">(</span>This option is not available <span class="k">in </span>this release, yet.<span class="o">)</span>
+</code></pre>
+</div>
+
+<p><strong>Stop IPOP:</strong></p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop stop
+</code></pre>
+</div>
+
+<p><strong>Remove IPOP:</strong></p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop remove
+</code></pre>
+</div>
+
+<h2 id="log-files">Log Files</h2>
+
+<p>If anything went wrong while using IPOP, the log files are located at <code class="highlighter-rouge">/opt/ipop/log</code>.</p>
+
+<h2 id="manual-configuration">Manual Configuration</h2>
+
+<p>If you ever need to change the configurations manually, the sample configuration files are located in <code class="highlighter-rouge">/opt/ipop/sample-gvpn-config</code>. IPOP reads the configurations from <code class="highlighter-rouge">/opt/ipop/config/ipop-config.json</code> which will automatically be created after running <code class="highlighter-rouge">./ipop config</code> and following the prompts. Keep in mind you need to stop IPOP and then start it again after changing the configurations.
+See the <a href="Configuration">configuration page</a> for more information about the configuration options available for IPOP-VPN.</p>
+
+<hr />
+
+<h1 id="key-points-summary">Key Points Summary</h1>
 
 <ul>
-  <li>https://sites.google.com/a/chromium.org/dev/developers/how-tos/install-depot-tools</li>
-  <li>http://www.webrtc.org/native-code/development/prerequisite-sw</li>
-  <li>http://www.webrtc.org/native-code/development</li>
-  <li>http://www.html5rocks.com/en/tutorials/webrtc/basics/</li>
+  <li>Start the IPOP Installer:</li>
 </ul>
 
-<h2 id="download-dependencies">Download dependencies</h2>
-<ol>
-  <li>
-    <p>Install dependencies</p>
-
-    <p>a. For Ubuntu and Debian</p>
-
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo apt-get update
-sudo apt-get install default-jdk pkg-config git subversion make gcc g++ python
-sudo apt-get install libexpat1-dev libgtk2.0-dev libnss3-dev libssl-dev 
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>wget -O - https://raw.githubusercontent.com/ipop-project/Release-Management/master/Deployment/linux/installer | /bin/bash
 </code></pre>
-    </div>
-  </li>
-  <li>
-    <p>Download depot_tools for chromium repo</p>
+</div>
+<ul>
+  <li>Usage:</li>
+</ul>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>mkdir libjingle; <span class="nb">cd </span>libjingle
-git clone --depth 1 https://chromium.googlesource.com/chromium/tools/depot_tools.git
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop config
+./ipop start
+./ipop stop
+./ipop remove
 </code></pre>
-    </div>
-  </li>
-  <li>
-    <p>Set up environmental variables and prepare local environment</p>
-
-    <p>a. For Ubuntu and Debian</p>
-
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/lib/jvm/default-java
-<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">/depot_tools:</span><span class="nv">$PATH</span><span class="s2">"</span>
-<span class="nb">export </span><span class="nv">GYP_DEFINES</span><span class="o">=</span><span class="s2">"use_openssl=1"</span>
-</code></pre>
-    </div>
-  </li>
-  <li>
-    <p>(Optional) For 32-bit compilation set target_arch</p>
-
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> <span class="nb">export </span><span class="nv">GYP_DEFINES</span><span class="o">=</span><span class="s2">"</span><span class="nv">$GYP_DEFINES</span><span class="s2"> target_arch=ia32"</span>
-</code></pre>
-    </div>
-  </li>
-</ol>
-
-<h2 id="download-source-code">Download source code</h2>
-
-<ol>
-  <li>
-    <p>Configure gclient to download libjingle code.</p>
-
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>gclient config --name<span class="o">=</span>trunk https://webrtc.googlecode.com/svn/branches/3.52
-</code></pre>
-    </div>
-  </li>
-  <li>
-    <p>Download libjingle and dependencies (this may take a while). You may probably see some errors like this: <em><code class="highlighter-rouge">Error: Command 'svn checkout http://src.chromium.org/svn/trunk/src/third_party/expat@245382 /users/PengH/libjingle/trunk/third_party/expat --revision 245382 --non-interactive --force --ignore-externals' returned non-zero exit status 1 in /users/PengH/libjingle</code></em>. This is because the chromium has moved the libjingle-3.52 from <strong>http</strong> to <strong>https</strong>. Please ignore it for now and follow the instruction.</p>
-
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>gclient sync --force
-</code></pre>
-    </div>
-  </li>
-  <li>
-    <p>Download ipop-tincan from github.com/ipop-project</p>
-
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd </span>trunk/talk; mkdir ipop-project; <span class="nb">cd </span>ipop-project
-git clone --depth 1 https://github.com/ipop-project/ipop-tap.git
-git clone --depth 1 https://github.com/ipop-project/ipop-tincan.git
-</code></pre>
-    </div>
-  </li>
-  <li>
-    <p>Return to libjingle trunk directory (/path_to_trunk/trunk/)</p>
-
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> ../../
-</code></pre>
-    </div>
-  </li>
-  <li>
-    <p>Copy modified gyp files to trunk/talk directory</p>
-
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>rm -f DEPS all.gyp talk/libjingle.gyp talk/ipop-tincan.gyp
-cp talk/ipop-project/ipop-tincan/build/ipop-tincan.gyp talk/
-cp talk/ipop-project/ipop-tincan/build/libjingle.gyp talk/
-cp talk/ipop-project/ipop-tincan/build/all.gyp .
-cp talk/ipop-project/ipop-tincan/build/DEPS .
-</code></pre>
-    </div>
-  </li>
-  <li>
-    <p>Update some configuration files to pull the libjingle-3.52 from https</p>
-
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> nano DEPS
-</code></pre>
-    </div>
-
-    <div class="highlighter-rouge"><pre class="highlight"><code> line13: "chromium_trunk" : "http://src.chromium.org/svn/trunk", 
- -&gt;
- line13: "chromium_trunk" : "https://src.chromium.org/svn/trunk", 
-</code></pre>
-    </div>
-  </li>
-  <li>
-    <p>Run the <strong>gclient sync</strong> command again to continue the downloading libjingle libs and dependencies</p>
-
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> gclient sync --force
-</code></pre>
-    </div>
-  </li>
-  <li>
-    <p>From step 6, you will get two directories called <strong>chromium_deps</strong> and <strong>chromium_gn</strong> in the /path/to/libjingle/ directory (same dir with trunk). Now enter the chromium_deps dir to make some changes.</p>
-
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> <span class="nb">cd</span> ../chromium_deps
- nano DEPS
-</code></pre>
-    </div>
-
-    <div class="highlighter-rouge"><pre class="highlight"><code> line20: "llvm_url": "http://src.chromium.org/llvm-project", 
- -&gt;
- line20: "llvm_url": "https://src.chromium.org/llvm-project", 
-</code></pre>
-    </div>
-  </li>
-  <li>
-    <p>Now you are good to go. Please run the <strong>gclient sync</strong> again to finish the downloading (this might take a while)</p>
-
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> <span class="nb">cd</span> ../trunk
- gclient sync --force
-</code></pre>
-    </div>
-  </li>
-</ol>
-
-<h2 id="build-ipop-tincan-for-linux">Build ipop-tincan for Linux</h2>
-
-<ol>
-  <li>
-    <p>Generate ninja build files</p>
-
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>gclient runhooks --force
-</code></pre>
-    </div>
-  </li>
-  <li>
-    <p>Build tincan for linux (binary localed at out/Release/ipop-tincan)</p>
-
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>ninja -C out/Release ipop-tincan
-</code></pre>
-    </div>
-  </li>
-  <li>
-    <p>To build debug version with gdb symbols (but creates 25 MB binary)</p>
-
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>ninja -C out/Debug ipop-tincan
-</code></pre>
-    </div>
-  </li>
-  <li>
-    <p>The generated binary is located at <code class="highlighter-rouge">out/Release/ipop-tincan</code> or
-<code class="highlighter-rouge">out/Debug/ipop-tincan</code></p>
-  </li>
-</ol>
+</div>
 
 
 
@@ -368,7 +345,7 @@ cp talk/ipop-project/ipop-tincan/build/DEPS .
     <div class="sidebar">
     <nav class="nav__list">
       <div class="wiki-top-links">
-        <a href="../wiki" class="display-unset">Wiki Index</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
+        <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
       </div>
         
 

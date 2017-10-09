@@ -1,3 +1,7 @@
+# Controller API
+
+**Warning: This document may be out of date.**
+
 IPOP-Tincan provides a JSON-RPC API over UDP which enables developers
 to extend the functionality of SocialVPN/GroupVPN. This page explain the
 function calls available through the API.

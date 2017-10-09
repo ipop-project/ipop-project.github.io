@@ -182,7 +182,9 @@
           <nav class="toc">
             <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
             <ul class="section-nav">
-<li class="toc-entry toc-h2"><a href="#overview">Overview:</a></li>
+<li class="toc-entry toc-h1"><a href="#coding-challenges">Coding Challenges</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#overview">Overview</a></li>
 <li class="toc-entry toc-h2"><a href="#1-overlay-multicast-and-routing-modules">1) Overlay multicast and routing modules</a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#core-multicast-module-cmm">Core multicast module (CMM)</a></li>
@@ -194,10 +196,14 @@
 </li>
 <li class="toc-entry toc-h2"><a href="#2-traffic-based-upcall--traffic-statistics-modules">2) Traffic Based Upcall / Traffic Statistics Modules</a></li>
 </ul>
+</li>
+</ul>
           </nav>
         </aside>
 
-        <h2 id="overview">Overview:</h2>
+        <h1 id="coding-challenges">Coding Challenges</h1>
+
+<h2 id="overview">Overview</h2>
 
 <p><a href="http://ipop-project.org">IPOP</a> is an open-source user-centric software virtual network allowing end users to define and create their own virtual private networks (VPNs). IPOP virtual networks provide end-to-end IP tunneling over “TinCan” links setup and managed through a control API to create various software-defined VPN overlays. IPOP builds upon the Jingle WebRTC library to create such links, which are then use as a basis to create a P2P routing overlay for easy-to-deploy VPNs with P2P links.</p>
 
@@ -253,20 +259,20 @@
   <li>SRUM forwards unicast messages to the next SRUM hop in the source-routes path, towards the destination</li>
 </ul>
 
-<p><strong>Mentor</strong>:<br />
+<p><strong>Mentor</strong>
 Saumitra Aditya</p>
 
-<p><strong>Skills needed</strong>:<br />
+<p><strong>Skills needed</strong>
 Strong command over Python, basic understanding of computer networks and software design.</p>
 
-<p><strong>Deliverables</strong>:<br />
+<p><strong>Deliverables</strong>
 Various IPOP controller modules (CMM, SMM, TLFM, SPDM, SRUM), covering the above listed requirements.</p>
 
 <h2 id="2-traffic-based-upcall--traffic-statistics-modules">2) Traffic Based Upcall / Traffic Statistics Modules</h2>
 
 <p>Ipop-tap resides in lowest level in ipop-tincan handling byte level logic operation and modification. It is hard for controller to know what kind of traffic (TCP or UDP) streams and how intense the stream is running through ipop-tap. This task is implementing configurable flow table in ipop-tap. This module should be configured through controller.</p>
 
-<p>Features</p>
+<p><strong>Features</strong></p>
 <ul>
   <li>Required to be configured through controller</li>
   <li>Statistics can be retrieved tincan-controller API</li>
@@ -278,7 +284,7 @@ Various IPOP controller modules (CMM, SMM, TLFM, SPDM, SRUM), covering the above
 <p>e.g.
  <img src="https://cloud.githubusercontent.com/assets/3869507/13115070/592f5420-d564-11e5-908a-1801f4eda7fd.png" alt="" /></p>
 
-<p><strong>Skills needed</strong>:</p>
+<p><strong>Skills needed</strong></p>
 <ul>
   <li>C : 80% of code work. Mostly on network programming with byte-level operations</li>
   <li>C++ : 5% of coding</li>
@@ -298,14 +304,13 @@ Various IPOP controller modules (CMM, SMM, TLFM, SPDM, SRUM), covering the above
 
 
 
-
       </section>
     </div>
   </article>
     <div class="sidebar">
     <nav class="nav__list">
       <div class="wiki-top-links">
-        <a href="../wiki" class="display-unset">Wiki Index</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
+        <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
       </div>
         
 

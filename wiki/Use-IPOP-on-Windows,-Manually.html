@@ -37,8 +37,8 @@
 <meta property="og:title" content="IPOP">
 
 
-  <link rel="canonical" href="https://vahid-dan.github.io/ipop-project.github.io/wiki/Overview---XMPP,STUN,TURN">
-  <meta property="og:url" content="https://vahid-dan.github.io/ipop-project.github.io/wiki/Overview---XMPP,STUN,TURN">
+  <link rel="canonical" href="https://vahid-dan.github.io/ipop-project.github.io/wiki/Use-IPOP-on-Windows,-Manually">
+  <meta property="og:url" content="https://vahid-dan.github.io/ipop-project.github.io/wiki/Use-IPOP-on-Windows,-Manually">
 
 
 
@@ -182,63 +182,141 @@
           <nav class="toc">
             <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
             <ul class="section-nav">
-<li class="toc-entry toc-h2"><a href="#introduction">Introduction</a></li>
-<li class="toc-entry toc-h2"><a href="#online-social-network-osn-and-xmpp">Online Social Network (OSN) and XMPP</a></li>
-<li class="toc-entry toc-h2"><a href="#nat-traversal-and-stunturn">NAT Traversal and STUN/TURN</a></li>
-<li class="toc-entry toc-h2"><a href="#deploying-stun">Deploying STUN</a></li>
-<li class="toc-entry toc-h2"><a href="#deploying-turn">Deploying TURN</a></li>
-<li class="toc-entry toc-h2"><a href="#configuring-ipop">Configuring IPOP</a></li>
+<li class="toc-entry toc-h1"><a href="#use-ipop-on-windows-manually">Use IPOP on Windows, Manually</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#installing-ipop-vpn-on-windows">Installing IPOP-VPN on Windows</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#quick-start-installation">Quick start Installation</a></li>
+<li class="toc-entry toc-h3"><a href="#tldr">TLDR</a></li>
+<li class="toc-entry toc-h3"><a href="#manual-setup">Manual Setup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#key-points-summary">Key Points Summary</a></li>
 </ul>
           </nav>
         </aside>
 
-        <h2 id="introduction">Introduction</h2>
+        <h1 id="use-ipop-on-windows-manually">Use IPOP on Windows, Manually</h1>
 
-<p>IPOP allows you to connect to existing XMPP/STUN/TURN services available on the Internet - for instance, Google runs XMPP and STUN services, and there are commercial TURN services.</p>
+<p><strong>Warning: This document may be out of date.</strong></p>
 
-<p>It is also possible - and in many environments, desirable - for you to deploy your own private XMPP and NAT traversal services using the ejabberd open-source software and an open-source TURN implementation. This document overviews the process of deploying these services; other documents in the Wiki provide details on how to deploy these services.</p>
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Tested on</strong></td>
+      <td>Microsoft Windows 10 x64</td>
+    </tr>
+    <tr>
+      <td><strong>Time</strong></td>
+      <td>~ 10 Minutes</td>
+    </tr>
+    <tr>
+      <td><strong>Question(s)</strong></td>
+      <td>- How to install IPOP?<br /> - How to run IPOP?<br /> - How to remove IPOP?</td>
+    </tr>
+    <tr>
+      <td><strong>Objective(s)</strong></td>
+      <td>- Install IPOP<br /> - Run IPOP<br /> - Stop IPOP<br /> - Remove IPOP</td>
+    </tr>
+  </tbody>
+</table>
 
-<h2 id="online-social-network-osn-and-xmpp">Online Social Network (OSN) and XMPP</h2>
+<h2 id="installing-ipop-vpn-on-windows">Installing IPOP-VPN on Windows</h2>
 
-<p>The XMPP service is used to store information about users and their social network relationships. These are used by IPOP to determine who to establish links with. The ejabberd open-source XMPP server allows you to create a private OSN where you have the flexibility of creating your own users and managing your own relationships. These can be done either through a command-line interface, or a Web interface.</p>
-
-<p>Creating your private XMPP service entails the following tasks - for example, <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Deploying-XMPP-STUN-TURN-Services#using-ejabberd-xmppstun">here are instructions for Ubuntu</a></p>
+<h3 id="quick-start-installation">Quick start Installation</h3>
+<p>The most convenient way to get IPOP installed on Windows 10 is run the <em>ipop-set.ps1</em> powershell script included in the IPOP ZIP file. Note that you need to have Administrator privileges to install IPOP-VPN.</p>
 
 <ol>
-  <li>Installing ejabberd on a Linux server that is going to be accessible by all IPOP nodes</li>
-  <li>Configuring ejabberd with users and relationships</li>
-  <li>Optionally configuring ejabberd to also serve as a STUN server</li>
+  <li>
+    <p>Download <a href="https://github.com/ipop-project/Downloads/releases/download/v16.08.0/ipop-v16.08.1_win.zip">IPOP-VPN for Windows</a>.</p>
+  </li>
+  <li>
+    <p>Extract the contents of the archive to a directory, e.g., ipop-vpn</p>
+  </li>
+  <li>
+    <p>Start an Admin Windows Powershell and change to the ipop-vpn directory previously created</p>
+  </li>
+  <li>Enter the following commands:
+    <div class="highlighter-rouge"><pre class="highlight"><code> PowerShell -ExecutionPolicy Unrestricted
+ .\ipop-setup
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Follow the prompts to install and setup IPOP</p>
+  </li>
+  <li>While installing Social VPN, copy the “ip4” entry from “AddressMapper” to “CFx”, e.g.,
+    <div class="highlighter-rouge"><pre class="highlight"><code> ip4": "172.31.0.100" 
+</code></pre>
+    </div>
+  </li>
+  <li>Finally, double click ipop-start to run IPOP. Closing this console window will terminate IPOP.</li>
 </ol>
 
-<h2 id="nat-traversal-and-stunturn">NAT Traversal and STUN/TURN</h2>
+<p>Note: A Windows Firewall exception is created for IPOP-VPN, but you have to create your own for exceptions for other services such as ICMP Echo (ping).</p>
 
-<p>Network Address Translators - <a href="https://en.wikipedia.org/wiki/Network_address_translation">NATs</a> - are very common on the Internet today, and creating end-to-end links when nodes are “behind” a NAT adds complexity to any VPN system. While the XMPP service is concerned with users and their relationships, the NAT traversal services are concerned with ensuring that it is possible for users behind NATs to communicate with each other using IPOP. There are two NAT traversal services that can be used by IPOP:</p>
+<h3 id="tldr">TLDR</h3>
+<p>If you are using an earlier version of Windows such as 7, 8, Server 2008, or 2012, you will need to manually setup IPOP. Below are the necessary steps to accomplish this.</p>
 
+<h3 id="manual-setup">Manual Setup</h3>
 <ol>
-  <li>The STUN service allows IPOP nodes behind a common kind of NAT (cone - the majority of NATs deployed in the Internet are of this type).</li>
-  <li>The TURN service allows IPOP nodes behind more restrictive NATs (symmetric) to communicate</li>
+  <li>
+    <p>Install <a href="https://download.microsoft.com/download/5/B/C/5BC5DBB3-652D-4DCE-B14A-475AB85EEF6E/vcredist_x86.exe'">MS Visual C++ x86 Redistributable Packages for Visual Studio 2010</a>.</p>
+  </li>
+  <li>
+    <p>Install <a href="https://www.python.org/ftp/python/3.5.2/python-3.5.2-amd64-webinstall.exe">Python 3.5 for Windows</a>.</p>
+  </li>
+  <li>
+    <p>Install <a href="https://swupdate.openvpn.org/community/releases/tap-windows-9.21.2.exe">tap-installer from OpenVPN</a>.</p>
+  </li>
+  <li>
+    <p>Download <a href="https://github.com/ipop-project/Downloads/releases/download/v16.08.1/ipop-v16.08.1_win.zip">IPOP-VPN for Windows</a>.</p>
+  </li>
+  <li>
+    <p>Extract the contents of the archive to a directory, e.g., ipop-vpn</p>
+  </li>
+  <li>Decide if you want to run <a href="Planning Your Network">GroupVPN or Social VPN</a> and copy the appropriate sample config to the ipop-vpn directory. Use one of the following for group or social VPN respectively:
+    <div class="highlighter-rouge"><pre class="highlight"><code> cp .\controller\modules\sample-gvpn-config.json .\config.json
+</code></pre>
+    </div>
+    <div class="highlighter-rouge"><pre class="highlight"><code> cp .\controller\modules\sample-svpn-config.json .\config.json
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Update your <a href="Configuration">config file</a> with your XMPP credentials and other details. For SocialVPN you only need to add the XMPP server IP, your XMPP client user id and password. For GroupVPN you will need to add your static virtual IP.</p>
+  </li>
+  <li>
+    <p>Install Sleek XMPP. Python will have to be in your PATH environment or you will need to provide the path to the pip executable.
+pip install sleekxmpp</p>
+  </li>
+  <li>
+    <p>Rename the TAP-Windows Adapter to <em>ipop</em>. From the Control Panel choose <em>View network status and tasks</em> under Network and Internet. On the right side-bar click <em>change adapter settings</em>. Select the <em>TAP Windows Adapter V9</em> and rename it to “ipop”.</p>
+  </li>
+  <li>
+    <p>Configure the IPOP Adapter IPv4 interface with a static IP address and subnet mask that will be use for the virtual network. Alternatively you can download download <a href="https://github.com/ipop-project/Release-Management/blob/master/Deployment/win/setup_interface.bat">set_interface</a> and [win32_netsh_setup] (https://github.com/ipop-project/Release-Management/blob/master/Deployment/win/win32_netsh_setup.py) to your IPOP directory and run the _setup_interface.bat _ batch file as Admin.</p>
+  </li>
+  <li>Finally, double click ipop-start to run IPOP</li>
 </ol>
 
-<p>The STUN service is the preferred method of NAT traversal, because it is light-weight allows two nodes to communicate in a peer-to-peer fashion. The TURN service is more expensive - it requires the TURN service to serve as a “relay” for all communications between two peers. Hence, when possible, STUN should be used; when not possible, TURN is a fall-back. It is possible to deploy several STUN and TURN servers to balance the load of NAT traversal in your deployment - if you are deploying your own NAT traversal services, it is useful to be aware of the general behavior of STUN and TURN services, and the kinds of NATs that your users will be subject to to help configure these services.</p>
+<hr />
 
-<h2 id="deploying-stun">Deploying STUN</h2>
+<h1 id="key-points-summary">Key Points Summary</h1>
 
-<p>A simple way of deploying a STUN service for a small-scale IPOP network is to enable ejabberd’s built-in STUN service. For example, <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Deploying-XMPP-STUN-TURN-Services#using-ejabberd-xmppstun">here are instructions for Ubuntu</a>.</p>
+<p>Enter the following commands:</p>
 
-<p>If you want to deploy more than one STUN server - for load-balancing or fault tolerance - it is recommended to deploy STUN services that are not tied to ejabberd. For example, <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Deploying-XMPP-STUN-TURN-Services#ipop-configuration-for-socialvpn-and-groupvpn">use your TURN server which supports the STUN service itself</a>.</p>
-
-<h2 id="deploying-turn">Deploying TURN</h2>
-
-<p>Public TURN services are not as easy to find, because they tend to consume more resources (bandwidth) than STUN. Depending on your NAT characteristics (e.g. if all nodes are behind cone NATs), you may not need a TURN service. But if you have nodes behind NATs, or restrictive firewalls (e.g. that only allow outgoing connections through certain ports, such as TCP/80 TCP/443), you will need TURN services.</p>
-
-<p>There exist more than one open-source TURN service that you can use. For example, <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Deploying-XMPP-STUN-TURN-Services#using-turnserver-turn">here are instructions on how to setup a STUN+TURN server</a>. The configuration is more complex than STUN - e.g. it requires username/password associated with TURN “users” in the server; but again, as in STUN, you are able to deploy multiple TURN servers for improved load balancing and fault tolerance. IPOP will choose STUN/TURN servers from a list you provide in the configuration file, at random.</p>
-
-<p>If you would like to use the IPOP project’s public TURN service for a project, please contact us so we can determine if it’s possible to accommodate your case based on bandwidth demands.</p>
-
-<h2 id="configuring-ipop">Configuring IPOP</h2>
-
-<p>Once you have your own XMPP, STUN, TURN services deployed, configuring IPOP to use them is simple - all the information is provided in the config.json file used by SocialVPN or GroupVPN controllers.</p>
-
+<div class="highlighter-rouge"><pre class="highlight"><code>PowerShell -ExecutionPolicy Unrestricted
+.\ipop-setup
+</code></pre>
+</div>
 
 
 
@@ -249,7 +327,7 @@
     <div class="sidebar">
     <nav class="nav__list">
       <div class="wiki-top-links">
-        <a href="../wiki" class="display-unset">Wiki Index</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
+        <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
       </div>
         
 

@@ -37,8 +37,8 @@
 <meta property="og:title" content="IPOP">
 
 
-  <link rel="canonical" href="https://vahid-dan.github.io/ipop-project.github.io/wiki/Running-GroupVPN-on-Linux">
-  <meta property="og:url" content="https://vahid-dan.github.io/ipop-project.github.io/wiki/Running-GroupVPN-on-Linux">
+  <link rel="canonical" href="https://vahid-dan.github.io/ipop-project.github.io/wiki/Overview:-XMPP,STUN,TURN">
+  <meta property="og:url" content="https://vahid-dan.github.io/ipop-project.github.io/wiki/Overview:-XMPP,STUN,TURN">
 
 
 
@@ -182,111 +182,63 @@
           <nav class="toc">
             <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
             <ul class="section-nav">
-<li class="toc-entry toc-h3"><a href="#obtaining-groupvpn">Obtaining GroupVPN</a></li>
-<li class="toc-entry toc-h3"><a href="#configuring-groupvpn">Configuring GroupVPN</a></li>
-<li class="toc-entry toc-h3"><a href="#running-groupvpn">Running GroupVPN</a></li>
-<li class="toc-entry toc-h3"><a href="#stopping-groupvpn">Stopping GroupVPN</a></li>
+<li class="toc-entry toc-h2"><a href="#introduction">Introduction</a></li>
+<li class="toc-entry toc-h2"><a href="#online-social-network-osn-and-xmpp">Online Social Network (OSN) and XMPP</a></li>
+<li class="toc-entry toc-h2"><a href="#nat-traversal-and-stunturn">NAT Traversal and STUN/TURN</a></li>
+<li class="toc-entry toc-h2"><a href="#deploying-stun">Deploying STUN</a></li>
+<li class="toc-entry toc-h2"><a href="#deploying-turn">Deploying TURN</a></li>
+<li class="toc-entry toc-h2"><a href="#configuring-ipop">Configuring IPOP</a></li>
 </ul>
           </nav>
         </aside>
 
-        <p>The following instructions are for Ubuntu 12.04/Debian Wheezy (64-bit) or higher. Visit the <a href="https://github.com/ipop-project/downloads/releases">downloads repository</a> to obtain IPOP builds for additional platforms.</p>
+        <h2 id="introduction">Introduction</h2>
 
-<h3 id="obtaining-groupvpn">Obtaining GroupVPN</h3>
+<p>IPOP allows you to connect to existing XMPP/STUN/TURN services available on the Internet - for instance, Google runs XMPP and STUN services, and there are commercial TURN services.</p>
 
-<ol>
-  <li>
-    <p>Download GroupVPN from the <a href="https://github.com/ipop-project/downloads/releases">downloads repository</a>.</p>
+<p>It is also possible - and in many environments, desirable - for you to deploy your own private XMPP and NAT traversal services using the ejabberd open-source software and an open-source TURN implementation. This document overviews the process of deploying these services; other documents in the Wiki provide details on how to deploy these services.</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> wget https://github.com/ipop-project/Downloads/releases/download/v16.01.0/ipop-v16.01.0_ubuntu.tar.gz
- tar xf ipop-v16.01.0_ubuntu.tar.gz
-</code></pre>
-    </div>
-  </li>
-</ol>
+<h2 id="online-social-network-osn-and-xmpp">Online Social Network (OSN) and XMPP</h2>
 
-<h3 id="configuring-groupvpn">Configuring GroupVPN</h3>
+<p>The XMPP service is used to store information about users and their social network relationships. These are used by IPOP to determine who to establish links with. The ejabberd open-source XMPP server allows you to create a private OSN where you have the flexibility of creating your own users and managing your own relationships. These can be done either through a command-line interface, or a Web interface.</p>
+
+<p>Creating your private XMPP service entails the following tasks - for example, <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Deploying-XMPP-STUN-TURN-Services#using-ejabberd-xmppstun">here are instructions for Ubuntu</a></p>
 
 <ol>
-  <li>
-    <p>Create a configuration file for GroupVPN</p>
-
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> cp config/sample-gvpn-config.json config/gvpn-config.json
-</code></pre>
-    </div>
-  </li>
-  <li>
-    <p>Update <code class="highlighter-rouge">config/gvpn-config.json</code> according to your needs. The <code class="highlighter-rouge">ip4</code>, <code class="highlighter-rouge">xmpp_username</code>, <code class="highlighter-rouge">xmpp_password</code>, and <code class="highlighter-rouge">xmpp_host</code> flags are required; GroupVPN currently supports static IPv4 address assignment and thus <code class="highlighter-rouge">ip4</code> should be different for each machine. See the <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Controller-Configuration">configuration page</a> for more information about the configuration options available for GroupVPN.</p>
-
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> nano config/gvpn-config.json
-</code></pre>
-    </div>
-
-    <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="w"> </span><span class="err">...</span><span class="w">
-     </span><span class="s2">"CFx"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-         </span><span class="nt">"xmpp_username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"username@dukgo.com"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"xmpp_password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"password123"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"xmpp_host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dukgo.com"</span><span class="p">,</span><span class="w">
-</span></code></pre>
-    </div>
-    <div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="w"> </span><span class="err">...</span><span class="w">
-     </span><span class="s2">"BaseTopologyManager"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"ip4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"172.31.0.100"</span><span class="p">,</span><span class="w">
-</span></code></pre>
-    </div>
-  </li>
+  <li>Installing ejabberd on a Linux server that is going to be accessible by all IPOP nodes</li>
+  <li>Configuring ejabberd with users and relationships</li>
+  <li>Optionally configuring ejabberd to also serve as a STUN server</li>
 </ol>
 
-<h3 id="running-groupvpn">Running GroupVPN</h3>
+<h2 id="nat-traversal-and-stunturn">NAT Traversal and STUN/TURN</h2>
+
+<p>Network Address Translators - <a href="https://en.wikipedia.org/wiki/Network_address_translation">NATs</a> - are very common on the Internet today, and creating end-to-end links when nodes are “behind” a NAT adds complexity to any VPN system. While the XMPP service is concerned with users and their relationships, the NAT traversal services are concerned with ensuring that it is possible for users behind NATs to communicate with each other using IPOP. There are two NAT traversal services that can be used by IPOP:</p>
 
 <ol>
-  <li>
-    <p>Launch the ipop-tincan program</p>
-
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo ./ipop-tincan &amp;&gt; tin.log &amp;
-</code></pre>
-    </div>
-  </li>
-  <li>
-    <p>Run the controller using the <code class="highlighter-rouge">config/gvpn-config.json</code> configuration</p>
-
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd </span>controllers
-python -m controller.Controller -c config/gvpn-config.json &amp;&gt; ctl.log &amp;
-</code></pre>
-    </div>
-  </li>
-  <li>
-    <p>Check on the current status of your network using netcat</p>
-
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">echo</span> -e <span class="s1">'\x02\x01{"m":"get_state"}'</span> | netcat -q 1 -u 127.0.0.1 5800
-</code></pre>
-    </div>
-  </li>
-  <li>
-    <p>Check the network devices and IPv4 address for your device</p>
-
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>ifconfig ipop
-</code></pre>
-    </div>
-
-    <p>[[ifconfig.png]]</p>
-  </li>
+  <li>The STUN service allows IPOP nodes behind a common kind of NAT (cone - the majority of NATs deployed in the Internet are of this type).</li>
+  <li>The TURN service allows IPOP nodes behind more restrictive NATs (symmetric) to communicate</li>
 </ol>
 
-<p><strong>Run GroupVPN on another machine using the same credentials (but different <code class="highlighter-rouge">ip4</code> addresses) and they will connect to each other.</strong></p>
+<p>The STUN service is the preferred method of NAT traversal, because it is light-weight allows two nodes to communicate in a peer-to-peer fashion. The TURN service is more expensive - it requires the TURN service to serve as a “relay” for all communications between two peers. Hence, when possible, STUN should be used; when not possible, TURN is a fall-back. It is possible to deploy several STUN and TURN servers to balance the load of NAT traversal in your deployment - if you are deploying your own NAT traversal services, it is useful to be aware of the general behavior of STUN and TURN services, and the kinds of NATs that your users will be subject to to help configure these services.</p>
 
-<h3 id="stopping-groupvpn">Stopping GroupVPN</h3>
+<h2 id="deploying-stun">Deploying STUN</h2>
 
-<ol>
-  <li>
-    <p>Kill GroupVPN</p>
+<p>A simple way of deploying a STUN service for a small-scale IPOP network is to enable ejabberd’s built-in STUN service. For example, <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Deploying-XMPP-STUN-TURN-Services#using-ejabberd-xmppstun">here are instructions for Ubuntu</a>.</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo killall ipop-tincan
-ps aux | grep -v grep | grep controller.Controller | awk <span class="s1">'{print $2}'</span> | xargs sudo <span class="nb">kill</span> -9
-</code></pre>
-    </div>
-  </li>
-</ol>
+<p>If you want to deploy more than one STUN server - for load-balancing or fault tolerance - it is recommended to deploy STUN services that are not tied to ejabberd. For example, <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Deploying-XMPP-STUN-TURN-Services#ipop-configuration-for-socialvpn-and-groupvpn">use your TURN server which supports the STUN service itself</a>.</p>
+
+<h2 id="deploying-turn">Deploying TURN</h2>
+
+<p>Public TURN services are not as easy to find, because they tend to consume more resources (bandwidth) than STUN. Depending on your NAT characteristics (e.g. if all nodes are behind cone NATs), you may not need a TURN service. But if you have nodes behind NATs, or restrictive firewalls (e.g. that only allow outgoing connections through certain ports, such as TCP/80 TCP/443), you will need TURN services.</p>
+
+<p>There exist more than one open-source TURN service that you can use. For example, <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Deploying-XMPP-STUN-TURN-Services#using-turnserver-turn">here are instructions on how to setup a STUN+TURN server</a>. The configuration is more complex than STUN - e.g. it requires username/password associated with TURN “users” in the server; but again, as in STUN, you are able to deploy multiple TURN servers for improved load balancing and fault tolerance. IPOP will choose STUN/TURN servers from a list you provide in the configuration file, at random.</p>
+
+<p>If you would like to use the IPOP project’s public TURN service for a project, please contact us so we can determine if it’s possible to accommodate your case based on bandwidth demands.</p>
+
+<h2 id="configuring-ipop">Configuring IPOP</h2>
+
+<p>Once you have your own XMPP, STUN, TURN services deployed, configuring IPOP to use them is simple - all the information is provided in the config.json file used by SocialVPN or GroupVPN controllers.</p>
+
 
 
 
@@ -297,7 +249,7 @@ ps aux | grep -v grep | grep controller.Controller | awk <span class="s1">'{prin
     <div class="sidebar">
     <nav class="nav__list">
       <div class="wiki-top-links">
-        <a href="../wiki" class="display-unset">Wiki Index</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
+        <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
       </div>
         
 

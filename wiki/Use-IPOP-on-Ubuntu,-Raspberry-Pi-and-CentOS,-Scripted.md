@@ -1,4 +1,4 @@
-# Install, Run, and Remove IPOP on Ubuntu, Raspberry Pi and CentOS, Scripted
+# Use IPOP on Ubuntu, Raspberry Pi and CentOS, Scripted
 
 | | Description |
 |---|---|

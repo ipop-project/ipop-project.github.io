@@ -1,3 +1,5 @@
+# FAQs
+
 1. **What are the main differences between SocialVPN and GroupVPN?**
 
     These are both social virtual networks, but with different use cases and controller implementations. In SocialVPN, social relationships have an individual perspective: relationships are independently managed by each individual, and VPN links are friend-to-friend. In GroupVPN, social relationships have a group perspective: there is the concept of a group leader or manager, and once a user joins a group, VPN links are established among all devices that belong to the group.
@@ -23,16 +25,6 @@
 1. **When should I use GroupVPN in switch mode?**
 
     GroupVPN in switch mode is recommended when you wish to connect several virtual machines or containers running on the same server to a GroupVPN - in which case, you can run GroupVPN in the host itself in switchmode, and bind the IPOP tap device to a Linux bridge.
-
-1. **How do I check the IP address of peers in my SocialVPN?**
-
-    Currently, this can be done by issuing a get_state [[controller API|Controller API]] call to the running tincan process. In Linux this can be done with the command line:
-
-    ```bash
-    echo -e '\x02\x01{"m":"get_state"}' | netcat -q 1 -u 127.0.0.1 5800
-    ```
-
-    A feature for future releases is to provide a Web-based interface to browse the status of peers.
 
 1. **How do I configure the IP address of peers in my SocialVPN?**
 
@@ -95,10 +87,10 @@ determined in the JSON configuration file by adding the following parameters:
 
 1. **How do I report an issue/bug?**
 
-    We use Github's issue tracker: https://github.com/ipop-project/ipop-tincan/issues
+    We use Github's issue tracker: https://github.com/ipop-project/ipop-project.github.io/issues
 
     When reporting a bug, please make sure you enable debug logging (as described above) and collect output files from tincan and controller.
 
 1. **How do I reference/acknowledge IPOP in a publication?**
 
-    Please refer to: http://ipop-project.org/learn/publications
+    Please refer to: http://ipop-project.org/learn/#publications

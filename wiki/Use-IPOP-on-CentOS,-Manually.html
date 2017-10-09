@@ -37,8 +37,8 @@
 <meta property="og:title" content="IPOP">
 
 
-  <link rel="canonical" href="https://vahid-dan.github.io/ipop-project.github.io/wiki/Install,-Run,-and-Remove-IPOP-on-Ubuntu,-Raspberry-Pi-and-CentOS,-Scripted">
-  <meta property="og:url" content="https://vahid-dan.github.io/ipop-project.github.io/wiki/Install,-Run,-and-Remove-IPOP-on-Ubuntu,-Raspberry-Pi-and-CentOS,-Scripted">
+  <link rel="canonical" href="https://vahid-dan.github.io/ipop-project.github.io/wiki/Use-IPOP-on-CentOS,-Manually">
+  <meta property="og:url" content="https://vahid-dan.github.io/ipop-project.github.io/wiki/Use-IPOP-on-CentOS,-Manually">
 
 
 
@@ -182,13 +182,20 @@
           <nav class="toc">
             <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
             <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#install-run-and-remove-ipop-on-ubuntu-raspberry-pi-and-centos-scripted">Install, Run, and Remove IPOP on Ubuntu, Raspberry Pi and CentOS, Scripted</a>
+<li class="toc-entry toc-h1"><a href="#use-ipop-on-centos-manually">Use IPOP on CentOS, Manually</a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#prerequisite">Prerequisite</a></li>
-<li class="toc-entry toc-h2"><a href="#launching-the-ipop-vpn-installer">Launching the IPOP-VPN Installer</a></li>
-<li class="toc-entry toc-h2"><a href="#using-ipop">Using IPOP</a></li>
-<li class="toc-entry toc-h2"><a href="#log-files">Log Files</a></li>
-<li class="toc-entry toc-h2"><a href="#manual-configuration">Manual Configuration</a></li>
+<li class="toc-entry toc-h2"><a href="#download-and-install-dependencies">Download and Install Dependencies</a></li>
+<li class="toc-entry toc-h2"><a href="#get-ipop-binary">Get IPOP Binary</a></li>
+<li class="toc-entry toc-h2"><a href="#copy-configuration-file">Copy Configuration File</a></li>
+<li class="toc-entry toc-h2"><a href="#run-ipop-tincan">Run IPOP TinCan</a></li>
+<li class="toc-entry toc-h2"><a href="#run-ipop-controller">Run IPOP Controller</a></li>
+<li class="toc-entry toc-h2"><a href="#stop-ipop">Stop IPOP</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#stop-ipop-tincan">Stop IPOP Tincan</a></li>
+<li class="toc-entry toc-h3"><a href="#stop-ipop-controller">Stop IPOP Controller</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#remove-ipop">Remove IPOP</a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h1"><a href="#key-points-summary">Key Points Summary</a></li>
@@ -196,7 +203,9 @@
           </nav>
         </aside>
 
-        <h1 id="install-run-and-remove-ipop-on-ubuntu-raspberry-pi-and-centos-scripted">Install, Run, and Remove IPOP on Ubuntu, Raspberry Pi and CentOS, Scripted</h1>
+        <h1 id="use-ipop-on-centos-manually">Use IPOP on CentOS, Manually</h1>
+
+<p><strong>Warning: This document may be out of date.</strong></p>
 
 <table>
   <thead>
@@ -208,15 +217,15 @@
   <tbody>
     <tr>
       <td><strong>Tested on</strong></td>
-      <td>Ubuntu 14.04 and 16.04 x64, Raspbian Stretch and Jessie on Raspberry Pi 3 and CentOS 7</td>
+      <td>CentOS 7 x64</td>
     </tr>
     <tr>
-      <td><strong>Time</strong></td>
+      <td><strong>Estimated</strong></td>
       <td>~ 10 Minutes</td>
     </tr>
     <tr>
       <td><strong>Question(s)</strong></td>
-      <td>- How to install IPOP?<br /> - How to setup IPOP basic configuration?<br /> - How to run IPOP?<br /> - How to remove IPOP?</td>
+      <td>- How to install IPOP?<br /> - How to run IPOP?<br /> - How to remove IPOP?</td>
     </tr>
     <tr>
       <td><strong>Objective(s)</strong></td>
@@ -225,116 +234,90 @@
   </tbody>
 </table>
 
-<p><strong>Note:</strong> You need to have root access to run some of the following commands. Running the IPOP Installer with just adding <code class="highlighter-rouge">sudo</code> to the beginning of the command is NOT enough. Switch to interactive root shell:</p>
+<h2 id="download-and-install-dependencies">Download and Install Dependencies</h2>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo -i
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo apt-get update -y
+sudo apt-get install -y software-properties-common git make libssl-dev make g++-4.9 
+sudo apt-get install -y python3 python-pip python-dev
+sudo pip install sleekxmpp psutil pystun
 </code></pre>
 </div>
 
-<h2 id="prerequisite">Prerequisite</h2>
+<h2 id="get-ipop-binary">Get IPOP Binary</h2>
 
-<p>If the <code class="highlighter-rouge">wget</code> package is not installed, you will need to install it:</p>
+<p>Download the proper version of IPOP from <a href="https://github.com/ipop-project/Downloads/releases">our latest release</a>.</p>
 
-<p><strong>In Ubuntu:</strong></p>
+<p>Then go to the download directory and extract the file (Put in the actual file name):</p>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>apt-get install wget
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>tar -xzvf ipop-vxxx_centos7.tar.gz
+<span class="nb">cd </span>ipop-vxxx_centos7
 </code></pre>
 </div>
 
-<p><strong>In CentOS:</strong></p>
+<h2 id="copy-configuration-file">Copy Configuration File</h2>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>yum install wget
+<p>You will need a valid configuration file (ipop-config.json) to run IPOP. Go to the directory you have your config file and copy the file to the <code class="highlighter-rouge">config</code> directory:</p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>cp PATH/TO/CONFIGFILE/ipop-config.json config/
 </code></pre>
 </div>
 
-<h2 id="launching-the-ipop-vpn-installer">Launching the IPOP-VPN Installer</h2>
+<h2 id="run-ipop-tincan">Run IPOP TinCan</h2>
 
-<p>To start the IPOP Installer, run the following command:</p>
-
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>wget -O - https://raw.githubusercontent.com/ipop-project/Release-Management/master/Deployment/linux/installer | /bin/bash
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>scl <span class="nb">enable </span>rh-python35 bash
+sudo ./ipop-tincan &amp;
 </code></pre>
 </div>
 
-<p>The default installation directory will be <code class="highlighter-rouge">/opt/ipop</code> and you can use <code class="highlighter-rouge">ipop</code> executable script to control IPOP.</p>
+<h2 id="run-ipop-controller">Run IPOP Controller</h2>
 
-<p>Note: Make sure you have already switched to interactive root shell using <code class="highlighter-rouge">sudo -i</code> before running the above command. Running it with just adding <code class="highlighter-rouge">sudo</code> to the beginning is NOT enough.</p>
-
-<h2 id="using-ipop">Using IPOP</h2>
-
-<p>First, change current directory to the installation directory:</p>
-
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> /opt/ipop
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>scl <span class="nb">enable </span>rh-python35 bash
+python -m controller.Controller -c ./config/ipop-config.json &amp;
 </code></pre>
 </div>
 
-<p>Execute IPOP which is <code class="highlighter-rouge">ipop</code> executable script right in the installation directory with following parameters:</p>
+<p>Now, if everything is going well, IPOP should be run.</p>
 
-<p><strong>Install IPOP:</strong> (If you have already installed IPOP using IPOP Installer, you don’t need to re-install it. So just skip this command.)</p>
+<h2 id="stop-ipop">Stop IPOP</h2>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop install
+<h3 id="stop-ipop-tincan">Stop IPOP Tincan</h3>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo killall ipop-tincan  
 </code></pre>
 </div>
 
-<p><strong>Configure IPOP:</strong></p>
+<h3 id="stop-ipop-controller">Stop IPOP Controller</h3>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop config
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>ps aux | grep -v grep | grep controller.Controller | awk <span class="s1">'{print $2}'</span> | xargs sudo <span class="nb">kill</span> -9
 </code></pre>
 </div>
 
-<p><strong>Start IPOP:</strong></p>
+<h2 id="remove-ipop">Remove IPOP</h2>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop start
-</code></pre>
-</div>
-
-<p><strong>Get IPOP Node Status:</strong></p>
-
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop status <span class="o">(</span>This option is not available <span class="k">in </span>this release, yet.<span class="o">)</span>
-</code></pre>
-</div>
-
-<p><strong>Stop IPOP:</strong></p>
-
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop stop
-</code></pre>
-</div>
-
-<p><strong>Remove IPOP:</strong></p>
-
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop remove
-</code></pre>
-</div>
-
-<h2 id="log-files">Log Files</h2>
-
-<p>If anything went wrong while using IPOP, the log files are located at <code class="highlighter-rouge">/opt/ipop/log</code>.</p>
-
-<h2 id="manual-configuration">Manual Configuration</h2>
-
-<p>If you ever need to change the configurations manually, the sample configuration files are located in <code class="highlighter-rouge">/opt/ipop/sample-gvpn-config</code>. IPOP reads the configurations from <code class="highlighter-rouge">/opt/ipop/config/ipop-config.json</code> which will automatically be created after running <code class="highlighter-rouge">./ipop config</code> and following the prompts. Keep in mind you need to stop IPOP and then start it again after changing the configurations.
-See the <a href="Configuration">configuration page</a> for more information about the configuration options available for IPOP-VPN.</p>
+<p>To uninstall IPOP, its is safe to stop it first and then remove the IPOP execution directory.</p>
 
 <hr />
 
 <h1 id="key-points-summary">Key Points Summary</h1>
 
 <ul>
-  <li>Start the IPOP Installer:</li>
+  <li>Run IPOP:</li>
 </ul>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>wget -O - https://raw.githubusercontent.com/ipop-project/Release-Management/master/Deployment/linux/installer | /bin/bash
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo ./ipop-tincan &amp;
+python -m controller.Controller -c ./config/ipop-config.json &amp;
 </code></pre>
 </div>
+
 <ul>
-  <li>Usage:</li>
+  <li>Stop IPOP:</li>
 </ul>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop config
-./ipop start
-./ipop stop
-./ipop remove
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo killall ipop-tincan  
+ps aux | grep -v grep | grep controller.Controller | awk <span class="s1">'{print $2}'</span> | xargs sudo <span class="nb">kill</span> -9
 </code></pre>
 </div>
+
 
 
 
@@ -345,7 +328,7 @@ See the <a href="Configuration">configuration page</a> for more information abou
     <div class="sidebar">
     <nav class="nav__list">
       <div class="wiki-top-links">
-        <a href="../wiki" class="display-unset">Wiki Index</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
+        <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
       </div>
         
 

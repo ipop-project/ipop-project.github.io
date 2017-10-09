@@ -1,6 +1,6 @@
-# Introduction to the Scale Test Script Usage
+# Introduction to the Scale-test Script Usage
 
-Scale-Test can be found in Release Management repo under test directory: https://github.com/ipop-project/Release-Management
+Scale-test can be found in Release Management repo under test directory: https://github.com/ipop-project/Release-Management
 
 **Note: Current version only tested on Ubuntu 16.04 VM**
 
@@ -9,6 +9,7 @@ Scale-Test can be found in Release Management repo under test directory: https:/
     * Create a separate instance of IPOP-VPN in GroupVPN Mode in each specified lxc container
 * IPOP Switch-Mode test (In Development) 
    * Create instance of IPOP-VPN on host machine which is added to lxc-bridge to connect un-managed containers to IPOP-VPN
+
 ### Setup for IPOP GroupVPN test
 1. `git clone https://github.com/ipop-project/Release-Management`
 2. `cd  ./Release-Management/Test/ipop-scale-test`
@@ -18,6 +19,7 @@ Scale-Test can be found in Release Management repo under test directory: https:/
 5. Next `containers-create` (Create and start specified number of containers, build IPOP src, choose IPOP network topology configuration and copy built IPOP files to each container)
 6. If visualizer option was enabled while running `containers-create` command run `visualizer-start` (Starts up two processes on host machine one running Net Visualizer found at http://localhost:8888/IPOP)
 7. Run `ipop-run`(Start up IPOP processes on lxc nodes)
+
 ### Setup for IPOP Switch-Mode
 * The steps for setting up IPOP-VPN in scale test environment are the same as setting up the scale test for GroupVPN Mode with exception to:
     * When prompted for mode selection, type `switch`
@@ -35,7 +37,6 @@ Scale-Test can be found in Release Management repo under test directory: https:/
           ./robo3t-1.1.1-linux-x86_64-c93c6b0/bin/robo3t #Run Robomongo
           ```
        4. Create new connection to localhost:27017 and connect. Data will be in ipopdb database under iperf and ping collections
-
 
 ### Tear Down
 * Run `containers-del` (Destroy all lxc node labeled containers)
