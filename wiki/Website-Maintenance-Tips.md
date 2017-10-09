@@ -208,9 +208,7 @@ layout: default
       <div class="wiki-top-links">
         <a href="../wiki">Wiki Home</a> / <a href="../wikipages">Wiki Pages</a>
       </div>
-        {% raw %} THIS LINE IS TO PREVENT LIQUID SYNTAX ERROR WHILE BUILDING THE WEBSITE. REMOVE IT BEFORE PUBLISHING THE WEBSITE.
-        {% include_absolute _site/wiki/_Sidebar.html %}
-        {% endraw %} THIS LINE IS TO PREVENT LIQUID SYNTAX ERROR WHILE BUILDING THE WEBSITE. REMOVE IT BEFORE PUBLISHING THE WEBSITE.
+        { % include_absolute _site/wiki/_Sidebar.html %} <!-- REMOVE THE SPACE BETWEEN { and % BEFOR PUBLISHING. -->
     </nav>
   </div>
 
