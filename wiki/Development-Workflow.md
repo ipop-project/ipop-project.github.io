@@ -1,3 +1,7 @@
+# Development Workflow
+
+**Warning: This document may be out of date.**
+
 For code contributors, the process of developing and committing code to IPOP is outlined below.
 
 [**Handy reference for Git commands**](http://git-scm.com/docs/gittutorial)

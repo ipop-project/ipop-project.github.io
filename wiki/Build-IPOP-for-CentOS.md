@@ -1,5 +1,7 @@
 # Build IPOP for CentOS
 
+**Warning: This document may be out of date.**
+
 | | Description |
 |---|---|
 | **Tested on** | CentOS 7 x64 |

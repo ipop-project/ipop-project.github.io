@@ -1,1 +1,1 @@
-[IPOP Project Website](http://ipop-project.org) | [IPOP Project Wiki Home](home)
+[IPOP Website](http://ipop-project.org) | [IPOP Wiki](home)

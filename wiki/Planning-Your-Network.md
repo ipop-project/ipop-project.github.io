@@ -1,5 +1,10 @@
+# Planning Your Network
+
+**Warning: This document may be out of date.**
+
 ## Making the right choice - SocialVPN OR GroupVPN  
 Depending on your usage requirements you might want to pick either SVPN or GVPN, we give below a brief description of both the controllers and discuss scenarios where one may hold better than the other.  
+
 ### SocialVPN  
 SVPN creates direct (p2p) links between devices running SVPN belonging to social peers in a manner such that each device has it's own view of the network network with an all to all topology i.e all participating devices will have tin-can links to all other devices. In terms of hands on usage it means-convenient configuration, you won't have to worry to about statically allocating IPv4 addresses individually to all devices, you want to be part of your network (One configuration file fits all devices of a user in the network). This is made possible by address translation wherein each user has a local virtual private subnet e.g.(172.31.0.100/16) and all devices in her network are automatically mapped on to it. This would come in handy in a use-case where all nodes are peers with equal responsibilities like a publish-subscribe/gossip/Sync setup. Consider the topology shown in the figure below, Alice is friends with Bob, Bob is friends with Alice and Carol, and Carol is friends with Bob, so if all 3 of them installed SVPN on all devices they wanted to be a part of their network- Alice can access all devices in Bob's cloud, Bob can access all devices in Alice's and Carol's cloud and Carol can access all devices in Bob's cloud but if there is no direct relationship between any two users they cannot access each other's devices- Alice cannot access Carol's devices. Also because of address translation Bob will see the IPv4 addresses of devices in Alice's and Carol's cloud in his own subnet 192.168.10.100/24.
 

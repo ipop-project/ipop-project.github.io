@@ -1,4 +1,6 @@
-## Overview:
+# Coding Challenges
+
+## Overview
 
 [IPOP](http://ipop-project.org) is an open-source user-centric software virtual network allowing end users to define and create their own virtual private networks (VPNs). IPOP virtual networks provide end-to-end IP tunneling over “TinCan” links setup and managed through a control API to create various software-defined VPN overlays. IPOP builds upon the Jingle WebRTC library to create such links, which are then use as a basis to create a P2P routing overlay for easy-to-deploy VPNs with P2P links.
 
@@ -44,20 +46,20 @@ This summers projects fall largely into the category of design of useful modules
 * SRUM also manages a UUID-indexed path cache to avoid the need for continuous discovery - the policies for invalidation/eviction of cache entries need to be defined 
 * SRUM forwards unicast messages to the next SRUM hop in the source-routes path, towards the destination
 
-**Mentor**:  
+**Mentor**
 Saumitra Aditya
 
-**Skills needed**:  
+**Skills needed**
 Strong command over Python, basic understanding of computer networks and software design.
 
-**Deliverables**:  
+**Deliverables**
 Various IPOP controller modules (CMM, SMM, TLFM, SPDM, SRUM), covering the above listed requirements.
 
 ## 2) Traffic Based Upcall / Traffic Statistics Modules
 
 Ipop-tap resides in lowest level in ipop-tincan handling byte level logic operation and modification. It is hard for controller to know what kind of traffic (TCP or UDP) streams and how intense the stream is running through ipop-tap. This task is implementing configurable flow table in ipop-tap. This module should be configured through controller. 
 
-Features
+**Features**
  - Required to be configured through controller 
  - Statistics can be retrieved tincan-controller API
  - Upon programmed, ipop-tap counts the number of packets passed, byte size and table idle time. 
@@ -67,7 +69,7 @@ Features
 e.g.
  ![](https://cloud.githubusercontent.com/assets/3869507/13115070/592f5420-d564-11e5-908a-1801f4eda7fd.png)
 
-**Skills needed**:  
+**Skills needed**
 * C : 80% of code work. Mostly on network programming with byte-level operations
 * C++ : 5% of coding
 * Python : 15% of coding
@@ -79,6 +81,3 @@ e.g.
 * APIs for controller
 * Separate thread for update the flow table traffic statistics (n_bytes, n_packets and Mbps)
 * Unit-test alongside with any implementation
- 
-
-

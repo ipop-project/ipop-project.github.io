@@ -1,6 +1,9 @@
+# Switchmode with LXC
+
+**Warning: This document may be out of date.**
+
 In switchmode, IPOP supports handling of layer-2 (L2) Ethernet frames. In this mode, IPOP nodes function as a switch and make all the connected IPOP nodes and associated virtual network interface be on the same Layer 2 network.
 Note that IP and MAC address should be carefully assigned to avoid address conflicts.
-
 
 # IPOP Switchmode Tutorial
 

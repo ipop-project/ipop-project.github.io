@@ -1,12 +1,12 @@
-# Install, Run, and Remove IPOP, Intro
+# Use IPOP, Intro
 
 ## Supported Operating Systems and Platforms
 
 We currently support the following operating systems and platforms:
-- Ubuntu 14.04 and 16.04 - x64
-- Raspbian Jessie and Stretch on Raspberry Pi 3 - ARM7
-- CentOS 7 - x64
-- Microsoft Windows 10 - x64
+- [Ubuntu 14.04 and 16.04 - x64](Use-IPOP-on-Ubuntu-and-Raspberry-Pi,-Manually)
+- [Raspbian Jessie and Stretch on Raspberry Pi 3 - ARM7](Use-IPOP-on-Ubuntu-and-Raspberry-Pi,-Manually)
+- [Microsoft Windows 10 - x64](Use-IPOP-on-Windows,-Manually)
+- [CentOS 7 - x64](https://github.com/ipop-project/ipop-project.github.io/wiki/Use-IPOP-on-CentOS,-Manually)
 
 ## Other Operating Systems and Platforms
 

@@ -1,9 +1,11 @@
-# Install, Run, and Remove IPOP on Ubuntu and Raspberry Pi, Manually
+# Use IPOP on CentOS, Manually
 
-|  | Description |
+**Warning: This document may be out of date.**
+
+| | Description |
 |---|---|
-| **Tested on** | Ubuntu 14.04 and 16.04 x64 and Raspbian Jessie and Stretch on Raspberry Pi 3 |
-| **Time** | ~ 10 Minutes |
+| **Tested on** | CentOS 7 x64 |
+| **Estimated** | ~ 10 Minutes |
 | **Question(s)** | - How to install IPOP?<br /> - How to run IPOP?<br /> - How to remove IPOP? |
 | **Objective(s)**| - Install IPOP<br /> - Run IPOP<br /> - Stop IPOP<br /> - Remove IPOP |
 
@@ -11,7 +13,7 @@
 
 ```shell
 sudo apt-get update -y
-sudo apt-get install -y software-properties-common libssl-dev
+sudo apt-get install -y software-properties-common git make libssl-dev make g++-4.9 
 sudo apt-get install -y python3 python-pip python-dev
 sudo pip install sleekxmpp psutil pystun
 ```
@@ -23,8 +25,8 @@ Download the proper version of IPOP from [our latest release].
 Then go to the download directory and extract the file (Put in the actual file name):
 
 ```shell
-tar -xzvf ipop-vxxx.tar.gz
-cd ipop-vxxx
+tar -xzvf ipop-vxxx_centos7.tar.gz
+cd ipop-vxxx_centos7
 ```
 
 ## Copy Configuration File
@@ -35,17 +37,17 @@ You will need a valid configuration file (ipop-config.json) to run IPOP. Go to t
 cp PATH/TO/CONFIGFILE/ipop-config.json config/
 ```
 
-## Run IPOP
-
-### Run IPOP TinCan
+## Run IPOP TinCan
 
 ```shell
+scl enable rh-python35 bash
 sudo ./ipop-tincan &
 ```
 
-### Run IPOP Controller
+## Run IPOP Controller
 
 ```shell
+scl enable rh-python35 bash
 python -m controller.Controller -c ./config/ipop-config.json &
 ```
 
@@ -79,11 +81,13 @@ To uninstall IPOP, its is safe to stop it first and then remove the IPOP executi
 sudo ./ipop-tincan &
 python -m controller.Controller -c ./config/ipop-config.json &
 ```
+
 - Stop IPOP:
 
 ```shell
 sudo killall ipop-tincan  
 ps aux | grep -v grep | grep controller.Controller | awk '{print $2}' | xargs sudo kill -9
 ```
+
 
 [our latest release]: https://github.com/ipop-project/Downloads/releases

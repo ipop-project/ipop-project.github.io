@@ -1,4 +1,6 @@
-### IPOP Controller Framework Architecture
+# IPOP Controller Framework Architecture
+
+**Warning: This document may be out of date.**
 
 ### Introduction
 

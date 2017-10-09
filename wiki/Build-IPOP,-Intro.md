@@ -3,10 +3,10 @@
 ## Supported Operating Systems and Platforms
 
 We currently support the following operating systems and platforms:
-- Ubuntu 14.04 and 16.04 - x64
-- Raspbian Jessie and Stretch on Raspberry Pi 3 - ARM7
-- CentOS 7 - x64
-- Microsoft Windows 10 - x64
+- [Ubuntu 14.04 and 16.04 - x64](Build-IPOP-for-Ubuntu)
+- [Raspbian Jessie and Stretch on Raspberry Pi 3 - ARM7](Build-IPOP-for-Raspbian-on-Raspberry-Pi)
+- [Microsoft Windows 10 - x64](Build-IPOP-for-Windows)
+- [CentOS 7 - x64](Build-IPOP-for-CentOS)
 
 ## Other Operating Systems and Platforms
 
