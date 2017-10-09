@@ -128,48 +128,7 @@ To make it appear in all the wiki pages automatically, add `toc: true` to the wi
 
 ## Integrate Wiki Sidebar into the Website
 
-Remove default layout and sidebar from `_Sidebar.html`. Exclude everything except `{{ content }}`.  
-In `default.html`:
-
-```html
----
----
-{% if page.url != '/wiki/_Sidebar' %}
-<!doctype html>
-<!--
-  Minimal Mistakes Jekyll Theme 4.5.1 by Michael Rose
-  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
-  Free for personal and commercial use under the MIT license
-  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
--->
-<html lang="{{ site.locale | slice: 0,2 | default: "en" }}" class="no-js">
-  <head>
-    {% include head.html %}
-    {% include head/custom.html %}
-  </head>
-
-  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
-
-    {% include browser-upgrade.html %}
-    {% include masthead.html %}
-{% endif %}
-
-    {{ content }}
-
-{% if page.url != '/wiki/_Sidebar' %}
-    <div class="page__footer">
-      <footer>
-        {% include footer/custom.html %}
-        {% include footer.html %}
-      </footer>
-    </div>
-
-    {% include scripts.html %}
-
-  </body>
-</html>
-{% endif %}
-```
+Remove default layout and sidebar from `_Sidebar.html`. Exclude everything except `{{ content }}`. Check the `default.html` content.
 
 use [jekyll-include-absolute-plugin](https://github.com/tnhu/jekyll-include-absolute-plugin) to add support for including files outside the `_includes` directory.
 
@@ -182,6 +141,7 @@ include:
   - _Sidebar
 ```
 
+<<<<<<< HEAD
 Insert the sidebar in the wiki template `wiki.html`:
 
 ```html
@@ -208,7 +168,7 @@ layout: default
       <div class="wiki-top-links">
         <a href="../wiki">Wiki Home</a> / <a href="../wikipages">Wiki Pages</a>
       </div>
-        { include_absolute _site/wiki/_Sidebar.html } <!-- ADD % AFTER { AND BEFOR }. -->
+        { % include_absolute _site/wiki/_Sidebar.html %} <!-- REMOVE THE SPACE BETWEEN { and % BEFOR PUBLISHING. -->
     </nav>
   </div>
 
@@ -231,6 +191,9 @@ layout: default
 </div>
 {% endif %}
 ```
+=======
+Insert the sidebar in the wiki template `wiki.html`. Check  the file content.
+>>>>>>> 3712c774e659b6c383ca5af4c5c987c331bf3470
 
 Add proper styles to `main.scss`:
 
