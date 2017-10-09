@@ -128,7 +128,8 @@ To make it appear in all the wiki pages automatically, add `toc: true` to the wi
 
 ## Integrate Wiki Sidebar into the Website
 
-Remove default layout and sidebar from `_Sidebar.html`. Exclude everything except `{{ content }}`In `default.html`:
+Remove default layout and sidebar from `_Sidebar.html`. Exclude everything except `{{ content }}`.  
+In `default.html`:
 
 ```html
 ---
@@ -183,6 +184,7 @@ include:
 
 Insert the sidebar in the wiki template `wiki.html`:
 
+{% raw %}
 ```html
 ---
 layout: default
@@ -205,7 +207,7 @@ layout: default
   <div class="sidebar">
     <nav class="nav__list">
       <div class="wiki-top-links">
-        <a href="../wiki">Wiki Index</a> / <a href="../wikipages">Wiki Pages</a>
+        <a href="../wiki">Wiki Home</a> / <a href="../wikipages">Wiki Pages</a>
       </div>
         {% include_absolute _site/wiki/_Sidebar.html %}
     </nav>
@@ -230,6 +232,7 @@ layout: default
 </div>
 {% endif %}
 ```
+{% endraw %}
 
 Add proper styles to `main.scss`:
 
