@@ -14,6 +14,12 @@ description              : "IP-Over-P2P, Open-source User-centric Software Virtu
 url                      : "http://ipop-project.org" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "ipop-project" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+=======
+name                     : &name "IPOP" # &name is a YAML anchor which can be *referenced later
+description              : &description "IP-Over-P2P, Open-source User-centric Software Virtual Network"
+url                      : "https://ipop-project.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+baseurl                  : # the subpath of your site, e.g. "/blog"
+repository               : "ipop-project"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
@@ -164,6 +170,82 @@ kramdown:
   toc_levels: 1..6
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
+
+
+# Collections
+#collections:
+#  docs:
+#    output: true
+#    permalink: /:collection/:path/
+#  recipes:
+#    output: true
+#    permalink: /:collection/:path/
+#  pets:
+#    output: true
+#    permalink: /:collection/:path/
+#  portfolio:
+#    output: true
+#    permalink: /:collection/:path/
+
+
+# Defaults
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: splash
+      author_profile: false
+      read_time: false
+      comments: false
+      share: false
+      related: false
+  # _pages
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: splash
+      author_profile: false
+  # _docs
+  #- scope:
+  #    path: "docs"
+  #    type: docs
+  #  values:
+  #    layout: splash
+  #    read_time: false
+  #    author_profile: false
+  #    share: false
+  #     comments: false
+  #     sidebar:
+  #       nav: "docs"
+  # # _recipes
+  # - scope:
+  #     path: ""
+  #     type: recipes
+  #   values:
+  #     layout: splash
+  #     author_profile: true
+  #     share: true
+  #     comments: true
+  # # _pets
+  # - scope:
+  #     path: ""
+  #     type: pets
+  #   values:
+  #     layout: splash
+  #     author_profile: true
+  #     share: true
+  #     comment: true
+  # # _portfolio
+  # - scope:
+  #     path: ""
+  #     type: portfolio
+  #   values:
+  #     layout: splash
+  #     author_profile: false
+  #     share: true
 
 
 # Sass/SCSS
