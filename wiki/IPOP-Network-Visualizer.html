@@ -1,0 +1,296 @@
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.5.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>IPOP</title>
+
+
+
+
+<meta name="description" content="IP-Over-P2P, Open-source User-centric Software Virtual Network">
+
+
+
+
+<meta name="author" content="">
+
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="IPOP">
+<meta property="og:title" content="IPOP">
+
+
+  <link rel="canonical" href="http://ipop-project.org/wiki/IPOP-Network-Visualizer">
+  <meta property="og:url" content="http://ipop-project.org/wiki/IPOP-Network-Visualizer">
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "IPOP",
+      "url" : "http://ipop-project.org",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://ipop-project.org/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://ipop-project.org/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--wiki">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="http://ipop-project.org/">IPOP</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="http://ipop-project.org/about/">About</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://ipop-project.org/download">Download</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://ipop-project.org/learn/">Learn</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://ipop-project.org/wiki/">Wiki</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://ipop-project.org/whitepaper/">White Paper</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://ipop-project.org/contribute/">Contribute</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://ipop-project.org/contact/">Contact</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    
+
+
+
+<div id="main" role="main">
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      <section class="page__content" itemprop="text">
+
+        <aside class="sidebar__right">
+          <nav class="toc">
+            <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+            <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#ipop-network-visualizer">IPOP Network Visualizer</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#architecture-of-overlay-visualizer">Architecture of Overlay Visualizer</a></li>
+<li class="toc-entry toc-h2"><a href="#setting-up-a-visualizer-web-service">Setting up a Visualizer Web-service</a></li>
+</ul>
+</li>
+</ul>
+          </nav>
+        </aside>
+
+        <h1 id="ipop-network-visualizer">IPOP Network Visualizer</h1>
+
+<p>A Web-service that visualizes the current state of the Peers in the IPOP Network. A Graphical view of the actual state of all the nodes and links in the IPOP Network is dynamically rendered as and when there are changes in the Network.</p>
+
+<h2 id="architecture-of-overlay-visualizer">Architecture of Overlay Visualizer</h2>
+
+<p><strong>1. Collector:</strong> The functionality of this module is to aggregate the data required for visualization from each of the nodes in the network. This module collects data periodically and stores them in the database.</p>
+
+<p><strong>2. MongoDB Database:</strong> The database is implemented using the NoSQL MongoDB database. This stores the data from the Collector module.</p>
+
+<p><strong>3. Central Visualizer:</strong> This module is responsible for fetching the data from MongoDB and sending them to the client side. The browser requests these data periodically from this module and renders the visualization layout using those data.</p>
+
+<h2 id="setting-up-a-visualizer-web-service">Setting up a Visualizer Web-service</h2>
+
+<p>The steps given below will install the required dependencies and starts up the Visualizer :</p>
+
+<ol>
+  <li><code class="highlighter-rouge">git clone https://github.com/ipop-project/Network-Visualizer</code></li>
+  <li><code class="highlighter-rouge">cd Network-Visualizer/Setup</code></li>
+  <li>To install the dependencies, Run :  <br />
+ <code class="highlighter-rouge">./setup.sh</code></li>
+  <li>Change back to its parent directory (Network-Visualizer)</li>
+  <li>To start the visualizer, Run 
+ <code class="highlighter-rouge">./visualizer start</code></li>
+  <li>The modules will be started on your machine and the Network layout can be viewed in the browser on any machine at:<br />
+<code class="highlighter-rouge">https://xx.xx.xx.xx:8888/IPOP</code><br />
+<code class="highlighter-rouge">where xx.xx.xx.xx stands for the ip4 address of the machine hosting the web-service</code></li>
+  <li>The data from the nodes based on which the Network layout is rendered can be viewed at:<br />
+ <code class="highlighter-rouge">https://xx.xx.xx.xx:8888/nodedata</code><br />
+<code class="highlighter-rouge">where xx.xx.xx.xx stands the same as in step 6</code></li>
+  <li>To stop the visualizer, go to the Network-Visualizer directory and Run :<br />
+ <code class="highlighter-rouge">./visualizer stop</code></li>
+</ol>
+
+
+
+
+      </section>
+    </div>
+  </article>
+    <div class="sidebar">
+    <nav class="nav__list">
+      <div class="wiki-top-links">
+        <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
+      </div>
+      
+    </nav>
+  </div>
+</div>
+
+
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+     -->
+    <!-- <li><a href="http://ipop-project.org/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
+<!--  </ul>
+</div> --> 
+
+<div class="page__footer-copyright float-left">
+  <div class="float-left">
+    <img src="http://ipop-project.org/assets/images/uf_small.png" class="padding-bottom-right" /><img src="http://ipop-project.org/assets/images/nsf_small.png" class="padding-bottom-right" />
+  </div>
+  <i class="fa fa-address-card-o" aria-hidden="true"></i>
+  <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br />
+  <a href="http://www.ece.ufl.edu/" rel="nofollow" target="_blank">Department of Electrical & Computer Engineering</a><br />
+  <a href="http://www.eng.ufl.edu/" rel="nofollow" target="_blank">College of Engineering</a>, <a href="http://www.ufl.edu/" rel="nofollow" target="_blank">University of Florida</a>
+</div>
+
+<div class="page__footer-copyright float-right">
+  <div>
+    <a href="http://ipop-project.org/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="http://ipop-project.org/contact/#mailing-list-subscription">Mailing List</a> | <a href="http://ipop-project.org/sitemap">Sitemap</a><br />
+    <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
+    &copy; 2017 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
+    </div>
+  </div>
+</div>
+<div class="page__footer-copyright clear-both">This material is based upon work supported in part by the National Science Foundation under Grants No. 1234983, 1339737 and 1527415.</div>
+      </footer>
+    </div>
+
+    <script src="http://ipop-project.org/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>
+

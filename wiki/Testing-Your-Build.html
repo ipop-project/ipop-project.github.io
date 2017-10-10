@@ -1,0 +1,304 @@
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.5.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>IPOP</title>
+
+
+
+
+<meta name="description" content="IP-Over-P2P, Open-source User-centric Software Virtual Network">
+
+
+
+
+<meta name="author" content="">
+
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="IPOP">
+<meta property="og:title" content="IPOP">
+
+
+  <link rel="canonical" href="http://ipop-project.org/wiki/Testing-Your-Build">
+  <meta property="og:url" content="http://ipop-project.org/wiki/Testing-Your-Build">
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "IPOP",
+      "url" : "http://ipop-project.org",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://ipop-project.org/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://ipop-project.org/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--wiki">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="http://ipop-project.org/">IPOP</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="http://ipop-project.org/about/">About</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://ipop-project.org/download">Download</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://ipop-project.org/learn/">Learn</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://ipop-project.org/wiki/">Wiki</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://ipop-project.org/whitepaper/">White Paper</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://ipop-project.org/contribute/">Contribute</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://ipop-project.org/contact/">Contact</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    
+
+
+
+<div id="main" role="main">
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      <section class="page__content" itemprop="text">
+
+        <aside class="sidebar__right">
+          <nav class="toc">
+            <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+            <ul class="section-nav">
+<li class="toc-entry toc-h3"><a href="#objectives">Objectives</a></li>
+<li class="toc-entry toc-h3"><a href="#design">Design</a></li>
+<li class="toc-entry toc-h3"><a href="#example">Example</a></li>
+</ul>
+          </nav>
+        </aside>
+
+        <p>This page discusses the methodology for testing and evaluating IPOP. Visit the <a href="https://github.com/ipop-project/Release-Management/tree/master/Test">testing repository</a> for the source of the test suite.</p>
+
+<h3 id="objectives">Objectives</h3>
+
+<p>The objectives of the test suite are to provide the following:</p>
+
+<ul>
+  <li>Automated and scalable deployment of IPOP instances</li>
+  <li>Productivity
+    <ul>
+      <li>Test and visualize the correctness of the IPOP source</li>
+    </ul>
+  </li>
+  <li>Performance evaluation
+    <ul>
+      <li>The latency and throughput of the network</li>
+    </ul>
+  </li>
+  <li>Dependability evaluation
+    <ul>
+      <li>The robustness of a dynamic network</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="design">Design</h3>
+
+<p>The test-suite was designed using a two-level <em>master-worker</em> model, as shown in <strong>Figure 1</strong>. In the first level, a host computer (<em>master</em>) orchestrates a set of physical nodes (<em>workers</em>) via SSH/SFTP. In the second level, each physical node (<em>master</em>) commands a set of Linux containers (LXCs) (<em>workers</em>). Collectively, the host computer controls a large number of LXCs that scales with the number of physical nodes. Each LXC runs an instance of IPOP to collectively realize an IPOP network.</p>
+
+<p>To eliminate dependencies that are external to this system, one physical node assumes the role of <em>server</em> and deploys ejabberd (for XMPP/STUN) and turnserver (for TURN) to service the IPOP instances.</p>
+
+<p>The host computer is able to command specific IPOP instances for network stimulation. For example, an IPOP instance can be run or stopped to simulate nodes entering or leaving the network; IPOP instances can be instructed to interact with other instances to simulate inter-node communication. Additionally, the IPOP instances provide local information about the network to the host computer to interpret the state of the network. For example, each IPOP instance can provide a list of its neighbouring peers so that the host computer can visualize the network topology; individual IPOP instances can report details such as transmission latency, packet loss, or resource utilization for performance and dependability analysis.</p>
+
+<p><img src="https://github.com/ipop-project/ipop-project.github.io/blob/master/wiki-images/ipop-scale-test-architecture.png" alt="" /></p>
+
+<p><strong>Figure 1.</strong> IPOP scale-test architecture</p>
+
+<h3 id="example">Example</h3>
+
+<p>To improve the dependability of IPOP GroupVPN, a recovery mechanism is implemented to restore the structured peer-to-peer topology after the network has been partitioned. Using the test suite, we are able to test the correctness of this mechanism, as shown in <strong>Figure 2</strong>. In (<em>a</em>), the network topology is well formed. In (<em>b</em>), four IPOP instances are stopped to simulate the partitioning of the network into two halves. In (<em>c</em>), after some time, the two network partitions have reunited and will eventually restore the network topology.</p>
+
+<p><img src="https://github.com/ipop-project/ipop-project.github.io/blob/master/wiki-images/ipop-topology-recovery.png" alt="" /></p>
+
+<p><strong>Figure 2.</strong> Simulation of the IPOP GroupVPN recovery mechanism</p>
+
+
+
+
+      </section>
+    </div>
+  </article>
+    <div class="sidebar">
+    <nav class="nav__list">
+      <div class="wiki-top-links">
+        <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
+      </div>
+      
+    </nav>
+  </div>
+</div>
+
+
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+     -->
+    <!-- <li><a href="http://ipop-project.org/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
+<!--  </ul>
+</div> --> 
+
+<div class="page__footer-copyright float-left">
+  <div class="float-left">
+    <img src="http://ipop-project.org/assets/images/uf_small.png" class="padding-bottom-right" /><img src="http://ipop-project.org/assets/images/nsf_small.png" class="padding-bottom-right" />
+  </div>
+  <i class="fa fa-address-card-o" aria-hidden="true"></i>
+  <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br />
+  <a href="http://www.ece.ufl.edu/" rel="nofollow" target="_blank">Department of Electrical & Computer Engineering</a><br />
+  <a href="http://www.eng.ufl.edu/" rel="nofollow" target="_blank">College of Engineering</a>, <a href="http://www.ufl.edu/" rel="nofollow" target="_blank">University of Florida</a>
+</div>
+
+<div class="page__footer-copyright float-right">
+  <div>
+    <a href="http://ipop-project.org/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="http://ipop-project.org/contact/#mailing-list-subscription">Mailing List</a> | <a href="http://ipop-project.org/sitemap">Sitemap</a><br />
+    <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
+    &copy; 2017 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
+    </div>
+  </div>
+</div>
+<div class="page__footer-copyright clear-both">This material is based upon work supported in part by the National Science Foundation under Grants No. 1234983, 1339737 and 1527415.</div>
+      </footer>
+    </div>
+
+    <script src="http://ipop-project.org/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>
+
