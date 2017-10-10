@@ -38,83 +38,7 @@ p {
 }
 
 .page__hero--overlay .page__title, .page__hero--overlay .page__meta, .page__hero--overlay .comment__date, .page__hero--overlay .page__lead, .page__hero--overlay .btn, .page__hero--overlay #goog-wm-sb {
-    text-shadow: 4px 4px 4px rgba(0,0,0,1);
-}
-
-.one-third {
-
-  @include span(100%);
-  margin-right: 0;
-  margin-bottom: 2em;
-
-  @include breakpoint($medium) {
-    @include span(47.5%);
-    margin-right: 2.5%;
-    margin-bottom: 2em;
-  }
-
-  @include breakpoint($large) {
-    @include span(30.8333%);
-    margin-right: 2.5%;
-    margin-bottom: 2em;
-  }
-}
-
-.three-fourth {
-
-  @include span(100%);
-  margin-right: 0;
-
-  @include breakpoint($medium) {
-    @include span(72.5%);
-    margin-right: 2.5%;
-  }
-
-  @include breakpoint($large) {
-    @include span(72.5%);
-    margin-right: 2.5%;
-  }
-}
-
-.last-fourth {
-
-  @include span(100%);
-  margin-right: 0;
-  margin-top: 2em;
-  text-align: left;
-
-  @include breakpoint($medium) {
-    @include span(25%);
-    margin-right: 0;
-    margin-top: 0;
-    text-align: right;
-  }
-
-  @include breakpoint($large) {
-    @include span(25%);
-    margin-right: 0;
-    margin-top: 0;
-    text-align: right;
-  }
-}
-
-.one-half {
-
-  @include span(100%);
-  margin-right: 0;
-  margin-bottom: 2em;
-
-  @include breakpoint($medium) {
-    @include span(47.5%);
-    margin-right: 2.5%;
-    margin-bottom: 2em;
-  }
-
-  @include breakpoint($large) {
-    @include span(47.5%);
-    margin-right: 2.5%;
-    margin-bottom: 2em;
-  }
+  text-shadow: 4px 4px 4px rgba(0,0,0,1);
 }
 
 .padding-bottom-right {
@@ -124,10 +48,6 @@ p {
 
 .align-right {
   text-align: right;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  margin: 2em 0 1em;
 }
 
 figcaption {
@@ -187,14 +107,10 @@ a, .nav__list .nav__items a, .greedy-nav a:hover {
 }
 
 .nav__sub-title {
-  border-top: 1px solid #f2f3f3;
+/*  border-top: 1px solid #f2f3f3;
   border-bottom: none;
   padding-bottom: 0;
-  font-size: .9em;
-}
-
-.sidebar p, .sidebar li {
-  font-size: .85em;
+  font-size: .9em; */
 }
 
 .page__hero--overlay .page__title {
@@ -237,4 +153,93 @@ h1, h2, h3, h4, h5, h6 {
 
 body {
   font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.page__content p {
+  margin: 0 0 1em;
+}
+
+h1 {
+  font-size: 1.65em;
+}
+
+h2 {
+  font-size: 1.4em;
+}
+
+h3 {
+  font-size: 1.15em;
+}
+
+.layout--wiki .sidebar__right {
+  position: relative;
+  float: right;
+  margin-right: unset;
+  z-index: unset;
+  margin-right: unset;
+}
+
+.layout--wiki .page {
+  padding-right: unset;
+}
+
+.layout--wiki table {
+  width: unset;
+}
+
+.layout--wiki .sidebar .nav__list strong {
+  display: block;
+  margin: 0.5rem 0;
+  padding: 0.5rem 0;
+  font-family: -apple-system,".SFNSText-Regular","San Francisco","Roboto","Segoe UI","Helvetica Neue","Lucida Grande",Arial,sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-bottom: 1px solid #f2f3f3;
+}
+
+.layout--wiki .sidebar .wiki-top-links {
+  font-size: .775em;
+}
+
+.layout--wiki .sidebar li {
+  font-size: .85em;
+}
+
+.layout--wiki .sidebar {
+  clear: unset;
+}
+
+.layout--wiki .section-nav a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #7a8288;
+  font-size: .56em;
+  line-height: 1.5;
+  border-bottom: 1px solid #f2f3f3;
+}
+
+.layout--wiki .section-nav a>.toc-h2 {
+  border-bottom: none !important;
+}
+
+.toc-h1 {
+  font-weight: bold;
+}
+
+.toc-h2 {
+  padding-left: .9rem !important;
+  font-weight: normal;
+  border-bottom: 1px solid #f2f3f3;
+}
+
+.toc-h3 {
+  display: none !important;
+}
+
+.page__hero--overlay .page__title, .page__hero--overlay .page__meta, .page__hero--overlay .comment__date, .page__hero--overlay .comment__date, .page__hero--overlay .page__lead, .page__hero--overlay .btn, .page__hero--overlay #goog-wm-sb, .page__hero--overlay #goog-wm-sb {
+  text-shadow: 2px 2px 2px #000;
+}
+
+.page__title {
+  margin-bottom: .1em;
 }

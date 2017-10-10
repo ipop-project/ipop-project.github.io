@@ -1,6 +1,8 @@
 ---
 permalink: /download/
 title: "Download"
+header:
+  overlay_color: "#3C829B"
 ---
 {% include toc %}
 

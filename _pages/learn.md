@@ -1,6 +1,8 @@
 ---
 permalink: /learn/
-title: "Lear about IPOP"
+title: "Learn about IPOP"
+header:
+  overlay_color: "#3C829B"
 ---
 {% include toc %}
 

@@ -1,6 +1,8 @@
 ---
 permalink: /contact/
 title: "Contact"
+header:
+  overlay_color: "#3C829B"
 ---
 {% include toc %}
 
@@ -18,7 +20,7 @@ title: "Contact"
 
 # <i class="fa fa-envelope-o" aria-hidden="true"></i>Mailing List Subscription
 
-[Join or Leave the IPOP Users Mailing List <i class="fa fa-external-link" aria-hidden="true"></i>]
+[Join or Leave the IPOP Users Mailing List <i class="fa fa-external-link" aria-hidden="true"></i>](https://lists.ufl.edu/cgi-bin/wa?SUBED1=IPOP-USERS-L&A=1)
 
 If you have already subscribed, to send a message to all of the people currently subscribed to the list, just send the email to:  
 IPOP-USERS-L {at} LISTS.UFL.EDU
@@ -129,6 +131,3 @@ Contributed to SocialVPN Implementation and Testing on Mobile Devices
 <h3><a href="https://www.linkedin.com/in/tejatheegala/?ppe=1">Teja Theegala <i class="fa fa-external-link" aria-hidden="true"></i></a></h3>
 Alumni, ACIS Lab, University of Florida  
 Contributed to IPOP Implementation and Testing
-
-
-[Join or Leave the IPOP Users Mailing List <i class="fa fa-external-link" aria-hidden="true"></i>]: (https://lists.ufl.edu/cgi-bin/wa?SUBED1=IPOP-USERS-L&A=1)

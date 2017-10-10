@@ -1,16 +1,18 @@
 ---
 title: "Sitemap"
 permalink: /sitemap/
+header:
+  overlay_color: "#3C829B"
 ---
 
 {% include base_path %}
 
-<h1>Pages</h1>
+<h1><i class="fa fa-list-ul" aria-hidden="true"></i>Pages</h1>
 {% for post in site.pages %}
   {% include archive-single.html %}
 {% endfor %}
 
-<h1>Posts</h1>
+<!--<h1>Posts</h1>
 {% for post in site.posts %}
   {% include archive-single.html %}
 {% endfor %}
@@ -30,4 +32,4 @@ permalink: /sitemap/
   {% include archive-single.html %}
   {% endunless %}
 {% endfor %}
-{% endfor %}
+{% endfor %}-->
