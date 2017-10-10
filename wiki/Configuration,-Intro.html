@@ -1,0 +1,413 @@
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.5.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>IPOP</title>
+
+
+
+
+<meta name="description" content="IP-Over-P2P, Open-source User-centric Software Virtual Network">
+
+
+
+
+<meta name="author" content="">
+
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="IPOP">
+<meta property="og:title" content="IPOP">
+
+
+  <link rel="canonical" href="https://vahid-dan.github.io/ipop-project.github.io/wiki/Configuration,-Intro">
+  <meta property="og:url" content="https://vahid-dan.github.io/ipop-project.github.io/wiki/Configuration,-Intro">
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "IPOP",
+      "url" : "https://vahid-dan.github.io/ipop-project.github.io",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="https://vahid-dan.github.io/ipop-project.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://vahid-dan.github.io/ipop-project.github.io/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--wiki">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="https://vahid-dan.github.io/ipop-project.github.io/">IPOP</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/about/">About</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/download">Download</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/learn/">Learn</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/wiki/">Wiki</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/whitepaper/">White Paper</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/contribute/">Contribute</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://vahid-dan.github.io/ipop-project.github.io/contact/">Contact</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    
+
+
+
+<div id="main" role="main">
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      <section class="page__content" itemprop="text">
+
+        <aside class="sidebar__right">
+          <nav class="toc">
+            <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+            <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#configuration-intro">Configuration, Intro</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#basic-configuration">Basic Configuration</a></li>
+<li class="toc-entry toc-h2"><a href="#advanced-configuration">Advanced Configuration</a></li>
+<li class="toc-entry toc-h2"><a href="#sample-configuration-file">Sample Configuration File</a></li>
+</ul>
+</li>
+</ul>
+          </nav>
+        </aside>
+
+        <h1 id="configuration-intro">Configuration, Intro</h1>
+
+<h2 id="basic-configuration">Basic Configuration</h2>
+
+<p>Watch <a href="https://screencast-o-matic.com/watch/cbjXbPlmdl">Use IPOP, Demonstration Video</a> to find out how you can apply the basic configuration for IPOP.</p>
+
+<p>In short, for basic configuration, you need to have an XMPP account. You can setup an XMPP server yourself on your machine or use a free public XMPP service. There is a list of free popular XMPP services in the <a href="https://xmpp.org/getting-started/">XMPP official website</a>.</p>
+
+<p>Setup your account and make a copy of the sample configuration file:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>cp config/sample-gvpn-config.json config/ipop-config.json
+</code></pre>
+</div>
+
+<p>Then enter the account information in <code class="highlighter-rouge">config/ipop-config.json</code>. If you want to use IPOP with the default configuration, you just need to edit the file and enter “Username”, “Password” and “AddressHost” in “XmppDetails” under “XmppClient”. For instance, the last part of the configuration file will look like this:</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="err">.</span><span class="w">
+</span><span class="err">.</span><span class="w">
+</span><span class="err">.</span><span class="w">
+  </span><span class="s2">"XmppClient"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"XmppDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"Username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;your_account_username&gt;@&lt;xmpp-server.ext&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"Password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;your_account_password&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"AddressHost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;xmpp-server.ext&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"Port"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5222"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"TapName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ipop_tap0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"AuthenticationMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"password"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"AcceptUntrustedServer"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"TimerInterval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><strong>Note:</strong> Remember to add “@<xmpp-server.ext>" to the end of "<your_account_username>".</your_account_username></xmpp-server.ext></p>
+
+<p>You may also want to change the default IP which is currently “IP4”: “10.254.0.10” in “Vnets” under “TincanInterface”. Each IPOP node must have a unique IP address in the network.</p>
+
+<h2 id="advanced-configuration">Advanced Configuration</h2>
+
+<p>For documentation on advanced configuration go to <a href="Configuration">Configuration wiki page</a>.</p>
+
+<h2 id="sample-configuration-file">Sample Configuration File</h2>
+
+<p>There is a sample configuration file at <code class="highlighter-rouge">config/sample-gvpn-config.json</code>:</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"CFx"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"Model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GroupVPN"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"Logger"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"Enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"LogLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WARNING"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"LogOption"</span><span class="p">:</span><span class="w"> </span><span class="s2">"File"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"LogFilePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./logs/"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"CtrlLogFileName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ctrl.log"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"TincanLogFileName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tincan.log"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"LogFileSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"BackupLogFileCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"TincanInterface"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"ctrl_recv_port"</span><span class="p">:</span><span class="w"> </span><span class="mi">5801</span><span class="p">,</span><span class="w">  
+    </span><span class="nt">"localhost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ctrl_send_port"</span><span class="p">:</span><span class="w"> </span><span class="mi">5800</span><span class="p">,</span><span class="w">  
+    </span><span class="nt">"localhost6"</span><span class="p">:</span><span class="w"> </span><span class="s2">"::1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Logger"</span><span class="p">],</span><span class="w">
+    </span><span class="nt">"Vnets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"Name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"ipop_tap0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"IP4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.254.0.10"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"IP4PrefixLen"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"MTU4"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"XMPPModuleName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XmppClient"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"TapName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ipop_tap0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"Description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Beta 2 Test Network"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"IgnoredNetInterfaces"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"ipop_tap0"</span><span class="w"> </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"L2TunnellingEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"Stun"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"stun.l.google.com:19302"</span><span class="w"> </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"XmppClient"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"XmppDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"Username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"***"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"Password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"***"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"AddressHost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"***"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"Port"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5222"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"TapName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ipop_tap0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"AuthenticationMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"password"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"AcceptUntrustedServer"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"TimerInterval"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+
+
+
+      </section>
+    </div>
+  </article>
+    <div class="sidebar">
+    <nav class="nav__list">
+      <div class="wiki-top-links">
+        <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
+      </div>
+        
+
+    
+
+
+
+        <ul>
+  <li><strong>Deploying IPOP-VPN</strong>
+    <ul>
+      <li><a href="Use-IPOP,-Intro">Installation</a></li>
+      <li><a href="Configuration,-Intro">Configuration</a></li>
+    </ul>
+  </li>
+  <li><strong>Tutorials</strong>
+    <ul>
+      <li><a href="Switchmode-with-LXC">Running IPOP in Switchmode</a></li>
+    </ul>
+  </li>
+  <li><strong>Development Guide</strong>
+    <ul>
+      <li><a href="Development-Workflow">Development Workflow</a></li>
+      <li><a href="Coding-Guidelines">Coding Guidelines</a></li>
+      <li><a href="Build-IPOP,-Intro">Building the Code</a></li>
+      <li><a href="IPOP-Scale-test-Walkthrough">Testing Your Build</a></li>
+      <li><a href="Controller-Framework">Controller Framework</a></li>
+      <li><a href="Controller-API">Controller API</a></li>
+      <li><a href="Build-WebRTC-Libraries,-Intro">Building WebRTC Libraries</a></li>
+    </ul>
+  </li>
+  <li><strong>General Documentation</strong>
+    <ul>
+      <li><a href="FAQs">FAQs</a></li>
+      <li><a href="Troubleshooting">Troubleshooting</a></li>
+      <li><a href="Planning-Your-Network">Planning Your Network</a></li>
+      <li><a href="Coding-Challenges">Coding Challenges</a></li>
+      <li><a href="Known-Issues">Known Issues</a></li>
+      <li><a href="Getting-Help">Getting Help</a></li>
+      <li><a href="How-to-Contribute">How to Contribute</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+
+
+
+
+
+
+    </nav>
+  </div>
+</div>
+
+
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+     -->
+    <!-- <li><a href="https://vahid-dan.github.io/ipop-project.github.io/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
+<!--  </ul>
+</div> --> 
+
+<div class="page__footer-copyright float-left">
+  <div class="float-left">
+    <img src="https://vahid-dan.github.io/ipop-project.github.io/assets/images/uf_small.png" class="padding-bottom-right" /><img src="https://vahid-dan.github.io/ipop-project.github.io/assets/images/nsf_small.png" class="padding-bottom-right" />
+  </div>
+  <i class="fa fa-address-card-o" aria-hidden="true"></i>
+  <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br />
+  <a href="http://www.ece.ufl.edu/" rel="nofollow" target="_blank">Department of Electrical & Computer Engineering</a><br />
+  <a href="http://www.eng.ufl.edu/" rel="nofollow" target="_blank">College of Engineering</a>, <a href="http://www.ufl.edu/" rel="nofollow" target="_blank">University of Florida</a>
+</div>
+
+<div class="page__footer-copyright float-right">
+  <div>
+    <a href="https://vahid-dan.github.io/ipop-project.github.io/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="https://vahid-dan.github.io/ipop-project.github.io/contact/#mailing-list-subscription">Mailing List</a> | <a href="https://vahid-dan.github.io/ipop-project.github.io/sitemap">Sitemap</a><br />
+    <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
+    &copy; 2017 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
+    </div>
+  </div>
+</div>
+<div class="page__footer-copyright clear-both">This material is based upon work supported in part by the National Science Foundation under Grants No. 1234983, 1339737 and 1527415.</div>
+      </footer>
+    </div>
+
+    <script src="https://vahid-dan.github.io/ipop-project.github.io/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>
+
