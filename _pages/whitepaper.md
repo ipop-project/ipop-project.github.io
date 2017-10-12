@@ -7,7 +7,7 @@ header:
 {% include toc %}
 
 
-# <i class="fa fa-cubes" aria-hidden="true"></i>1. Goals
+# 1. Goals
 
 ## 1.1. Motivation
 
@@ -81,7 +81,7 @@ With IPOP’s SocialVPN, trusted peers are mapped to a virtual private IP addres
 
 IPOP’s SocialVPN can be used as the communications layer to enable users to collaborate, share directly with friends over private end-to-end network links. This allows social peers to bypass the need to communicate through an online social network provider for privacy-sensitive or low-latency/high-bandwidth applications, while still benefitting from the ability to discover and establish friendships through an OSN provider.
 
-# <i class="fa fa-cubes" aria-hidden="true"></i>2. Background
+# 2. Background
 
 ## 2.1. Software-Defined Network (SDN)
 
@@ -123,7 +123,7 @@ Many other solutions improve on the OpenVPN model; for instance, Hamachi uses a 
 
 Other approach such as Tinc, Vtun, and N2N all create mesh VPNs where nodes create direct connections to each other, but they require nodes to be openly accessible over the Internet. While these solutions can potentially be used to enable cross-cloud virtual networking, they are not currently supported by mobile platforms, and  do not provide a flexible overlay architecture that supports other VPN topologies, such as those implied by friend-to-friend social network graphs. 
 
-# <i class="fa fa-cubes" aria-hidden="true"></i>3. Architecture and Features
+# 3. Architecture and Features
 
 ## 3.1. Overall Architecture
 
@@ -233,7 +233,7 @@ IPOP-TinCan also sends packets with destination UIDs that not mapped to a P2P co
 
 Since release 16.01, the IPOP controller has been designed with an event-driven framework that provides increased flexibility in the design of modules that implement different core functionality. It is composed of the following major subsystems:
 
-Controller Framework (CFx)
+**Controller Framework (CFx)**
 
 The Controller Framework performs various tasks associated with loading, maintaining and coordinating the execution of the controller modules. The responsibilities of the CFx are:
 
@@ -244,7 +244,7 @@ The Controller Framework performs various tasks associated with loading, maintai
 - Enforce Inter-CM (Controller Modules) dependencies
 - Facilitate Inter Modular communication
 
-Controller Modules (CMs)
+**Controller Modules (CMs)**
 
 Each controller module is a component of the controller that implements and performs a well-defined core functionality of the controller. Examples of CMs:
 
@@ -256,7 +256,7 @@ Each controller module is a component of the controller that implements and perf
 - Logger
 - Watchdog
 
-CFxHandle
+**CFxHandle**
 
 CFxHandle is basically an interface between the CFx and CMs. CMs cannot directly communicate with the CFx. They can do so via the CFxHandle. The CFx exposes some functions to the CFxHandle, and CFxHandle exposes some functions to the CMs. The CFx creates a CFxHandle for every CM.
 
