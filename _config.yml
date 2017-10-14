@@ -9,14 +9,8 @@
 locale                   : "en"
 title                    : "IPOP"
 title_separator          : "-"
-name                     : "IPOP"
+name                     : "IPOP" # &name is a YAML anchor which can be *referenced later
 description              : "IP-Over-P2P, Open-source User-centric Software Virtual Network"
-url                      : "http://ipop-project.org" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : "ipop-project" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
-=======
-name                     : &name "IPOP" # &name is a YAML anchor which can be *referenced later
-description              : &description "IP-Over-P2P, Open-source User-centric Software Virtual Network"
 url                      : "https://ipop-project.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "ipop-project"

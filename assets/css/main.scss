@@ -149,6 +149,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: museo-slab,Georgia,"Times New Roman",Times,serif;
   font-weight: 500;
   color: #286c8d;
+  margin: 1em 0 .5em;
 }
 
 body {
@@ -169,6 +170,10 @@ h2 {
 
 h3 {
   font-size: 1.15em;
+}
+
+h4, h5, h6 {
+  font-size: 1em;
 }
 
 .layout--wiki .sidebar__right {
