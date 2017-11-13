@@ -36,6 +36,17 @@ Delete the now untracked submodule files `rm -rf wiki`.
 
 [Reference](https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial#Removal)
 
+## Update Wiki Submodule
+
+In the main repo, source branch:
+
+```
+git rm -rf --cached wiki/.
+rm -rf .git/modules/wiki.
+rm -rf wiki
+git submodule add https://github.com/ipop-project/ipop-project.github.io.wiki.git wiki
+```
+
 ## Build Jekyll Website Locally
 
 ```

@@ -188,6 +188,7 @@
 <li class="toc-entry toc-h2"><a href="#page-layouts">Page Layouts</a></li>
 <li class="toc-entry toc-h2"><a href="#add-wiki-as-submodule">Add Wiki as Submodule</a></li>
 <li class="toc-entry toc-h2"><a href="#remove-wiki-submodule">Remove Wiki Submodule</a></li>
+<li class="toc-entry toc-h2"><a href="#update-wiki-submodule">Update Wiki Submodule</a></li>
 <li class="toc-entry toc-h2"><a href="#build-jekyll-website-locally">Build Jekyll Website Locally</a></li>
 <li class="toc-entry toc-h2"><a href="#add-yaml-front-matter-to-wiki-markdown-source-files">Add YAML Front Matter to Wiki MarkDown Source Files</a></li>
 <li class="toc-entry toc-h2"><a href="#importing-wiki-into-jekyll-website">Importing Wiki into Jekyll Website</a></li>
@@ -265,6 +266,17 @@ git commit -m <span class="s2">"Wiki Added as a Submodule"</span>
 <p>Delete the now untracked submodule files <code class="highlighter-rouge">rm -rf wiki</code>.</p>
 
 <p><a href="https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial#Removal">Reference</a></p>
+
+<h2 id="update-wiki-submodule">Update Wiki Submodule</h2>
+
+<p>In the main repo, source branch:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>git rm -rf --cached wiki/.
+rm -rf .git/modules/wiki.
+rm -rf wiki
+git submodule add https://github.com/ipop-project/ipop-project.github.io.wiki.git wiki
+</code></pre>
+</div>
 
 <h2 id="build-jekyll-website-locally">Build Jekyll Website Locally</h2>
 
