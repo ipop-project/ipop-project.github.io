@@ -41,8 +41,8 @@ Delete the now untracked submodule files `rm -rf wiki`.
 In the main repo, source branch:
 
 ```
-git rm -rf --cached wiki/.
-rm -rf .git/modules/wiki.
+git rm -rf --cached wiki/
+rm -rf .git/modules/wiki
 rm -rf wiki
 git submodule add https://github.com/ipop-project/ipop-project.github.io.wiki.git wiki
 ```
@@ -164,12 +164,14 @@ Add proper styles to `main.scss`:
 
 ## Issues
 
-There is a line in the `_layouts/wiki.html` to include the wiki sidebar:
-
-```
-{% include_absolute _site/wiki/_Sidebar.html %}
-```
+There is a line in the `_layouts/wiki.html` to include the wiki sidebar, ```_site/wiki/_Sidebar.html```:
 
 If the file doesn't exist, Jekyll will throw an error while building the website. It usually happens when you want to delete the old generated files in `_site` directory and re-build them. This line will always be checked even if it is in a condition that is not TRUE.
 
-A workaround would be to create an empty file at that path manually and after a successful Jekyll build, run the build for the second time to include the wiki sidebar.
+A workaround would be to create an empty file at that path manually and after a successful Jekyll build, run the build for the second time to include the wiki sidebar:
+
+```
+touch _site/wiki/_Sidebar.html
+bundle exec jekyll build
+bundle exec jekyll build
+```
