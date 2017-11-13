@@ -1,0 +1,366 @@
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.5.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>IPOP</title>
+
+
+
+
+<meta name="description" content="IP-Over-P2P, Open-source User-centric Software Virtual Network">
+
+
+
+
+<meta name="author" content="">
+
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="IPOP">
+<meta property="og:title" content="IPOP">
+
+
+  <link rel="canonical" href="https://ipop-project.github.io/wiki/Overview:-XMPP,STUN,TURN">
+  <meta property="og:url" content="https://ipop-project.github.io/wiki/Overview:-XMPP,STUN,TURN">
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "IPOP",
+      "url" : "https://ipop-project.github.io",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="https://ipop-project.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://ipop-project.github.io/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--wiki">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="https://ipop-project.github.io/">IPOP</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="https://ipop-project.github.io/about/">About</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://ipop-project.github.io/download">Download</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://ipop-project.github.io/learn/">Learn</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://ipop-project.github.io/wiki/">Wiki</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://ipop-project.github.io/whitepaper/">White Paper</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://ipop-project.github.io/contribute/">Contribute</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://ipop-project.github.io/contact/">Contact</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    
+
+
+
+<div id="main" role="main">
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      <section class="page__content" itemprop="text">
+
+        <aside class="sidebar__right">
+          <nav class="toc">
+            <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+            <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#introduction">Introduction</a></li>
+<li class="toc-entry toc-h2"><a href="#online-social-network-osn-and-xmpp">Online Social Network (OSN) and XMPP</a></li>
+<li class="toc-entry toc-h2"><a href="#nat-traversal-and-stunturn">NAT Traversal and STUN/TURN</a></li>
+<li class="toc-entry toc-h2"><a href="#deploying-stun">Deploying STUN</a></li>
+<li class="toc-entry toc-h2"><a href="#deploying-turn">Deploying TURN</a></li>
+<li class="toc-entry toc-h2"><a href="#configuring-ipop">Configuring IPOP</a></li>
+</ul>
+          </nav>
+        </aside>
+
+        <h2 id="introduction">Introduction</h2>
+
+<p>IPOP allows you to connect to existing XMPP/STUN/TURN services available on the Internet - for instance, Google runs XMPP and STUN services, and there are commercial TURN services.</p>
+
+<p>It is also possible - and in many environments, desirable - for you to deploy your own private XMPP and NAT traversal services using the ejabberd open-source software and an open-source TURN implementation. This document overviews the process of deploying these services; other documents in the Wiki provide details on how to deploy these services.</p>
+
+<h2 id="online-social-network-osn-and-xmpp">Online Social Network (OSN) and XMPP</h2>
+
+<p>The XMPP service is used to store information about users and their social network relationships. These are used by IPOP to determine who to establish links with. The ejabberd open-source XMPP server allows you to create a private OSN where you have the flexibility of creating your own users and managing your own relationships. These can be done either through a command-line interface, or a Web interface.</p>
+
+<p>Creating your private XMPP service entails the following tasks - for example, <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Deploying-XMPP-STUN-TURN-Services#using-ejabberd-xmppstun">here are instructions for Ubuntu</a></p>
+
+<ol>
+  <li>Installing ejabberd on a Linux server that is going to be accessible by all IPOP nodes</li>
+  <li>Configuring ejabberd with users and relationships</li>
+  <li>Optionally configuring ejabberd to also serve as a STUN server</li>
+</ol>
+
+<h2 id="nat-traversal-and-stunturn">NAT Traversal and STUN/TURN</h2>
+
+<p>Network Address Translators - <a href="https://en.wikipedia.org/wiki/Network_address_translation">NATs</a> - are very common on the Internet today, and creating end-to-end links when nodes are “behind” a NAT adds complexity to any VPN system. While the XMPP service is concerned with users and their relationships, the NAT traversal services are concerned with ensuring that it is possible for users behind NATs to communicate with each other using IPOP. There are two NAT traversal services that can be used by IPOP:</p>
+
+<ol>
+  <li>The STUN service allows IPOP nodes behind a common kind of NAT (cone - the majority of NATs deployed in the Internet are of this type).</li>
+  <li>The TURN service allows IPOP nodes behind more restrictive NATs (symmetric) to communicate</li>
+</ol>
+
+<p>The STUN service is the preferred method of NAT traversal, because it is light-weight allows two nodes to communicate in a peer-to-peer fashion. The TURN service is more expensive - it requires the TURN service to serve as a “relay” for all communications between two peers. Hence, when possible, STUN should be used; when not possible, TURN is a fall-back. It is possible to deploy several STUN and TURN servers to balance the load of NAT traversal in your deployment - if you are deploying your own NAT traversal services, it is useful to be aware of the general behavior of STUN and TURN services, and the kinds of NATs that your users will be subject to to help configure these services.</p>
+
+<h2 id="deploying-stun">Deploying STUN</h2>
+
+<p>A simple way of deploying a STUN service for a small-scale IPOP network is to enable ejabberd’s built-in STUN service. For example, <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Deploying-XMPP-STUN-TURN-Services#using-ejabberd-xmppstun">here are instructions for Ubuntu</a>.</p>
+
+<p>If you want to deploy more than one STUN server - for load-balancing or fault tolerance - it is recommended to deploy STUN services that are not tied to ejabberd. For example, <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Deploying-XMPP-STUN-TURN-Services#ipop-configuration-for-socialvpn-and-groupvpn">use your TURN server which supports the STUN service itself</a>.</p>
+
+<h2 id="deploying-turn">Deploying TURN</h2>
+
+<p>Public TURN services are not as easy to find, because they tend to consume more resources (bandwidth) than STUN. Depending on your NAT characteristics (e.g. if all nodes are behind cone NATs), you may not need a TURN service. But if you have nodes behind NATs, or restrictive firewalls (e.g. that only allow outgoing connections through certain ports, such as TCP/80 TCP/443), you will need TURN services.</p>
+
+<p>There exist more than one open-source TURN service that you can use. For example, <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Deploying-XMPP-STUN-TURN-Services#using-turnserver-turn">here are instructions on how to setup a STUN+TURN server</a>. The configuration is more complex than STUN - e.g. it requires username/password associated with TURN “users” in the server; but again, as in STUN, you are able to deploy multiple TURN servers for improved load balancing and fault tolerance. IPOP will choose STUN/TURN servers from a list you provide in the configuration file, at random.</p>
+
+<p>If you would like to use the IPOP project’s public TURN service for a project, please contact us so we can determine if it’s possible to accommodate your case based on bandwidth demands.</p>
+
+<h2 id="configuring-ipop">Configuring IPOP</h2>
+
+<p>Once you have your own XMPP, STUN, TURN services deployed, configuring IPOP to use them is simple - all the information is provided in the config.json file used by SocialVPN or GroupVPN controllers.</p>
+
+
+
+
+      </section>
+    </div>
+  </article>
+
+
+  <div class="sidebar">
+    <nav class="nav__list">
+<!--       <div class="wiki-top-links">
+        <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
+      </div> -->
+      
+
+    
+
+
+
+        <ul>
+  <li><strong>Deploying IPOP-VPN</strong>
+    <ul>
+      <li><a href="Use-IPOP,-Intro">Installation</a></li>
+      <li><a href="Configuration,-Intro">Configuration</a></li>
+    </ul>
+  </li>
+  <li><strong>Tutorials</strong>
+    <ul>
+      <li><a href="Switchmode-with-LXC">Running IPOP in Switchmode</a></li>
+    </ul>
+  </li>
+  <li><strong>Development Guide</strong>
+    <ul>
+      <li><a href="Development-Workflow">Development Workflow</a></li>
+      <li><a href="Coding-Guidelines">Coding Guidelines</a></li>
+      <li><a href="Build-IPOP,-Intro">Building the Code</a></li>
+      <li><a href="IPOP-Scale-test-Walkthrough">Testing Your Build</a></li>
+      <li><a href="Controller-Framework">Controller Framework</a></li>
+      <li><a href="Controller-API">Controller API</a></li>
+      <li><a href="Build-WebRTC-Libraries,-Intro">Building WebRTC Libraries</a></li>
+    </ul>
+  </li>
+  <li><strong>General Documentation</strong>
+    <ul>
+      <li><a href="FAQs">FAQs</a></li>
+      <li><a href="Troubleshooting">Troubleshooting</a></li>
+      <li><a href="Planning-Your-Network">Planning Your Network</a></li>
+      <li><a href="Coding-Challenges">Coding Challenges</a></li>
+      <li><a href="Known-Issues">Known Issues</a></li>
+      <li><a href="Getting-Help">Getting Help</a></li>
+      <li><a href="How-to-Contribute">How to Contribute</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+
+      </section>
+    </div>
+  </article>
+
+
+
+</div>
+
+
+
+
+    </nav>
+  </div>
+
+
+</div>
+
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+     -->
+    <!-- <li><a href="https://ipop-project.github.io/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
+<!--  </ul>
+</div> --> 
+
+<div class="page__footer-copyright float-left">
+  <div class="float-left">
+    <img src="https://ipop-project.github.io/assets/images/uf_small.png" class="padding-bottom-right" /><img src="https://ipop-project.github.io/assets/images/nsf_small.png" class="padding-bottom-right" />
+  </div>
+  <i class="fa fa-address-card-o" aria-hidden="true"></i>
+  <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br />
+  <a href="http://www.ece.ufl.edu/" rel="nofollow" target="_blank">Department of Electrical & Computer Engineering</a><br />
+  <a href="http://www.eng.ufl.edu/" rel="nofollow" target="_blank">College of Engineering</a>, <a href="http://www.ufl.edu/" rel="nofollow" target="_blank">University of Florida</a>
+</div>
+
+<div class="page__footer-copyright float-right">
+  <div>
+    <a href="https://ipop-project.github.io/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="https://ipop-project.github.io/contact/#mailing-list-subscription">Mailing List</a> | <a href="https://ipop-project.github.io/sitemap">Sitemap</a><br />
+    <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
+    &copy; 2017 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
+    </div>
+  </div>
+</div>
+<div class="page__footer-copyright clear-both">This material is based upon work supported in part by the National Science Foundation under Grants No. 1234983, 1339737 and 1527415.</div>
+      </footer>
+    </div>
+
+    <script src="https://ipop-project.github.io/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>
+
