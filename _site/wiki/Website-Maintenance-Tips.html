@@ -271,8 +271,8 @@ git commit -m <span class="s2">"Wiki Added as a Submodule"</span>
 
 <p>In the main repo, source branch:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git rm -rf --cached wiki/.
-rm -rf .git/modules/wiki.
+<div class="highlighter-rouge"><pre class="highlight"><code>git rm -rf --cached wiki/
+rm -rf .git/modules/wiki
 rm -rf wiki
 git submodule add https://github.com/ipop-project/ipop-project.github.io.wiki.git wiki
 </code></pre>
@@ -617,69 +617,17 @@ pip install sleekxmpp</p>
 
 <h2 id="issues">Issues</h2>
 
-<p>There is a line in the <code class="highlighter-rouge">_layouts/wiki.html</code> to include the wiki sidebar:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>
-
-    
-
-
-
-        &lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Deploying IPOP-VPN&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href="Use-IPOP,-Intro"&gt;Installation&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href="Configuration,-Intro"&gt;Configuration&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Tutorials&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href="Switchmode-with-LXC"&gt;Running IPOP in Switchmode&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Development Guide&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href="Development-Workflow"&gt;Development Workflow&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href="Coding-Guidelines"&gt;Coding Guidelines&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href="Build-IPOP,-Intro"&gt;Building the Code&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href="IPOP-Scale-test-Walkthrough"&gt;Testing Your Build&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href="Controller-Framework"&gt;Controller Framework&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href="Controller-API"&gt;Controller API&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href="Build-WebRTC-Libraries,-Intro"&gt;Building WebRTC Libraries&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;General Documentation&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href="FAQs"&gt;FAQs&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href="Troubleshooting"&gt;Troubleshooting&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href="Planning-Your-Network"&gt;Planning Your Network&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href="Coding-Challenges"&gt;Coding Challenges&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href="Known-Issues"&gt;Known Issues&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href="Getting-Help"&gt;Getting Help&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href="How-to-Contribute"&gt;How to Contribute&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-
-
-      &lt;/section&gt;
-    &lt;/div&gt;
-  &lt;/article&gt;
-
-
-
-&lt;/div&gt;
-
-
-
-
-</code></pre>
-</div>
+<p>There is a line in the <code class="highlighter-rouge">_layouts/wiki.html</code> to include the wiki sidebar, <code class="highlighter-rouge">_site/wiki/_Sidebar.html</code>:</p>
 
 <p>If the file doesn’t exist, Jekyll will throw an error while building the website. It usually happens when you want to delete the old generated files in <code class="highlighter-rouge">_site</code> directory and re-build them. This line will always be checked even if it is in a condition that is not TRUE.</p>
 
-<p>A workaround would be to create an empty file at that path manually and after a successful Jekyll build, run the build for the second time to include the wiki sidebar.</p>
+<p>A workaround would be to create an empty file at that path manually and after a successful Jekyll build, run the build for the second time to include the wiki sidebar:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>touch _site/wiki/_Sidebar.html
+bundle exec jekyll build
+bundle exec jekyll build
+</code></pre>
+</div>
 
 
 
