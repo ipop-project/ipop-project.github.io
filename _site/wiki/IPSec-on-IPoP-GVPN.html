@@ -1,0 +1,572 @@
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.5.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>IPOP</title>
+
+
+
+
+<meta name="description" content="IP-Over-P2P, Open-source User-centric Software Virtual Network">
+
+
+
+
+<meta name="author" content="">
+
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="IPOP">
+<meta property="og:title" content="IPOP">
+
+
+  <link rel="canonical" href="https://ipop-project.github.io/wiki/IPSec-on-IPoP-GVPN">
+  <meta property="og:url" content="https://ipop-project.github.io/wiki/IPSec-on-IPoP-GVPN">
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "IPOP",
+      "url" : "https://ipop-project.github.io",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="https://ipop-project.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://ipop-project.github.io/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--wiki">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="https://ipop-project.github.io/">IPOP</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="https://ipop-project.github.io/about/">About</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://ipop-project.github.io/download">Download</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://ipop-project.github.io/learn/">Learn</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://ipop-project.github.io/wiki/">Wiki</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://ipop-project.github.io/whitepaper/">White Paper</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://ipop-project.github.io/contribute/">Contribute</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://ipop-project.github.io/contact/">Contact</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    
+
+
+
+<div id="main" role="main">
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      <section class="page__content" itemprop="text">
+
+        <aside class="sidebar__right">
+          <nav class="toc">
+            <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+            <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#introduction">Introduction</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#installation-and-configuration">Installation and Configuration</a></li>
+<li class="toc-entry toc-h2"><a href="#racoonconf">racoon.conf</a></li>
+<li class="toc-entry toc-h2"><a href="#creating-certificates">Creating certificates</a></li>
+<li class="toc-entry toc-h2"><a href="#assumptions">Assumptions</a></li>
+</ul>
+</li>
+</ul>
+          </nav>
+        </aside>
+
+        <h1 id="introduction">Introduction</h1>
+
+<p>This article describes how to deploy IPsec/Racoon on an LXC-Ubuntu/OpenWRT+IPOP device operating in L2-IPOP switch-mode. With IPoP running in recursive mode it is now possible to create certificates, and configure racoon with the OuterIPoP endpoints.The below link demonstrates how to setup IPoP in recursive mode.<br />
+<a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Running-IPoP-in-recursive-mode">IPoP in recursive mode</a></p>
+
+<h2 id="installation-and-configuration">Installation and Configuration</h2>
+<p>Default installation of racoon puts the configuration file under ‘/etc/’ folder. To make it work on OpenWRT, you need to install the packages referred below. Below commands are for OpenWRT.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>opkg update
+opkg install ipsec-tools
+opkg install kmod-ipsec4
+</code></pre>
+</div>
+<p>A reboot is required to insert the kernel modules.<br />
+For Ubuntu it is straighforward–</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo apt-get install racoon ipsec-tools
+</code></pre>
+</div>
+<h2 id="racoonconf">racoon.conf</h2>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>path pre_shared_key <span class="s2">"/etc/racoon/psk.txt"</span>;
+path certificate <span class="s2">"/etc/racoon/certs"</span>;
+
+listen
+<span class="o">{</span>   <span class="c"># public IP endpoint for self.</span>
+    isakmp 192.168.1.100 <span class="o">[</span>500];
+    isakmp_natt 192.168.1.100 <span class="o">[</span>4500];
+<span class="o">}</span>
+
+remote anonymous <span class="o">{</span>
+        proposal <span class="o">{</span>
+                encryption_algorithm 3des;
+                hash_algorithm sha1;
+                authentication_method rsasig;
+        dh_group modp1024;
+        <span class="o">}</span>
+        certificate_type x509 <span class="s2">"cert.pem"</span> <span class="s2">"key.pem"</span>;
+        ca_type x509 <span class="s2">"rootCA.pem"</span> ;
+        my_identifier asn1dn ;
+        verify_identifier off;
+        exchange_mode main;
+        nat_traversal on;
+<span class="o">}</span>
+sainfo anonymous <span class="o">{</span>
+     authentication_algorithm hmac_sha1;
+     compression_algorithm deflate;
+        pfs_group modp1024;
+        encryption_algorithm 3des;
+<span class="o">}</span>
+
+</code></pre>
+</div>
+<h2 id="creating-certificates">Creating certificates</h2>
+<p>Root key</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code> openssl genrsa -out rootCA.key 2048
+</code></pre>
+</div>
+<p>Root certificate</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>openssl req -x509 -new -nodes -key rootCA.key -days 1024 -out rootCA.pem
+</code></pre>
+</div>
+<p>Once we have rootCA and rootCA-key, we can attest certificates for peers.<br />
+create a private key for the peer.</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>openssl genrsa -out key.pem 2048
+</code></pre>
+</div>
+<p>create a certificate signing request.</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>openssl req -new -key key.pem -out device.csr
+</code></pre>
+</div>
+<p>Point to be noted– The CN (Common Name) should be your public IP endpoint, or your DNS Hostname. 
+The entity owning the rootCA can than service this request and create a signed certificate</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>openssl x509 -req -in device.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out cert.pem -days 500
+</code></pre>
+</div>
+<p>Now place the rootCA.pem, peer certificate and key in “/etc/racoon/certs”, create the path if it does not exist. It must look like:</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">root@OpenWrt:/etc/racoon# </span><span class="nb">cd</span> /etc/racoon/certs/
+<span class="gp">root@OpenWrt:/etc/racoon/certs# </span>ls
+cert.pem    key.pem     rootCA.pem
+<span class="gp">root@OpenWrt:/etc/racoon/certs# </span>
+
+</code></pre>
+</div>
+
+<p>To do manual security-association management, the script below script can be used. The controller will otherwise automatically take care of it.</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#! /bin/bash</span>
+setkey -c <span class="sh">&lt;&lt; EOF
+#flush ;
+#spdflush ;
+spdadd 192.168.1.0/16 192.168.1.0/16 any -P out ipsec esp/transport//require ;
+spdadd 192.168.1.0/16 192.168.1.0/16 any -P in  ipsec esp/transport//require ;
+EOF
+</span></code></pre>
+</div>
+<p>Once the racoon daemon is running, you can use execute the script to add security associations. For “out” rule first field is local address range, followed by remote address range on which IPsec is to be enforced. For in the first field is remote followed by local. We use ESP-Transport mode. For Open-WRT replace “bash” by “sh” in the leading line. The above file should have permissions as shown below.</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>-rwx--x--x    1 root     root           219 May 13 14:38 setkey.sh
+</code></pre>
+</div>
+<h2 id="assumptions">Assumptions</h2>
+<p>IPsec racoon daemon is already running, ensure that no un-wanted security associations are active. This can be done on command line by using</p>
+
+<p>Start racoon in Foreground</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code> /usr/sbin/racoon -F
+</code></pre>
+</div>
+<p>OR <br />
+Start racoon in background.</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo /etc/init.d/racoon start
+</code></pre>
+</div>
+<p>To check current security associations.</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code> setkey -DP
+</code></pre>
+</div>
+<p>In case you made a mistake while setting up configuration, you can purge the policies by using</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"spdflush; flush;"</span> | sudo setkey -c
+</code></pre>
+</div>
+<p>The below IPsec logs depict successful set up of IPsec</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@sam-T520:/etc/racoon$ </span>sudo /usr/sbin/racoon -F
+<span class="o">[</span>sudo] password <span class="k">for </span>sam: 
+Foreground mode.
+2016-05-22 22:25:50: INFO: @<span class="o">(</span><span class="c">#)ipsec-tools 0.8.0 (http://ipsec-tools.sourceforge.net)</span>
+2016-05-22 22:25:50: INFO: @<span class="o">(</span><span class="c">#)This product linked OpenSSL 1.0.1f 6 Jan 2014 (http://www.openssl.org/)</span>
+2016-05-22 22:25:50: INFO: Reading configuration from <span class="s2">"/etc/racoon/racoon.conf"</span>
+2016-05-22 22:25:50: INFO: 192.168.1.100[4500] used <span class="k">for </span>NAT-T
+2016-05-22 22:25:50: INFO: 192.168.1.100[4500] used as isakmp port <span class="o">(</span><span class="nv">fd</span><span class="o">=</span>7<span class="o">)</span>
+2016-05-22 22:25:50: INFO: 192.168.1.100[500] used <span class="k">for </span>NAT-T
+2016-05-22 22:25:50: INFO: 192.168.1.100[500] used as isakmp port <span class="o">(</span><span class="nv">fd</span><span class="o">=</span>8<span class="o">)</span>
+2016-05-22 22:26:14: INFO: unsupported PF_KEY message REGISTER
+2016-05-22 22:26:15: INFO: IPsec-SA request <span class="k">for </span>192.168.1.101 queued due to no phase1 found.
+2016-05-22 22:26:15: INFO: initiate new phase 1 negotiation: 192.168.1.100[500]&lt;<span class="o">=</span>&gt;192.168.1.101[500]
+2016-05-22 22:26:15: INFO: begin Identity Protection mode.
+2016-05-22 22:26:15: INFO: received Vendor ID: RFC 3947
+2016-05-22 22:26:15: INFO: received Vendor ID: DPD
+2016-05-22 22:26:15: <span class="o">[</span>192.168.1.101] INFO: Selected NAT-T version: RFC 3947
+2016-05-22 22:26:15: <span class="o">[</span>192.168.1.101] INFO: Hashing 192.168.1.101[500] with algo <span class="c">#2 </span>
+2016-05-22 22:26:15: <span class="o">[</span>192.168.1.100] INFO: Hashing 192.168.1.100[500] with algo <span class="c">#2 </span>
+2016-05-22 22:26:15: INFO: Adding remote and <span class="nb">local </span>NAT-D payloads.
+2016-05-22 22:26:15: <span class="o">[</span>192.168.1.100] INFO: Hashing 192.168.1.100[500] with algo <span class="c">#2 </span>
+2016-05-22 22:26:15: INFO: NAT-D payload <span class="c">#0 verified</span>
+2016-05-22 22:26:15: <span class="o">[</span>192.168.1.101] INFO: Hashing 192.168.1.101[500] with algo <span class="c">#2 </span>
+2016-05-22 22:26:15: INFO: NAT-D payload <span class="c">#1 verified</span>
+2016-05-22 22:26:15: INFO: NAT not detected 
+2016-05-22 22:26:15: WARNING: unable to get certificate CRL<span class="o">(</span>3<span class="o">)</span> at depth:0 SubjectName:/C<span class="o">=</span>US/ST<span class="o">=</span>FLORIDA/L<span class="o">=</span>GNV/O<span class="o">=</span>IPOP/OU<span class="o">=</span>IPOP/CN<span class="o">=</span>192.168.1.101/emailAddress<span class="o">=</span>IPOP
+2016-05-22 22:26:15: WARNING: unable to get certificate CRL<span class="o">(</span>3<span class="o">)</span> at depth:1 SubjectName:/C<span class="o">=</span>US/ST<span class="o">=</span>FLORIDA/L<span class="o">=</span>GNV/O<span class="o">=</span>IPOP/OU<span class="o">=</span>IPOP/CN<span class="o">=</span>IPOP/emailAddress<span class="o">=</span>IPOP
+2016-05-22 22:26:15: INFO: ISAKMP-SA established 192.168.1.100[500]-192.168.1.101[500] spi:83b7f873874689f3:07c82b52e1d87598
+2016-05-22 22:26:15: <span class="o">[</span>192.168.1.101] INFO: received INITIAL-CONTACT
+2016-05-22 22:26:16: INFO: initiate new phase 2 negotiation: 192.168.1.100[500]&lt;<span class="o">=</span>&gt;192.168.1.101[500]
+2016-05-22 22:26:21: INFO: respond new phase 2 negotiation: 192.168.1.100[500]&lt;<span class="o">=</span>&gt;192.168.1.101[500]
+2016-05-22 22:26:21: INFO: IPsec-SA established: ESP/Transport 192.168.1.100[500]-&gt;192.168.1.101[500] <span class="nv">spi</span><span class="o">=</span>89997279<span class="o">(</span>0x55d3fdf<span class="o">)</span>
+2016-05-22 22:26:21: INFO: IPsec-SA established: ESP/Transport 192.168.1.100[500]-&gt;192.168.1.101[500] <span class="nv">spi</span><span class="o">=</span>184224019<span class="o">(</span>0xafb0913<span class="o">)</span>
+2016-05-22 22:26:26: INFO: IPsec-SA established: ESP/Transport 192.168.1.100[500]-&gt;192.168.1.101[500] <span class="nv">spi</span><span class="o">=</span>148161029<span class="o">(</span>0x8d4c205<span class="o">)</span>
+2016-05-22 22:26:26: INFO: IPsec-SA established: ESP/Transport 192.168.1.100[500]-&gt;192.168.1.101[500] <span class="nv">spi</span><span class="o">=</span>136970745<span class="o">(</span>0x82a01f9<span class="o">)</span>
+
+</code></pre>
+</div>
+<p>Note both the   “INFO: ISAKMP-SA established 192.168.1.100[500]-192.168.1.101[500] spi:83b7f873874689f3:07c82b52e1d87598” which denotes successful phase1 and “INFO: IPsec-SA established: ESP/Transport 192.168.1.100[500]-&gt;192.168.1.101[500] spi=89997279(0x55d3fdf)” phase2 stages respectively.</p>
+
+<p>tcp-dump output when sending ICMP messages between client nodes as captured on the Linux node hosting LXC’s.</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@sam-T520:/etc/racoon$ </span>sudo tcpdump -ni any -v esp
+<span class="o">[</span>sudo] password <span class="k">for </span>sam: 
+tcpdump: listening on any, link-type LINUX_SLL <span class="o">(</span>Linux cooked<span class="o">)</span>, capture size 65535 bytes
+22:46:49.928105 IP <span class="o">(</span>tos 0x0, ttl 64, id 5830, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 176<span class="o">)</span>
+    192.168.1.101 &gt; 192.168.1.100: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x08d4c205,seq<span class="o">=</span>0x1924<span class="o">)</span>, length 156
+22:46:49.928541 IP <span class="o">(</span>tos 0x0, ttl 64, id 31553, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 128<span class="o">)</span>
+    192.168.1.100 &gt; 192.168.1.101: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x082a01f9,seq<span class="o">=</span>0x1924<span class="o">)</span>, length 108
+22:46:49.928911 IP <span class="o">(</span>tos 0x0, ttl 64, id 31554, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 176<span class="o">)</span>
+    192.168.1.100 &gt; 192.168.1.101: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x082a01f9,seq<span class="o">=</span>0x1925<span class="o">)</span>, length 156
+22:46:49.930093 IP <span class="o">(</span>tos 0x0, ttl 64, id 5831, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 128<span class="o">)</span>
+    192.168.1.101 &gt; 192.168.1.100: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x08d4c205,seq<span class="o">=</span>0x1925<span class="o">)</span>, length 108
+22:46:49.961201 IP <span class="o">(</span>tos 0x0, ttl 64, id 43815, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 248<span class="o">)</span>
+    192.168.1.100 &gt; 192.168.1.101: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x082a01f9,seq<span class="o">=</span>0x1926<span class="o">)</span>, length 228
+22:46:49.962749 IP <span class="o">(</span>tos 0x0, ttl 64, id 5832, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 248<span class="o">)</span>
+    192.168.1.101 &gt; 192.168.1.100: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x08d4c205,seq<span class="o">=</span>0x1926<span class="o">)</span>, length 228
+22:46:50.408395 IP <span class="o">(</span>tos 0x0, ttl 64, id 5833, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 176<span class="o">)</span>
+    192.168.1.101 &gt; 192.168.1.100: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x08d4c205,seq<span class="o">=</span>0x1927<span class="o">)</span>, length 156
+22:46:50.408840 IP <span class="o">(</span>tos 0x0, ttl 64, id 43858, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 128<span class="o">)</span>
+    192.168.1.100 &gt; 192.168.1.101: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x082a01f9,seq<span class="o">=</span>0x1927<span class="o">)</span>, length 108
+22:46:50.409299 IP <span class="o">(</span>tos 0x0, ttl 64, id 43859, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 176<span class="o">)</span>
+    192.168.1.100 &gt; 192.168.1.101: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x082a01f9,seq<span class="o">=</span>0x1928<span class="o">)</span>, length 156
+22:46:50.410715 IP <span class="o">(</span>tos 0x0, ttl 64, id 5834, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 128<span class="o">)</span>
+    192.168.1.101 &gt; 192.168.1.100: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x08d4c205,seq<span class="o">=</span>0x1928<span class="o">)</span>, length 108
+
+</code></pre>
+</div>
+<p>Check Security associations–</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@sam-T520:/etc/racoon$ </span>sudo setkey -DP
+192.168.1.0/16[any] 192.168.1.0/16[any] 255
+	fwd prio def ipsec
+	esp/transport//require
+	created: May 22 22:26:14 2016  lastused:                     
+	lifetime: 0<span class="o">(</span>s<span class="o">)</span> validtime: 0<span class="o">(</span>s<span class="o">)</span>
+	<span class="nv">spid</span><span class="o">=</span>738 <span class="nv">seq</span><span class="o">=</span>1 <span class="nv">pid</span><span class="o">=</span>6763
+	<span class="nv">refcnt</span><span class="o">=</span>1
+192.168.1.0/16[any] 192.168.1.0/16[any] 255
+	<span class="k">in </span>prio def ipsec
+	esp/transport//require
+	created: May 22 22:26:14 2016  lastused: May 22 22:48:01 2016
+	lifetime: 0<span class="o">(</span>s<span class="o">)</span> validtime: 0<span class="o">(</span>s<span class="o">)</span>
+	<span class="nv">spid</span><span class="o">=</span>728 <span class="nv">seq</span><span class="o">=</span>2 <span class="nv">pid</span><span class="o">=</span>6763
+	<span class="nv">refcnt</span><span class="o">=</span>9
+192.168.1.0/16[any] 192.168.1.0/16[any] 255
+	out prio def ipsec
+	esp/transport//require
+	created: May 22 22:26:14 2016  lastused: May 22 22:48:01 2016
+	lifetime: 0<span class="o">(</span>s<span class="o">)</span> validtime: 0<span class="o">(</span>s<span class="o">)</span>
+	<span class="nv">spid</span><span class="o">=</span>721 <span class="nv">seq</span><span class="o">=</span>3 <span class="nv">pid</span><span class="o">=</span>6763
+	<span class="nv">refcnt</span><span class="o">=</span>10
+<span class="o">(</span>per-socket policy<span class="o">)</span> 
+	out<span class="o">(</span>socket<span class="o">)</span> none
+	created: May 22 22:25:50 2016  lastused: May 22 22:26:26 2016
+	lifetime: 0<span class="o">(</span>s<span class="o">)</span> validtime: 0<span class="o">(</span>s<span class="o">)</span>
+	<span class="nv">spid</span><span class="o">=</span>716 <span class="nv">seq</span><span class="o">=</span>4 <span class="nv">pid</span><span class="o">=</span>6763
+	<span class="nv">refcnt</span><span class="o">=</span>1
+<span class="o">(</span>per-socket policy<span class="o">)</span> 
+	<span class="k">in</span><span class="o">(</span>socket<span class="o">)</span> none
+	created: May 22 22:25:50 2016  lastused: May 22 22:26:26 2016
+	lifetime: 0<span class="o">(</span>s<span class="o">)</span> validtime: 0<span class="o">(</span>s<span class="o">)</span>
+	<span class="nv">spid</span><span class="o">=</span>707 <span class="nv">seq</span><span class="o">=</span>5 <span class="nv">pid</span><span class="o">=</span>6763
+	<span class="nv">refcnt</span><span class="o">=</span>1
+<span class="o">(</span>per-socket policy<span class="o">)</span> 
+	out<span class="o">(</span>socket<span class="o">)</span> none
+	created: May 22 22:25:50 2016  lastused:                     
+	lifetime: 0<span class="o">(</span>s<span class="o">)</span> validtime: 0<span class="o">(</span>s<span class="o">)</span>
+	<span class="nv">spid</span><span class="o">=</span>700 <span class="nv">seq</span><span class="o">=</span>6 <span class="nv">pid</span><span class="o">=</span>6763
+	<span class="nv">refcnt</span><span class="o">=</span>1
+<span class="o">(</span>per-socket policy<span class="o">)</span> 
+	<span class="k">in</span><span class="o">(</span>socket<span class="o">)</span> none
+	created: May 22 22:25:50 2016  lastused:                     
+	lifetime: 0<span class="o">(</span>s<span class="o">)</span> validtime: 0<span class="o">(</span>s<span class="o">)</span>
+	<span class="nv">spid</span><span class="o">=</span>691 <span class="nv">seq</span><span class="o">=</span>0 <span class="nv">pid</span><span class="o">=</span>6763
+	<span class="nv">refcnt</span><span class="o">=</span>1
+<span class="gp">sam@sam-T520:/etc/racoon$ </span>
+
+</code></pre>
+</div>
+
+<p>##References:</p>
+<ol>
+  <li>
+    <p><a href="http://www.mad-hacking.net/documentation/linux/networking/ipsec/using-racoon-psk.xml">Using the Racoon IKE/ISAKMP daemon</a></p>
+  </li>
+  <li>
+    <p><a href="http://www.mad-hacking.net/documentation/linux/networking/ipsec/nat-vpn.xml">Building a tunnelled VPN using ESP (static IPs, through NAT)</a></p>
+  </li>
+  <li>
+    <p><a href="http://www.kame.net/racoon/racoon.conf.5">Racoon.conf Man page</a></p>
+  </li>
+</ol>
+
+
+
+
+      </section>
+    </div>
+  </article>
+
+
+  <div class="sidebar">
+    <nav class="nav__list">
+<!--       <div class="wiki-top-links">
+        <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
+      </div> -->
+      
+
+    
+
+
+
+        <ul>
+  <li><strong>Deploying IPOP-VPN</strong>
+    <ul>
+      <li><a href="Use-IPOP,-Intro">Installation</a></li>
+      <li><a href="Configuration,-Intro">Configuration</a></li>
+    </ul>
+  </li>
+  <li><strong>Tutorials</strong>
+    <ul>
+      <li><a href="Switchmode-with-LXC">Running IPOP in Switchmode</a></li>
+    </ul>
+  </li>
+  <li><strong>Development Guide</strong>
+    <ul>
+      <li><a href="Development-Workflow">Development Workflow</a></li>
+      <li><a href="Coding-Guidelines">Coding Guidelines</a></li>
+      <li><a href="Build-IPOP,-Intro">Building the Code</a></li>
+      <li><a href="IPOP-Scale-test-Walkthrough">Testing Your Build</a></li>
+      <li><a href="Controller-Framework">Controller Framework</a></li>
+      <li><a href="Controller-API">Controller API</a></li>
+      <li><a href="Build-WebRTC-Libraries,-Intro">Building WebRTC Libraries</a></li>
+    </ul>
+  </li>
+  <li><strong>General Documentation</strong>
+    <ul>
+      <li><a href="FAQs">FAQs</a></li>
+      <li><a href="Troubleshooting">Troubleshooting</a></li>
+      <li><a href="Planning-Your-Network">Planning Your Network</a></li>
+      <li><a href="Coding-Challenges">Coding Challenges</a></li>
+      <li><a href="Known-Issues">Known Issues</a></li>
+      <li><a href="Getting-Help">Getting Help</a></li>
+      <li><a href="How-to-Contribute">How to Contribute</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+
+      </section>
+    </div>
+  </article>
+
+
+
+</div>
+
+
+
+
+    </nav>
+  </div>
+
+
+</div>
+
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+     -->
+    <!-- <li><a href="https://ipop-project.github.io/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
+<!--  </ul>
+</div> --> 
+
+<div class="page__footer-copyright float-left">
+  <div class="float-left">
+    <img src="https://ipop-project.github.io/assets/images/uf_small.png" class="padding-bottom-right" /><img src="https://ipop-project.github.io/assets/images/nsf_small.png" class="padding-bottom-right" />
+  </div>
+  <i class="fa fa-address-card-o" aria-hidden="true"></i>
+  <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br />
+  <a href="http://www.ece.ufl.edu/" rel="nofollow" target="_blank">Department of Electrical & Computer Engineering</a><br />
+  <a href="http://www.eng.ufl.edu/" rel="nofollow" target="_blank">College of Engineering</a>, <a href="http://www.ufl.edu/" rel="nofollow" target="_blank">University of Florida</a>
+</div>
+
+<div class="page__footer-copyright float-right">
+  <div>
+    <a href="https://ipop-project.github.io/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="https://ipop-project.github.io/contact/#mailing-list-subscription">Mailing List</a> | <a href="https://ipop-project.github.io/sitemap">Sitemap</a><br />
+    <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
+    &copy; 2017 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
+    </div>
+  </div>
+</div>
+<div class="page__footer-copyright clear-both">This material is based upon work supported in part by the National Science Foundation under Grants No. 1234983, 1339737 and 1527415.</div>
+      </footer>
+    </div>
+
+    <script src="https://ipop-project.github.io/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>
+
