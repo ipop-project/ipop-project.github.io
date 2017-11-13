@@ -184,16 +184,11 @@
             <ul class="section-nav">
 <li class="toc-entry toc-h1"><a href="#website-maintenance-tips">Website Maintenance Tips</a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#deploying-the-static-jekyll-website-from-local-repository-to-github-gh-pages-branch">Deploying the Static Jekyll Website from Local Repository to GitHub gh-pages Branch</a>
-<ul>
-<li class="toc-entry toc-h3"><a href="#install-and-run-jekyll-github-deploy">Install and Run Jekyll Github Deploy</a></li>
-<li class="toc-entry toc-h3"><a href="#alternative-use-git">Alternative: Use Git</a></li>
-</ul>
-</li>
-<li class="toc-entry toc-h2"><a href="#change-github-settings">Change GitHub Settings</a></li>
+<li class="toc-entry toc-h2"><a href="#website-git-structure">Website Git Structure</a></li>
 <li class="toc-entry toc-h2"><a href="#page-layouts">Page Layouts</a></li>
 <li class="toc-entry toc-h2"><a href="#add-wiki-as-submodule">Add Wiki as Submodule</a></li>
 <li class="toc-entry toc-h2"><a href="#remove-wiki-submodule">Remove Wiki Submodule</a></li>
+<li class="toc-entry toc-h2"><a href="#build-jekyll-website-locally">Build Jekyll Website Locally</a></li>
 <li class="toc-entry toc-h2"><a href="#add-yaml-front-matter-to-wiki-markdown-source-files">Add YAML Front Matter to Wiki MarkDown Source Files</a></li>
 <li class="toc-entry toc-h2"><a href="#importing-wiki-into-jekyll-website">Importing Wiki into Jekyll Website</a></li>
 <li class="toc-entry toc-h2"><a href="#redirect-wiki-home">Redirect Wiki Home</a>
@@ -222,44 +217,23 @@
 </li>
 </ul>
 </li>
-<li class="toc-entry toc-h1"><a href="#key-points-summary">Key Points Summary</a></li>
+<li class="toc-entry toc-h1"><a href="#key-points-summary">Key Points Summary</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#issues">Issues</a></li>
+</ul>
+</li>
 </ul>
           </nav>
         </aside>
 
         <h1 id="website-maintenance-tips">Website Maintenance Tips</h1>
 
-<h2 id="deploying-the-static-jekyll-website-from-local-repository-to-github-gh-pages-branch">Deploying the Static Jekyll Website from Local Repository to GitHub gh-pages Branch</h2>
-
-<p>While using custom or unsupported plugins, it is necessary to upload the static website files, already built on the local repository to the GitHub repository and choose the website to be loaded from that.</p>
-
-<h3 id="install-and-run-jekyll-github-deploy">Install and Run Jekyll Github Deploy</h3>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>gem install jgd
-jgd
-</code></pre>
-</div>
-<h3 id="alternative-use-git">Alternative: Use Git</h3>
-
-<p>First push everything from the local repo to the master branch. Then:</p>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>git checkout master
-rm -rf _site
-git clone -b gh-pages <span class="sb">`</span>git config remote.origin.url<span class="sb">`</span> _site
-jekyll build
-<span class="nb">cd </span>_site
-git add -A
-git commit -am <span class="s1">'Static Pages Built'</span>
-git push
-</code></pre>
-</div>
-<p><a href="https://stackoverflow.com/questions/17835937/how-do-i-push-jekyll-site-directory-to-gh-pages-branch-and-leave-the-source-in">Reference</a></p>
-
-<h2 id="change-github-settings">Change GitHub Settings</h2>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>Settings &gt; GitHub Pages &gt; Source &gt; gh-pages branch &gt; Save
-</code></pre>
-</div>
+<h2 id="website-git-structure">Website Git Structure</h2>
+<ul>
+  <li>Source Files Including Markdown Files for Pages: source Branch</li>
+  <li>Static Pages Built by Jekyll: master Branch</li>
+  <li>The website needs to be loaded from the branch with static pages since there are some unsupported plugins used on the website which will not buildable online by GitHub Jekyll. We have to build the website locally and then upload the static pages to the GitHub.</li>
+</ul>
 
 <h2 id="page-layouts">Page Layouts</h2>
 
@@ -282,7 +256,7 @@ git commit -m <span class="s2">"Wiki Added as a Submodule"</span>
 
 <p>Delete the relevant section from <code class="highlighter-rouge">.git/config</code>.</p>
 
-<p>Run <code class="highlighter-rouge">git rm --cached wiki/</code>.</p>
+<p>Run <code class="highlighter-rouge">git rm -rf --cached wiki/</code>.</p>
 
 <p>Run <code class="highlighter-rouge">rm -rf .git/modules/wiki</code>.</p>
 
@@ -291,6 +265,18 @@ git commit -m <span class="s2">"Wiki Added as a Submodule"</span>
 <p>Delete the now untracked submodule files <code class="highlighter-rouge">rm -rf wiki</code>.</p>
 
 <p><a href="https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial#Removal">Reference</a></p>
+
+<h2 id="build-jekyll-website-locally">Build Jekyll Website Locally</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo gem install bundler
+sudo apt install ruby-dev
+</code></pre>
+</div>
+<p>In the main repo, source branch:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>bundle install
+</code></pre>
+</div>
 
 <h2 id="add-yaml-front-matter-to-wiki-markdown-source-files">Add YAML Front Matter to Wiki MarkDown Source Files</h2>
 
@@ -510,15 +496,16 @@ pip install sleekxmpp</p>
 
 
 
-
       </section>
     </div>
   </article>
-    <div class="sidebar">
+
+
+  <div class="sidebar">
     <nav class="nav__list">
-      <div class="wiki-top-links">
+<!--       <div class="wiki-top-links">
         <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
-      </div>
+      </div> -->
       
 
     
@@ -563,15 +550,22 @@ pip install sleekxmpp</p>
 
 
 
+      &lt;/section&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
 
+
+
+&lt;/div&gt;
 
 
 
 
     </nav>
   </div>
-</div>
 
+
+</div>
 <p><code class="highlighter-rouge">. Check the </code>default.html` content.</p>
 
 <p>use <a href="https://github.com/tnhu/jekyll-include-absolute-plugin">jekyll-include-absolute-plugin</a> to add support for including files outside the <code class="highlighter-rouge">_includes</code> directory.</p>
@@ -585,283 +579,7 @@ pip install sleekxmpp</p>
 </code></pre>
 </div>
 
-<p>«««&lt; HEAD
-Insert the sidebar in the wiki template <code class="highlighter-rouge">wiki.html</code>:</p>
-
-<div class="language-html highlighter-rouge"><pre class="highlight"><code>---
-layout: default
----
-
-
-
-
-
-
-<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"main"</span> <span class="na">role=</span><span class="s">"main"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"sidebar"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;nav</span> <span class="na">class=</span><span class="s">"nav__list"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"wiki-top-links"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"../wiki"</span><span class="nt">&gt;</span>Wiki Home<span class="nt">&lt;/a&gt;</span> / <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"../wikipages"</span><span class="nt">&gt;</span>Wiki Pages<span class="nt">&lt;/a&gt;</span>
-      <span class="nt">&lt;/div&gt;</span>
-        { % include_absolute _site/wiki/_Sidebar.html %} <span class="c">&lt;!-- REMOVE THE SPACE BETWEEN { and % BEFOR PUBLISHING. --&gt;</span>
-    <span class="nt">&lt;/nav&gt;</span>
-  <span class="nt">&lt;/div&gt;</span>
-
-  <span class="nt">&lt;article</span> <span class="na">class=</span><span class="s">"page"</span> <span class="na">itemscope</span> <span class="na">itemtype=</span><span class="s">"http://schema.org/CreativeWork"</span><span class="nt">&gt;</span>
-    
-    
-    
-    
-
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"page__inner-wrap"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;section</span> <span class="na">class=</span><span class="s">"page__content"</span> <span class="na">itemprop=</span><span class="s">"text"</span><span class="nt">&gt;</span>
-
-
-        
-
-
-
-<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"main"</span> <span class="na">role=</span><span class="s">"main"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;article</span> <span class="na">class=</span><span class="s">"page"</span> <span class="na">itemscope</span> <span class="na">itemtype=</span><span class="s">"http://schema.org/CreativeWork"</span><span class="nt">&gt;</span>
-    
-    
-    
-    
-
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"page__inner-wrap"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;section</span> <span class="na">class=</span><span class="s">"page__content"</span> <span class="na">itemprop=</span><span class="s">"text"</span><span class="nt">&gt;</span>
-
-        <span class="nt">&lt;aside</span> <span class="na">class=</span><span class="s">"sidebar__right"</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;nav</span> <span class="na">class=</span><span class="s">"toc"</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;header&gt;&lt;h4</span> <span class="na">class=</span><span class="s">"nav__title"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"fa fa-file-text"</span><span class="nt">&gt;&lt;/i&gt;</span> On This Page<span class="nt">&lt;/h4&gt;&lt;/header&gt;</span>
-            <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"section-nav"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"toc-entry toc-h1"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#use-ipop-on-windows-manually"</span><span class="nt">&gt;</span>Use IPOP on Windows, Manually<span class="nt">&lt;/a&gt;</span>
-<span class="nt">&lt;ul&gt;</span>
-<span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"toc-entry toc-h2"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#installing-ipop-vpn-on-windows"</span><span class="nt">&gt;</span>Installing IPOP-VPN on Windows<span class="nt">&lt;/a&gt;</span>
-<span class="nt">&lt;ul&gt;</span>
-<span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"toc-entry toc-h3"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#quick-start-installation"</span><span class="nt">&gt;</span>Quick start Installation<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-<span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"toc-entry toc-h3"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#tldr"</span><span class="nt">&gt;</span>TLDR<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-<span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"toc-entry toc-h3"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#manual-setup"</span><span class="nt">&gt;</span>Manual Setup<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-<span class="nt">&lt;/ul&gt;</span>
-<span class="nt">&lt;/li&gt;</span>
-<span class="nt">&lt;/ul&gt;</span>
-<span class="nt">&lt;/li&gt;</span>
-<span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"toc-entry toc-h1"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#key-points-summary"</span><span class="nt">&gt;</span>Key Points Summary<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-<span class="nt">&lt;/ul&gt;</span>
-          <span class="nt">&lt;/nav&gt;</span>
-        <span class="nt">&lt;/aside&gt;</span>
-
-        <span class="nt">&lt;h1</span> <span class="na">id=</span><span class="s">"use-ipop-on-windows-manually"</span><span class="nt">&gt;</span>Use IPOP on Windows, Manually<span class="nt">&lt;/h1&gt;</span>
-
-<span class="nt">&lt;p&gt;&lt;strong&gt;</span>Warning: This document may be out of date.<span class="nt">&lt;/strong&gt;&lt;/p&gt;</span>
-
-<span class="nt">&lt;table&gt;</span>
-  <span class="nt">&lt;thead&gt;</span>
-    <span class="nt">&lt;tr&gt;</span>
-      <span class="nt">&lt;th&gt;</span> <span class="nt">&lt;/th&gt;</span>
-      <span class="nt">&lt;th&gt;</span>Description<span class="nt">&lt;/th&gt;</span>
-    <span class="nt">&lt;/tr&gt;</span>
-  <span class="nt">&lt;/thead&gt;</span>
-  <span class="nt">&lt;tbody&gt;</span>
-    <span class="nt">&lt;tr&gt;</span>
-      <span class="nt">&lt;td&gt;&lt;strong&gt;</span>Tested on<span class="nt">&lt;/strong&gt;&lt;/td&gt;</span>
-      <span class="nt">&lt;td&gt;</span>Microsoft Windows 10 x64<span class="nt">&lt;/td&gt;</span>
-    <span class="nt">&lt;/tr&gt;</span>
-    <span class="nt">&lt;tr&gt;</span>
-      <span class="nt">&lt;td&gt;&lt;strong&gt;</span>Time<span class="nt">&lt;/strong&gt;&lt;/td&gt;</span>
-      <span class="nt">&lt;td&gt;</span>~ 10 Minutes<span class="nt">&lt;/td&gt;</span>
-    <span class="nt">&lt;/tr&gt;</span>
-    <span class="nt">&lt;tr&gt;</span>
-      <span class="nt">&lt;td&gt;&lt;strong&gt;</span>Question(s)<span class="nt">&lt;/strong&gt;&lt;/td&gt;</span>
-      <span class="nt">&lt;td&gt;</span>- How to install IPOP?<span class="nt">&lt;br</span> <span class="nt">/&gt;</span> - How to run IPOP?<span class="nt">&lt;br</span> <span class="nt">/&gt;</span> - How to remove IPOP?<span class="nt">&lt;/td&gt;</span>
-    <span class="nt">&lt;/tr&gt;</span>
-    <span class="nt">&lt;tr&gt;</span>
-      <span class="nt">&lt;td&gt;&lt;strong&gt;</span>Objective(s)<span class="nt">&lt;/strong&gt;&lt;/td&gt;</span>
-      <span class="nt">&lt;td&gt;</span>- Install IPOP<span class="nt">&lt;br</span> <span class="nt">/&gt;</span> - Run IPOP<span class="nt">&lt;br</span> <span class="nt">/&gt;</span> - Stop IPOP<span class="nt">&lt;br</span> <span class="nt">/&gt;</span> - Remove IPOP<span class="nt">&lt;/td&gt;</span>
-    <span class="nt">&lt;/tr&gt;</span>
-  <span class="nt">&lt;/tbody&gt;</span>
-<span class="nt">&lt;/table&gt;</span>
-
-<span class="nt">&lt;h2</span> <span class="na">id=</span><span class="s">"installing-ipop-vpn-on-windows"</span><span class="nt">&gt;</span>Installing IPOP-VPN on Windows<span class="nt">&lt;/h2&gt;</span>
-
-<span class="nt">&lt;h3</span> <span class="na">id=</span><span class="s">"quick-start-installation"</span><span class="nt">&gt;</span>Quick start Installation<span class="nt">&lt;/h3&gt;</span>
-<span class="nt">&lt;p&gt;</span>The most convenient way to get IPOP installed on Windows 10 is run the <span class="nt">&lt;em&gt;</span>ipop-set.ps1<span class="nt">&lt;/em&gt;</span> powershell script included in the IPOP ZIP file. Note that you need to have Administrator privileges to install IPOP-VPN.<span class="nt">&lt;/p&gt;</span>
-
-<span class="nt">&lt;ol&gt;</span>
-  <span class="nt">&lt;li&gt;</span>
-    <span class="nt">&lt;p&gt;</span>Download <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://github.com/ipop-project/Downloads/releases/download/v16.08.0/ipop-v16.08.1_win.zip"</span><span class="nt">&gt;</span>IPOP-VPN for Windows<span class="nt">&lt;/a&gt;</span>.<span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>
-    <span class="nt">&lt;p&gt;</span>Extract the contents of the archive to a directory, e.g., ipop-vpn<span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>
-    <span class="nt">&lt;p&gt;</span>Start an Admin Windows Powershell and change to the ipop-vpn directory previously created<span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>Enter the following commands:
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"highlighter-rouge"</span><span class="nt">&gt;&lt;pre</span> <span class="na">class=</span><span class="s">"highlight"</span><span class="nt">&gt;&lt;code&gt;</span> PowerShell -ExecutionPolicy Unrestricted
- .\ipop-setup
-<span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-  <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>
-    <span class="nt">&lt;p&gt;</span>Follow the prompts to install and setup IPOP<span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>While installing Social VPN, copy the “ip4” entry from “AddressMapper” to “CFx”, e.g.,
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"highlighter-rouge"</span><span class="nt">&gt;&lt;pre</span> <span class="na">class=</span><span class="s">"highlight"</span><span class="nt">&gt;&lt;code&gt;</span> ip4": "172.31.0.100" 
-<span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-  <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>Finally, double click ipop-start to run IPOP. Closing this console window will terminate IPOP.<span class="nt">&lt;/li&gt;</span>
-<span class="nt">&lt;/ol&gt;</span>
-
-<span class="nt">&lt;p&gt;</span>Note: A Windows Firewall exception is created for IPOP-VPN, but you have to create your own for exceptions for other services such as ICMP Echo (ping).<span class="nt">&lt;/p&gt;</span>
-
-<span class="nt">&lt;h3</span> <span class="na">id=</span><span class="s">"tldr"</span><span class="nt">&gt;</span>TLDR<span class="nt">&lt;/h3&gt;</span>
-<span class="nt">&lt;p&gt;</span>If you are using an earlier version of Windows such as 7, 8, Server 2008, or 2012, you will need to manually setup IPOP. Below are the necessary steps to accomplish this.<span class="nt">&lt;/p&gt;</span>
-
-<span class="nt">&lt;h3</span> <span class="na">id=</span><span class="s">"manual-setup"</span><span class="nt">&gt;</span>Manual Setup<span class="nt">&lt;/h3&gt;</span>
-<span class="nt">&lt;ol&gt;</span>
-  <span class="nt">&lt;li&gt;</span>
-    <span class="nt">&lt;p&gt;</span>Install <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://download.microsoft.com/download/5/B/C/5BC5DBB3-652D-4DCE-B14A-475AB85EEF6E/vcredist_x86.exe'"</span><span class="nt">&gt;</span>MS Visual C++ x86 Redistributable Packages for Visual Studio 2010<span class="nt">&lt;/a&gt;</span>.<span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>
-    <span class="nt">&lt;p&gt;</span>Install <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://www.python.org/ftp/python/3.5.2/python-3.5.2-amd64-webinstall.exe"</span><span class="nt">&gt;</span>Python 3.5 for Windows<span class="nt">&lt;/a&gt;</span>.<span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>
-    <span class="nt">&lt;p&gt;</span>Install <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://swupdate.openvpn.org/community/releases/tap-windows-9.21.2.exe"</span><span class="nt">&gt;</span>tap-installer from OpenVPN<span class="nt">&lt;/a&gt;</span>.<span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>
-    <span class="nt">&lt;p&gt;</span>Download <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://github.com/ipop-project/Downloads/releases/download/v16.08.1/ipop-v16.08.1_win.zip"</span><span class="nt">&gt;</span>IPOP-VPN for Windows<span class="nt">&lt;/a&gt;</span>.<span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>
-    <span class="nt">&lt;p&gt;</span>Extract the contents of the archive to a directory, e.g., ipop-vpn<span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>Decide if you want to run <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"Planning Your Network"</span><span class="nt">&gt;</span>GroupVPN or Social VPN<span class="nt">&lt;/a&gt;</span> and copy the appropriate sample config to the ipop-vpn directory. Use one of the following for group or social VPN respectively:
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"highlighter-rouge"</span><span class="nt">&gt;&lt;pre</span> <span class="na">class=</span><span class="s">"highlight"</span><span class="nt">&gt;&lt;code&gt;</span> cp .\controller\modules\sample-gvpn-config.json .\config.json
-<span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"highlighter-rouge"</span><span class="nt">&gt;&lt;pre</span> <span class="na">class=</span><span class="s">"highlight"</span><span class="nt">&gt;&lt;code&gt;</span> cp .\controller\modules\sample-svpn-config.json .\config.json
-<span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-  <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>
-    <span class="nt">&lt;p&gt;</span>Update your <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"Configuration"</span><span class="nt">&gt;</span>config file<span class="nt">&lt;/a&gt;</span> with your XMPP credentials and other details. For SocialVPN you only need to add the XMPP server IP, your XMPP client user id and password. For GroupVPN you will need to add your static virtual IP.<span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>
-    <span class="nt">&lt;p&gt;</span>Install Sleek XMPP. Python will have to be in your PATH environment or you will need to provide the path to the pip executable.
-pip install sleekxmpp<span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>
-    <span class="nt">&lt;p&gt;</span>Rename the TAP-Windows Adapter to <span class="nt">&lt;em&gt;</span>ipop<span class="nt">&lt;/em&gt;</span>. From the Control Panel choose <span class="nt">&lt;em&gt;</span>View network status and tasks<span class="nt">&lt;/em&gt;</span> under Network and Internet. On the right side-bar click <span class="nt">&lt;em&gt;</span>change adapter settings<span class="nt">&lt;/em&gt;</span>. Select the <span class="nt">&lt;em&gt;</span>TAP Windows Adapter V9<span class="nt">&lt;/em&gt;</span> and rename it to “ipop”.<span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>
-    <span class="nt">&lt;p&gt;</span>Configure the IPOP Adapter IPv4 interface with a static IP address and subnet mask that will be use for the virtual network. Alternatively you can download download <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://github.com/ipop-project/Release-Management/blob/master/Deployment/win/setup_interface.bat"</span><span class="nt">&gt;</span>set_interface<span class="nt">&lt;/a&gt;</span> and [win32_netsh_setup] (https://github.com/ipop-project/Release-Management/blob/master/Deployment/win/win32_netsh_setup.py) to your IPOP directory and run the _setup_interface.bat _ batch file as Admin.<span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>Finally, double click ipop-start to run IPOP<span class="nt">&lt;/li&gt;</span>
-<span class="nt">&lt;/ol&gt;</span>
-
-<span class="nt">&lt;hr</span> <span class="nt">/&gt;</span>
-
-<span class="nt">&lt;h1</span> <span class="na">id=</span><span class="s">"key-points-summary"</span><span class="nt">&gt;</span>Key Points Summary<span class="nt">&lt;/h1&gt;</span>
-
-<span class="nt">&lt;p&gt;</span>Enter the following commands:<span class="nt">&lt;/p&gt;</span>
-
-<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"highlighter-rouge"</span><span class="nt">&gt;&lt;pre</span> <span class="na">class=</span><span class="s">"highlight"</span><span class="nt">&gt;&lt;code&gt;</span>PowerShell -ExecutionPolicy Unrestricted
-.\ipop-setup
-<span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-
-
-
-
-      <span class="nt">&lt;/section&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-  <span class="nt">&lt;/article&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"sidebar"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;nav</span> <span class="na">class=</span><span class="s">"nav__list"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"wiki-top-links"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"../wiki"</span> <span class="na">class=</span><span class="s">"display-unset"</span><span class="nt">&gt;</span>Wiki Home<span class="nt">&lt;/a&gt;</span> / <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"../wikipages"</span> <span class="na">class=</span><span class="s">"display-unset"</span><span class="nt">&gt;</span>Wiki Pages<span class="nt">&lt;/a&gt;</span>
-      <span class="nt">&lt;/div&gt;</span>
-      
-
-    
-
-
-
-        <span class="nt">&lt;ul&gt;</span>
-  <span class="nt">&lt;li&gt;&lt;strong&gt;</span>Deploying IPOP-VPN<span class="nt">&lt;/strong&gt;</span>
-    <span class="nt">&lt;ul&gt;</span>
-      <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"Use-IPOP,-Intro"</span><span class="nt">&gt;</span>Installation<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-      <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"Configuration,-Intro"</span><span class="nt">&gt;</span>Configuration<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-    <span class="nt">&lt;/ul&gt;</span>
-  <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;&lt;strong&gt;</span>Tutorials<span class="nt">&lt;/strong&gt;</span>
-    <span class="nt">&lt;ul&gt;</span>
-      <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"Switchmode-with-LXC"</span><span class="nt">&gt;</span>Running IPOP in Switchmode<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-    <span class="nt">&lt;/ul&gt;</span>
-  <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;&lt;strong&gt;</span>Development Guide<span class="nt">&lt;/strong&gt;</span>
-    <span class="nt">&lt;ul&gt;</span>
-      <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"Development-Workflow"</span><span class="nt">&gt;</span>Development Workflow<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-      <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"Coding-Guidelines"</span><span class="nt">&gt;</span>Coding Guidelines<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-      <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"Build-IPOP,-Intro"</span><span class="nt">&gt;</span>Building the Code<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-      <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"IPOP-Scale-test-Walkthrough"</span><span class="nt">&gt;</span>Testing Your Build<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-      <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"Controller-Framework"</span><span class="nt">&gt;</span>Controller Framework<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-      <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"Controller-API"</span><span class="nt">&gt;</span>Controller API<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-      <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"Build-WebRTC-Libraries,-Intro"</span><span class="nt">&gt;</span>Building WebRTC Libraries<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-    <span class="nt">&lt;/ul&gt;</span>
-  <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;&lt;strong&gt;</span>General Documentation<span class="nt">&lt;/strong&gt;</span>
-    <span class="nt">&lt;ul&gt;</span>
-      <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"FAQs"</span><span class="nt">&gt;</span>FAQs<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-      <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"Troubleshooting"</span><span class="nt">&gt;</span>Troubleshooting<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-      <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"Planning-Your-Network"</span><span class="nt">&gt;</span>Planning Your Network<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-      <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"Coding-Challenges"</span><span class="nt">&gt;</span>Coding Challenges<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-      <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"Known-Issues"</span><span class="nt">&gt;</span>Known Issues<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-      <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"Getting-Help"</span><span class="nt">&gt;</span>Getting Help<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-      <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"How-to-Contribute"</span><span class="nt">&gt;</span>How to Contribute<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-    <span class="nt">&lt;/ul&gt;</span>
-  <span class="nt">&lt;/li&gt;</span>
-<span class="nt">&lt;/ul&gt;</span>
-
-
-
-
-
-
-
-
-    <span class="nt">&lt;/nav&gt;</span>
-  <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-
-
-
-
-      <span class="nt">&lt;/section&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-  <span class="nt">&lt;/article&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-
-</code></pre>
-</div>
-<p>=======
-Insert the sidebar in the wiki template <code class="highlighter-rouge">wiki.html</code>. Check  the file content.</p>
-<blockquote>
-  <blockquote>
-    <blockquote>
-      <blockquote>
-        <blockquote>
-          <blockquote>
-            <blockquote>
-              <p>3712c774e659b6c383ca5af4c5c987c331bf3470</p>
-            </blockquote>
-          </blockquote>
-        </blockquote>
-      </blockquote>
-    </blockquote>
-  </blockquote>
-</blockquote>
+<p>Insert the sidebar in the wiki template <code class="highlighter-rouge">wiki.html</code>. Check  the file content.</p>
 
 <p>Add proper styles to <code class="highlighter-rouge">main.scss</code>:</p>
 
@@ -885,17 +603,84 @@ Insert the sidebar in the wiki template <code class="highlighter-rouge">wiki.htm
 </code></pre>
 </div>
 
+<h2 id="issues">Issues</h2>
+
+<p>There is a line in the <code class="highlighter-rouge">_layouts/wiki.html</code> to include the wiki sidebar:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+
+    
+
+
+
+        &lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Deploying IPOP-VPN&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="Use-IPOP,-Intro"&gt;Installation&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="Configuration,-Intro"&gt;Configuration&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Tutorials&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="Switchmode-with-LXC"&gt;Running IPOP in Switchmode&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Development Guide&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="Development-Workflow"&gt;Development Workflow&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="Coding-Guidelines"&gt;Coding Guidelines&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="Build-IPOP,-Intro"&gt;Building the Code&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="IPOP-Scale-test-Walkthrough"&gt;Testing Your Build&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="Controller-Framework"&gt;Controller Framework&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="Controller-API"&gt;Controller API&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="Build-WebRTC-Libraries,-Intro"&gt;Building WebRTC Libraries&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;General Documentation&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="FAQs"&gt;FAQs&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="Troubleshooting"&gt;Troubleshooting&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="Planning-Your-Network"&gt;Planning Your Network&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="Coding-Challenges"&gt;Coding Challenges&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="Known-Issues"&gt;Known Issues&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="Getting-Help"&gt;Getting Help&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="How-to-Contribute"&gt;How to Contribute&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+      &lt;/section&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+
+
+
+&lt;/div&gt;
+
+
+
+
+</code></pre>
+</div>
+
+<p>If the file doesn’t exist, Jekyll will throw an error while building the website. It usually happens when you want to delete the old generated files in <code class="highlighter-rouge">_site</code> directory and re-build them. This line will always be checked even if it is in a condition that is not TRUE.</p>
+
+<p>A workaround would be to create an empty file at that path manually and after a successful Jekyll build, run the build for the second time to include the wiki sidebar.</p>
 
 
 
       </section>
     </div>
   </article>
-    <div class="sidebar">
+
+
+  <div class="sidebar">
     <nav class="nav__list">
-      <div class="wiki-top-links">
+<!--       <div class="wiki-top-links">
         <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
-      </div>
+      </div> -->
       
 
     
@@ -940,15 +725,22 @@ Insert the sidebar in the wiki template <code class="highlighter-rouge">wiki.htm
 
 
 
+      </section>
+    </div>
+  </article>
 
+
+
+</div>
 
 
 
 
     </nav>
   </div>
-</div>
 
+
+</div>
 
 
 
