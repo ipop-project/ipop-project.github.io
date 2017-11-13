@@ -1,36 +1,9 @@
 # Website Maintenance Tips
 
-## Deploying the Static Jekyll Website from Local Repository to GitHub gh-pages Branch
-
-While using custom or unsupported plugins, it is necessary to upload the static website files, already built on the local repository to the GitHub repository and choose the website to be loaded from that.
-
-### Install and Run Jekyll Github Deploy
-
-```bash
-gem install jgd
-jgd
-```
-### Alternative: Use Git
-
-First push everything from the local repo to the master branch. Then:
-
-```bash
-git checkout master
-rm -rf _site
-git clone -b gh-pages `git config remote.origin.url` _site
-jekyll build
-cd _site
-git add -A
-git commit -am 'Static Pages Built'
-git push
-```
-[Reference](https://stackoverflow.com/questions/17835937/how-do-i-push-jekyll-site-directory-to-gh-pages-branch-and-leave-the-source-in)
-
-## Change GitHub Settings
-
-```
-Settings > GitHub Pages > Source > gh-pages branch > Save
-```
+## Website Git Structure
+- Source Files Including Markdown Files for Pages: source Branch
+- Static Pages Built by Jekyll: master Branch
+- The website needs to be loaded from the branch with static pages since there are some unsupported plugins used on the website which will not buildable online by GitHub Jekyll. We have to build the website locally and then upload the static pages to the GitHub.
 
 ## Page Layouts
 
@@ -53,7 +26,7 @@ Stage the .gitmodules changes `git add .gitmodules`.
 
 Delete the relevant section from `.git/config`.
 
-Run `git rm --cached wiki/`.
+Run `git rm -rf --cached wiki/`.
 
 Run `rm -rf .git/modules/wiki`.
 
@@ -62,6 +35,30 @@ Commit `git commit -m "Wiki Submodule Removed"`.
 Delete the now untracked submodule files `rm -rf wiki`.
 
 [Reference](https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial#Removal)
+
+## Update Wiki Submodule
+
+In the main repo, source branch:
+
+```
+git rm -rf --cached wiki/
+rm -rf .git/modules/wiki
+rm -rf wiki
+git submodule add https://github.com/ipop-project/ipop-project.github.io.wiki.git wiki
+```
+
+## Build Jekyll Website Locally
+
+```
+sudo gem install bundler
+sudo apt install ruby-dev
+```
+In the main repo, source branch:
+
+```
+bundle install
+```
+
 
 ## Add YAML Front Matter to Wiki MarkDown Source Files
 
@@ -141,59 +138,7 @@ include:
   - _Sidebar
 ```
 
-<<<<<<< HEAD
-Insert the sidebar in the wiki template `wiki.html`:
-
-```html
----
-layout: default
----
-
-{% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
-  {% include page__hero.html %}
-{% elsif page.header.video.id and page.header.video.provider %}
-  {% include page__hero_video.html %}
-{% endif %}
-
-{% if page.url != "/" and site.breadcrumbs %}
-  {% unless paginator %}
-    {% include breadcrumbs.html %}
-  {% endunless %}
-{% endif %}
-
-{% if page.url != '/wiki/_Sidebar' %}
-<div id="main" role="main">
-  <div class="sidebar">
-    <nav class="nav__list">
-      <div class="wiki-top-links">
-        <a href="../wiki">Wiki Home</a> / <a href="../wikipages">Wiki Pages</a>
-      </div>
-        { % include_absolute _site/wiki/_Sidebar.html %} <!-- REMOVE THE SPACE BETWEEN { and % BEFOR PUBLISHING. -->
-    </nav>
-  </div>
-
-  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
-    {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
-    {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date: "%B %d, %Y" }}">{% endif %}
-    {% if page.last_modified_at %}<meta itemprop="dateModified" content="{{ page.last_modified_at | date: "%B %d, %Y" }}">{% endif %}
-
-    <div class="page__inner-wrap">
-      <section class="page__content" itemprop="text">
-{% endif %}
-
-        {{ content }}
-
-{% if page.url != '/wiki/_Sidebar' %}
-      </section>
-    </div>
-  </article>
-</div>
-{% endif %}
-```
-=======
 Insert the sidebar in the wiki template `wiki.html`. Check  the file content.
->>>>>>> 3712c774e659b6c383ca5af4c5c987c331bf3470
 
 Add proper styles to `main.scss`:
 
@@ -215,4 +160,18 @@ Add proper styles to `main.scss`:
 .layout--wiki .sidebar li {
   font-size: .85em;
 }
+```
+
+## Issues
+
+There is a line in the `_layouts/wiki.html` to include the wiki sidebar, ```_site/wiki/_Sidebar.html```:
+
+If the file doesn't exist, Jekyll will throw an error while building the website. It usually happens when you want to delete the old generated files in `_site` directory and re-build them. This line will always be checked even if it is in a condition that is not TRUE.
+
+A workaround would be to create an empty file at that path manually and after a successful Jekyll build, run the build for the second time to include the wiki sidebar:
+
+```
+touch _site/wiki/_Sidebar.html
+bundle exec jekyll build
+bundle exec jekyll build
 ```

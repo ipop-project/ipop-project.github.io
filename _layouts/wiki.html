@@ -36,17 +36,19 @@ layout: default
         {{ content }}
 {% endif %}
 
-{% if page.url != '/wiki/_Sidebar' %}
       </section>
     </div>
   </article>
-    <div class="sidebar">
+
+{% if page.url != '/wiki/_Sidebar' %}
+  <div class="sidebar">
     <nav class="nav__list">
-      <div class="wiki-top-links">
+<!--       <div class="wiki-top-links">
         <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
-      </div>
+      </div> -->
       {% include_absolute _site/wiki/_Sidebar.html %}
     </nav>
   </div>
-</div>
 {% endif %}
+
+</div>

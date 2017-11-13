@@ -2,7 +2,7 @@
 
 |  | Description |
 |---|---|
-| **Tested on** | Ubuntu 14.04 and 16.04 x64 and Raspbian Jessie and Stretch on Raspberry Pi 3 |
+| **Tested on** | Ubuntu 14.04 and 16.04 x64<br />Raspbian Jessie and Stretch on Raspberry Pi 3<br />Raspbian Stretch on Raspberry Pi Zero |
 | **Time** | ~ 10 Minutes |
 | **Question(s)** | - How to install IPOP?<br /> - How to run IPOP?<br /> - How to remove IPOP? |
 | **Objective(s)**| - Install IPOP<br /> - Run IPOP<br /> - Stop IPOP<br /> - Remove IPOP |
