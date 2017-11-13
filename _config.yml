@@ -11,9 +11,9 @@ title                    : "IPOP"
 title_separator          : "-"
 name                     : "IPOP" # &name is a YAML anchor which can be *referenced later
 description              : "IP-Over-P2P, Open-source User-centric Software Virtual Network"
-url                      : "https://ipop-project.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : #"https://ipop-project.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : "ipop-project"
+repository               : #"ipop-project"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
