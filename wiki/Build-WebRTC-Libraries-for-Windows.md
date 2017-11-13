@@ -5,7 +5,7 @@
 |  | Description |
 |---|---|
 | **Tested on** | Microsoft Windows 10 x64 |
-| **Time** | ~ 30 Minutes |
+| **Time** | ~ 45 Minutes |
 | **Question(s)** | - How to build WebRTC on Linux?<br /> - How to extract WebRTC static libraries for building IPOP? |
 | **Objective(s)**| - Build the WebRTC Libraries<br /> - Extract required WebRTC Static Libraries for Building IPOP |
 

@@ -1,9 +1,9 @@
-# Build IPOP for Raspbian on Raspberry Pi
+# Build IPOP for Raspbian on Raspberry Pi Zero
 
 | | Description |
 |---|---|
-| **Tested on** | Raspbian Jessie and Stretch on Raspberry Pi 3 |
-| **Time** | ~ 10 Minutes |
+| **Tested on** | Raspbian Stretch on Raspberry Pi Zero |
+| **Time** | ~ 30 Minutes |
 | **Question(s)** | - How to build IPOP? |
 | **Objective(s)**| - Build IPOP Source Code |
 
@@ -30,14 +30,14 @@ git clone https://github.com/ipop-project/Controllers
 cd Tincan
 cd trunk/build/
 ```
-Edit `~/workspace/ipop-project/Tincan/trunk/build/config.mk` and change the default make parameters to Raspberry Pi's:
+Edit `~/workspace/ipop-project/Tincan/trunk/build/config.mk` and change the default make parameters to Raspberry Pi 3's:
 
-> #To build Raspberry Pi set ARCH=arm7 and PLAT=rpi
+> #To build Raspberry Pi Zero, set ARCH=arm6 and PLAT=rpi
 
 Then continue to make:
 ```
 make
-cp -f ../out/release/arm7/ipop-tincan ../../../../ipop-vpn/
+cp -f ../out/release/arm6/ipop-tincan ../../../../ipop-vpn/
 cd ../../../Controllers
 cp -rf ./controller/ ../../ipop-vpn/
 ```

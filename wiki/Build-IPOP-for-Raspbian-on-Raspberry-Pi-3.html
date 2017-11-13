@@ -37,8 +37,8 @@
 <meta property="og:title" content="IPOP">
 
 
-  <link rel="canonical" href="http://localhost:4000/wiki/IPOP-Network-Visualizer">
-  <meta property="og:url" content="http://localhost:4000/wiki/IPOP-Network-Visualizer">
+  <link rel="canonical" href="http://localhost:4000/wiki/Build-IPOP-for-Raspbian-on-Raspberry-Pi-3">
+  <meta property="og:url" content="http://localhost:4000/wiki/Build-IPOP-for-Raspbian-on-Raspberry-Pi-3">
 
 
 
@@ -182,49 +182,89 @@
           <nav class="toc">
             <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
             <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#ipop-network-visualizer">IPOP Network Visualizer</a>
+<li class="toc-entry toc-h1"><a href="#build-ipop-for-raspbian-on-raspberry-pi-3">Build IPOP for Raspbian on Raspberry Pi 3</a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#architecture-of-overlay-visualizer">Architecture of Overlay Visualizer</a></li>
-<li class="toc-entry toc-h2"><a href="#setting-up-a-visualizer-web-service">Setting up a Visualizer Web-service</a></li>
+<li class="toc-entry toc-h2"><a href="#download-and-install-dependencies">Download and Install Dependencies</a></li>
+<li class="toc-entry toc-h2"><a href="#build-ipop">Build IPOP</a></li>
+<li class="toc-entry toc-h2"><a href="#copy-configuration-file">Copy Configuration File</a></li>
 </ul>
 </li>
 </ul>
           </nav>
         </aside>
 
-        <h1 id="ipop-network-visualizer">IPOP Network Visualizer</h1>
+        <h1 id="build-ipop-for-raspbian-on-raspberry-pi-3">Build IPOP for Raspbian on Raspberry Pi 3</h1>
 
-<p>A Web-service that visualizes the current state of the Peers in the IPOP Network. A Graphical view of the actual state of all the nodes and links in the IPOP Network is dynamically rendered as and when there are changes in the Network.</p>
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Tested on</strong></td>
+      <td>Raspbian Jessie and Stretch on Raspberry Pi 3</td>
+    </tr>
+    <tr>
+      <td><strong>Time</strong></td>
+      <td>~ 20 Minutes</td>
+    </tr>
+    <tr>
+      <td><strong>Question(s)</strong></td>
+      <td>- How to build IPOP?</td>
+    </tr>
+    <tr>
+      <td><strong>Objective(s)</strong></td>
+      <td>- Build IPOP Source Code</td>
+    </tr>
+  </tbody>
+</table>
 
-<h2 id="architecture-of-overlay-visualizer">Architecture of Overlay Visualizer</h2>
+<h2 id="download-and-install-dependencies">Download and Install Dependencies</h2>
 
-<p><strong>1. Collector:</strong> The functionality of this module is to aggregate the data required for visualization from each of the nodes in the network. This module collects data periodically and stores them in the database.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get update -y
+sudo apt-get install -y software-properties-common git make libssl-dev g++-4.9 
+sudo apt-get install -y python3 python-pip python-dev
+sudo pip install sleekxmpp psutil pystun
+sudo rm /usr/bin/g++
+sudo ln -s /usr/bin/g++-4.9 /usr/bin/g++ 
+</code></pre>
+</div>
 
-<p><strong>2. MongoDB Database:</strong> The database is implemented using the NoSQL MongoDB database. This stores the data from the Collector module.</p>
+<h2 id="build-ipop">Build IPOP</h2>
 
-<p><strong>3. Central Visualizer:</strong> This module is responsible for fetching the data from MongoDB and sending them to the client side. The browser requests these data periodically from this module and renders the visualization layout using those data.</p>
+<p>Run the following commands as a regular (non-root) user:</p>
 
-<h2 id="setting-up-a-visualizer-web-service">Setting up a Visualizer Web-service</h2>
+<div class="highlighter-rouge"><pre class="highlight"><code>mkdir -p ~/workspace/ipop-project ~/workspace/ipop-vpn/config
+cd ~/workspace/ipop-project/
+git clone https://github.com/ipop-project/Tincan
+git clone https://github.com/ipop-project/Controllers
+cd Tincan
+cd trunk/build/
+</code></pre>
+</div>
+<p>Edit <code class="highlighter-rouge">~/workspace/ipop-project/Tincan/trunk/build/config.mk</code> and change the default make parameters to Raspberry Pi 3’s:</p>
 
-<p>The steps given below will install the required dependencies and starts up the Visualizer :</p>
+<blockquote>
+  <p>#To build Raspberry Pi 3, set ARCH=arm7 and PLAT=rpi</p>
+</blockquote>
 
-<ol>
-  <li><code class="highlighter-rouge">git clone https://github.com/ipop-project/Network-Visualizer</code></li>
-  <li><code class="highlighter-rouge">cd Network-Visualizer/Setup</code></li>
-  <li>To install the dependencies, Run :  <br />
- <code class="highlighter-rouge">./setup.sh</code></li>
-  <li>Change back to its parent directory (Network-Visualizer)</li>
-  <li>To start the visualizer, Run 
- <code class="highlighter-rouge">./visualizer start</code></li>
-  <li>The modules will be started on your machine and the Network layout can be viewed in the browser on any machine at:<br />
-<code class="highlighter-rouge">https://xx.xx.xx.xx:8888/IPOP</code><br />
-<code class="highlighter-rouge">where xx.xx.xx.xx stands for the ip4 address of the machine hosting the web-service</code></li>
-  <li>The data from the nodes based on which the Network layout is rendered can be viewed at:<br />
- <code class="highlighter-rouge">https://xx.xx.xx.xx:8888/nodedata</code><br />
-<code class="highlighter-rouge">where xx.xx.xx.xx stands the same as in step 6</code></li>
-  <li>To stop the visualizer, go to the Network-Visualizer directory and Run :<br />
- <code class="highlighter-rouge">./visualizer stop</code></li>
-</ol>
+<p>Then continue to make:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>make
+cp -f ../out/release/arm7/ipop-tincan ../../../../ipop-vpn/
+cd ../../../Controllers
+cp -rf ./controller/ ../../ipop-vpn/
+</code></pre>
+</div>
+
+<h2 id="copy-configuration-file">Copy Configuration File</h2>
+
+<p>You will need a valid configuration file (ipop-config.json) to run IPOP. Go to the directory you have your config file and copy the file to the <code class="highlighter-rouge">config</code> directory:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>cp ipop-config.json ~/workspace/ipop-vpn/config
+</code></pre>
+</div>
 
 
 

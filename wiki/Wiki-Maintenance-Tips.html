@@ -37,8 +37,8 @@
 <meta property="og:title" content="IPOP">
 
 
-  <link rel="canonical" href="http://localhost:4000/wiki/IPOP-Network-Visualizer">
-  <meta property="og:url" content="http://localhost:4000/wiki/IPOP-Network-Visualizer">
+  <link rel="canonical" href="http://localhost:4000/wiki/Wiki-Maintenance-Tips">
+  <meta property="og:url" content="http://localhost:4000/wiki/Wiki-Maintenance-Tips">
 
 
 
@@ -182,49 +182,20 @@
           <nav class="toc">
             <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
             <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#ipop-network-visualizer">IPOP Network Visualizer</a>
-<ul>
-<li class="toc-entry toc-h2"><a href="#architecture-of-overlay-visualizer">Architecture of Overlay Visualizer</a></li>
-<li class="toc-entry toc-h2"><a href="#setting-up-a-visualizer-web-service">Setting up a Visualizer Web-service</a></li>
-</ul>
-</li>
+<li class="toc-entry toc-h1"><a href="#wiki-maintenance-tips">Wiki Maintenance Tips</a></li>
 </ul>
           </nav>
         </aside>
 
-        <h1 id="ipop-network-visualizer">IPOP Network Visualizer</h1>
+        <h1 id="wiki-maintenance-tips">Wiki Maintenance Tips</h1>
 
-<p>A Web-service that visualizes the current state of the Peers in the IPOP Network. A Graphical view of the actual state of all the nodes and links in the IPOP Network is dynamically rendered as and when there are changes in the Network.</p>
-
-<h2 id="architecture-of-overlay-visualizer">Architecture of Overlay Visualizer</h2>
-
-<p><strong>1. Collector:</strong> The functionality of this module is to aggregate the data required for visualization from each of the nodes in the network. This module collects data periodically and stores them in the database.</p>
-
-<p><strong>2. MongoDB Database:</strong> The database is implemented using the NoSQL MongoDB database. This stores the data from the Collector module.</p>
-
-<p><strong>3. Central Visualizer:</strong> This module is responsible for fetching the data from MongoDB and sending them to the client side. The browser requests these data periodically from this module and renders the visualization layout using those data.</p>
-
-<h2 id="setting-up-a-visualizer-web-service">Setting up a Visualizer Web-service</h2>
-
-<p>The steps given below will install the required dependencies and starts up the Visualizer :</p>
-
-<ol>
-  <li><code class="highlighter-rouge">git clone https://github.com/ipop-project/Network-Visualizer</code></li>
-  <li><code class="highlighter-rouge">cd Network-Visualizer/Setup</code></li>
-  <li>To install the dependencies, Run :  <br />
- <code class="highlighter-rouge">./setup.sh</code></li>
-  <li>Change back to its parent directory (Network-Visualizer)</li>
-  <li>To start the visualizer, Run 
- <code class="highlighter-rouge">./visualizer start</code></li>
-  <li>The modules will be started on your machine and the Network layout can be viewed in the browser on any machine at:<br />
-<code class="highlighter-rouge">https://xx.xx.xx.xx:8888/IPOP</code><br />
-<code class="highlighter-rouge">where xx.xx.xx.xx stands for the ip4 address of the machine hosting the web-service</code></li>
-  <li>The data from the nodes based on which the Network layout is rendered can be viewed at:<br />
- <code class="highlighter-rouge">https://xx.xx.xx.xx:8888/nodedata</code><br />
-<code class="highlighter-rouge">where xx.xx.xx.xx stands the same as in step 6</code></li>
-  <li>To stop the visualizer, go to the Network-Visualizer directory and Run :<br />
- <code class="highlighter-rouge">./visualizer stop</code></li>
-</ol>
+<ul>
+  <li>Follow the page format from <a href="Use-IPOP-on-Ubuntu-and-Raspberry-Pi,-Manually">Use IPOP on Ubuntu and Raspberry Pi, Manually</a>.</li>
+  <li>Every wiki page should start with a Header 1 title. It would be the title of the respective page on the website. Otherwise, the page won’t have a title on the website.</li>
+  <li>There should be a blank line before each table. Otherwise, the table won’t render correctly on the website. That won’t affect the table view on the wiki, though.</li>
+  <li>Avoid using anything that looks like Liquid objects and tags on the wiki. Those will cause an error while building the website. If you need more info, take a look at the <a href="https://shopify.github.io/liquid/basics/introduction/">Liquid Introduction</a>.</li>
+  <li>The website will be updated according to the wiki updates once in a while, probably every few weeks. If you have applied an update to the wiki and you think it is necessary to be reflected on the website soon, contact <em>vdaneshmand {at} acis.ufl.edu</em>. You can check <a href="http://ipop-project.org/wiki/Home">the wiki pages on the website</a>.</li>
+</ul>
 
 
 

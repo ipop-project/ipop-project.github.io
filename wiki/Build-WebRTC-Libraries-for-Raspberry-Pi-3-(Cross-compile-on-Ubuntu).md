@@ -1,22 +1,22 @@
-# Build WebRTC Libraries for Raspberry Pi (Cross compile on Ubuntu)
+# Build WebRTC Libraries for Raspberry Pi 3 (Cross compile on Ubuntu)
 
 | | Description |
 |---|---|
 | **Tested on** | Raspbian Jessie and Stretch on Raspberry Pi 3 |
-| **Time** | ~ 30 Minutes |
-| **Question(s)** | - How to build WebRTC for Raspberry Pi?<br /> - How to extract WebRTC static libraries for building IPOP? |
+| **Time** | ~ 45 Minutes |
+| **Question(s)** | - How to build WebRTC for Raspberry Pi 3?<br /> - How to extract WebRTC static libraries for building IPOP? |
 | **Objective(s)**| - Build the WebRTC Libraries<br /> - Extract required WebRTC Static Libraries for Building IPOP |
 
-**Note 1:** If you want to run IPOP right away, use the proper version of IPOP from [our latest release].
+**Note 1:** If you want to run IPOP right away, use the proper version of IPOP from [our latest release](https://github.com/ipop-project/Downloads/releases).
 
-**Note 2:** There are some WebRTC libraries needed to build IPOP TinCan binary. They are already built and located in [Tincan/external/lib/]. You can use them to [build IPOP TinCan binary] yourself.
+**Note 2:** There are some WebRTC libraries needed to build IPOP Tincan binary. They are already built and located in [Tincan/external/lib/](https://github.com/ipop-project/Tincan/tree/master/external/lib). You can use them to [build IPOP Tincan binary](Build-IPOP,-Intro) yourself.
 
 If you want to build WebRTC libraries for IPOP yourself, follow the instructions.
 
 ## Install Toolchain
 
 ```shell
-sudo apt update && sudo apt install debootstrap qemu-user-static
+sudo apt update && sudo apt install -y debootstrap qemu-user-static git python-dev
 
 mkdir -p ~/workspace/webrtc-checkout && cd ~/workspace/webrtc-checkout/
 
@@ -55,19 +55,19 @@ ninja -C out/debug boringssl field_trial_default protobuf_lite p2p base jsoncpp
 gn gen out/release --args='target_os="linux" target_cpu="arm" enable_iterator_debugging=false is_component_build=false is_debug=false'
 ninja -C out/release boringssl field_trial_default protobuf_lite p2p base jsoncpp
 ```
-## Extract the Static Libraries for Building IPOP TinCan
+## Extract the Static Libraries for Building IPOP Tincan
 
-### Get TinCan Codebase
+### Get Tincan Codebase
 
 Switch to the workspace directory:
 ```shell
 cd ~/workspace/
 ```
-Create `ipop-project` directory and download the TinCan repository there:
+Create `ipop-project` directory and download the Tincan repository there:
 ```shell
 mkdir -p ipop-project/ && git clone https://github.com/ipop-project/Tincan.git ipop-project/Tincan
 ```
-### Copy the WebRTC Libraries to TinCan
+### Copy the WebRTC Libraries to Tincan
 
 These freshly built libraries will replace the existing libraries.
 
@@ -98,4 +98,4 @@ cp webrtc-checkout/src/out/release/obj/webrtc/p2p/librtc_p2p.a ipop-project/Tinc
 cp webrtc-checkout/src/out/release/obj/third_party/protobuf/libprotobuf_lite.a ipop-project/Tincan/external/lib/release/arm7/rpi/
 ```
 
-Now you can [build IPOP TinCan binary] on the Raspberry Pi, itself.
+Now you can [build IPOP Tincan binary](Build-IPOP,-Intro) on the Raspberry Pi 3, itself.
