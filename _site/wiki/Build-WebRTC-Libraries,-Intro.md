@@ -6,7 +6,7 @@ There is [a documentation on WebRTC official website on how to build WebRTC](htt
 
 ## Step by Step Documentation
 
-- [Build WebRTC Libraries for Linux](Build-WebRTC-Libraries-for-Linux) - x64
-- [Build WebRTC Libraries for Raspberry Pi 3 (Cross compile on Ubuntu)](Build-WebRTC-Libraries-for-Raspberry-Pi-3-(Cross-compile-on-Ubuntu)) - ARM7
-- [Build WebRTC Libraries for Raspberry Pi Zero (Cross compile on Ubuntu)](Build-WebRTC-Libraries-for-Raspberry-Pi-Zero-(Cross-compile-on-Ubuntu)) - ARM6
-- [Build WebRTC Libraries for Windows](Build-WebRTC-Libraries-for-Windows) - x64
+- [Build WebRTC Libraries for Linux](Build-WebRTC-Libraries-for-Linux), 64-bit
+- [Build WebRTC Libraries for Raspberry Pi 3 (Cross compile on Ubuntu)](Build-WebRTC-Libraries-for-Raspberry-Pi-3-(Cross-compile-on-Ubuntu)), ARMv7
+- [Build WebRTC Libraries for Raspberry Pi Zero (Cross compile on Ubuntu)](Build-WebRTC-Libraries-for-Raspberry-Pi-Zero-(Cross-compile-on-Ubuntu)), ARMv6
+- [Build WebRTC Libraries for Windows](Build-WebRTC-Libraries-for-Windows), 64-bit
