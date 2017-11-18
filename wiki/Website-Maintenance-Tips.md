@@ -3,13 +3,32 @@
 ## Website Git Structure
 - Source Files Including Markdown Files for Pages: source Branch
 - Static Pages Built by Jekyll: master Branch
-- The website needs to be loaded from the branch with static pages since there are some unsupported plugins used on the website which will not buildable online by GitHub Jekyll. We have to build the website locally and then upload the static pages to the GitHub.
+- The website needs to be loaded from the branch with static pages since there are some unsupported plugins used on the website which will not build-able online by GitHub Jekyll. We have to build the website locally and then upload the static pages to the GitHub.
 
-## Page Layouts
+## Domain Name
 
-Page layout for pages without the sidebar is 'splash'. Default page layout can be changed in '_config.yml'.
+`CNAME` file in the root of the repo contains the domain name, `ipop-project.org` in this case. This should be set just for the main repo, `https://github.com/ipop-project/ipop-project.github.io` in this case, not other forks on GitHub. Otherwise, it throws an error while building the website on the GitHub.
 
-## Add Wiki as Submodule
+## Configuration
+
+With the current configuration set in the _config.yml for the `url` and `baseurl`, the website should be displayed fine locally and on the main addresses, `ipop-project.github.io` and `ipop-project.org`, not on the forked repos like `https://vahid-dan.github.io/ipop-project.github.io/`. There, the styles won't get loaded and the URLs will be set to the main repo.
+
+## Integrated Wiki
+
+To update the website integrated wiki based on the GitHub Wiki and also the first time after cloning the repo, the Wiki submodule should be updated. Otherwise, the wiki pages will be missing on the website.
+
+### Update Wiki Submodule
+
+In the main repo, source branch:
+
+```
+git rm -rf --cached wiki/
+rm -rf .git/modules/wiki
+rm -rf wiki
+git submodule add https://github.com/ipop-project/ipop-project.github.io.wiki.git wiki
+```
+
+### Add Wiki as Submodule
 
 In the main repo:
 
@@ -18,7 +37,7 @@ git submodule add https://github.com/ipop-project/ipop-project.github.io.wiki.gi
 git commit -m "Wiki Added as a Submodule"
 ```
 
-## Remove Wiki Submodule
+### Remove Wiki Submodule
 
 Delete the relevant section from the `.gitmodules` file.
 
@@ -36,18 +55,9 @@ Delete the now untracked submodule files `rm -rf wiki`.
 
 [Reference](https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial#Removal)
 
-## Update Wiki Submodule
-
-In the main repo, source branch:
-
-```
-git rm -rf --cached wiki/
-rm -rf .git/modules/wiki
-rm -rf wiki
-git submodule add https://github.com/ipop-project/ipop-project.github.io.wiki.git wiki
-```
-
 ## Build Jekyll Website Locally
+
+### Prerequisite
 
 ```
 sudo gem install bundler
@@ -59,6 +69,13 @@ In the main repo, source branch:
 bundle install
 ```
 
+### Work on the Website Locally
+
+```
+touch _site/wiki/_Sidebar.html
+bundle exec jekyll build
+bundle exec jekyll serve
+```
 
 ## Add YAML Front Matter to Wiki MarkDown Source Files
 
