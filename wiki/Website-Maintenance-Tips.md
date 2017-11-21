@@ -1,5 +1,49 @@
 # Website Maintenance Tips
 
+## Quick Guide to Website Update
+
+### Step 1: Initialization
+
+```
+mkdir -p ~/workspace && cd ~/workspace
+git clone https://github.com/vahid-dan/ipop-project.github.io.git
+cd ipop-project.github.io
+rm -rf _site
+git rm -rf --cached wiki/
+rm -rf .git/modules/wiki
+rm -rf wiki
+git submodule add https://github.com/ipop-project/ipop-project.github.io.wiki.git wiki
+```
+
+### Step 2: Apply the Desired Changes
+
+Apply the desired changes.
+
+### Step 3: Build the Static Pages and Test the Website Locally
+
+```
+mkdir -p _site/wiki && touch _site/wiki/_Sidebar.html
+bundle exec jekyll build
+JEKYLL_ENV=production bundle exec jekyll serve
+```
+
+### Step 4: Update the GitHub Repo
+
+```
+rm -rf ~/workspace/_site
+cp -r _site ~/worksapce
+rm -rf wiki
+git add .
+git commit -m "Website Updated"
+git push
+git checkout master
+rm -r *
+cp -r ~/workspace/_site/* .
+git add .
+git commit -m "Website Updated"
+git push
+```
+
 ## Website Git Structure
 - Source Files Including Markdown Files for Pages: source Branch
 - Static Pages Built by Jekyll: master Branch

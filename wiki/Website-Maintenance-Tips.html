@@ -181,6 +181,14 @@
             <ul class="section-nav">
 <li class="toc-entry toc-h1"><a href="#website-maintenance-tips">Website Maintenance Tips</a>
 <ul>
+<li class="toc-entry toc-h2"><a href="#quick-guide-to-website-update">Quick Guide to Website Update</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#step-1-initialization">Step 1: Initialization</a></li>
+<li class="toc-entry toc-h3"><a href="#step-2-apply-the-desired-changes">Step 2: Apply the Desired Changes</a></li>
+<li class="toc-entry toc-h3"><a href="#step-3-build-the-static-pages-and-test-the-website-locally">Step 3: Build the Static Pages and Test the Website Locally</a></li>
+<li class="toc-entry toc-h3"><a href="#step-4-update-the-github-repo">Step 4: Update the GitHub Repo</a></li>
+</ul>
+</li>
 <li class="toc-entry toc-h2"><a href="#website-git-structure">Website Git Structure</a></li>
 <li class="toc-entry toc-h2"><a href="#domain-name">Domain Name</a></li>
 <li class="toc-entry toc-h2"><a href="#configuration">Configuration</a></li>
@@ -235,6 +243,50 @@
         </aside>
 
         <h1 id="website-maintenance-tips">Website Maintenance Tips</h1>
+
+<h2 id="quick-guide-to-website-update">Quick Guide to Website Update</h2>
+
+<h3 id="step-1-initialization">Step 1: Initialization</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>mkdir -p ~/workspace &amp;&amp; cd ~/workspace
+git clone https://github.com/vahid-dan/ipop-project.github.io.git
+cd ipop-project.github.io
+rm -rf _site
+git rm -rf --cached wiki/
+rm -rf .git/modules/wiki
+rm -rf wiki
+git submodule add https://github.com/ipop-project/ipop-project.github.io.wiki.git wiki
+</code></pre>
+</div>
+
+<h3 id="step-2-apply-the-desired-changes">Step 2: Apply the Desired Changes</h3>
+
+<p>Apply the desired changes.</p>
+
+<h3 id="step-3-build-the-static-pages-and-test-the-website-locally">Step 3: Build the Static Pages and Test the Website Locally</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>mkdir -p _site/wiki &amp;&amp; touch _site/wiki/_Sidebar.html
+bundle exec jekyll build
+JEKYLL_ENV=production bundle exec jekyll serve
+</code></pre>
+</div>
+
+<h3 id="step-4-update-the-github-repo">Step 4: Update the GitHub Repo</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>rm -rf ~/workspace/_site
+cp -r _site ~/worksapce
+rm -rf wiki
+git add .
+git commit -m "Website Updated"
+git push
+git checkout master
+rm -r *
+cp -r ~/workspace/_site/* .
+git add .
+git commit -m "Website Updated"
+git push
+</code></pre>
+</div>
 
 <h2 id="website-git-structure">Website Git Structure</h2>
 <ul>
