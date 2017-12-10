@@ -5,7 +5,7 @@
 ### Step 1: Initialization
 
 ```
-mkdir -p ~/workspace && cd ~/workspace
+mkdir -p ~/workspace && cd ~/workspace && rm -rf ipop-project.github.io
 git clone https://github.com/vahid-dan/ipop-project.github.io.git
 cd ipop-project.github.io
 rm -rf _site
@@ -17,7 +17,7 @@ git submodule add https://github.com/ipop-project/ipop-project.github.io.wiki.gi
 
 ### Step 2: Apply the Desired Changes
 
-Apply the desired changes.
+Update the website and apply the desired changes.
 
 ### Step 3: Build the Static Pages and Test the Website Locally
 
@@ -31,7 +31,7 @@ JEKYLL_ENV=production bundle exec jekyll serve
 
 ```
 rm -rf ~/workspace/_site
-cp -r _site ~/worksapce
+cp -r _site ~/workspace
 rm -rf wiki
 git add .
 git commit -m "Website Updated"
@@ -118,7 +118,7 @@ bundle install
 ```
 touch _site/wiki/_Sidebar.html
 bundle exec jekyll build
-bundle exec jekyll serve
+JEKYLL_ENV=production bundle exec jekyll serve
 ```
 
 ## Add YAML Front Matter to Wiki MarkDown Source Files
@@ -229,10 +229,10 @@ There is a line in the `_layouts/wiki.html` to include the wiki sidebar, ```_sit
 
 If the file doesn't exist, Jekyll will throw an error while building the website. It usually happens when you want to delete the old generated files in `_site` directory and re-build them. This line will always be checked even if it is in a condition that is not TRUE.
 
-A workaround would be to create an empty file at that path manually and after a successful Jekyll build, run the build for the second time to include the wiki sidebar:
+A workaround would be to create an empty file at that path manually and after a successful Jekyll build, run the `build` or `serve` command for the second time to include the wiki sidebar:
 
 ```
 touch _site/wiki/_Sidebar.html
 bundle exec jekyll build
-bundle exec jekyll build
+JEKYLL_ENV=production bundle exec jekyll serve
 ```
