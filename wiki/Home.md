@@ -18,7 +18,7 @@ IPOP (IP-Over-P2P) is an open-source user-centric software virtual network allow
 | Title | Operating System / Platform | Time |
 |---|---|:---:|
 | Build WebRTC Libraries | [Intro](Build-WebRTC-Libraries,-Intro) \| [Ubuntu & CentOS](Build-WebRTC-Libraries-for-Linux) \| [Raspberry Pi 3](Build-WebRTC-Libraries-for-Raspberry-Pi-3-(Cross-compile-on-Ubuntu)) \| [Raspberry Pi Zero](Build-WebRTC-Libraries-for-Raspberry-Pi-Zero-(Cross-compile-on-Ubuntu)) \| [Windows](Build-WebRTC-Libraries-for-Windows) |  ~ 45 mins |
-| Build IPOP Code | [Intro](Build-IPOP,-Intro) \| [Ubuntu](Build-IPOP-for-Ubuntu) \| [Raspberry Pi 3](Build-IPOP-for-Raspbian-on-Raspberry-Pi-3) \| [Raspberry Pi Zero](Build-IPOP-for-Raspbian-on-Raspberry-Pi-Zero) \| [Windows](Build-IPOP-for-Windows) \| [CentOS](Build-IPOP-for-CentOS) | ~ 15 mins |
+| Build IPOP Code | [Intro](Build-IPOP,-Intro) \| [Ubuntu, Raspberry Pi 3, & Raspberry Pi Zero](Build-IPOP-for-Ubuntu,-Raspberry-Pi-3-and-Raspberry-Pi-Zero) \| [Windows](Build-IPOP-for-Windows) \| [CentOS](Build-IPOP-for-CentOS) | ~ 15 mins |
 | Edit IPOP Configuration | [Intro](Configuration,-Intro) \| [Ubuntu, Raspberry Pi, Windows, & CentOS](Configuration) | < 5 mins |
 | IPOP Scale-test Tutorial | [Ubuntu](Introduction-to-the-Scale-Test-Script-Usage) | ~ 30 mins |
 | IPOP Network Visualizer | [Ubuntu](IPOP-Network-Visualizer) | < 5 mins |
