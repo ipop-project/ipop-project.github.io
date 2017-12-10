@@ -15,7 +15,8 @@
 sudo apt-get update -y
 sudo apt-get install -y software-properties-common git make libssl-dev make g++-4.9 
 sudo apt-get install -y python3 python-pip python-dev
-sudo pip install sleekxmpp psutil pystun
+sudo pip install -v sleekxmpp==1.3.1  
+sudo pip install psutil pystun
 ```
 
 ## Get IPOP Binary

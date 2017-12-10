@@ -212,6 +212,7 @@ h4, h5, h6 {
 
 .layout--wiki .sidebar {
   clear: unset;
+  z-index: -999;
 }
 
 .layout--wiki .section-nav a {
@@ -247,4 +248,22 @@ h4, h5, h6 {
 
 .page__title {
   margin-bottom: .1em;
+}
+
+.footer-address {
+  float: left;
+}
+
+.footer-links, .footer-sponsor {
+  float: right;
+}
+
+@media (max-width: 63.9375em) {
+  .footer-links, .footer-sponsor {
+    float: left;
+  }
+}
+
+.display-unset {
+  display: unset !important;
 }
