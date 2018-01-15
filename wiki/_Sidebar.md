@@ -22,3 +22,4 @@
   * [Known Issues](Known-Issues)
   * [Getting Help](Getting-Help)
   * [How to Contribute](How-to-Contribute)
+  * [Google Summer of Code 2018 Project Ideas](GSoC-2018-Project-Ideas)
