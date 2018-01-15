@@ -53,14 +53,6 @@ Works on Development of PerSoNET and IPOP
 ---
 {: .clear-both}
 
-![Kyuho Jeong](../assets/images/kyuho.jpg){: .float-left .profile-img}
-<h3><a href="https://www.acis.ufl.edu/people/xetron">Kyuho Jeong <i class="fa fa-external-link" aria-hidden="true"></i></a></h3>
-PhD Candidate, ACIS Lab, University of Florida  
-Contributes to IPOP Implementation and Testing
-
----
-{: .clear-both}
-
 ![Vahid Daneshmand](../assets/images/vahid.jpg){: .float-left .profile-img}
 <h3><a href="https://www.acis.ufl.edu/people/vdaneshmand">Vahid Daneshmand <i class="fa fa-external-link" aria-hidden="true"></i></a></h3>
 PhD Student, ACIS Lab, University of Florida  
@@ -69,7 +61,39 @@ Contributes to IPOP Implementation and Testing on Raspberry Pi and ARM Devices
 ---
 {: .clear-both}
 
+![Gaurav A. Yeole](../assets/images/gaurav.jpg){: .float-left .profile-img}
+<h3><a href="https://www.acis.ufl.edu/people/gauravyeole">Gaurav A. Yeole <i class="fa fa-external-link" aria-hidden="true"></i></a></h3>
+Master's Student, ACIS Lab, University of Florida  
+Contributes to IPOP Multicasting Feature Using SDN
+
+---
+{: .clear-both}
+
+![Ramachandran Natesan](../assets/images/rama.jpg){: .float-left .profile-img}
+<h3><a href="https://www.acis.ufl.edu/people/rnatesan">Ramachandran Natesan <i class="fa fa-external-link" aria-hidden="true"></i></a></h3>
+Master's Student, ACIS Lab, University of Florida  
+Contributes to IPOP Network Visualizer
+
+---
+{: .clear-both}
+
+![Ashish Nargundkar](../assets/images/ashish.jpg){: .float-left .profile-img}
+<h3><a href="https://www.acis.ufl.edu/people/nargundkara">Ashish Nargundkar <i class="fa fa-external-link" aria-hidden="true"></i></a></h3>
+Master's Student, ACIS Lab, University of Florida  
+Contributes to General Software Design and Development
+
+---
+{: .clear-both}
+
 ## Former Members and Contributors
+
+![Kyuho Jeong](../assets/images/kyuho.jpg){: .float-left .profile-img}
+<h3><a href="https://www.acis.ufl.edu/people/xetron">Kyuho Jeong <i class="fa fa-external-link" aria-hidden="true"></i></a></h3>
+Alumni, ACIS Lab, University of Florida  
+Contributed to IPOP Implementation and Testing
+
+---
+{: .clear-both}
 
 ![Vyas Kovakkat](../assets/images/vyas.jpg){: .float-left .profile-img}
 <h3><a href="https://www.acis.ufl.edu/people/vyaskovakkat">Vyas Kovakkat <i class="fa fa-external-link" aria-hidden="true"></i></a></h3>
