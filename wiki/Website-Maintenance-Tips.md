@@ -9,7 +9,6 @@ mkdir -p ~/workspace && cd ~/workspace && rm -rf ipop-project.github.io
 git clone https://github.com/vahid-dan/ipop-project.github.io.git
 cd ipop-project.github.io
 rm -rf _site
-git rm -rf --cached wiki/
 rm -rf .git/modules/wiki
 rm -rf wiki
 git submodule add https://github.com/ipop-project/ipop-project.github.io.wiki.git wiki
@@ -43,6 +42,11 @@ git add .
 git commit -m "Website Updated"
 git push
 ```
+
+### Step 5: Send a Pull Request to the Production Repo
+Send a Pull Request from both master and source branches to the corresponding branches in the production repo: 
+ 
+https://github.com/ipop-project/ipop-project.github.io/pulls
 
 ## Website Git Structure
 - Source Files Including Markdown Files for Pages: source Branch
