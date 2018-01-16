@@ -187,6 +187,7 @@
 <li class="toc-entry toc-h3"><a href="#step-2-apply-the-desired-changes">Step 2: Apply the Desired Changes</a></li>
 <li class="toc-entry toc-h3"><a href="#step-3-build-the-static-pages-and-test-the-website-locally">Step 3: Build the Static Pages and Test the Website Locally</a></li>
 <li class="toc-entry toc-h3"><a href="#step-4-update-the-github-repo">Step 4: Update the GitHub Repo</a></li>
+<li class="toc-entry toc-h3"><a href="#step-5-send-a-pull-request-to-the-production-repo">Step 5: Send a Pull Request to the Production Repo</a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#website-git-structure">Website Git Structure</a></li>
@@ -252,7 +253,6 @@
 git clone https://github.com/vahid-dan/ipop-project.github.io.git
 cd ipop-project.github.io
 rm -rf _site
-git rm -rf --cached wiki/
 rm -rf .git/modules/wiki
 rm -rf wiki
 git submodule add https://github.com/ipop-project/ipop-project.github.io.wiki.git wiki
@@ -287,6 +287,11 @@ git commit -m "Website Updated"
 git push
 </code></pre>
 </div>
+
+<h3 id="step-5-send-a-pull-request-to-the-production-repo">Step 5: Send a Pull Request to the Production Repo</h3>
+<p>Send a Pull Request from both master and source branches to the corresponding branches in the production repo:</p>
+
+<p>https://github.com/ipop-project/ipop-project.github.io/pulls</p>
 
 <h2 id="website-git-structure">Website Git Structure</h2>
 <ul>
@@ -813,7 +818,7 @@ JEKYLL_ENV=production bundle exec jekyll serve
 
 <div class="page__footer-copyright footer-links">
   <div>
-    <a href="/contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a> | <a href="/contact/#mailing-list-subscription">Mailing List</a> | <a href="/sitemap">Sitemap</a><br />
+    <a href="/contact">Contact</a> | <a href="/contact/#mailing-list-subscription">Mailing List</a> | <a href="https://ipopvpn.slack.com/">Slack Channel</a> | <a href="/sitemap">Sitemap</a><br />
     <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
     &copy; 2018 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
     </div>
