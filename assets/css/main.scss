@@ -250,16 +250,16 @@ h4, h5, h6 {
   margin-bottom: .1em;
 }
 
-.footer-address {
+.footer-address, .footer-sponsor {
   float: left;
 }
 
-.footer-links, .footer-sponsor {
+.footer-links {
   float: right;
 }
 
 @media (max-width: 63.9375em) {
-  .footer-links, .footer-sponsor {
+  .footer-links {
     float: left;
   }
 }

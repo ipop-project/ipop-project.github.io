@@ -22,12 +22,14 @@ header:
 
 [Join or Leave the IPOP Users Mailing List <i class="fa fa-external-link" aria-hidden="true"></i>](https://lists.ufl.edu/cgi-bin/wa?SUBED1=IPOP-USERS-L&A=1)
 
-If you have already subscribed, to send a message to all of the people currently subscribed to the list, just send the email to:  
+If you have already subscribed, to send a message to all of the people currently subscribed to the list, send the email to:  
 IPOP-USERS-L {at} LISTS.UFL.EDU
 
 # <i class="fa fa-slack" aria-hidden="true"></i>Slack Channel
 
 [Join IPOP VPN Slack Channel <i class="fa fa-external-link" aria-hidden="true"></i>](https://join.slack.com/t/ipopvpn/shared_invite/enQtMjk5MTk3MTYyMTgwLTAzNTg5OTRlNGNlNDI1MDUzNzMwN2NhNzNmOWYwNmI1OTYxZDMwYWYzYjMxNTI3Njk0YzY3NjMyNTBlMzQ5NTE)
+
+Use [IPOP VPN Slack Channel](https://ipopvpn.slack.com/) to chat with IPOP developers and users.
 
 # <i class="fa fa-users" aria-hidden="true"></i>Team
 
