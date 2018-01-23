@@ -27,9 +27,7 @@ IPOP-USERS-L {at} LISTS.UFL.EDU
 
 # <i class="fa fa-slack" aria-hidden="true"></i>Slack Channel
 
-[Join IPOP VPN Slack Channel <i class="fa fa-external-link" aria-hidden="true"></i>](https://join.slack.com/t/ipopvpn/shared_invite/enQtMjk5MTk3MTYyMTgwLTAzNTg5OTRlNGNlNDI1MDUzNzMwN2NhNzNmOWYwNmI1OTYxZDMwYWYzYjMxNTI3Njk0YzY3NjMyNTBlMzQ5NTE)
-
-Use [IPOP VPN Slack Channel](https://ipopvpn.slack.com/) to chat with IPOP developers and users.
+If you are a developer and would like to get in touch with IPOP developers, use [IPOP VPN Slack Channel <i class="fa fa-external-link" aria-hidden="true"></i>](https://ipopvpn.slack.com/). Contact vdaneshmand {at} acis.ufl.edu to get the invitation to join the channel.
 
 # <i class="fa fa-users" aria-hidden="true"></i>Team
 
