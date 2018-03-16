@@ -305,8 +305,21 @@ gclient sync
 </div>
 <p>Create <code class="highlighter-rouge">ipop-project</code> directory and download the TinCan repository there:</p>
 
+<p><strong>For <code class="highlighter-rouge">master</code> branch (Development):</strong></p>
+
 <div class="language-shell highlighter-rouge"><pre class="highlight"><code>mkdir -p ipop-project/ <span class="o">&amp;&amp;</span> git clone https://github.com/ipop-project/Tincan.git ipop-project/Tincan
-mkdir -p ipop-project/Tincan/external/3rd-Party-Libs/release ipop-project/Tincan/external/3rd-Party-Libs/debug
+</code></pre>
+</div>
+
+<p><strong>For other branches, for instance <code class="highlighter-rouge">bh1</code> (Latest Stable Release):</strong></p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>mkdir -p ipop-project/ <span class="o">&amp;&amp;</span> git clone -b bh1 --single-branch https://github.com/ipop-project/Tincan.git ipop-project/Tincan
+</code></pre>
+</div>
+
+<p>Then:</p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>mkdir -p ipop-project/Tincan/external/3rd-Party-Libs/release ipop-project/Tincan/external/3rd-Party-Libs/debug
 </code></pre>
 </div>
 

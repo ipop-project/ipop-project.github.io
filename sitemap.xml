@@ -136,6 +136,12 @@
 <loc>/wiki/Known-Issues</loc>
 </url>
 <url>
+<loc>/wiki/Notes-on-Working-with-IoT-Devices</loc>
+</url>
+<url>
+<loc>/wiki/OpenVSwitch-playbook</loc>
+</url>
+<url>
 <loc>/wiki/Overview:-XMPP,STUN,TURN</loc>
 </url>
 <url>
@@ -182,6 +188,6 @@
 </url>
 <url>
 <loc>/assets/docs/IPOP-WhitePaper-1605.pdf</loc>
-<lastmod>2018-01-23T11:55:59-05:00</lastmod>
+<lastmod>2018-03-16T15:33:49-04:00</lastmod>
 </url>
 </urlset>

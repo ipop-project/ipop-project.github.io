@@ -179,82 +179,127 @@
           <nav class="toc">
             <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
             <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#build-ipop-for-raspbian-on-raspberry-pi-3">Build IPOP for Raspbian on Raspberry Pi 3</a>
+<li class="toc-entry toc-h1"><a href="#notes-on-working-with-iot-devices">Notes on Working with IoT Devices</a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#download-and-install-dependencies">Download and Install Dependencies</a></li>
-<li class="toc-entry toc-h2"><a href="#build-ipop">Build IPOP</a></li>
-<li class="toc-entry toc-h2"><a href="#copy-configuration-file">Copy Configuration File</a></li>
+<li class="toc-entry toc-h2"><a href="#find-ip-address-of-a-device-in-the-network-without-a-monitor">Find IP Address of a Device in the Network without a Monitor</a></li>
+<li class="toc-entry toc-h2"><a href="#install-packages-on-openwrt">Install Packages on OpenWRT</a></li>
+<li class="toc-entry toc-h2"><a href="#compile-a-simple-c-code-on-openwrt">Compile a Simple C Code on OpenWRT</a></li>
+<li class="toc-entry toc-h2"><a href="#determine-file-type">Determine File Type</a></li>
+<li class="toc-entry toc-h2"><a href="#cross-compile-code-for-openwrt">Cross-compile Code for OpenWRT</a></li>
+<li class="toc-entry toc-h2"><a href="#git-on-openwrt">Git on OpenWRT</a></li>
+<li class="toc-entry toc-h2"><a href="#expand-the-root-partition-on-openwrt">Expand the Root Partition on OpenWRT</a></li>
+<li class="toc-entry toc-h2"><a href="#ubuntu-1710-and-ciscoanyconnect-for-uf-vpn">Ubuntu 17.10 and CiscoAnyconnect for UF VPN</a></li>
+<li class="toc-entry toc-h2"><a href="#error-in-installing-ubuntu-or-linux-mint-the-grub-efi-amd64-signed-package-failed-to-install-into-target">Error in Installing Ubuntu or Linux Mint: The grub-efi-amd64-signed package failed to install into /target/.</a></li>
+<li class="toc-entry toc-h2"><a href="#add-menu-entry-to-grub">Add Menu Entry to GRUB</a></li>
+<li class="toc-entry toc-h2"><a href="#change-grub-timeout">Change GRUB Timeout</a></li>
 </ul>
 </li>
 </ul>
           </nav>
         </aside>
 
-        <h1 id="build-ipop-for-raspbian-on-raspberry-pi-3">Build IPOP for Raspbian on Raspberry Pi 3</h1>
+        <h1 id="notes-on-working-with-iot-devices">Notes on Working with IoT Devices</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th> </th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Tested on</strong></td>
-      <td>Raspbian Jessie and Stretch on Raspberry Pi 3</td>
-    </tr>
-    <tr>
-      <td><strong>Time</strong></td>
-      <td>~ 20 Minutes</td>
-    </tr>
-    <tr>
-      <td><strong>Question(s)</strong></td>
-      <td>- How to build IPOP?</td>
-    </tr>
-    <tr>
-      <td><strong>Objective(s)</strong></td>
-      <td>- Build IPOP Source Code</td>
-    </tr>
-  </tbody>
-</table>
+<h2 id="find-ip-address-of-a-device-in-the-network-without-a-monitor">Find IP Address of a Device in the Network without a Monitor</h2>
 
-<h2 id="download-and-install-dependencies">Download and Install Dependencies</h2>
+<p>For instance, if you want to find a Raspberry Pi connected to the local network without a connection to a monitor:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get update -y
-sudo apt-get install -y software-properties-common git make libssl-dev g++-4.9
-sudo pip3 install --upgrade pip
-sudo pip3 install sleekxmpp psutil requests
-sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 10
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo nmap -sn 10.244.19.0/24
 </code></pre>
 </div>
 
-<h2 id="build-ipop">Build IPOP</h2>
+<p>In the output, you should find it. For instance:</p>
 
-<p>Run the following commands as a regular (non-root) user:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>mkdir -p ~/workspace/ipop-project ~/workspace/ipop-vpn/config
-cd ~/workspace/ipop-project/
-git clone https://github.com/ipop-project/Tincan
-git clone https://github.com/ipop-project/3rd-Party-Libs.git ~/workspace/ipop-project/Tincan/external
-git clone https://github.com/ipop-project/Controllers
+<div class="highlighter-rouge"><pre class="highlight"><code>Nmap scan report for 10.244.19.227
+Host is up (0.00027s latency).
+MAC Address: B8:27:EB:82:48:A0 (Raspberry Pi Foundation)
 </code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>cd Tincan/trunk/build/
-make
-cp -f ../out/release/arm7/ipop-tincan ../../../../ipop-vpn/
-cd ../../../Controllers
-cp -rf ./controller/ ../../ipop-vpn/
+<p>Remember to run it with <code class="highlighter-rouge">sudo</code> to get the platform details. Do NOT repeat it multiple times or for a very large subnet. The system may get blocked in the network because of spamming.</p>
+
+<h2 id="install-packages-on-openwrt">Install Packages on OpenWRT</h2>
+
+<p>For instance, <code class="highlighter-rouge">gcc</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>opkg update &amp;&amp; opkg install gcc
 </code></pre>
 </div>
 
-<h2 id="copy-configuration-file">Copy Configuration File</h2>
+<p><a href="https://wiki.openwrt.org/doc/techref/opkg">OpenWrt » Technical Reference » OPKG Package Manager</a></p>
 
-<p>You will need a valid configuration file (ipop-config.json) to run IPOP. Go to the directory you have your config file and copy the file to the <code class="highlighter-rouge">config</code> directory:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>cp ipop-config.json ~/workspace/ipop-vpn/config
+<h2 id="compile-a-simple-c-code-on-openwrt">Compile a Simple C Code on OpenWRT</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gcc -mfloat-abi=hard hello.c -o hello
 </code></pre>
 </div>
+
+<h2 id="determine-file-type">Determine File Type</h2>
+
+<p>For instance, a file which is built for running on Raspberry Pi 1:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>file ipop-tincan-rpi1
+</code></pre>
+</div>
+<p>Output:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>ipop-tincan-rpi1: ELF 32-bit LSB executable, ARM, EABI5 version 1 (GNU/Linux), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, for GNU/Linux 2.6.32, BuildID[sha1]=c24056bbd7c9f90660087db2c1296ae3b7dca93b, not stripped
+</code></pre>
+</div>
+
+<h2 id="cross-compile-code-for-openwrt">Cross-compile Code for OpenWRT</h2>
+
+<p>Requirement:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt update &amp;&amp; sudo apt install ccache libncursesw5-dev
+</code></pre>
+</div>
+
+<h2 id="git-on-openwrt">Git on OpenWRT</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>opkg install git-http
+opkg install ca-bundle
+</code></pre>
+</div>
+
+<h2 id="expand-the-root-partition-on-openwrt">Expand the Root Partition on OpenWRT</h2>
+
+<p>By default, the root partition on the OpenWRT SD card is very small. You can expand it to using “GParted” or other tools on Linux or other operating systems.</p>
+
+<h2 id="ubuntu-1710-and-ciscoanyconnect-for-uf-vpn">Ubuntu 17.10 and CiscoAnyconnect for UF VPN</h2>
+
+<p>If you are running Ubuntu 17.10 and fail to install/start Cisco Anyconnect (version 4.5.0.2033):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt install libpangox-1.0-0
+</code></pre>
+</div>
+
+<p><a href="https://zngguvnf.org/2017-12-04--ubuntu-17-10-and-cisco-anyconnect.html">Source</a></p>
+
+<h2 id="error-in-installing-ubuntu-or-linux-mint-the-grub-efi-amd64-signed-package-failed-to-install-into-target">Error in Installing Ubuntu or Linux Mint: The grub-efi-amd64-signed package failed to install into /target/.</h2>
+
+<p><a href="https://help.ubuntu.com/community/UEFI#Creating_an_EFI_System_Partition">Create an EFI system Partition</a> before installing the OS.</p>
+
+<h2 id="add-menu-entry-to-grub">Add Menu Entry to GRUB</h2>
+
+<p><a href="https://help.ubuntu.com/community/Grub2/CustomMenus">Source</a></p>
+
+<h2 id="change-grub-timeout">Change GRUB Timeout</h2>
+
+<p>In <code class="highlighter-rouge">/etc/default/grub</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>GRUB_TIMEOUT=3
+GRUB_RECORDFAIL_TIMEOUT=3
+</code></pre>
+</div>
+
+<p>Then:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo update_grub2
+</code></pre>
+</div>
+
+<p><a href="https://askubuntu.com/questions/932595/where-to-change-30-seconds-for-grub-on-forced-reset?answertab=active#tab-top">Source</a></p>
 
 
 

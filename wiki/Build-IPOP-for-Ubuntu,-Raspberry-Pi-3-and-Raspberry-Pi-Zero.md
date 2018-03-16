@@ -11,7 +11,7 @@
 
 ```shell
 sudo apt-get update -y
-sudo apt-get install -y software-properties-common git make libssl-dev make g++-4.9 
+sudo apt-get install -y software-properties-common git make libssl-dev g++-4.9
 sudo apt-get install -y python3 python-pip python-dev
 sudo pip install sleekxmpp psutil pystun
 sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 10 
@@ -23,8 +23,23 @@ Run the following commands as a regular (non-root) user:
 
 ```shell
 mkdir -p ~/workspace/ipop-project ~/workspace/ipop-vpn/config
-cd workspace/ipop-project/
+cd ~/workspace/ipop-project/
+```
+
+### Get Tincan and WebRTC Libraries
+
+**Note:** If you have already built the WebRTC libraries yourself following this Wiki's instructions, this step is already done and you should skip it.
+
+**For `master` branch (Development):**
+
+```
 git clone https://github.com/ipop-project/Tincan
+```
+
+**For other branches, for instance `bh1` (Latest Stable Release):**
+
+```
+git clone -b bh1 --single-branch https://github.com/ipop-project/Tincan
 ```
 
 **Ubuntu, x86_64:**
@@ -39,13 +54,24 @@ git clone -b rpi3-arm7 --single-branch https://github.com/ipop-project/3rd-Party
 
 **Raspberry Pi Zero, ARMv6:**
 ```
-git clone -b rpi0-arm6 --single-branch https://github.com/ipop-project/3rd-Party-Libs.git Tincan/external/3rd-Party-Libs
+git clone -b rpizero-arm6 --single-branch https://github.com/ipop-project/3rd-Party-Libs.git Tincan/external/3rd-Party-Libs
 ```
 
-Then:
+### Get Controllers
+
+**For `master` branch (Development):**
 
 ```
 git clone https://github.com/ipop-project/Controllers
+```
+
+**For other branches, for instance `bh1` (Latest Stable Release):**
+
+```
+git clone -b bh1 --single-branch https://github.com/ipop-project/Controllers
+```
+
+```
 cd Tincan/trunk/build/
 make
 cp -f ../out/release/$(uname -m)/ipop-tincan ../../../../ipop-vpn/

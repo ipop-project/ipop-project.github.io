@@ -82,8 +82,21 @@ cd ~/workspace/
 ```
 Create `ipop-project` directory and download the TinCan repository there:
 
+**For `master` branch (Development):**
+
 ```shell
 mkdir -p ipop-project/ && git clone https://github.com/ipop-project/Tincan.git ipop-project/Tincan
+```
+
+**For other branches, for instance `bh1` (Latest Stable Release):**
+
+```shell
+mkdir -p ipop-project/ && git clone -b bh1 --single-branch https://github.com/ipop-project/Tincan.git ipop-project/Tincan
+```
+
+Then:
+
+```shell
 mkdir -p ipop-project/Tincan/external/3rd-Party-Libs/release ipop-project/Tincan/external/3rd-Party-Libs/debug
 ```
 
