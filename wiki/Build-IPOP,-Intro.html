@@ -182,11 +182,7 @@
 <li class="toc-entry toc-h1"><a href="#build-ipop-intro">Build IPOP, Intro</a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#supported-operating-systems-and-platforms">Supported Operating Systems and Platforms</a></li>
-<li class="toc-entry toc-h2"><a href="#other-operating-systems-and-platforms">Other Operating Systems and Platforms</a>
-<ul>
-<li class="toc-entry toc-h3"><a href="#downgrading-gcc-to-49">Downgrading GCC to 4.9</a></li>
-</ul>
-</li>
+<li class="toc-entry toc-h2"><a href="#other-operating-systems-and-platforms">Other Operating Systems and Platforms</a></li>
 </ul>
 </li>
 </ul>
@@ -210,24 +206,7 @@
 
 <p>If the requirements are met, for other versions and flavors of Ubuntu or other Debian-based Linux distros, our Ubuntu release should work out-of-the-box. Raspberry Pi 2 and other Debian-based ARMv7 devices should work with Raspberry Pi 3 release, and Raspberry Pi 1 and other Debian-based ARMv6 devices should work with Raspberry Pi Zero release. If not, you may need to build IPOP code manually on that machine. There is a chance you also need to build WebRTC static libraries before that.</p>
 
-<p>For Debian-based operating systems on x64 machines, the building process would be very similar to Ubuntu and for Debian-based operating systems on ARM7 and ARM6 machines, it’d be like Raspberry Pi 3 and raspberry Pi Zero.</p>
-
-<h3 id="downgrading-gcc-to-49">Downgrading GCC to 4.9</h3>
-
-<p>The IPOP code build process currently just works with <code class="highlighter-rouge">gcc-4.9</code> and you may need to downgrade your <code class="highlighter-rouge">gcc</code>. <code class="highlighter-rouge">g++-4.9</code> is not available on Debian releases after Debian 8, “Jessie”, and you need to build it from the source code or add “Jessie” repositories to your source list:
-Open <code class="highlighter-rouge">/etc/apt/source.list/</code> and add the following line to the file and save it:</p>
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>deb http://http.debian.net/debian jessie main
-</code></pre>
-</div>
-<p>You may need to remove <code class="highlighter-rouge">gcc-4.9-base</code> before continuing:</p>
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo apt update <span class="o">&amp;&amp;</span> sudo apt remove -y gcc-4.9-base
-</code></pre>
-</div>
-<p>Then you need to run the update and install <code class="highlighter-rouge">g++-4.9</code>:</p>
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo apt update <span class="o">&amp;&amp;</span> sudo apt install -y g++-4.9
-</code></pre>
-</div>
-<p>After you built the code successfully, it is safe to undo the changes to the source list and upgrade <code class="highlighter-rouge">gcc</code> to the latest version.</p>
+<p>For Debian-based operating systems on x64 machines, the building process would be very similar to Ubuntu, and for Debian-based operating systems on ARM7 and ARM6 machines, it’d be like Raspberry Pi 3 and raspberry Pi Zero.</p>
 
 
 
@@ -279,7 +258,6 @@ Open <code class="highlighter-rouge">/etc/apt/source.list/</code> and add the fo
       <li><a href="Known-Issues">Known Issues</a></li>
       <li><a href="Getting-Help">Getting Help</a></li>
       <li><a href="How-to-Contribute">How to Contribute</a></li>
-      <li><a href="GSoC-2018-Project-Ideas">Google Summer of Code 2018 Project Ideas</a></li>
     </ul>
   </li>
 </ul>

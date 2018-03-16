@@ -179,57 +179,127 @@
           <nav class="toc">
             <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
             <ul class="section-nav">
-<li class="toc-entry toc-h3"><a href="#objectives">Objectives</a></li>
-<li class="toc-entry toc-h3"><a href="#design">Design</a></li>
-<li class="toc-entry toc-h3"><a href="#example">Example</a></li>
+<li class="toc-entry toc-h1"><a href="#notes-on-working-with-iot-devices">Notes on Working with IoT Devices</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#find-ip-address-of-a-device-in-the-network-without-a-monitor">Find IP Address of a Device in the Network without a Monitor</a></li>
+<li class="toc-entry toc-h2"><a href="#install-packages-on-openwrt">Install Packages on OpenWRT</a></li>
+<li class="toc-entry toc-h2"><a href="#compile-a-simple-c-code-on-openwrt">Compile a Simple C Code on OpenWRT</a></li>
+<li class="toc-entry toc-h2"><a href="#determine-file-type">Determine File Type</a></li>
+<li class="toc-entry toc-h2"><a href="#cross-compile-code-for-openwrt">Cross-compile Code for OpenWRT</a></li>
+<li class="toc-entry toc-h2"><a href="#git-on-openwrt">Git on OpenWRT</a></li>
+<li class="toc-entry toc-h2"><a href="#expand-the-root-partition-on-openwrt">Expand the Root Partition on OpenWRT</a></li>
+<li class="toc-entry toc-h2"><a href="#ubuntu-1710-and-ciscoanyconnect-for-uf-vpn">Ubuntu 17.10 and CiscoAnyconnect for UF VPN</a></li>
+<li class="toc-entry toc-h2"><a href="#error-in-installing-ubuntu-or-linux-mint-the-grub-efi-amd64-signed-package-failed-to-install-into-target">Error in Installing Ubuntu or Linux Mint: The grub-efi-amd64-signed package failed to install into /target/.</a></li>
+<li class="toc-entry toc-h2"><a href="#add-menu-entry-to-grub">Add Menu Entry to GRUB</a></li>
+<li class="toc-entry toc-h2"><a href="#change-grub-timeout">Change GRUB Timeout</a></li>
+</ul>
+</li>
 </ul>
           </nav>
         </aside>
 
-        <p>This page discusses the methodology for testing and evaluating IPOP. Visit the <a href="https://github.com/ipop-project/Release-Management/tree/master/Test">testing repository</a> for the source of the test suite.</p>
+        <h1 id="notes-on-working-with-iot-devices">Notes on Working with IoT Devices</h1>
 
-<h3 id="objectives">Objectives</h3>
+<h2 id="find-ip-address-of-a-device-in-the-network-without-a-monitor">Find IP Address of a Device in the Network without a Monitor</h2>
 
-<p>The objectives of the test suite are to provide the following:</p>
+<p>For instance, if you want to find a Raspberry Pi connected to the local network without a connection to a monitor:</p>
 
-<ul>
-  <li>Automated and scalable deployment of IPOP instances</li>
-  <li>Productivity
-    <ul>
-      <li>Test and visualize the correctness of the IPOP source</li>
-    </ul>
-  </li>
-  <li>Performance evaluation
-    <ul>
-      <li>The latency and throughput of the network</li>
-    </ul>
-  </li>
-  <li>Dependability evaluation
-    <ul>
-      <li>The robustness of a dynamic network</li>
-    </ul>
-  </li>
-</ul>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo nmap -sn 10.244.19.0/24
+</code></pre>
+</div>
 
-<h3 id="design">Design</h3>
+<p>In the output, you should find it. For instance:</p>
 
-<p>The test-suite was designed using a two-level <em>master-worker</em> model, as shown in <strong>Figure 1</strong>. In the first level, a host computer (<em>master</em>) orchestrates a set of physical nodes (<em>workers</em>) via SSH/SFTP. In the second level, each physical node (<em>master</em>) commands a set of Linux containers (LXCs) (<em>workers</em>). Collectively, the host computer controls a large number of LXCs that scales with the number of physical nodes. Each LXC runs an instance of IPOP to collectively realize an IPOP network.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>Nmap scan report for 10.244.19.227
+Host is up (0.00027s latency).
+MAC Address: B8:27:EB:82:48:A0 (Raspberry Pi Foundation)
+</code></pre>
+</div>
 
-<p>To eliminate dependencies that are external to this system, one physical node assumes the role of <em>server</em> and deploys ejabberd (for XMPP/STUN) and turnserver (for TURN) to service the IPOP instances.</p>
+<p>Remember to run it with <code class="highlighter-rouge">sudo</code> to get the platform details. Do NOT repeat it multiple times or for a very large subnet. The system may get blocked in the network because of spamming.</p>
 
-<p>The host computer is able to command specific IPOP instances for network stimulation. For example, an IPOP instance can be run or stopped to simulate nodes entering or leaving the network; IPOP instances can be instructed to interact with other instances to simulate inter-node communication. Additionally, the IPOP instances provide local information about the network to the host computer to interpret the state of the network. For example, each IPOP instance can provide a list of its neighbouring peers so that the host computer can visualize the network topology; individual IPOP instances can report details such as transmission latency, packet loss, or resource utilization for performance and dependability analysis.</p>
+<h2 id="install-packages-on-openwrt">Install Packages on OpenWRT</h2>
 
-<p><img src="https://github.com/ipop-project/ipop-project.github.io/blob/master/wiki-images/ipop-scale-test-architecture.png" alt="" /></p>
+<p>For instance, <code class="highlighter-rouge">gcc</code>:</p>
 
-<p><strong>Figure 1.</strong> IPOP scale-test architecture</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>opkg update &amp;&amp; opkg install gcc
+</code></pre>
+</div>
 
-<h3 id="example">Example</h3>
+<p><a href="https://wiki.openwrt.org/doc/techref/opkg">OpenWrt » Technical Reference » OPKG Package Manager</a></p>
 
-<p>To improve the dependability of IPOP GroupVPN, a recovery mechanism is implemented to restore the structured peer-to-peer topology after the network has been partitioned. Using the test suite, we are able to test the correctness of this mechanism, as shown in <strong>Figure 2</strong>. In (<em>a</em>), the network topology is well formed. In (<em>b</em>), four IPOP instances are stopped to simulate the partitioning of the network into two halves. In (<em>c</em>), after some time, the two network partitions have reunited and will eventually restore the network topology.</p>
+<h2 id="compile-a-simple-c-code-on-openwrt">Compile a Simple C Code on OpenWRT</h2>
 
-<p><img src="https://github.com/ipop-project/ipop-project.github.io/blob/master/wiki-images/ipop-topology-recovery.png" alt="" /></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>gcc -mfloat-abi=hard hello.c -o hello
+</code></pre>
+</div>
 
-<p><strong>Figure 2.</strong> Simulation of the IPOP GroupVPN recovery mechanism</p>
+<h2 id="determine-file-type">Determine File Type</h2>
+
+<p>For instance, a file which is built for running on Raspberry Pi 1:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>file ipop-tincan-rpi1
+</code></pre>
+</div>
+<p>Output:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>ipop-tincan-rpi1: ELF 32-bit LSB executable, ARM, EABI5 version 1 (GNU/Linux), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, for GNU/Linux 2.6.32, BuildID[sha1]=c24056bbd7c9f90660087db2c1296ae3b7dca93b, not stripped
+</code></pre>
+</div>
+
+<h2 id="cross-compile-code-for-openwrt">Cross-compile Code for OpenWRT</h2>
+
+<p>Requirement:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt update &amp;&amp; sudo apt install ccache libncursesw5-dev
+</code></pre>
+</div>
+
+<h2 id="git-on-openwrt">Git on OpenWRT</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>opkg install git-http
+opkg install ca-bundle
+</code></pre>
+</div>
+
+<h2 id="expand-the-root-partition-on-openwrt">Expand the Root Partition on OpenWRT</h2>
+
+<p>By default, the root partition on the OpenWRT SD card is very small. You can expand it to using “GParted” or other tools on Linux or other operating systems.</p>
+
+<h2 id="ubuntu-1710-and-ciscoanyconnect-for-uf-vpn">Ubuntu 17.10 and CiscoAnyconnect for UF VPN</h2>
+
+<p>If you are running Ubuntu 17.10 and fail to install/start Cisco Anyconnect (version 4.5.0.2033):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt install libpangox-1.0-0
+</code></pre>
+</div>
+
+<p><a href="https://zngguvnf.org/2017-12-04--ubuntu-17-10-and-cisco-anyconnect.html">Source</a></p>
+
+<h2 id="error-in-installing-ubuntu-or-linux-mint-the-grub-efi-amd64-signed-package-failed-to-install-into-target">Error in Installing Ubuntu or Linux Mint: The grub-efi-amd64-signed package failed to install into /target/.</h2>
+
+<p><a href="https://help.ubuntu.com/community/UEFI#Creating_an_EFI_System_Partition">Create an EFI system Partition</a> before installing the OS.</p>
+
+<h2 id="add-menu-entry-to-grub">Add Menu Entry to GRUB</h2>
+
+<p><a href="https://help.ubuntu.com/community/Grub2/CustomMenus">Source</a></p>
+
+<h2 id="change-grub-timeout">Change GRUB Timeout</h2>
+
+<p>In <code class="highlighter-rouge">/etc/default/grub</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>GRUB_TIMEOUT=3
+GRUB_RECORDFAIL_TIMEOUT=3
+</code></pre>
+</div>
+
+<p>Then:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo update_grub2
+</code></pre>
+</div>
+
+<p><a href="https://askubuntu.com/questions/932595/where-to-change-30-seconds-for-grub-on-forced-reset?answertab=active#tab-top">Source</a></p>
 
 
 

@@ -11,11 +11,10 @@
 
 ```
 sudo apt-get update -y
-sudo apt-get install -y software-properties-common git make libssl-dev g++-4.9 
-sudo apt-get install -y python3 python-pip python-dev
-sudo pip install sleekxmpp psutil pystun
-sudo rm /usr/bin/g++
-sudo ln -s /usr/bin/g++-4.9 /usr/bin/g++ 
+sudo apt-get install -y software-properties-common git make libssl-dev g++-4.9
+sudo pip3 install --upgrade pip
+sudo pip3 install sleekxmpp psutil requests
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 10
 ```
 
 ## Build IPOP
@@ -26,16 +25,12 @@ Run the following commands as a regular (non-root) user:
 mkdir -p ~/workspace/ipop-project ~/workspace/ipop-vpn/config
 cd ~/workspace/ipop-project/
 git clone https://github.com/ipop-project/Tincan
+git clone https://github.com/ipop-project/3rd-Party-Libs.git ~/workspace/ipop-project/Tincan/external
 git clone https://github.com/ipop-project/Controllers
-cd Tincan
-cd trunk/build/
 ```
-Edit `~/workspace/ipop-project/Tincan/trunk/build/config.mk` and change the default make parameters to Raspberry Pi 3's:
 
-> #To build Raspberry Pi 3, set ARCH=arm7 and PLAT=rpi
-
-Then continue to make:
 ```
+cd Tincan/trunk/build/
 make
 cp -f ../out/release/arm7/ipop-tincan ../../../../ipop-vpn/
 cd ../../../Controllers

@@ -222,11 +222,10 @@
 <h2 id="download-and-install-dependencies">Download and Install Dependencies</h2>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get update -y
-sudo apt-get install -y software-properties-common git make libssl-dev g++-4.9 
-sudo apt-get install -y python3 python-pip python-dev
-sudo pip install sleekxmpp psutil pystun
-sudo rm /usr/bin/g++
-sudo ln -s /usr/bin/g++-4.9 /usr/bin/g++ 
+sudo apt-get install -y software-properties-common git make libssl-dev g++-4.9
+sudo pip3 install --upgrade pip
+sudo pip3 install sleekxmpp psutil requests
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 10
 </code></pre>
 </div>
 
@@ -237,19 +236,13 @@ sudo ln -s /usr/bin/g++-4.9 /usr/bin/g++
 <div class="highlighter-rouge"><pre class="highlight"><code>mkdir -p ~/workspace/ipop-project ~/workspace/ipop-vpn/config
 cd ~/workspace/ipop-project/
 git clone https://github.com/ipop-project/Tincan
+git clone https://github.com/ipop-project/3rd-Party-Libs.git ~/workspace/ipop-project/Tincan/external
 git clone https://github.com/ipop-project/Controllers
-cd Tincan
-cd trunk/build/
 </code></pre>
 </div>
-<p>Edit <code class="highlighter-rouge">~/workspace/ipop-project/Tincan/trunk/build/config.mk</code> and change the default make parameters to Raspberry Pi 3’s:</p>
 
-<blockquote>
-  <p>#To build Raspberry Pi 3, set ARCH=arm7 and PLAT=rpi</p>
-</blockquote>
-
-<p>Then continue to make:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>make
+<div class="highlighter-rouge"><pre class="highlight"><code>cd Tincan/trunk/build/
+make
 cp -f ../out/release/arm7/ipop-tincan ../../../../ipop-vpn/
 cd ../../../Controllers
 cp -rf ./controller/ ../../ipop-vpn/
@@ -313,7 +306,6 @@ cp -rf ./controller/ ../../ipop-vpn/
       <li><a href="Known-Issues">Known Issues</a></li>
       <li><a href="Getting-Help">Getting Help</a></li>
       <li><a href="How-to-Contribute">How to Contribute</a></li>
-      <li><a href="GSoC-2018-Project-Ideas">Google Summer of Code 2018 Project Ideas</a></li>
     </ul>
   </li>
 </ul>
