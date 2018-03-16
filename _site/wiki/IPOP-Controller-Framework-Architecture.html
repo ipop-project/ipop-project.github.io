@@ -1,0 +1,887 @@
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.5.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>IPOP</title>
+
+
+
+
+<meta name="description" content="IP-Over-P2P, Open-source User-centric Software Virtual Network">
+
+
+
+
+<meta name="author" content="">
+
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="IPOP">
+<meta property="og:title" content="IPOP">
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "IPOP",
+      "url" : null,
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--wiki">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">IPOP</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="/about/">About</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/download">Download</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/learn/">Learn</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/wiki/">Wiki</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/whitepaper/">White Paper</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/contribute/">Contribute</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/contact/">Contact</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    
+
+
+
+<div id="main" role="main">
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      <section class="page__content" itemprop="text">
+
+        <aside class="sidebar__right">
+          <nav class="toc">
+            <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+            <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#ipop-controller-framework-architecture">IPOP Controller Framework Architecture</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#introduction">Introduction</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#example-use-cases">Example use Cases</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#components">Components</a></li>
+<li class="toc-entry toc-h3"><a href="#inter-modular-communication">Inter Modular Communication</a></li>
+<li class="toc-entry toc-h3"><a href="#configuration">Configuration</a></li>
+<li class="toc-entry toc-h3"><a href="#technical-details">Technical Details</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#cfxpy">CFX.py</a></li>
+<li class="toc-entry toc-h4"><a href="#cfxhandlepy">CFxHandle.py</a></li>
+<li class="toc-entry toc-h4"><a href="#cbtpy">CBT.py</a></li>
+<li class="toc-entry toc-h4"><a href="#controllermodulepy">ControllerModule.py</a></li>
+<li class="toc-entry toc-h4"><a href="#controller-modules">Controller Modules</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#groupvpn">GroupVPN</a></li>
+<li class="toc-entry toc-h5"><a href="#socialvpn">SocialVPN</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h4"><a href="#some-other-possible-controller-modules">Some other possible controller modules</a></li>
+<li class="toc-entry toc-h4"><a href="#configuration-1">Configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+          </nav>
+        </aside>
+
+        <h2 id="ipop-controller-framework-architecture">IPOP Controller Framework Architecture</h2>
+
+<h3 id="introduction">Introduction</h3>
+<hr />
+
+<p>With  the current implementation of the IPOP controller, extending and create custom controllers is a difficult task and sometimes intimidating for the end users. To make the process of creating a custom controller easy, a new controller framework is being developed. The new controller framework allows the users to create their own controllers by simply plugging in the required modules, each performing various functions of an IPOP controller(e.g. IP address translation, topology management, routing, multicasting).</p>
+
+<h4 id="example-use-cases">Example use Cases</h4>
+
+<p>Consider a GVPN controller for a small VPN (10s of nodes). A user may wish to configure a controller that implements proactive establishment of an all-to-all mesh topology among endpoints, routing is unnecessary as messages are simply forwarded across a Tincan link (at the tincan module), implements multicast by forwarding to all local tincan links, and supports static DNS mapping of names to IPOP addresses independently at each controller by encoding IP addresses into DNS names.</p>
+
+<p>Consider instead a GVPN controller for a large VPN (100s-1000s of nodes). Proactively establishing an all-to-all topology would not scale; instead, a GVPN controller might manage a scalable topology with proactively created tincan links (e.g. a structured P2P topology, or a random graph). A routing protocol might use identifier-based routing towards a destination, or attempt to discover paths using dynamic source routing (DSR), or allow creation of on-demand links if necessary. Multicast messages would use a flooding mechanism. The controller might support an external, centralized DNS service for the virtual network.</p>
+
+<p>While these two controllers would expose a GVPN to applications and share common traits (e.g. the same OSN), the design requirements for the different networks would lead to different approaches to topology management, routing, and multicasting. The small-VPN controller would focus on simplicity and fast responses, while the large-VPN controller would focus on scalability,</p>
+
+<h3 id="components">Components</h3>
+<hr />
+
+<p>The new controller framework has 2 major components:</p>
+<ul>
+  <li>
+    <p><strong>Controller Framework (CFx)</strong></p>
+
+    <p>Controller Framework performs various tasks associated with loading, maintaining and coordinating the      execution of the controller modules. The responsibilities of the CFx are:</p>
+    <ul>
+      <li>Initializing the controller (Creating sockets, making initializing TincanAPI calls etc.)</li>
+      <li>Dynamically load the controller modules</li>
+      <li>Maintain the DB of registered modules</li>
+      <li>Ensuring cross controller configuration and version compatibility</li>
+      <li>Enforce Inter CM dependencies</li>
+      <li>Facilitate Inter Modular communication</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Controller Modules (CMs)</strong></p>
+
+    <p>Each controller module is a highly cohesive component of the controller that implements and performs a well-defined core functionality of the controller. Examples of CMs:</p>
+
+    <ul>
+      <li>AddressMapper</li>
+      <li>LinkManager</li>
+      <li>TincanListener</li>
+      <li>BaseTopologyManager</li>
+      <li>Monitor</li>
+      <li>Logger</li>
+      <li>Watchdog etc</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>CFxHandle</strong></p>
+
+    <p>CFxHandle is basically an interface between the CFx and CMs. CMs cannot directly communicate with the CFx. They can do so via the CFxHandle. The CFx exposes some functions to the CFxHandle, and CFxHandle exposes some functions to the CMs. The CFx creates a CFxHandle for every CM.</p>
+  </li>
+</ul>
+
+<h3 id="inter-modular-communication">Inter Modular Communication</h3>
+<hr />
+
+<p>In many cases, a CM might need data/services from another CM. In such cases, the CMs need a way to communicate with each other. The objective of IMC, within the context of the IPOP controller system, is to facilitate in a structured and coordinated fashion, the processing of operations or requests that require action within more than a single module.</p>
+
+<p>This communication is achieved with the help of an ADT (Abstract Data Type) called <strong>Controller Brokered Task (CBT)</strong>. A CM creates a CBT whenever it needs data/service from another module. A CBT completely defines the task that the recipient CM is to perform. Structure of the CBT is as follows:</p>
+
+<ul>
+  <li>Unique ID</li>
+  <li>Initiator</li>
+  <li>Recipient</li>
+  <li>Action</li>
+  <li>Data</li>
+</ul>
+
+<p>The CMs do not directly send the CBT to the recipient. Instead, the CMs send the CBT to the CFx (via its CFxHandle) and the CFx is responsible to deliver the CBT to the appropriate destination CM. After processing the CBT, the recipient CM might notify the initiator CM by sending a modified CBT to the source CM via the CFx. With this mechanism, any CM is capable of doing the following:</p>
+
+<ul>
+  <li>Receive a request to perform a task</li>
+  <li>Requests services from other modules,</li>
+  <li>Get notification of their completion</li>
+</ul>
+
+<p>Let this strategy be illustrated with the following use case where we consider a routing module (multihop), a topology module and a link management module. The link management module provides the basic operations of establishing and trimming links as well as maintaining link status data. Link management may opt to never initiate any operation on its own, only servicing request from a topology module. Alternatively, it may also monitor it’s links and clean up links to unresponsive nodes. A topology module at startup may attempt to build its topology creating and sending CBTs to the link manager. Additionally, the topology will need to respond to changes in network conditions and modify its active set of links. Here, the CFx would deliver a CBT indicating that a node is no longer directly accessible and the module would respond by restructuring its topology.
+<br /><br />
+The routing module leverages the infrastructure of the topology and link management layers but it does not necessarily need to directly invoke their facilities. Multi-hop routing is influenced by the nature of the underlying topology. If the topology allowed unlimited direct links then there would be very little routing to be done. It is when no direct link to a node exist in the overlay network that multi-hop is invoked. The CFx is notified of a packet being sent to an IP address which is not known (no link). The CFx creates a CBT for this event and delivers it to the multi-hop routing (MHR) module. MHR will perform discovery by communicating with other peer MHR modules and then attempt to either send the packet to its destination or fail it as undeliverable. This communication would be done using CBTs to the CFx to Tincan.</p>
+
+<h3 id="configuration">Configuration</h3>
+<hr />
+
+<p>The new controller framework is a configuration driven model. Configuration will exist for CFx and all the CMs as well. Usually, the configuration of the framework is specified in the config.json file. The CFx parses the configuration and dynamically loads all the CMs listed in the configuration. In some cases, a CM might have some other CMs as dependencies. In such cases,the dependency CMs will be initialized before this CM is initialized. The list of dependencies of a CM is specified in its part of the configuration of the controller.</p>
+
+<p>Example Config:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"CFx"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"xmpp_username"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"xmpp_password"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"xmpp_host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jabber.ru"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"ip4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192.168.5.1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"ip4_mask"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"stat_report"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tincan_logging"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"controller_logging"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEBUG"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"TincanListener"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"joinEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Logger"</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+<h3 id="technical-details">Technical Details</h3>
+<hr />
+
+<h4 id="cfxpy">CFX.py</h4>
+<p>The CFx parses config given by the user (from config.json), and then initializes the controller by creating the controller sockets and making initialization TincanAPI calls like register_svc(), set_cb_endpoint(), set_local_ip() etc. After parsing the config file, the CFx dynamically loads all the listed CMs, by creating their objects and respective CFxHandles(explained later), using importlib. The CMs can specify their dependencies and the CFx will make sure that the dependencies of a module are loaded before the module gets itself loaded. The CFx can also detect circular dependencies. The CFx also facilitates IMC and acts as an intermediate for inter modular communication. The CFx exposes a submitCBT() function to the CFxHandle, which allows the CM to issue a CBT to a CM from which it requires services/data. Lastly, the CFx also waits for shutdown signals, and ensures graceful termination of the controller modules. This is achieved by creating a signal handler using the signal library.</p>
+
+<p>Methods in CFx.py :</p>
+
+<ul>
+  <li>
+    <p><strong>submitCBT(cbt)</strong> : This function is exposed to the CFxHandle. When a CM sends a CBT, it is received by its CFxHandle, which then calls this method to submit the CBT. The CBT is analyzed and then placed in the appropriate CM’s work queue.</p>
+  </li>
+  <li>
+    <p><strong>createCBT(initiator,recipient,action,data)</strong> : This method returns a CBT object, with initiator, recipient, action and data initialized with the parameters passed. Default value of all these attributes of the CBT is a null string.</p>
+  </li>
+  <li>
+    <p><strong>initialize()</strong> : This method dynamically loads all the CMs specified in the configuration and also initializes the controller by creating the sockets and making the initialization Tincan API calls. This method makes use of load_module(), which is responsible for loading a single module.</p>
+  </li>
+  <li>
+    <p><strong>detect_cyclic_dependency()</strong>: This method checks if there are any cyclic dependencies in the config file.</p>
+  </li>
+  <li>
+    <p><strong>parse_config()</strong> : This method is responsible for updating the default configuration of the controller, by taking the configuration input from the user.</p>
+  </li>
+  <li>
+    <p><strong>waitForShutdownEvent()</strong> : This method blocks the CFx/main thread until a SIGINT signal (Ctrl+C) is received by the process.</p>
+  </li>
+  <li>
+    <p><strong>terminate()</strong> : When a KeyboardInterrupt is received, waitForShutDownEvent() method exits and terminate() method is called. This method empties the worker queue of all the CMs and injects a special ‘terminate’ cbt in all the CM queues, which informs the CMs to stop processing the CBTs and exit. The terminate() methods of all the CMs are also called , which helps the CM to finish up  before exiting. This method doesn’t exit until all the CM threads exit.</p>
+  </li>
+</ul>
+
+<h4 id="cfxhandlepy">CFxHandle.py<br /></h4>
+
+<p>The CFx creates a CFxHandle object for every controller module as explained previously. CFxHandle is basically an interface between the CM and CFx. The CFxHandle maintains the CBT queue of the CM. CFxHandle creates a different thread where the processCBT() function is called in daemon mode to process the CBTs present in the queue. processCBT() function takes a CBT as a parameter which is given by the CFxHandle by pulling out an element from the CBT queue. The CFxHandle also creates a different thread to execute the timer_method() of a CM at a given frequency. The CFxHandle exposes two functions: submitCBT(), and createCBT() to the CMs to issue a CBT and create a CBT respectively. The CFx initializes the CFxHandles which inturn initialize the CMs.</p>
+
+<h4 id="cbtpy">CBT.py</h4>
+
+<p>This module contains the CBT class. createCBT() calls make an object of this class and returns it to the CM. The constructor of the CBT class takes in the fields also optionally. The unique ID of the CBT is generated using uuid.uuid4()</p>
+
+<h4 id="controllermodulepy">ControllerModule.py</h4>
+
+<p>This module contains the abstract class ControllerModule, which all the Controller Modules should inherit, forcing them to override processCBT(), initialize() and terminate().</p>
+
+<h4 id="controller-modules">Controller Modules</h4>
+
+<p>All the controller modules must inherit from the Abstract Base Class ControllerModule and override processCBT(), initialize(), timer_method() and terminate() functions. If the CM doesn’t need any timer functionality, it can simply “pass” the implementation of the timer_method().</p>
+
+<p>Some modules are integral to the system as they provide fundamental services, as such they can be relied on to be present in a typical system configuration. The following are the CMs that are essential to build a functional controller:</p>
+
+<h5 id="groupvpn">GroupVPN</h5>
+
+<ul>
+  <li>
+    <p><strong>AddressMapper</strong>: This CM maintains a mapping of IP address of the node to its UID. The mappings are stored in the dict uid_ip_table where the keys are UIDs and values are the IP addresses of the corresponding nodes. Supported CBT actions:</p>
+
+    <ul>
+      <li>
+        <p>‘ADD_MAPPING’: This CBT is generated when an UID-to-IP mapping has to be added.
+cbt.data should be a dict with keys ‘uid’ and ‘ip’. Response CBT is not sent to the source CM in this case.</p>
+      </li>
+      <li>
+        <p>‘DEL_MAPPING’: This CBT is generated when a UID-to-IP mapping has to be deleted. 
+cbt.data should be equal to the UID of the node to be deleted. Response CBT is not sent to the source CM in this case.</p>
+      </li>
+      <li>
+        <p>‘RESOLVE’: This CBT is generated when a CM requires the IP address of a node with a given UID. cbt.data should be equal to the UID of the node, whose IP address is requested. Response CBT with action ‘RESOLVE_RESP’ is sent to the source CM. cbt.data is the IP address of the node in the response CBT.</p>
+      </li>
+      <li>
+        <p>‘REVERSE_RESOLVE’: This CBT is generated when a CM requires the UID of a node, with a given IP address. cbt.data should be equal to the node’s IP address. Response CBT with action ‘REVERSE_RESOLVE_RESP’ is sent back to the CM. cbt.data is the UID of the node in the response CBT.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>LinkManager</strong>: LinkManager is responsible for creating and trimming connections.   BaseTopologyManager decides the policies for creating/trimming links and leverages the LinkManager CM to   create/trim a Tincan link with another node. Supported CBT actions:</p>
+
+    <ul>
+      <li>
+        <p>‘CREATE_LINK’: This CBT is generated by BaseTopologyManager to create a link with a peer. cbt.data is a dict with keys: ‘uid’, ‘fpr’, ‘nid’, ‘sec’, ‘cas’. Response CBT is not sent to the source CM in this case.</p>
+      </li>
+      <li>
+        <p>‘TRIM_LINK’: This CBT is generated by BaseTopologyManager to TRIM a link with a node with a given UID. cbt.data is equal to the UID of the node. Response CBT is not sent to the source CM in this case.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>TincanSender</strong>: This CM is basically a center for making Tincan API calls. Whenever a CM wishes to communicate with IPOP-Tincan, it conveys its intention to do so, by sending a message to TincanSender, which then makes a Tincan API call on behalf of the CM. If the API call has any response, it will be received by the TincanListener, then sent to TincanDispatcher which then dispatches the response to the appropriate CM. Supported CBT actions currently:</p>
+
+    <ul>
+      <li>
+        <p>‘DO_CREATE_LINK’: This CBT is generated when a link is to be created with a node. cbt.data is a dict with keys : ‘uid’, ‘fpr’, ‘nid’, ‘sec’, ‘cas’. Response CBT is not sent to the source CM in this case.</p>
+      </li>
+      <li>
+        <p>‘DO_TRIM_LINK’: This CBT is generated when a Tincan link has to be trimmed. cbt.data is equal to the UID of the node. Response CBT is not sent to the source CM in this case.</p>
+      </li>
+      <li>
+        <p>‘DO_GET_STATE’: This CBT is generated to query Tincan the state of the local node. cbt.data is NULL.
+The state of local node is received as a Tincan notification, which will be dispatched to the appropriate CM by TincanDispatcher</p>
+      </li>
+      <li>
+        <p>‘DO_SEND_MSG’: This CBT is generated when a CM has to send a message to another node. cbt.data is a dict with keys: ‘method’, ‘overlay_id’, ‘uid’, ‘data’. Response CBT is not sent to the source CM in this case.</p>
+      </li>
+      <li>
+        <p>‘DO_SET_REMOTE_IP’: This CBT is generated when there is a need to add a UID-to-IP mapping in IPOP-Tincan. cbt.data is a dict with keys: ‘uid’ and ‘ip4’. Response CBT is not sent to the source CM in this case.</p>
+      </li>
+      <li>
+        <p>‘ECHO_REPLY’: This CBT is generated when IPOP-Tincan sends a notification for echo request. Response CBT is not sent to the source CM in this case.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>TincanListener</strong>: TincanListener listens to notification packets sent by IPOP-Tincan. TincanListener sends these packets to TincanDispatcher for further processing.</p>
+  </li>
+  <li>
+    <p><strong>TincanDispatcher</strong>: TincanDispatcher receives Tincan packets from TincanListener, decodes them and dispatches to appropriate CM.</p>
+  </li>
+  <li>
+    <p><strong>BaseTopologyManager</strong>: This CM is responsible for maintaining a desired base(eg. all-to-all, structured p2p etc) topology of the VPN. This CM describes the policies of maintaining Tincan Links and leverages the LinkManager module to create/trim links with other nodes. This CM handles the conn_stat, con_req, con_resp, send_msg notifications from IPOP-Tincan, and also handles the packets that are sent to the controller by IPOP-Tincan, when there is no link with the destination node.</p>
+  </li>
+  <li>
+    <p><strong>Monitor</strong>: This CM maintains the state of peer nodes.</p>
+
+    <ul>
+      <li>
+        <p>‘STORE_PEER_STATE’: This CBT is generated when the peer state has to be stored in the controller. cbt.data is a JSON object containing information about the peer state. Response CBT is not sent to the source CM in this case.</p>
+      </li>
+      <li>
+        <p>‘QUERY_PEER_STATE’: This CBT is generated when a CM needs to know the state of a particular peer. cbt.data contains the UID of the peer. Response cbt with action ‘QUERY_PEER_STATE_RESP’ is sent to the source CM. cbt.data is the JSON object of the peer state in the response CBT.</p>
+      </li>
+      <li>
+        <p>‘QUERY_PEER_LIST’: This CBT is generated when a CM requires the list of peers. Response cbt with action ‘QUERY_PEER_LIST_RESP’ is sent to the source CM. cbt.data is the list of peers in the response CBT.</p>
+      </li>
+      <li>
+        <p>‘QUERY_CONN_STAT’: This CBT is generated when a CM requires the connection status of a particular. cbt.data contains the UID of the peer. Response cbt with action ‘QUERY_CONN_STAT_RESP’ is sent to the source CM. cbt.data is the connection status of the peer in the response CBT.</p>
+      </li>
+      <li>
+        <p>‘DELETE_CONN_STAT’: This CBT is generated when the connection status of a particular peer has to be deleted. cbt.data contains the UID of the peer. Response CBT is not sent to the source CM in this case.</p>
+      </li>
+      <li>
+        <p>‘STORE_CONN_STAT’: This CBT is generated when the connection status of a particular peer has to be stored. cbt.data is a dict with keys: ‘uid’ and ‘status’. Response CBT is not sent to the source CM in this case.</p>
+      </li>
+      <li>
+        <p>‘QUERY_IDLE_PEER_LIST’: This CBT is generated when a CM requires the state of all the idle peers. Response cbt with action ‘QUERY_IDLE_PEER_LIST_RESP’ is sent to the source CM. In the response CBT, cbt.data is a dict containing the state of all the idle peers.</p>
+      </li>
+      <li>
+        <p>‘STORE_IDLE_PEER_STATE’: This CBT is generated in the case of on-demand-connection, when the peer node is idle. cbt.data is a dict with keys: ‘uid’ and ‘idle_peer_state’</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Logger</strong>: This CM facilitates and co-ordinate module logging. A CM can send a message to the Logger CM if it needs anything to be logged. Supported CBT actions:</p>
+
+    <ul>
+      <li>
+        <p>‘DEBUG’: This CBT is generated when a CM needs to log with ‘DEBUG’ level</p>
+      </li>
+      <li>
+        <p>‘INFO’: This CBT is generated when a CM needs to log with ‘INFO’ level</p>
+      </li>
+      <li>
+        <p>‘WARNING’: This CBT is generated when a CM needs to log with ‘WARNING’ level</p>
+      </li>
+      <li>
+        <p>‘ERROR’: This CBT is generated when a CM needs to log with ‘ERROR’ level</p>
+      </li>
+      <li>
+        <p>‘PKTDUMP’: This CBT is generated when a CM needs to log with packet dump data.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Watchdog</strong>: Watchdog maintains the state of the local node. Supported CBT actions:</p>
+
+    <ul>
+      <li>
+        <p>‘STORE_IPOP_STATE’: This CBT is generated by TincanDispatcher when it receives a local_state notification from IPOP-Tincan. No Response CBT is generated.</p>
+      </li>
+      <li>
+        <p>‘QUERY_IPOP_STATE’: This CBT is generated when a CM requires the current state of the local node. Response CBT with action ‘QUERY_IPOP_STATE_RESP’ is sent back to the source CM, with the state of local node in cbt.data.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="socialvpn">SocialVPN</h5>
+
+<ul>
+  <li>
+    <p><strong>AddressMapper</strong>: In SocialVPN, it’s possible to statically assign addresses to SocialVPN peers.
+It can be done through an additional configuration file that can be loaded with the -p argument (e.g. -p ip_config.json). In this file, you specify the UID of a node, the virtual IP address, and a label, as in the following example:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  [
+      {
+          "uid": "54f2b14f80e5374f8af7ad1b4838145ea7eaaf57",
+          "ipv4": "172.31.0.101",
+          "desc": "Alice"
+      },
+      {
+          "uid": "2561b75dd81575044d9aef9a4db83aa2a7a23a9b",
+          "ipv4": "172.31.0.102",
+          "desc": "Bob"
+      }
+  ]
+</code></pre>
+    </div>
+    <p>AddressMapper CM maintains a mapping of UID to IP address of the nodes, whose IP addresses are specified in the configuration file as shown above. The mappings are stored in the dict ip_map where the keys are UIDs and values are the IP addresses of the corresponding nodes. Supported CBT actions:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>* 'ADD_MAPPING': This CBT is generated when an UID-to-IP mapping has to be added.   cbt.data should be a dict with keys 'uid' and 'ip'. Response CBT is not sent to the source CM in this case.
+
+* 'DEL_MAPPING': This CBT is generated when a UID-to-IP mapping has to be deleted.  cbt.data should be equal to the UID of the node to be deleted. Response CBT is not sent to the source CM in this case.
+
+* 'RESOLVE': This CBT is generated when a CM requires the IP address of a node with a given UID. cbt.data should be equal to the UID of the node, whose IP address is requested. Response CBT with action 'RESOLVE_RESP' is sent to the source CM. cbt.data is the IP address of the node in the response CBT.
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p><strong>LinkManager</strong>: LinkManager is responsible for creating and trimming connections.   BaseTopologyManager decides the policies for creating/trimming links and leverages the LinkManager CM to   create/trim a Tincan link with another node. Supported CBT actions:</p>
+
+    <ul>
+      <li>
+        <p>‘CREATE_LINK’: This CBT is generated by BaseTopologyManager to create a link with a peer. cbt.data is a dict with keys: ‘uid’, ‘fpr’, ‘nid’, ‘sec’, ‘cas’. Response CBT is not sent to the source CM in this case.</p>
+      </li>
+      <li>
+        <p>‘TRIM_LINK’: This CBT is generated by BaseTopologyManager to TRIM a link with a node with a given UID. cbt.data is equal to the UID of the node. Response CBT is not sent to the source CM in this case.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>TincanSender</strong>: This CM is basically a center for making Tincan API calls. Whenever a CM wishes to communicate with IPOP-Tincan, it conveys its intention to do so, by sending a message to TincanSender, which then makes a Tincan API call on behalf of the CM. If the API call has any response, it will be received by the TincanListener, then sent to TincanDispatcher which then dispatches the response to the appropriate CM. Supported CBT actions currently:</p>
+
+    <ul>
+      <li>
+        <p>‘DO_CREATE_LINK’: This CBT is generated when a link is to be created with a node. cbt.data is a dict with keys : ‘uid’, ‘fpr’, ‘nid’, ‘sec’, ‘cas’. Response CBT is not sent to the source CM in this case.</p>
+      </li>
+      <li>
+        <p>‘DO_TRIM_LINK’: This CBT is generated when a Tincan link has to be trimmed. cbt.data is equal to the UID of the node. Response CBT is not sent to the source CM in this case.</p>
+      </li>
+      <li>
+        <p>‘DO_GET_STATE’: This CBT is generated to query Tincan the state of the local node. cbt.data is NULL.
+The state of local node is received as a Tincan notification, which will be dispatched to the appropriate CM by TincanDispatcher</p>
+      </li>
+      <li>
+        <p>‘DO_SEND_MSG’: This CBT is generated when a CM has to send a message to another node. cbt.data is a dict with keys: ‘method’, ‘overlay_id’, ‘uid’, ‘data’. Response CBT is not sent to the source CM in this case.</p>
+      </li>
+      <li>
+        <p>‘DO_SET_REMOTE_IP’: This CBT is generated when there is a need to add a UID-to-IP mapping in IPOP-Tincan. cbt.data is a dict with keys: ‘uid’ and ‘ip4’. Response CBT is not sent to the source CM in this case.</p>
+      </li>
+      <li>
+        <p>‘ECHO_REPLY’: This CBT is generated when IPOP-Tincan sends a notification for echo request. Response CBT is not sent to the source CM in this case.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>TincanListener</strong>: TincanListener listens to notification packets sent by IPOP-Tincan. TincanListener sends these packets to TincanDispatcher for further processing.</p>
+  </li>
+  <li>
+    <p><strong>TincanDispatcher</strong>: TincanDispatcher receives Tincan packets from TincanListener, decodes them and dispatches to appropriate CM.</p>
+  </li>
+  <li>
+    <p><strong>BaseTopologyManager</strong>: This CM is responsible for maintaining a desired base(eg. all-to-all, structured p2p etc) topology of the VPN. This CM describes the policies of maintaining Tincan Links and leverages the LinkManager module to create/trim links with other nodes. This CM handles the conn_stat, con_req, con_resp, send_msg notifications from IPOP-Tincan.</p>
+  </li>
+  <li>
+    <p><strong>Monitor</strong>: This CM maintains the state of peer nodes.</p>
+
+    <ul>
+      <li>
+        <p>‘PEER_STATE’: This CBT is generated when the peer state has to be stored in the controller. cbt.data is a JSON object containing information about the peer state. Response CBT is not sent to the source CM in this case.</p>
+      </li>
+      <li>
+        <p>‘QUERY_PEER_STATE’: This CBT is generated when a CM needs to know the state of a particular peer. cbt.data contains the UID of the peer. Response cbt with action ‘QUERY_PEER_STATE_RESP’ is sent to the source CM. cbt.data is the JSON object of the peer state in the response CBT.</p>
+      </li>
+      <li>
+        <p>‘QUERY_PEER_LIST’: This CBT is generated when a CM requires the list of peers. Response cbt with action ‘QUERY_PEER_LIST_RESP’ is sent to the source CM. cbt.data is the list of peers in the response CBT.</p>
+      </li>
+      <li>
+        <p>‘QUERY_CONN_STAT’: This CBT is generated when a CM requires the connection status of a particular. cbt.data contains the UID of the peer. Response cbt with action ‘QUERY_CONN_STAT_RESP’ is sent to the source CM. cbt.data is the connection status of the peer in the response CBT.</p>
+      </li>
+      <li>
+        <p>‘DELETE_CONN_STAT’: This CBT is generated when the connection status of a particular peer has to be deleted. cbt.data contains the UID of the peer. Response CBT is not sent to the source CM in this case.</p>
+      </li>
+      <li>
+        <p>‘STORE_CONN_STAT’: This CBT is generated when the connection status of a particular peer has to be stored. cbt.data is a dict with keys: ‘uid’ and ‘status’. Response CBT is not sent to the source CM in this case.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>‘QUERY_IDLE_PEER_STATE’: This CBT is generated when a CM requires the state of an idle peer. cbt.data is the uid of the idle peer whose state is requested/ Response cbt with action ‘QUERY_IDLE_PEER_STATE_RESP’ is sent to the source CM. cbt.data is the state of the requested idle peer in the response CBT.</p>
+  </li>
+  <li>
+    <p>‘STORE_IDLE_PEER_STATE’: This CBT is generated in the case of on-demand-connection, when the peer node is idle. cbt.data is a dict with keys: ‘uid’ and ‘idle_peer_state’</p>
+  </li>
+  <li>
+    <p><strong>Logger</strong>: This CM facilitates and co-ordinate module logging. A CM can send a message to the Logger CM if it needs anything to be logged. Supported CBT actions:</p>
+
+    <ul>
+      <li>
+        <p>‘DEBUG’: This CBT is generated when a CM needs to log with ‘DEBUG’ level</p>
+      </li>
+      <li>
+        <p>‘INFO’: This CBT is generated when a CM needs to log with ‘INFO’ level</p>
+      </li>
+      <li>
+        <p>‘WARNING’: This CBT is generated when a CM needs to log with ‘WARNING’ level</p>
+      </li>
+      <li>
+        <p>‘ERROR’: This CBT is generated when a CM needs to log with ‘ERROR’ level</p>
+      </li>
+      <li>
+        <p>‘PKTDUMP’: This CBT is generated when a CM needs to log with packet dump data.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Watchdog</strong>: Watchdog maintains the state of the local node. Supported CBT actions:</p>
+
+    <ul>
+      <li>
+        <p>‘STORE_IPOP_STATE’: This CBT is generated by TincanDispatcher when it receives a local_state notification from IPOP-Tincan. No Response CBT is generated.</p>
+      </li>
+      <li>
+        <p>‘QUERY_IPOP_STATE’: This CBT is generated when a CM requires the current state of the local node. Response CBT with action ‘QUERY_IPOP_STATE_RESP’ is sent back to the source CM, with the state of local node in cbt.data.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="some-other-possible-controller-modules">Some other possible controller modules</h4>
+
+<ul>
+  <li>
+    <p>XMPP messenger: sends and decodes peer message  via XMPP. Send msg, handle msg</p>
+  </li>
+  <li>
+    <p>OnDemand Topology Manager (UID received-traffic):
+Uses Link-Manager to create/trim on-demand links based on traffic
+triggered by outgoing/incoming packet to a destination, timer</p>
+  </li>
+  <li>
+    <p>Overlay-Sender (uid, msg):
+Handles creation of a payload and initiating send to a remote controller via overlay
+triggered by receiving a packet up call from tincan
+places event to overlay-route message to destination (unicast or multicast depending on packet)</p>
+  </li>
+  <li>
+    <p>Overlay-DSR-Lookup (uid):
+Handles discovery of a dynamic source routed path
+triggered by Overlay-Sender when a path is not found</p>
+  </li>
+  <li>
+    <p>Overlay-Receiver (msg):
+Handles receiving an overlay-routed message and passing it down to tin can
+triggered by receiving a packet routed from overlay-route</p>
+  </li>
+  <li>
+    <p>Overlay-Unicast-Route (uid, [path], msg):
+Handles unicast controller-controller messages that go from overlay-unicast-route module to overlay-unicast-route module
+triggered by a send (on local module) or receiving controller-controller message from neighbor</p>
+  </li>
+  <li>
+    <p>Overlay-Multicast-Route:
+handles broadcasts using controller-controller communication - forwards packets to neighboring controllers
+can have an optional depth specified when initiating multicast (unbounded when broadcast)</p>
+  </li>
+  <li>
+    <p>Neighbor-sender (uid, msg):
+handles sending a message to a neighboring controller over IPv6 over tincan
+triggered by local module (e.g. overlay-route)
+determines the destination, and which module to deliver</p>
+  </li>
+  <li>
+    <p>Neighbor-receiver (msg):
+handles receiving a message from a neighboring controller over IPv6 over tincan
+triggered by a receive on IPv6 socket 
+determines the destination, and which module to deliver (e.g. overlay-route)</p>
+  </li>
+</ul>
+
+<h4 id="configuration-1">Configuration</h4>
+
+<p>This file contains configuration for the CFx as well as the Controller Modules. The CFx parses this file and dynamically loads all the CMs listed in the file. Each module gets its configuration as a parameter in the constructor when the object is created.</p>
+
+<p>If the CM requires a method to be repeatedly called, it can make use of the timer functionality and also can specify the frequency (in secs) at which the method should be called.</p>
+
+<p>If the CM requires the CFx to wait for it to process its current CBT before terminating, it can set the joinEnabled value to True. If this value is not set to True, the CM threads are stopped as soon as the CFx terminates.</p>
+
+<p>A CM can also specify the dependencies by setting the value of ‘dependencies’ parameter. The CFx will ensure that the dependencies are loaded before the module gets loaded. The CFx loads the CMs specified in the config file from top to bottom.</p>
+
+<p>This a sample config shown below:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"CFx"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"xmpp_username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gingerninja@jabber.ru"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"xmpp_password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ginger123"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"ip4_mask"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"xmpp_host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jabber.ru"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"stat_report"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"tincan_logging"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"vpn_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GroupVPN"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"TincanListener"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"socket_read_wait_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"joinEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Logger"</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"Logger"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"controller_logging"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEBUG"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"joinEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"TincanDispatcher"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"joinEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Logger"</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"TincanSender"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Logger"</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"Monitor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"joinEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Logger"</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"BaseTopologyManager"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"timer_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"joinEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Logger"</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"LinkManager"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"joinEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Logger"</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"AddressMapper"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"ip4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192.168.5.1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"joinEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Logger"</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"Watchdog"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"timer_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"joinEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Logger"</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+</div>
+
+
+
+      </section>
+    </div>
+  </article>
+
+
+  <div class="sidebar">
+    <nav class="nav__list">
+      <div class="wiki-top-links">
+        <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
+      </div>
+      
+
+    
+
+
+
+        <ul>
+  <li><strong>Deploying IPOP-VPN</strong>
+    <ul>
+      <li><a href="Use-IPOP,-Intro">Installation</a></li>
+      <li><a href="Configuration,-Intro">Configuration</a></li>
+    </ul>
+  </li>
+  <li><strong>Tutorials</strong>
+    <ul>
+      <li><a href="Switchmode-with-LXC">Running IPOP in Switchmode</a></li>
+    </ul>
+  </li>
+  <li><strong>Development Guide</strong>
+    <ul>
+      <li><a href="Development-Workflow">Development Workflow</a></li>
+      <li><a href="Coding-Guidelines">Coding Guidelines</a></li>
+      <li><a href="Build-IPOP,-Intro">Building the Code</a></li>
+      <li><a href="IPOP-Scale-test-Walkthrough">Testing Your Build</a></li>
+      <li><a href="Controller-Framework">Controller Framework</a></li>
+      <li><a href="Controller-API">Controller API</a></li>
+      <li><a href="Build-WebRTC-Libraries,-Intro">Building WebRTC Libraries</a></li>
+    </ul>
+  </li>
+  <li><strong>General Documentation</strong>
+    <ul>
+      <li><a href="FAQs">FAQs</a></li>
+      <li><a href="Troubleshooting">Troubleshooting</a></li>
+      <li><a href="Planning-Your-Network">Planning Your Network</a></li>
+      <li><a href="Coding-Challenges">Coding Challenges</a></li>
+      <li><a href="Known-Issues">Known Issues</a></li>
+      <li><a href="Getting-Help">Getting Help</a></li>
+      <li><a href="How-to-Contribute">How to Contribute</a></li>
+      <li><a href="GSoC-2018-Project-Ideas">Google Summer of Code 2018 Project Ideas</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+
+      </section>
+    </div>
+  </article>
+
+
+
+</div>
+
+
+
+
+    </nav>
+  </div>
+
+
+</div>
+
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+     -->
+    <!-- <li><a href="/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
+<!--  </ul>
+</div> --> 
+
+<div class="page__footer-copyright footer-address">
+  <div class="float-left">
+    <img src="/assets/images/uf_small.png" class="padding-bottom-right" /><img src="/assets/images/nsf_small.png" class="padding-bottom-right" />
+  </div>
+  <i class="fa fa-address-card-o" aria-hidden="true"></i>
+  <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br />
+  <a href="http://www.ece.ufl.edu/" rel="nofollow" target="_blank">Department of Electrical & Computer Engineering</a><br />
+  <a href="http://www.eng.ufl.edu/" rel="nofollow" target="_blank">College of Engineering</a>, <a href="http://www.ufl.edu/" rel="nofollow" target="_blank">University of Florida</a>
+</div>
+
+<div class="page__footer-copyright footer-links">
+  <div>
+    <a href="/contact">Contact</a> | <a href="/contact/#mailing-list-subscription">Mailing List</a> | <a href="https://ipopvpn.slack.com/">Slack Channel</a> | <a href="/sitemap">Sitemap</a><br />
+    <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
+    &copy; 2018 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
+    </div>
+  </div>
+</div>
+<div class="page__footer-copyright footer-sponsor clear-both">This material is based upon work supported in part by the National Science Foundation under Grants No. 1234983, 1339737 and 1527415.</div>
+      </footer>
+    </div>
+
+    <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>
+
