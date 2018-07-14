@@ -7,6 +7,12 @@
 | **Question(s)** | - How to build WebRTC on Linux?<br /> - How to extract WebRTC static libraries for building IPOP? |
 | **Objective(s)**| - Build the WebRTC Libraries<br /> - Extract required WebRTC Static Libraries for Building IPOP |
 
+## Install Dependencies
+
+```shell
+sudo apt-get update && sudo apt-get -y install git
+```
+
 ## Install Toolchain
 
 ```shell
@@ -27,7 +33,7 @@ Install the Chromium depot tools
   ```
 
 ## Download the WebRTC source code
-1.  Create a working directory, enter it, and run `fetch webrtc`:
+1.  Create a working directory, enter it, and run `fetch webrtc` (beware `fetch` requires python2.x):
 
   ```shell
   mkdir webrtc-checkout
@@ -60,15 +66,19 @@ The first command updates the primary Chromium source repository and rebases any
 The second command syncs the sub-repositories to the appropriate versions and re-runs the hooks as needed.
 
 ## Build WebRTC libraries
-These gn flags are critical for compatiabilty with tincan. Turn off iterator_debugging or the mangled symbol names will not match; it causes a debug prefix to added to STL container names. Also, all the pieces of libboringssl do not get assembled. My approach to was to turn off component builds and switch from a shared to a static library and then manually create the libboringssl_asm.a file. The default configuration is for a 64-bit debug build:
+These gn flags are critical for compatiabilty with tincan. Turn off iterator_debugging or the mangled symbol names will not match; it causes a debug prefix to added to STL container names. Also, all the pieces of libboringssl do not get assembled. My approach to was to turn off component builds and switch from a shared to a static library and then manually create the libboringssl_asm.a file. 
+
+  Beware it requires to have the `gtk+-2.0` package.
+
+  The default configuration is for a 64-bit debug build:
   ```shell
-  gn gen out/debug-x64 "--args=enable_iterator_debugging=false is_component_build=false"
-  ninja -C out/debug-x64/ boringssl field_trial_default protobuf_lite p2p base jsoncpp
+  gn gen out/debug "--args=enable_iterator_debugging=false is_component_build=false"
+  ninja -C out/debug/ boringssl field_trial_default protobuf_lite p2p base jsoncpp
   ```  
   To create a 64-bit release build you must set is_debug = false
   ```shell
-  gn gen out/release-x64 "--args=enable_iterator_debugging=false is_component_build=false is_debug=false"
-  ninja -C out/release-x64/ boringssl field_trial_default protobuf_lite p2p base jsoncpp
+  gn gen out/release "--args=enable_iterator_debugging=false is_component_build=false is_debug=false"
+  ninja -C out/release/ boringssl field_trial_default protobuf_lite p2p base jsoncpp
   ```
 
 ## Extract the static libraries 
@@ -109,31 +119,31 @@ Currently, the libraries we need from out/Debug_x64 and out/Release_x64 are:
 **Release**
 
 ```
-ar -rcs ipop-project/Tincan/external/3rd-Party-Libs/release/libboringssl_asm.a webrtc-checkout/src/out/release-x64/obj/third_party/boringssl/boringssl_asm/aes-x86_64.o webrtc-checkout/src/out/release-x64/obj/third_party/boringssl/boringssl_asm/aesni-x86_64.o webrtc-checkout/src/out/release-x64/obj/third_party/boringssl/boringssl_asm/bsaes-x86_64.o webrtc-checkout/src/out/release-x64/obj/third_party/boringssl/boringssl_asm/vpaes-x86_64.o webrtc-checkout/src/out/release-x64/obj/third_party/boringssl/boringssl_asm/rsaz-avx2.o webrtc-checkout/src/out/release-x64/obj/third_party/boringssl/boringssl_asm/x86_64-mont.o webrtc-checkout/src/out/release-x64/obj/third_party/boringssl/boringssl_asm/x86_64-mont5.o webrtc-checkout/src/out/release-x64/obj/third_party/boringssl/boringssl_asm/chacha-x86_64.o webrtc-checkout/src/out/release-x64/obj/third_party/boringssl/boringssl_asm/p256-x86_64-asm.o webrtc-checkout/src/out/release-x64/obj/third_party/boringssl/boringssl_asm/md5-x86_64.o webrtc-checkout/src/out/release-x64/obj/third_party/boringssl/boringssl_asm/aesni-gcm-x86_64.o webrtc-checkout/src/out/release-x64/obj/third_party/boringssl/boringssl_asm/ghash-x86_64.o webrtc-checkout/src/out/release-x64/obj/third_party/boringssl/boringssl_asm/rdrand-x86_64.o webrtc-checkout/src/out/release-x64/obj/third_party/boringssl/boringssl_asm/sha1-x86_64.o webrtc-checkout/src/out/release-x64/obj/third_party/boringssl/boringssl_asm/sha256-x86_64.o webrtc-checkout/src/out/release-x64/obj/third_party/boringssl/boringssl_asm/sha512-x86_64.o webrtc-checkout/src/out/release-x64/obj/third_party/boringssl/boringssl_asm/x25519-asm-x86_64.o
+ar -rcs ipop-project/Tincan/external/3rd-Party-Libs/release/libboringssl_asm.a webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/aes-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/aesni-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/bsaes-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/vpaes-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/rsaz-avx2.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/x86_64-mont.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/x86_64-mont5.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/chacha-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/p256-x86_64-asm.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/md5-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/aesni-gcm-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/ghash-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/rdrand-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/sha1-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/sha256-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/sha512-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/x25519-asm-x86_64.o
 
-ar -rcs ipop-project/Tincan/external/3rd-Party-Libs/release/libjsoncpp.a webrtc-checkout/src/out/release-x64/obj/third_party/jsoncpp/jsoncpp/json_reader.o webrtc-checkout/src/out/release-x64/obj/third_party/jsoncpp/jsoncpp/json_value.o webrtc-checkout/src/out/release-x64/obj/third_party/jsoncpp/jsoncpp/json_writer.o
+ar -rcs ipop-project/Tincan/external/3rd-Party-Libs/release/libjsoncpp.a webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_reader.o webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_value.o webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_writer.o
 
-cp webrtc-checkout/src/out/release-x64/obj/third_party/boringssl/libboringssl.a ipop-project/Tincan/external/3rd-Party-Libs/release
-cp webrtc-checkout/src/out/release-x64/obj/webrtc/system_wrappers/libfield_trial_default.a ipop-project/Tincan/external/3rd-Party-Libs/release
-cp webrtc-checkout/src/out/release-x64/obj/webrtc/base/librtc_base.a ipop-project/Tincan/external/3rd-Party-Libs/release
-cp webrtc-checkout/src/out/release-x64/obj/webrtc/base/librtc_base_approved.a ipop-project/Tincan/external/3rd-Party-Libs/release
-cp webrtc-checkout/src/out/release-x64/obj/webrtc/p2p/librtc_p2p.a ipop-project/Tincan/external/3rd-Party-Libs/release
-cp webrtc-checkout/src/out/release-x64/obj/third_party/protobuf/libprotobuf_lite.a ipop-project/Tincan/external/3rd-Party-Libs/release
+cp webrtc-checkout/src/out/release/obj/third_party/boringssl/libboringssl.a ipop-project/Tincan/external/3rd-Party-Libs/release
+cp webrtc-checkout/src/out/release/obj/webrtc/system_wrappers/libfield_trial_default.a ipop-project/Tincan/external/3rd-Party-Libs/release
+cp webrtc-checkout/src/out/release/obj/webrtc/base/librtc_base.a ipop-project/Tincan/external/3rd-Party-Libs/release
+cp webrtc-checkout/src/out/release/obj/webrtc/base/librtc_base_approved.a ipop-project/Tincan/external/3rd-Party-Libs/release
+cp webrtc-checkout/src/out/release/obj/webrtc/p2p/librtc_p2p.a ipop-project/Tincan/external/3rd-Party-Libs/release
+cp webrtc-checkout/src/out/release/obj/third_party/protobuf/libprotobuf_lite.a ipop-project/Tincan/external/3rd-Party-Libs/release
 ```
 
 **Debug**
 
 ```shell
-ar -rcs ipop-project/Tincan/external/3rd-Party-Libs/debug/libboringssl_asm.a webrtc-checkout/src/out/debug-x64/obj/third_party/boringssl/boringssl_asm/aes-x86_64.o webrtc-checkout/src/out/debug-x64/obj/third_party/boringssl/boringssl_asm/aesni-x86_64.o webrtc-checkout/src/out/debug-x64/obj/third_party/boringssl/boringssl_asm/bsaes-x86_64.o webrtc-checkout/src/out/debug-x64/obj/third_party/boringssl/boringssl_asm/vpaes-x86_64.o webrtc-checkout/src/out/debug-x64/obj/third_party/boringssl/boringssl_asm/rsaz-avx2.o webrtc-checkout/src/out/debug-x64/obj/third_party/boringssl/boringssl_asm/x86_64-mont.o webrtc-checkout/src/out/debug-x64/obj/third_party/boringssl/boringssl_asm/x86_64-mont5.o webrtc-checkout/src/out/debug-x64/obj/third_party/boringssl/boringssl_asm/chacha-x86_64.o webrtc-checkout/src/out/debug-x64/obj/third_party/boringssl/boringssl_asm/p256-x86_64-asm.o webrtc-checkout/src/out/debug-x64/obj/third_party/boringssl/boringssl_asm/md5-x86_64.o webrtc-checkout/src/out/debug-x64/obj/third_party/boringssl/boringssl_asm/aesni-gcm-x86_64.o webrtc-checkout/src/out/debug-x64/obj/third_party/boringssl/boringssl_asm/ghash-x86_64.o webrtc-checkout/src/out/debug-x64/obj/third_party/boringssl/boringssl_asm/rdrand-x86_64.o webrtc-checkout/src/out/debug-x64/obj/third_party/boringssl/boringssl_asm/sha1-x86_64.o webrtc-checkout/src/out/debug-x64/obj/third_party/boringssl/boringssl_asm/sha256-x86_64.o webrtc-checkout/src/out/debug-x64/obj/third_party/boringssl/boringssl_asm/sha512-x86_64.o webrtc-checkout/src/out/debug-x64/obj/third_party/boringssl/boringssl_asm/x25519-asm-x86_64.o
+ar -rcs ipop-project/Tincan/external/3rd-Party-Libs/debug/libboringssl_asm.a webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/aes-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/aesni-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/bsaes-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/vpaes-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/rsaz-avx2.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/x86_64-mont.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/x86_64-mont5.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/chacha-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/p256-x86_64-asm.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/md5-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/aesni-gcm-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/ghash-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/rdrand-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/sha1-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/sha256-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/sha512-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/x25519-asm-x86_64.o
 
-ar -rcs ipop-project/Tincan/external/3rd-Party-Libs/debug/libjsoncpp.a webrtc-checkout/src/out/debug-x64/obj/third_party/jsoncpp/jsoncpp/json_reader.o webrtc-checkout/src/out/debug-x64/obj/third_party/jsoncpp/jsoncpp/json_value.o webrtc-checkout/src/out/debug-x64/obj/third_party/jsoncpp/jsoncpp/json_writer.o
+ar -rcs ipop-project/Tincan/external/3rd-Party-Libs/debug/libjsoncpp.a webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_reader.o webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_value.o webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_writer.o
 
-cp webrtc-checkout/src/out/debug-x64/obj/third_party/boringssl/libboringssl.a ipop-project/Tincan/external/3rd-Party-Libs/debug
-cp webrtc-checkout/src/out/debug-x64/obj/webrtc/system_wrappers/libfield_trial_default.a ipop-project/Tincan/external/3rd-Party-Libs/debug
-cp webrtc-checkout/src/out/debug-x64/obj/webrtc/base/librtc_base.a ipop-project/Tincan/external/3rd-Party-Libs/debug
-cp webrtc-checkout/src/out/debug-x64/obj/webrtc/base/librtc_base_approved.a ipop-project/Tincan/external/3rd-Party-Libs/debug
-cp webrtc-checkout/src/out/debug-x64/obj/webrtc/p2p/librtc_p2p.a ipop-project/Tincan/external/3rd-Party-Libs/debug
-cp webrtc-checkout/src/out/debug-x64/obj/third_party/protobuf/libprotobuf_lite.a ipop-project/Tincan/external/3rd-Party-Libs/debug
+cp webrtc-checkout/src/out/debug/obj/third_party/boringssl/libboringssl.a ipop-project/Tincan/external/3rd-Party-Libs/debug
+cp webrtc-checkout/src/out/debug/obj/webrtc/system_wrappers/libfield_trial_default.a ipop-project/Tincan/external/3rd-Party-Libs/debug
+cp webrtc-checkout/src/out/debug/obj/webrtc/base/librtc_base.a ipop-project/Tincan/external/3rd-Party-Libs/debug
+cp webrtc-checkout/src/out/debug/obj/webrtc/base/librtc_base_approved.a ipop-project/Tincan/external/3rd-Party-Libs/debug
+cp webrtc-checkout/src/out/debug/obj/webrtc/p2p/librtc_p2p.a ipop-project/Tincan/external/3rd-Party-Libs/debug
+cp webrtc-checkout/src/out/debug/obj/third_party/protobuf/libprotobuf_lite.a ipop-project/Tincan/external/3rd-Party-Libs/debug
 ```
 
 ---

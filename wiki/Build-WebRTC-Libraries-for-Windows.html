@@ -259,6 +259,7 @@
   * `Control Panel &gt; User Accounts &gt; User Accounts &gt; Change my environment variables`
 
   * Add a PATH user variable: `%PATH%;C:\path\to\depot_tools`
+* Note: depot tools uses its own included Python version 2 package, if you have another installation included on your PATH it may conflict if the version is not suitable. 
 </code></pre>
 </div>
 
@@ -325,42 +326,43 @@ gclient sync
 <p>Currently the libraries we need from out/Debug_x64 and out/Release_x64 are:<br />
 boringssl.lib;field_trial_default.lib;protobuf_lite.lib;rtc_base.lib;boringssl_asm.lib;
 rtc_base_approved.lib;rtc_p2p.lib;json_writer.obj;json_value.obj;json_reader.obj</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>cp ./out/debug-x64/boringssl.dll.lib ../../ipop-project/Tincan/external/lib/debug_x64/win/boringssl.lib
-cp ./out/debug-x64/obj/webrtc/system_wrappers/field_trial_default.lib ../../ipop-project/Tincan/external/lib/debug_x64/win/
-cp ./out/debug-x64/obj/webrtc/base/rtc_base.lib ../../ipop-project/Tincan/external/lib/debug_x64/win/
-cp ./out/debug-x64/obj/webrtc/base/rtc_base_approved.lib ../../ipop-project/Tincan/external/lib/debug_x64/win/
-cp ./out/debug-x64/obj/webrtc/p2p/rtc_p2p.lib ../../ipop-project/Tincan/external/lib/debug_x64/win/
-cp ./out/debug-x64/obj/third_party/protobuf/protobuf_full.lib ../../ipop-project/Tincan/external/lib/debug_x64/win/
-cp ./out/debug-x64/obj/third_party/jsoncpp/jsoncpp/json_reader.obj ../../ipop-project/Tincan/external/lib/debug_x64/win/
-cp ./out/debug-x64/obj/third_party/jsoncpp/jsoncpp/json_writer.obj ../../ipop-project/Tincan/external/lib/debug_x64/win/
-cp ./out/debug-x64/obj/third_party/jsoncpp/jsoncpp/json_value.obj ../../ipop-project/Tincan/external/lib/debug_x64/win/
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mkdir ..<span class="se">\.</span>.<span class="se">\i</span>pop-project<span class="se">\T</span>incan<span class="se">\e</span>xternal3rd-Party-Libs<span class="se">\d</span>ebug ..<span class="se">\.</span>.<span class="se">\i</span>pop-project<span class="se">\T</span>incan<span class="se">\e</span>xternal3rd-Party-Libs<span class="se">\r</span>elease
+cp ./out/debug-x64/boringssl.dll.lib ../../ipop-project/Tincan/external/3rd-Party-Libs/debug/boringssl.lib
+cp ./out/debug-x64/obj/webrtc/system_wrappers/field_trial_default.lib ../../ipop-project/Tincan/external/3rd-Party-Libs/debug/
+cp ./out/debug-x64/obj/webrtc/base/rtc_base.lib ../../ipop-project/Tincan/external/3rd-Party-Libs/debug/
+cp ./out/debug-x64/obj/webrtc/base/rtc_base_approved.lib ../../ipop-project/Tincan/external/3rd-Party-Libs/debug/
+cp ./out/debug-x64/obj/webrtc/p2p/rtc_p2p.lib ../../ipop-project/Tincan/external/3rd-Party-Libs/debug/
+cp ./out/debug-x64/obj/third_party/protobuf/protobuf_full.lib ../../ipop-project/Tincan/external/3rd-Party-Libs/debug/
+cp ./out/debug-x64/obj/third_party/jsoncpp/jsoncpp/json_reader.obj ../../ipop-project/Tincan/external/3rd-Party-Libs/debug/
+cp ./out/debug-x64/obj/third_party/jsoncpp/jsoncpp/json_writer.obj ../../ipop-project/Tincan/external/3rd-Party-Libs/debug/
+cp ./out/debug-x64/obj/third_party/jsoncpp/jsoncpp/json_value.obj ../../ipop-project/Tincan/external/3rd-Party-Libs/debug/
 
-cp ./out/debug-x64/boringssl.dll.pdb ../../ipop-project/Tincan/external/lib/debug_x64/win/boringssl.pdb
-cp ./out/debug-x64/obj/third_party/jsoncpp/jsoncpp_cc.pdb ../../ipop-project/Tincan/external/lib/debug_x64/win/
-cp ./out/debug-x64/obj/third_party/protobuf/protobuf_full_cc.pdb ../../ipop-project/Tincan/external/lib/debug_x64/win/
-cp ./out/debug-x64/obj/webrtc/p2p/rtc_p2p_cc.pdb ../../ipop-project/Tincan/external/lib/debug_x64/win/
-cp ./out/debug-x64/obj/webrtc/base/rtc_base_cc.pdb ../../ipop-project/Tincan/external/lib/debug_x64/win/
-cp ./out/debug-x64/obj/webrtc/base/rtc_base_approved_cc.pdb ../../ipop-project/Tincan/external/lib/debug_x64/win/
-cp ./out/debug-x64/obj/webrtc/system_wrappers/field_trial_default_cc.pdb ../../ipop-project/Tincan/external/lib/debug_x64/win/
+cp ./out/debug-x64/boringssl.dll.pdb ../../ipop-project/Tincan/external/3rd-Party-Libs/debug/boringssl.pdb
+cp ./out/debug-x64/obj/third_party/jsoncpp/jsoncpp_cc.pdb ../../ipop-project/Tincan/external/3rd-Party-Libs/debug/
+cp ./out/debug-x64/obj/third_party/protobuf/protobuf_full_cc.pdb ../../ipop-project/Tincan/external/3rd-Party-Libs/debug/
+cp ./out/debug-x64/obj/webrtc/p2p/rtc_p2p_cc.pdb ../../ipop-project/Tincan/external/3rd-Party-Libs/debug/
+cp ./out/debug-x64/obj/webrtc/base/rtc_base_cc.pdb ../../ipop-project/Tincan/external/3rd-Party-Libs/debug/
+cp ./out/debug-x64/obj/webrtc/base/rtc_base_approved_cc.pdb ../../ipop-project/Tincan/external/3rd-Party-Libs/debug/
+cp ./out/debug-x64/obj/webrtc/system_wrappers/field_trial_default_cc.pdb ../../ipop-project/Tincan/external/3rd-Party-Libs/debug/
 
-cp ./out/release-x64/obj/third_party/boringssl/boringssl.lib ../../ipop-project/Tincan/external/lib/release_x64/win/
-cp ./out/release-x64/obj/third_party/boringssl/boringssl_asm.lib ../../ipop-project/Tincan/external/lib/release_x64/win/
-cp ./out/release-x64/obj/webrtc/system_wrappers/field_trial_default.lib ../../ipop-project/Tincan/external/lib/release_x64/win/
-cp ./out/release-x64/obj/webrtc/base/rtc_base.lib ../../ipop-project/Tincan/external/lib/release_x64/win/
-cp ./out/release-x64/obj/webrtc/base/rtc_base_approved.lib ../../ipop-project/Tincan/external/lib/release_x64/win/
-cp ./out/release-x64/obj/webrtc/p2p/rtc_p2p.lib ../../ipop-project/Tincan/external/lib/release_x64/win/
-cp ./out/release-x64/obj/third_party/protobuf/protobuf_full.lib ../../ipop-project/Tincan/external/lib/release_x64/win/
-cp ./out/release-x64/obj/third_party/jsoncpp/jsoncpp/json_reader.obj ../../ipop-project/Tincan/external/lib/release_x64/win/
-cp ./out/release-x64/obj/third_party/jsoncpp/jsoncpp/json_writer.obj ../../ipop-project/Tincan/external/lib/release_x64/win/
-cp ./out/release-x64/obj/third_party/jsoncpp/jsoncpp/json_value.obj ../../ipop-project/Tincan/external/lib/release_x64/win/
+cp ./out/release-x64/obj/third_party/boringssl/boringssl.lib ../../ipop-project/Tincan/external/3rd-Party-Libs/release/
+cp ./out/release-x64/obj/third_party/boringssl/boringssl_asm.lib ../../ipop-project/Tincan/external/3rd-Party-Libs/release/
+cp ./out/release-x64/obj/webrtc/system_wrappers/field_trial_default.lib ../../ipop-project/Tincan/external/3rd-Party-Libs/release/
+cp ./out/release-x64/obj/webrtc/base/rtc_base.lib ../../ipop-project/Tincan/external/3rd-Party-Libs/release/
+cp ./out/release-x64/obj/webrtc/base/rtc_base_approved.lib ../../ipop-project/Tincan/external/3rd-Party-Libs/release/
+cp ./out/release-x64/obj/webrtc/p2p/rtc_p2p.lib ../../ipop-project/Tincan/external/3rd-Party-Libs/release/
+cp ./out/release-x64/obj/third_party/protobuf/protobuf_full.lib ../../ipop-project/Tincan/external/3rd-Party-Libs/release/
+cp ./out/release-x64/obj/third_party/jsoncpp/jsoncpp/json_reader.obj ../../ipop-project/Tincan/external/3rd-Party-Libs/release/
+cp ./out/release-x64/obj/third_party/jsoncpp/jsoncpp/json_writer.obj ../../ipop-project/Tincan/external/3rd-Party-Libs/release/
+cp ./out/release-x64/obj/third_party/jsoncpp/jsoncpp/json_value.obj ../../ipop-project/Tincan/external/3rd-Party-Libs/release/
 
-cp ./out/release-x64/obj/third_party/boringssl/boringssl_c.pdb ../../ipop-project/Tincan/external/lib/release_x64/win/
-cp ./out/release-x64/obj/webrtc/system_wrappers/field_trial_default_cc.pdb ../../ipop-project/Tincan/external/lib/release_x64/win/
-cp ./out/release-x64/obj/third_party/jsoncpp/jsoncpp_cc.pdb ../../ipop-project/Tincan/external/lib/release_x64/win/
-cp ./out/release-x64/obj/webrtc/base/rtc_base_cc.pdb ../../ipop-project/Tincan/external/lib/release_x64/win/
-cp ./out/release-x64/obj/webrtc/base/rtc_base_approved_cc.pdb ../../ipop-project/Tincan/external/lib/release_x64/win/
-cp ./out/release-x64/obj/webrtc/p2p/rtc_p2p_cc.pdb ../../ipop-project/Tincan/external/lib/release_x64/win/
-cp ./out/release-x64/obj/third_party/protobuf/protobuf_full_cc.pdb ../../ipop-project/Tincan/external/lib/release_x64/win/
+cp ./out/release-x64/obj/third_party/boringssl/boringssl_c.pdb ../../ipop-project/Tincan/external/3rd-Party-Libs/release/
+cp ./out/release-x64/obj/webrtc/system_wrappers/field_trial_default_cc.pdb ../../ipop-project/Tincan/external/3rd-Party-Libs/release/
+cp ./out/release-x64/obj/third_party/jsoncpp/jsoncpp_cc.pdb ../../ipop-project/Tincan/external/3rd-Party-Libs/release/
+cp ./out/release-x64/obj/webrtc/base/rtc_base_cc.pdb ../../ipop-project/Tincan/external/3rd-Party-Libs/release/
+cp ./out/release-x64/obj/webrtc/base/rtc_base_approved_cc.pdb ../../ipop-project/Tincan/external/3rd-Party-Libs/release/
+cp ./out/release-x64/obj/webrtc/p2p/rtc_p2p_cc.pdb ../../ipop-project/Tincan/external/3rd-Party-Libs/release/
+cp ./out/release-x64/obj/third_party/protobuf/protobuf_full_cc.pdb ../../ipop-project/Tincan/external/3rd-Party-Libs/release/
 </code></pre>
 </div>
 <h2 id="copy-the-header-files-for-this-branch-head">Copy the header files for this branch-head</h2>
@@ -369,7 +371,7 @@ cp ./out/release-x64/obj/third_party/protobuf/protobuf_full_cc.pdb ../../ipop-pr
 mkdir ..<span class="se">\.</span>.<span class="se">\i</span>pop-project<span class="se">\T</span>incan<span class="se">\e</span>xternal<span class="se">\i</span>nclude<span class="se">\w</span>ebrtc<span class="se">\p</span>2p<span class="se">\c</span>lient
 mkdir ..<span class="se">\.</span>.<span class="se">\i</span>pop-project<span class="se">\T</span>incan<span class="se">\e</span>xternal<span class="se">\i</span>nclude<span class="se">\w</span>ebrtc<span class="se">\p</span>2p<span class="se">\b</span>ase
 mkdir ..<span class="se">\.</span>.<span class="se">\i</span>pop-project<span class="se">\T</span>incan<span class="se">\e</span>xternal<span class="se">\i</span>nclude<span class="se">\w</span>ebrtc<span class="se">\a</span>pi<span class="se">\v</span>ideo
-mkdir ..<span class="se">\.</span>.<span class="se">\i</span>pop-project<span class="se">\T</span>incan<span class="se">\e</span>xternal<span class="se">\i</span>nclude<span class="se">\w</span>ebrtc<span class="se">\s</span>ystem_wrappers
+mkdir ..<span class="se">\.</span>.<span class="se">\i</span>pop-project<span class="se">\T</span>incan<span class="se">\e</span>xternal<span class="se">\i</span>nclude<span class="se">\w</span>ebrtc<span class="se">\s</span>ystem_wrappers<span class="se">\i</span>nclude
 mkdir ..<span class="se">\.</span>.<span class="se">\i</span>pop-project<span class="se">\T</span>incan<span class="se">\e</span>xternal<span class="se">\i</span>nclude<span class="se">\j</span>son
 
 cp ./webrtc/<span class="k">*</span>.h ../../ipop-project/Tincan/external/include/webrtc/

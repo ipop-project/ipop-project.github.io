@@ -182,6 +182,7 @@
 <li class="toc-entry toc-h1"><a href="#notes-on-working-with-iot-devices">Notes on Working with IoT Devices</a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#find-ip-address-of-a-device-in-the-network-without-a-monitor">Find IP Address of a Device in the Network without a Monitor</a></li>
+<li class="toc-entry toc-h2"><a href="#openwrt-root-partition-size">OpenWRT root Partition Size</a></li>
 <li class="toc-entry toc-h2"><a href="#install-packages-on-openwrt">Install Packages on OpenWRT</a></li>
 <li class="toc-entry toc-h2"><a href="#compile-a-simple-c-code-on-openwrt">Compile a Simple C Code on OpenWRT</a></li>
 <li class="toc-entry toc-h2"><a href="#determine-file-type">Determine File Type</a></li>
@@ -192,6 +193,7 @@
 <li class="toc-entry toc-h2"><a href="#error-in-installing-ubuntu-or-linux-mint-the-grub-efi-amd64-signed-package-failed-to-install-into-target">Error in Installing Ubuntu or Linux Mint: The grub-efi-amd64-signed package failed to install into /target/.</a></li>
 <li class="toc-entry toc-h2"><a href="#add-menu-entry-to-grub">Add Menu Entry to GRUB</a></li>
 <li class="toc-entry toc-h2"><a href="#change-grub-timeout">Change GRUB Timeout</a></li>
+<li class="toc-entry toc-h2"><a href="#openwrt-network-configuration">OpenWRT Network Configuration</a></li>
 </ul>
 </li>
 </ul>
@@ -217,6 +219,10 @@ MAC Address: B8:27:EB:82:48:A0 (Raspberry Pi Foundation)
 </div>
 
 <p>Remember to run it with <code class="highlighter-rouge">sudo</code> to get the platform details. Do NOT repeat it multiple times or for a very large subnet. The system may get blocked in the network because of spamming.</p>
+
+<h2 id="openwrt-root-partition-size">OpenWRT root Partition Size</h2>
+
+<p>Resize the root partition on OpenWRT SD card using GParted after writing the image on the SD card.</p>
 
 <h2 id="install-packages-on-openwrt">Install Packages on OpenWRT</h2>
 
@@ -300,6 +306,28 @@ GRUB_RECORDFAIL_TIMEOUT=3
 </div>
 
 <p><a href="https://askubuntu.com/questions/932595/where-to-change-30-seconds-for-grub-on-forced-reset?answertab=active#tab-top">Source</a></p>
+
+<h2 id="openwrt-network-configuration">OpenWRT Network Configuration</h2>
+
+<p>To change the network settings from static to DHCP, edit <code class="highlighter-rouge">/etc/config/network</code>:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>config interface 'loopback'
+	option ifname 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+config globals 'globals'
+	option ula_prefix 'fd75:c919:7ac1::/48'
+
+config interface 'lan'
+	option type 'bridge'
+	option ifname 'eth0'
+	option proto 'dhcp'
+#	option ipaddr '192.168.1.1'
+#	option netmask '255.255.255.0'
+#	option ip6assign '60'
+</code></pre>
+</div>
 
 
 

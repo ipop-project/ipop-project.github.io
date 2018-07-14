@@ -10,11 +10,10 @@
 ## Download and Install Dependencies
 
 ```shell
-sudo apt-get update -y
-sudo apt-get install -y software-properties-common git make libssl-dev g++-4.9
-sudo apt-get install -y python3 python-pip python-dev
-sudo pip install sleekxmpp psutil pystun
-sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 10 
+sudo apt update -y
+sudo apt install -y git make libssl-dev g++-5 python3 python3-pip python3-dev
+sudo -H pip3 install --upgrade pip
+sudo -H pip3 install sleekxmpp psutil requests 
 ```
 
 ## Build IPOP
@@ -81,7 +80,4 @@ cp -rf ./controller/ ../../ipop-vpn/
 
 ## Copy Configuration File
 
-You will need a valid configuration file (ipop-config.json) to run IPOP. Go to the directory you have your config file and copy the file to the `config` directory:
-```shell
-cp ipop-config.json ~/workspace/ipop-vpn/config
-```
+You will need a valid configuration file (`ipop-config.json`) in `ipop-vpn/config` directory to run IPOP. You may find a sample config file in the `Controllers` repo root which you have already cloned into your machine.
