@@ -233,7 +233,7 @@
 
 <h2 id="install-toolchain">Install Toolchain</h2>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo apt update <span class="o">&amp;&amp;</span> sudo apt install -y debootstrap qemu-user-static git python-dev
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo apt update <span class="o">&amp;&amp;</span> sudo apt install -y debootstrap qemu-user-static git python3-dev
 
 mkdir -p ~/workspace/webrtc-checkout <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/workspace/webrtc-checkout/
 
@@ -264,8 +264,8 @@ gclient sync
 cp -r third_party/boringssl ../
 git checkout branch-heads/57
 gclient sync
-rm -r third_party/boringssl
-mv -r ../boringssl third_party/
+rm -rf third_party/boringssl
+mv ../boringssl third_party/
 </code></pre>
 </div>
 

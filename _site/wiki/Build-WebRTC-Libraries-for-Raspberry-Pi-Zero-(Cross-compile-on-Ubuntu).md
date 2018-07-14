@@ -16,7 +16,7 @@ If you want to build WebRTC libraries for IPOP yourself, follow the instructions
 ## Install Toolchain
 
 ```shell
-sudo apt update && sudo apt install -y debootstrap qemu-user-static git python-dev
+sudo apt update && sudo apt install -y debootstrap qemu-user-static git python3-dev
 
 mkdir -p ~/workspace/webrtc-checkout && cd ~/workspace/webrtc-checkout/
 
@@ -47,8 +47,8 @@ gclient sync
 cp -r third_party/boringssl ../
 git checkout branch-heads/57
 gclient sync
-rm -r third_party/boringssl
-mv -r ../boringssl third_party/
+rm -rf third_party/boringssl
+mv ../boringssl third_party/
 ```
 
 ## Build WebRTC

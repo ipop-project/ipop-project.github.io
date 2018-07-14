@@ -14,7 +14,7 @@
 ### Quick start Installation
 The most convenient way to get IPOP installed on Windows 10 is run the _ipop-set.ps1_ powershell script included in the IPOP ZIP file. Note that you need to have Administrator privileges to install IPOP-VPN.
 
-1. Download [IPOP-VPN for Windows](https://github.com/ipop-project/Downloads/releases/download/v16.08.0/ipop-v16.08.1_win.zip).
+1. Download [IPOP-VPN for Windows](https://github.com/ipop-project/Downloads/releases/download/v16.08.1/ipop-v16.08.1_win.zip).
 
 1. Extract the contents of the archive to a directory, e.g., ipop-vpn
 
