@@ -237,9 +237,9 @@
 
 <div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo apt-get update -y
 sudo apt-get install -y software-properties-common libssl-dev
-sudo apt-get install -y python3 python-pip python-dev
-sudo pip install -v <span class="nv">sleekxmpp</span><span class="o">==</span>1.3.1  
-sudo pip install psutil pystun
+sudo apt-get install -y python3.5 python3-pip python-dev
+sudo pip3 install -v <span class="nv">sleekxmpp</span><span class="o">==</span>1.3.1  
+sudo pip3 install psutil pystun
 </code></pre>
 </div>
 
@@ -272,7 +272,7 @@ sudo pip install psutil pystun
 
 <h3 id="run-ipop-controller">Run IPOP Controller</h3>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>python -m controller.Controller -c ./config/ipop-config.json &amp;
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>python3 -m controller.Controller -c ./config/ipop-config.json &amp;
 </code></pre>
 </div>
 
@@ -305,7 +305,7 @@ sudo pip install psutil pystun
 </ul>
 
 <div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo ./ipop-tincan &amp;
-python -m controller.Controller -c ./config/ipop-config.json &amp;
+python3 -m controller.Controller -c ./config/ipop-config.json &amp;
 </code></pre>
 </div>
 <ul>

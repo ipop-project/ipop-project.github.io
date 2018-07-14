@@ -18,6 +18,11 @@ MAC Address: B8:27:EB:82:48:A0 (Raspberry Pi Foundation)
 
 Remember to run it with `sudo` to get the platform details. Do NOT repeat it multiple times or for a very large subnet. The system may get blocked in the network because of spamming.
 
+## OpenWRT root Partition Size
+
+Resize the root partition on OpenWRT SD card using GParted after writing the image on the SD card.
+
+
 ## Install Packages on OpenWRT
 
 For instance, `gcc`:
@@ -100,3 +105,25 @@ sudo update_grub2
 ```
 
 [Source](https://askubuntu.com/questions/932595/where-to-change-30-seconds-for-grub-on-forced-reset?answertab=active#tab-top)
+
+## OpenWRT Network Configuration
+
+To change the network settings from static to DHCP, edit `/etc/config/network`:
+```
+config interface 'loopback'
+	option ifname 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+config globals 'globals'
+	option ula_prefix 'fd75:c919:7ac1::/48'
+
+config interface 'lan'
+	option type 'bridge'
+	option ifname 'eth0'
+	option proto 'dhcp'
+#	option ipaddr '192.168.1.1'
+#	option netmask '255.255.255.0'
+#	option ip6assign '60'
+```
