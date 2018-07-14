@@ -3,7 +3,7 @@
 ## Supported Operating Systems and Platforms
 
 We currently support the following operating systems and platforms:
-- [Ubuntu 14.04 and 16.04, 64-bit](Build-IPOP-for-Ubuntu)
+- [Ubuntu 14.04 and 16.04, 64-bit](Build-IPOP-for-Ubuntu,-Raspberry-Pi-3-and-Raspberry-Pi-Zero)
 - [Raspbian Stretch on Raspberry Pi 3, ARMv7](Build-IPOP-for-Raspbian-on-Raspberry-Pi-3)
 - [Raspbian Stretch on Raspberry Pi Zero, ARMv6](Build-IPOP-for-Raspbian-on-Raspberry-Pi-Zero)
 - [Microsoft Windows 10, 64-bit](Build-IPOP-for-Windows)

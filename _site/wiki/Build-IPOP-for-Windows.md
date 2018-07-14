@@ -17,18 +17,18 @@ Install Win 10 SDK, depending on the build revision you get you may have to reta
   mkdir -p workspace/ipop-project
   mkdir -p workspace/ipop-vpn/config
   cd workspace/ipop-project/
-  git clone https://github.com/ipop-project/Tincan
-  git clone https://github.com/ipop-project/Controllers
-  cd Tincan
-  cd ../Controllers
+  git clone https://github.com/ipop-project/Tincan -b bh1
+  git clone https://github.com/ipop-project/Controllers -b bh1
+  git clone https://github.com/ipop-project/Release-Management.git
+  cp Release-Management\Deployment\win\ipop-setup.ps1 ..\ipop-vpn
+  cp Release-Management\Deployment\win\ipop-start.bat ..\ipop-vpn
+  cp Controllers\controller ..\ipop-vpn
 ```
 
-Open the VS Tincan solution located at workspace/ipop-project/ipop-tincan/trunk/build/tincan.sln
-
-Grab this [zip](https://www.dropbox.com/s/1tonispv0autc91/ipop-vpn_windlls.zip?dl=0)
-
-and extract to workspace/ipop-vpn.
-
+Open the Visual Studio Tincan solution located at workspace/ipop-project/ipop-tincan/trunk/build/tincan.sln. The supported build configurations are debug x64 and release x64. After a successful build, the ipop-tincan executable is located in workspace\ipop-project\ipop-tincan\trunk\out\debug\x64 or workspace\ipop-project\ipop-tincan\trunk\out\release\x64 for debug and release builds, respectively.
+```
+   cp Tincan\trunk\out\release ..\ipop-vpn
+```
 Run power shell window as admin
 ```
 PowerShell.exe -ExecutionPolicy Unrestricted

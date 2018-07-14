@@ -12,9 +12,9 @@
 ```shell
 sudo apt-get update -y
 sudo apt-get install -y software-properties-common libssl-dev
-sudo apt-get install -y python3 python-pip python-dev
-sudo pip install -v sleekxmpp==1.3.1  
-sudo pip install psutil pystun
+sudo apt-get install -y python3.5 python3-pip python-dev
+sudo pip3 install -v sleekxmpp==1.3.1  
+sudo pip3 install psutil pystun
 ```
 
 ## Get IPOP Binary
@@ -47,7 +47,7 @@ sudo ./ipop-tincan &
 ### Run IPOP Controller
 
 ```shell
-python -m controller.Controller -c ./config/ipop-config.json &
+python3 -m controller.Controller -c ./config/ipop-config.json &
 ```
 
 Now, if everything is going well, IPOP should be run.
@@ -78,7 +78,7 @@ To uninstall IPOP, its is safe to stop it first and then remove the IPOP executi
 
 ```shell
 sudo ./ipop-tincan &
-python -m controller.Controller -c ./config/ipop-config.json &
+python3 -m controller.Controller -c ./config/ipop-config.json &
 ```
 - Stop IPOP:
 
