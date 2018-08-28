@@ -1,4 +1,4 @@
-# Switchmode with LXC
+# [Legacy Document] Switchmode with LXC
 
 **Warning: This document may be out of date.**
 
