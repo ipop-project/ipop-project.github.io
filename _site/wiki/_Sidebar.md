@@ -1,9 +1,7 @@
-* **Deploying IPOP-VPN**  
+* **Deploying IPOP-VPN**
+  * [Quick Start](Quick-Start)
   * [Installation](Use-IPOP,-Intro)
   * [Configuration](Configuration,-Intro)
-
-* **Tutorials**
-  * [Running IPOP in Switchmode](Switchmode-with-LXC)
 
 * **Development Guide**  
   * [Development Workflow](Development-Workflow)
