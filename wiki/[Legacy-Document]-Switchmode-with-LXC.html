@@ -179,102 +179,98 @@
           <nav class="toc">
             <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
             <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#project-ideas-for-ipop--gsoc-2018">Project Ideas for IPOP @ GSoC 2018</a>
-<ul>
-<li class="toc-entry toc-h2"><a href="#project-1-security-enhancements-to-ipop">Project 1: Security enhancements to IPOP</a>
-<ul>
-<li class="toc-entry toc-h3"><a href="#task-dynamic-vpn-node-revocation">Task: Dynamic VPN node revocation</a></li>
-<li class="toc-entry toc-h3"><a href="#task-ipsec-end-to-end-encryption">Task: IPSEC end-to-end encryption</a></li>
-</ul>
-</li>
-<li class="toc-entry toc-h2"><a href="#project-2-scalable-ip-multicast-support">Project 2: Scalable IP multicast support</a>
-<ul>
-<li class="toc-entry toc-h3"><a href="#task-enhance-ipop-controller-to-support-scalable-multicast">Task: Enhance IPOP controller to support scalable multicast</a></li>
-<li class="toc-entry toc-h3"><a href="#task-develop-sdn-controller-to-support-scalable-overlay-multicast">Task: Develop SDN controller to support scalable overlay multicast</a></li>
-</ul>
-</li>
-<li class="toc-entry toc-h2"><a href="#project-3-visualization-enhancements-to-ipop">Project 3: Visualization enhancements to IPOP</a>
-<ul>
-<li class="toc-entry toc-h3"><a href="#task-ui-authentication">Task: UI authentication</a></li>
-<li class="toc-entry toc-h3"><a href="#task-flexible-reporting-of-metrics">Task: Flexible reporting of metrics</a></li>
-<li class="toc-entry toc-h3"><a href="#task-ui-improvements">Task: UI improvements</a></li>
-</ul>
-</li>
-<li class="toc-entry toc-h2"><a href="#project-4-iot-gateway-ble-bridge">Project 4: IoT gateway BLE bridge</a></li>
-<li class="toc-entry toc-h2"><a href="#project-5-low-latency-data-streaming">Project 5: Low latency data streaming</a></li>
-</ul>
-</li>
+<li class="toc-entry toc-h1"><a href="#legacy-document-switchmode-with-lxc">[Legacy Document] Switchmode with LXC</a></li>
+<li class="toc-entry toc-h1"><a href="#ipop-switchmode-tutorial">IPOP Switchmode Tutorial</a></li>
+<li class="toc-entry toc-h1"><a href="#stand-alone-switchmode">Stand alone Switchmode</a></li>
+<li class="toc-entry toc-h1"><a href="#switchmode-under-the-hood">Switchmode under the hood</a></li>
 </ul>
           </nav>
         </aside>
 
-        <h1 id="project-ideas-for-ipop--gsoc-2018">Project Ideas for IPOP @ GSoC 2018</h1>
+        <h1 id="legacy-document-switchmode-with-lxc">[Legacy Document] Switchmode with LXC</h1>
 
-<h2 id="project-1-security-enhancements-to-ipop">Project 1: Security enhancements to IPOP</h2>
+<p><strong>Warning: This document may be out of date.</strong></p>
 
-<h3 id="task-dynamic-vpn-node-revocation">Task: Dynamic VPN node revocation</h3>
+<p>In switchmode, IPOP supports handling of layer-2 (L2) Ethernet frames. In this mode, IPOP nodes function as a switch and make all the connected IPOP nodes and associated virtual network interface be on the same Layer 2 network.
+Note that IP and MAC address should be carefully assigned to avoid address conflicts.</p>
 
-<p>In addition to a username/password authentication option, IPOP also allows nodes to authenticate to an XMPP service using X.509 public key certificates. This enables nodes to be dynamically added to an VPN by installing an X.509 certificate signed by a trusted CA into the VPN node.</p>
+<h1 id="ipop-switchmode-tutorial">IPOP Switchmode Tutorial</h1>
 
-<p>Revoking a node (Alice) requires not only removing Alice from the list of users in the XMPP server, but also terminating any peer-to-peer links that any other node (Bob, Carol, Dave) may have with Alice.</p>
+<p>The configuration of IPOP in L2/switchmode is to a large extent the same as the default L3 IPOP setup - so first, make sure you are able to run two IPOP nodes and ping each other in the default L3 configuration before trying out switchmode. <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Manual-Install-on-Linux">You can follow this tutorial as a starting point</a>, run two IPOP nodes on two VMs, and make sure they get connected.</p>
 
-<p>This task is to implement a mechanism to disseminate and incorporate certificate revocation lists on IPOP nodes.</p>
+<p>The main difference is that IPOP’s configuration needs to enable switchmode, and the tap device should be bound to a bridge on the L2 segments that you plan to inter-connect.</p>
 
-<h3 id="task-ipsec-end-to-end-encryption">Task: IPSEC end-to-end encryption</h3>
+<p>To test IPOP with switchmode test, we recommend following the example below using LXC containers with ubuntu 14.04 or 15.04 - this is the easiest way to run containers in VM. But, since switchmode works with Linux bridge, it works with any other cloud solutions such as openstack, ec2.</p>
 
-<p>Individual IPOP links are secured with TLS/DTLS; in some applications, it is necessary to also support end-to-end encryption. It is possible to encapsulate IPOP over IPOP to provide both TLS/DTLS security per link, and end-to-end security using IPsec.</p>
+<p>First, bring up a Ubuntu VM and install LXC in it:</p>
 
-<p>This project is to implement a module to programmatically configure IPsec endpoints of a virtual network using StrongSwan Versatile Internet Key Exchange (VICI)</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get update
+sudo apt-get install lxc
+</code></pre>
+</div>
 
-<h2 id="project-2-scalable-ip-multicast-support">Project 2: Scalable IP multicast support</h2>
+<p>If this command:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo lxc-ls --fancy
+</code></pre>
+</div>
+<p>emits an error, update packages with:</p>
 
-<p>This project is to implement IGMP-based IP multicast support in IPOP. IP multicast is used in several streaming applications, and needs to be supported in an efficient, scalable manner. This project will implement support for one-to-many IP multicasting across IPOP overlay links.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get upgrade
+</code></pre>
+</div>
+<p>Then, create an LXC instance and clone it:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo lxc-create -t ubuntu -n c0
+sudo lxc-clone c0 c1
+sudo lxc-clone c0 c2
+...
+</code></pre>
+</div>
 
-<h3 id="task-enhance-ipop-controller-to-support-scalable-multicast">Task: Enhance IPOP controller to support scalable multicast</h3>
+<p>The following diagram illustrates an example where you’d repeat this process in two VMs:</p>
 
-<p>This task will focus on coding a topology management module the IPOP controller that creates and maintains peer-to-peer WebRTC overlay links according to a scalable topology. The task will focus on a structured overlay topology (Chord- or Symphony-based). Programming will be in Python, using the IPOP controller framework.</p>
+<p><img src="http://www.acis.ufl.edu/~xetron/ipop-project/switchmode0.png" alt="" /></p>
 
-<h3 id="task-develop-sdn-controller-to-support-scalable-overlay-multicast">Task: Develop SDN controller to support scalable overlay multicast</h3>
+<p>Then restart lxc network</p>
 
-<p>This task will focus on coding an SDN controller that implements layer-2 unicast, broadcast, and L3 IP multicast across the scalable topology developed above. The SDN controller (programmed according to the OpenFlow specification) will program SDN switches to forward packets across the overlay using identifier-based routing. Programming will be in Python, using the Ryu SDN controller framework.</p>
+<p>Add below fields at controller config file.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>   "switchmode": 1
+</code></pre>
+</div>
+<p>Run ipop-tincan and controller. 
+Then, attach ipop tap device to lxcbr0 at both ends.</p>
 
-<h2 id="project-3-visualization-enhancements-to-ipop">Project 3: Visualization enhancements to IPOP</h2>
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo brctl addif lxcbr0 ipop
+</code></pre>
+</div>
 
-<p>We have developed a data collection, reporting, storage and visualization system to enable administrators of an IPOP virtual network to better monitor and manage their virtual infrastructure. The existing system is implemented using contemporary WEB technologies, some of which are: React, Cytoscape, MongoDB and Flask.</p>
+<p>(OPTIONAL)If you need to change the IP address of lxcbr0, then modify below files and restart the network service</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo vi /etc/default/lxc-net
+sudo vi /etc/init/lxc-net.conf
+sudo service lxc-net restart
+</code></pre>
+</div>
+<p>If the lxcbr0 address does not update, reboot your machine.</p>
 
-<p>This project will develop code to improve upon various aspects of this system.</p>
+<p>Make sure you run LXC containers on both VMs, and change their MTUs to 1280:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo lxc-attach --name c1
+ifconfig eth0 mtu 1280
+</code></pre>
+</div>
 
-<h3 id="task-ui-authentication">Task: UI authentication</h3>
+<p>Check the IP addresses assigned to the eth0 interfaces of both containers (e.g. 10.0.3.5 and 10.0.3.7 in the diagram). After the IPOP tincan connection is established, you should be able to ping from 10.0.3.5 to ping 10.0.3.7.</p>
 
-<p>The visualizer’s Web UI is required to support authentication of users. A user must successfully authenticate against a credentialing system before any data regarding the IPOP network is transmitted. Subsequent transactions between the webservice and the web client are to use HTTPS.</p>
+<h1 id="stand-alone-switchmode">Stand alone Switchmode</h1>
 
-<h3 id="task-flexible-reporting-of-metrics">Task: Flexible reporting of metrics</h3>
+<p>Although switchmode was intended to bind to multiple virtual network interface of the guest machine, IPOP switchmode can also run by itself providing layer 2 virutal network environment to the host machine. 
+By simply setting below fields, and run IPOP without attaching to the bridge.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>   "switchmode": 1
+</code></pre>
+</div>
 
-<p>All IPOP controller modules are able to report arbitrary data, and it is desirable to add support for per node ad-hoc reporting using modern UI elements.</p>
+<h1 id="switchmode-under-the-hood">Switchmode under the hood</h1>
 
-<h3 id="task-ui-improvements">Task: UI improvements</h3>
-<p>There are several additional UI improvements which are desirable enhancing the user’s interaction with the system. Some of these are:</p>
-<ul>
-  <li>
-    <p>Implement themes which define color codes, sizes, layout which can vary according to IPOP controller model.</p>
-  </li>
-  <li>
-    <p>Represent the nodes in the IPOP network, overlayed on a map based on their geographical coordinates.</p>
-  </li>
-  <li>
-    <p>Use representative icons for node according to their types, e.g., ipop-router, processing node, leaf-node/sensor.</p>
-  </li>
-</ul>
+<p>Unlike host mode, which maps IP address with TinCan link by controller. Switchmode maps MAC address to the TinCan link by the ARP traffic in the tap device. Conside a case when a node 10.0.3.5 sends packets to 10.0.3.4 of above figure. Host of 10.0.3.5 first broadcasts ARP message looking for 10.0.3.4. IPOP observe this broadcast frame(destination address ff:ff:ff:ff:ff:ff) then sends to every TInCan link it has. On receipient of the ARP message from the remote side, it updates MAC t able to associate the source MAC address to TinCan link it came from. Then, host 10.0.3.4 replies with ARP reply message, then it traverses (since the destination MAC address already link to its TinCan tunnel) back to the LAN of host 10.0.3.5. Then the source LAN also updates MAC table of this ARP reply message.</p>
 
-<h2 id="project-4-iot-gateway-ble-bridge">Project 4: IoT gateway BLE bridge</h2>
-
-<p>An emerging application of IPOP is to create VPNs that span all the way to IoT devices. While some IoT devices may be able to run an entire Linux/TCP-IP stack where IPOP can run (e.g. Raspberry Pi), other devices may only have low-power wireless interfaces (e.g. Bluetooth low energy, BLE), and will not be able to run a full VPN stack. Such devices may be connected to the Internet via an IoT gateway (e.g. a Linux switch/router with a 4G interface), where IPOP VPN nodes can be deployed.</p>
-
-<p>This project will develop code to bridge IoT devices to the VPN through their IPOP-enabled gateways. The approach is to virtualize the IoT device such that it can be accessible with an Ethernet or IP address on the virtual network, while the “last-mile” link is a wireless protocol such as BLE.</p>
-
-<h2 id="project-5-low-latency-data-streaming">Project 5: Low latency data streaming</h2>
-
-<p>This project will develop code to enable IPOP nodes to function as sources and sinks of steaming data. It will use caching techniques to ensure that latency requirements of next generation edge computing application are adequately satisfied. Approaches include categorizing data by its latency, persistence and availability.</p>
 
 
 

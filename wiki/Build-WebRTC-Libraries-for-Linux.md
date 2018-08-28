@@ -10,7 +10,7 @@
 ## Install Dependencies
 
 ```shell
-sudo apt-get update && sudo apt-get -y install git
+sudo apt-get update && sudo apt-get -y install git python
 ```
 
 ## Install Toolchain
