@@ -70,13 +70,31 @@ git clone https://github.com/ipop-project/Controllers
 git clone -b bh1 --single-branch https://github.com/ipop-project/Controllers
 ```
 
+Then:
+
 ```
 cd Tincan/trunk/build/
+```
+
+**To build the Tincan binary in debug mode:**
+```
+make DEBUG=1
+cp -f ../out/debug/$(uname -m)/ipop-tincan ../../../../ipop-vpn/
+```
+
+**Otherwise, for release mode:**
+```
 make
 cp -f ../out/release/$(uname -m)/ipop-tincan ../../../../ipop-vpn/
+```
+
+Then:
+```
 cd ../../../Controllers
 cp -rf ./controller/ ../../ipop-vpn/
 ```
+
+
 
 ## Copy Configuration File
 
