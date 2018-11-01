@@ -2,6 +2,14 @@
 
 ## Quick Guide to Website Update
 
+### Step 0: Prerequisite
+
+```
+sudo apt update && sudo apt install git ruby-dev libffi-dev
+sudo gem install bundler
+bundle install
+```
+
 ### Step 1: Initialization
 
 ```

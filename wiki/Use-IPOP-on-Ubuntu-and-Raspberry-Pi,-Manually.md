@@ -2,7 +2,7 @@
 
 |  | Description |
 |---|---|
-| **Tested on** | Ubuntu 14.04 and 16.04 x64<br />Raspbian Jessie and Stretch on Raspberry Pi 3<br />Raspbian Stretch on Raspberry Pi Zero |
+| **Tested on** | Ubuntu 16.04 and 18.04 x64<br />Raspbian Jessie and Stretch on Raspberry Pi 3<br />Raspbian Stretch on Raspberry Pi Zero |
 | **Time** | ~ 10 Minutes |
 | **Question(s)** | - How to install IPOP?<br /> - How to run IPOP?<br /> - How to remove IPOP? |
 | **Objective(s)**| - Install IPOP<br /> - Run IPOP<br /> - Stop IPOP<br /> - Remove IPOP |
@@ -11,10 +11,8 @@
 
 ```shell
 sudo apt-get update -y
-sudo apt-get install -y software-properties-common libssl-dev
-sudo apt-get install -y python3.5 python3-pip python-dev
-sudo pip3 install -v sleekxmpp==1.3.1  
-sudo pip3 install psutil pystun
+sudo apt-get install -y python3 python3-pip iproute2 openvswitch-switch 
+sudo -H pip3 install psutil sleekxmpp requests
 ```
 
 ## Get IPOP Binary
