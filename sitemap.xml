@@ -28,6 +28,9 @@
 <loc>/sitemap/</loc>
 </url>
 <url>
+<loc>/test/</loc>
+</url>
+<url>
 <loc>/videos/</loc>
 </url>
 <url>
@@ -115,6 +118,9 @@
 <loc>/wiki/IPSec-on-IPoP-GVPN</loc>
 </url>
 <url>
+<loc>/wiki/IPSec-on-IPoP</loc>
+</url>
+<url>
 <loc>/wiki/Installing-IPOP-on-OpenWRT</loc>
 </url>
 <url>
@@ -185,6 +191,6 @@
 </url>
 <url>
 <loc>/assets/docs/IPOP-WhitePaper-1605.pdf</loc>
-<lastmod>2018-08-29T14:25:03-04:00</lastmod>
+<lastmod>2018-10-31T19:03:01-04:00</lastmod>
 </url>
 </urlset>
