@@ -290,10 +290,26 @@ sudo -H pip3 install sleekxmpp psutil requests
 </code></pre>
 </div>
 
+<p>Then:</p>
+
 <div class="highlighter-rouge"><pre class="highlight"><code>cd Tincan/trunk/build/
-make
+</code></pre>
+</div>
+
+<p><strong>To build the Tincan binary in debug mode:</strong></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>make DEBUG=1
+cp -f ../out/debug/$(uname -m)/ipop-tincan ../../../../ipop-vpn/
+</code></pre>
+</div>
+
+<p><strong>Otherwise, for release mode:</strong></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>make
 cp -f ../out/release/$(uname -m)/ipop-tincan ../../../../ipop-vpn/
-cd ../../../Controllers
+</code></pre>
+</div>
+
+<p>Then:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>cd ../../../Controllers
 cp -rf ./controller/ ../../ipop-vpn/
 </code></pre>
 </div>
