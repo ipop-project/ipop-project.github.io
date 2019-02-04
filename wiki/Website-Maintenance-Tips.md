@@ -5,9 +5,12 @@
 ### Step 0: Prerequisite
 
 ```
-sudo apt update && sudo apt install git ruby-dev libffi-dev
+sudo apt update && sudo apt install -y git ruby-dev libffi-dev
 sudo gem install bundler
-bundle install
+```
+Inside the website directory:
+```
+sudo bundle install
 ```
 
 ### Step 1: Initialization
@@ -41,13 +44,13 @@ rm -rf ~/workspace/_site
 cp -r _site ~/workspace
 rm -rf wiki
 git add .
-git commit -m "Website Updated"
+git commit -m "Update Website"
 git push
 git checkout master
 rm -r *
 cp -r ~/workspace/_site/* .
 git add .
-git commit -m "Website Updated"
+git commit -m "Update Website"
 git push
 ```
 

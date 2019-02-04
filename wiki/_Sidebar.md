@@ -1,7 +1,7 @@
 * **Deploying IPOP-VPN**
   * [Quick Start](Quick-Start)
   * [Installation](Use-IPOP,-Intro)
-  * [Configuration](Configuration,-Intro)
+  * [[Configuration|Understanding the IPOP Configuration]]
 
 * **Development Guide**  
   * [Development Workflow](Development-Workflow)
