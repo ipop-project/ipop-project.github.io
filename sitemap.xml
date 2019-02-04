@@ -109,6 +109,12 @@
 <loc>/wiki/IPOP-Scale-test-Walkthrough</loc>
 </url>
 <url>
+<loc>/wiki/IPSec-Strongswan-Host-to-Host</loc>
+</url>
+<url>
+<loc>/wiki/IPSec-Strongswan-host-to-host-transport-mode-with-X.509-based-authentication</loc>
+</url>
+<url>
 <loc>/wiki/IPSec-on-IPoP-GVPN</loc>
 </url>
 <url>
@@ -188,6 +194,6 @@
 </url>
 <url>
 <loc>/assets/docs/IPOP-WhitePaper-1605.pdf</loc>
-<lastmod>2018-12-19T08:29:21-05:00</lastmod>
+<lastmod>2019-02-04T17:11:44-05:00</lastmod>
 </url>
 </urlset>
