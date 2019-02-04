@@ -1,3 +1,5 @@
+**Warning: This document may be out of date.**
+
 # Use IPOP on Ubuntu, Raspberry Pi and CentOS, Scripted
 
 | | Description |
@@ -34,7 +36,7 @@ yum install wget
 To start the IPOP Installer, run the following command:
 
 ```shell
-wget -O - https://raw.githubusercontent.com/ipop-project/Release-Management/master/Deployment/linux/installer | /bin/bash
+wget -O - https://raw.githubusercontent.com/ipop-project/Release-Management/master/Deploy/linux/installer | /bin/bash
 ```
 
 The default installation directory will be `/opt/ipop` and you can use `ipop` executable script to control IPOP.
@@ -103,7 +105,7 @@ See the [configuration page](Configuration) for more information about the confi
 - Start the IPOP Installer:
 
 ```shell
-wget -O - https://raw.githubusercontent.com/ipop-project/Release-Management/master/Deployment/linux/installer | /bin/bash
+wget -O - https://raw.githubusercontent.com/ipop-project/Release-Management/master/Deploy/linux/installer | /bin/bash
 ```
 - Usage:
 

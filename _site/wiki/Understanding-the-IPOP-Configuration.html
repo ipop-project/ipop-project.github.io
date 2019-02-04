@@ -291,7 +291,10 @@ The configurations tells the controller framework which modules to load and with
       <li><em>Name</em> - Descriptive mnemonic .</li>
       <li><em>Description</em> - Descriptive mnemonic .</li>
       <li><em>EnforcedEdges</em> - Peer Ids that a tunnel should be created to.</li>
-      <li><em>ManualTopology</em> - Should the topology only create enforced links. Values true/false (default)</li>
+      <li><em>ManualTopology</em> - Should the topology only create enforced edges. Values true/false (default)</li>
+      <li><em>PeerDiscoveryCoalesce</em> - The number of new peer notifications to wait on before attempting to update the overlay edges. If this threshold is not reached the overlay will be refreshed on its periodic <em>TimerInterval</em>.</li>
+      <li><em>MaxSuccessors</em> - Maximum number of successors links to create. These are outgoing links to the next peer in the overlay’s ring.</li>
+      <li><em>MaxLongDistEdges</em> - Maximum number of outgoing long distance edges to initiate.</li>
     </ul>
   </li>
 </ul>
@@ -366,7 +369,16 @@ The configurations tells the controller framework which modules to load and with
     <ul>
       <li><a href="Quick-Start">Quick Start</a></li>
       <li><a href="Use-IPOP,-Intro">Installation</a></li>
-      <li><a href="Configuration,-Intro">Configuration</a></li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>[[Configuration</td>
+              <td>Understanding the IPOP Configuration]]</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
     </ul>
   </li>
   <li><strong>Development Guide</strong>
@@ -446,7 +458,7 @@ The configurations tells the controller framework which modules to load and with
   <div>
     <a href="/contact">Contact</a> | <a href="/contact/#mailing-list-subscription">Mailing List</a> | <a href="https://ipopvpn.slack.com/">Slack Channel</a> | <a href="/sitemap">Sitemap</a><br />
     <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
-    &copy; 2018 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
+    &copy; 2019 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
     </div>
   </div>
 </div>
