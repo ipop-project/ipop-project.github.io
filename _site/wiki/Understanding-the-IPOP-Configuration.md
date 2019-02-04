@@ -84,7 +84,10 @@ The configurations tells the controller framework which modules to load and with
   * _Name_ - Descriptive mnemonic .
   * _Description_ - Descriptive mnemonic .
   * _EnforcedEdges_ - Peer Ids that a tunnel should be created to.
-  * _ManualTopology_ - Should the topology only create enforced links. Values true/false (default)
+  * _ManualTopology_ - Should the topology only create enforced edges. Values true/false (default)
+  * _PeerDiscoveryCoalesce_ - The number of new peer notifications to wait on before attempting to update the overlay edges. If this threshold is not reached the overlay will be refreshed on its periodic _TimerInterval_.
+  * _MaxSuccessors_ - Maximum number of successors links to create. These are outgoing links to the next peer in the overlay's ring.
+  * _MaxLongDistEdges_ - Maximum number of outgoing long distance edges to initiate. 
 
 **LinkManager** - Creates and manages the WebRTC based links between peers.
 * _Stun_ - List of STUN server addresses in format address:port
