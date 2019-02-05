@@ -1,0 +1,460 @@
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.5.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>IPOP</title>
+
+
+
+
+<meta name="description" content="IP-Over-P2P, Open-source User-centric Software Virtual Network">
+
+
+
+
+<meta name="author" content="">
+
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="IPOP">
+<meta property="og:title" content="IPOP">
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "IPOP",
+      "url" : null,
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--wiki">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">IPOP</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="/about/">About</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/wiki/Quick-Start">Quick Start</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/download">Download</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/learn/">Learn</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/wiki/">Wiki</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/whitepaper/">White Paper</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/contribute/">Contribute</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/contact/">Contact</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    
+
+
+
+<div id="main" role="main">
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      <section class="page__content" itemprop="text">
+
+        <aside class="sidebar__right">
+          <nav class="toc">
+            <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+            <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#use-ipop-on-ubuntu-raspberry-pi-and-centos-scripted">Use IPOP on Ubuntu, Raspberry Pi and CentOS, Scripted</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#prerequisite">Prerequisite</a></li>
+<li class="toc-entry toc-h2"><a href="#launching-the-ipop-vpn-installer">Launching the IPOP-VPN Installer</a></li>
+<li class="toc-entry toc-h2"><a href="#using-ipop">Using IPOP</a></li>
+<li class="toc-entry toc-h2"><a href="#log-files">Log Files</a></li>
+<li class="toc-entry toc-h2"><a href="#manual-configuration">Manual Configuration</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#key-points-summary">Key Points Summary</a></li>
+</ul>
+          </nav>
+        </aside>
+
+        <p><strong>Warning: This document may be out of date.</strong></p>
+
+<h1 id="use-ipop-on-ubuntu-raspberry-pi-and-centos-scripted">Use IPOP on Ubuntu, Raspberry Pi and CentOS, Scripted</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Tested on</strong></td>
+      <td>Ubuntu 14.04 and 16.04 x64, Raspbian Stretch and Jessie on Raspberry Pi 3 and CentOS 7</td>
+    </tr>
+    <tr>
+      <td><strong>Time</strong></td>
+      <td>~ 10 Minutes</td>
+    </tr>
+    <tr>
+      <td><strong>Question(s)</strong></td>
+      <td>- How to install IPOP?<br /> - How to setup IPOP basic configuration?<br /> - How to run IPOP?<br /> - How to remove IPOP?</td>
+    </tr>
+    <tr>
+      <td><strong>Objective(s)</strong></td>
+      <td>- Install IPOP<br /> - Run IPOP<br /> - Stop IPOP<br /> - Remove IPOP</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Note:</strong> You need to have root access to run some of the following commands. Running the IPOP Installer with just adding <code class="highlighter-rouge">sudo</code> to the beginning of the command is NOT enough. Switch to interactive root shell:</p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo -i
+</code></pre>
+</div>
+
+<h2 id="prerequisite">Prerequisite</h2>
+
+<p>If the <code class="highlighter-rouge">wget</code> package is not installed, you will need to install it:</p>
+
+<p><strong>In Ubuntu:</strong></p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>apt-get install wget
+</code></pre>
+</div>
+
+<p><strong>In CentOS:</strong></p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>yum install wget
+</code></pre>
+</div>
+
+<h2 id="launching-the-ipop-vpn-installer">Launching the IPOP-VPN Installer</h2>
+
+<p>To start the IPOP Installer, run the following command:</p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>wget -O - https://raw.githubusercontent.com/ipop-project/Release-Management/master/Deploy/linux/installer | /bin/bash
+</code></pre>
+</div>
+
+<p>The default installation directory will be <code class="highlighter-rouge">/opt/ipop</code> and you can use <code class="highlighter-rouge">ipop</code> executable script to control IPOP.</p>
+
+<p>Note: Make sure you have already switched to interactive root shell using <code class="highlighter-rouge">sudo -i</code> before running the above command. Running it with just adding <code class="highlighter-rouge">sudo</code> to the beginning is NOT enough.</p>
+
+<h2 id="using-ipop">Using IPOP</h2>
+
+<p>First, change current directory to the installation directory:</p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> /opt/ipop
+</code></pre>
+</div>
+
+<p>Execute IPOP which is <code class="highlighter-rouge">ipop</code> executable script right in the installation directory with following parameters:</p>
+
+<p><strong>Install IPOP:</strong> (If you have already installed IPOP using IPOP Installer, you don’t need to re-install it. So just skip this command.)</p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop install
+</code></pre>
+</div>
+
+<p><strong>Configure IPOP:</strong></p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop config
+</code></pre>
+</div>
+
+<p><strong>Start IPOP:</strong></p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop start
+</code></pre>
+</div>
+
+<p><strong>Get IPOP Node Status:</strong></p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop status <span class="o">(</span>This option is not available <span class="k">in </span>this release, yet.<span class="o">)</span>
+</code></pre>
+</div>
+
+<p><strong>Stop IPOP:</strong></p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop stop
+</code></pre>
+</div>
+
+<p><strong>Remove IPOP:</strong></p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop remove
+</code></pre>
+</div>
+
+<h2 id="log-files">Log Files</h2>
+
+<p>If anything went wrong while using IPOP, the log files are located at <code class="highlighter-rouge">/opt/ipop/log</code>.</p>
+
+<h2 id="manual-configuration">Manual Configuration</h2>
+
+<p>If you ever need to change the configurations manually, the sample configuration files are located in <code class="highlighter-rouge">/opt/ipop/sample-gvpn-config</code>. IPOP reads the configurations from <code class="highlighter-rouge">/opt/ipop/config/ipop-config.json</code> which will automatically be created after running <code class="highlighter-rouge">./ipop config</code> and following the prompts. Keep in mind you need to stop IPOP and then start it again after changing the configurations.
+See the <a href="Configuration">configuration page</a> for more information about the configuration options available for IPOP-VPN.</p>
+
+<hr />
+
+<h1 id="key-points-summary">Key Points Summary</h1>
+
+<ul>
+  <li>Start the IPOP Installer:</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>wget -O - https://raw.githubusercontent.com/ipop-project/Release-Management/master/Deploy/linux/installer | /bin/bash
+</code></pre>
+</div>
+<ul>
+  <li>Usage:</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop config
+./ipop start
+./ipop stop
+./ipop remove
+</code></pre>
+</div>
+
+
+
+      </section>
+    </div>
+  </article>
+
+
+  <div class="sidebar">
+    <nav class="nav__list">
+      <div class="wiki-top-links">
+        <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
+      </div>
+      
+
+    
+
+
+
+        <ul>
+  <li><strong>Deploying IPOP-VPN</strong>
+    <ul>
+      <li><a href="Quick-Start">Quick Start</a></li>
+      <li><a href="Use-IPOP,-Intro">Installation</a></li>
+      <li><a href="Understanding-the-IPOP-Configuration">Configuration</a></li>
+    </ul>
+  </li>
+  <li><strong>Development Guide</strong>
+    <ul>
+      <li><a href="Development-Workflow">Development Workflow</a></li>
+      <li><a href="Coding-Guidelines">Coding Guidelines</a></li>
+      <li><a href="Build-IPOP,-Intro">Building the Code</a></li>
+      <li><a href="IPOP-Scale-test-Walkthrough">Testing Your Build</a></li>
+      <li><a href="Controller-Framework">Controller Framework</a></li>
+      <li><a href="Controller-API">Controller API</a></li>
+      <li><a href="Build-WebRTC-Libraries,-Intro">Building WebRTC Libraries</a></li>
+    </ul>
+  </li>
+  <li><strong>General Documentation</strong>
+    <ul>
+      <li><a href="FAQs">FAQs</a></li>
+      <li><a href="Troubleshooting">Troubleshooting</a></li>
+      <li><a href="Planning-Your-Network">Planning Your Network</a></li>
+      <li><a href="Coding-Challenges">Coding Challenges</a></li>
+      <li><a href="Known-Issues">Known Issues</a></li>
+      <li><a href="Getting-Help">Getting Help</a></li>
+      <li><a href="How-to-Contribute">How to Contribute</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+
+      </section>
+    </div>
+  </article>
+
+
+
+</div>
+
+
+
+
+    </nav>
+  </div>
+
+
+</div>
+
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+     -->
+    <!-- <li><a href="/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
+<!--  </ul>
+</div> --> 
+
+<div class="page__footer-copyright footer-address">
+  <div class="float-left">
+    <img src="/assets/images/uf_small.png" class="padding-bottom-right" /><img src="/assets/images/nsf_small.png" class="padding-bottom-right" />
+  </div>
+  <i class="fa fa-address-card-o" aria-hidden="true"></i>
+  <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br />
+  <a href="http://www.ece.ufl.edu/" rel="nofollow" target="_blank">Department of Electrical & Computer Engineering</a><br />
+  <a href="http://www.eng.ufl.edu/" rel="nofollow" target="_blank">College of Engineering</a>, <a href="http://www.ufl.edu/" rel="nofollow" target="_blank">University of Florida</a>
+</div>
+
+<div class="page__footer-copyright footer-links">
+  <div>
+    <a href="/contact">Contact</a> | <a href="/contact/#mailing-list-subscription">Mailing List</a> | <a href="https://ipopvpn.slack.com/">Slack Channel</a> | <a href="/sitemap">Sitemap</a><br />
+    <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
+    &copy; 2019 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
+    </div>
+  </div>
+</div>
+<div class="page__footer-copyright footer-sponsor clear-both">This material is based upon work supported in part by the National Science Foundation under Grants No. 1234983, 1339737 and 1527415.</div>
+      </footer>
+    </div>
+
+    <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>
+
