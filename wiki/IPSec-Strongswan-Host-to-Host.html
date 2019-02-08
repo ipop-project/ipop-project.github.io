@@ -1,0 +1,573 @@
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.5.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>IPOP</title>
+
+
+
+
+<meta name="description" content="IP-Over-P2P, Open-source User-centric Software Virtual Network">
+
+
+
+
+<meta name="author" content="">
+
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="IPOP">
+<meta property="og:title" content="IPOP">
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "IPOP",
+      "url" : null,
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--wiki">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">IPOP</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="/about/">About</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/wiki/Quick-Start">Quick Start</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/download">Download</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/learn/">Learn</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/wiki/">Wiki</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/whitepaper/">White Paper</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/contribute/">Contribute</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/contact/">Contact</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    
+
+
+
+<div id="main" role="main">
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      <section class="page__content" itemprop="text">
+
+        <aside class="sidebar__right">
+          <nav class="toc">
+            <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+            <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#introduction">Introduction</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#installation-and-configuration">Installation and Configuration</a></li>
+<li class="toc-entry toc-h2"><a href="#creating-pre-shared-key">Creating pre-shared key</a></li>
+<li class="toc-entry toc-h2"><a href="#ipsecconf">ipsec.conf</a></li>
+<li class="toc-entry toc-h2"><a href="#swanctlconf">swanctl.conf</a></li>
+<li class="toc-entry toc-h2"><a href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+          </nav>
+        </aside>
+
+        <h1 id="introduction">Introduction</h1>
+
+<p>This article describes how to deploy IPsec using Strongswan framework to add another layer of security in addition to DTLS encryption provided by IPoP. The setup described in this article needs two OVS bridges, one setup by IPoP by default and another one to serve as gateway for IPsec protected traffic. We leverage GRE encapsulation by creating GRE tunnels using IPoP addresses as endpoints and configure IPsec policies based on IPoP subnet range. This approach simplifies the process of setting up IPsec policies, a single policy can be used to cover all data traffic bridged to gateway switch .</p>
+
+<p>In the following article we go over the steps to create, configure and test this setup using two hosts and network namspaces emulating devices on each of them. In the first stage we create a GRE tunnel over IPoP and check the connectivity between network namespaces which are bridged to gateway switches on their respective hosts. Once we have verified connectivity between the namespaces over GRE we proceed with configuring IPSec.</p>
+
+<h2 id="installation-and-configuration">Installation and Configuration</h2>
+<p>First step is to install and activate IPoP on the hosts. Once done, make sure that the hosts can connect with each other over IPoP overlay. The following steps detail the process of installing additional packages.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># create gateway bridge</span>
+sudo ovs-vsctl add-br GRE-BR
+<span class="c"># create a GRE tunnel with remote endpoint as IPoP address of the remote peer (192.168.1.121).</span>
+sudo ovs-vsctl add-port GRE-BR gre1 -- <span class="nb">set </span>interface gre1 <span class="nb">type</span><span class="o">=</span>gre options:remote_ip<span class="o">=</span>192.168.1.121
+<span class="c"># create a network namespace named D1</span>
+sudo ip netns add D1
+<span class="c"># create a veth pair</span>
+sudo ip link add veth0 <span class="nb">type </span>veth peer name veth1
+<span class="c"># assign one end of veth pair to namespace D1</span>
+sudo ip link <span class="nb">set </span>veth1 netns D1
+<span class="c"># configure the veth endpoint in namespace D1 with a IP address</span>
+sudo ip netns <span class="nb">exec </span>D1 ifconfig veth1 10.10.10.100/24 up
+<span class="c"># Bring up the veth interface in namespace UP</span>
+sudo ip netns <span class="nb">exec </span>D1 ip link <span class="nb">set </span>veth1 up
+<span class="c"># Attach veth interface on host to gateway bridge</span>
+sudo ovs-vsctl add-port GRE-BR veth0
+<span class="c"># Bring up the veth interface in host UP</span>
+sudo ip link <span class="nb">set </span>veth0 up
+</code></pre>
+</div>
+<p>Repeat similar process on the second host, assuming IPoP endpoint on the host is 192.168.1.121.</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo ovs-vsctl add-br GRE-BR
+sudo ovs-vsctl add-port GRE-BR gre1 -- <span class="nb">set </span>interface gre1 <span class="nb">type</span><span class="o">=</span>gre options:remote_ip<span class="o">=</span>192.168.1.120
+sudo ip netns add D2
+sudo ip link add veth0 <span class="nb">type </span>veth peer name veth1
+sudo ip link <span class="nb">set </span>veth1 netns D2
+sudo ip netns <span class="nb">exec </span>D2 ifconfig veth1 10.10.10.101/24 up
+sudo ip netns <span class="nb">exec </span>D2 ip link <span class="nb">set </span>veth1 up
+sudo ovs-vsctl add-port GRE-BR veth0
+sudo ip link <span class="nb">set </span>veth0 up
+</code></pre>
+</div>
+<p>Now verify connectivity between the network namespaces.</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@node-0:~$ </span>sudo ip netns <span class="nb">exec </span>D1 ping 10.10.10.101
+PING 10.10.10.101 <span class="o">(</span>10.10.10.101<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>3 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>3.09 ms
+64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>4 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>2.43 ms
+64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>5 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>2.30 ms
+64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>6 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>2.33 ms
+64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>7 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>2.34 ms
+64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>8 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>2.29 ms
+64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>9 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>2.32 ms
+</code></pre>
+</div>
+<p>If this step is successful proceed with installation and configuration of Strongswan framework on the hosts.</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo apt-get install strongswan -y  
+sudo apt-get install strongswan-swanctl
+</code></pre>
+</div>
+<p>Before proceeding further we will need to create keys and certificates for our hosts.</p>
+
+<h2 id="creating-pre-shared-key">Creating pre-shared key</h2>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@node-0:/etc/swanctl$ </span>openssl rand -base64 64
+ouAKCbLHzkOrVQs+raneWwaxaMW7T+0jpdYfmv7uAFiPaomCa8XnUQ2rqLQBRcPA
+1m+l1dEfb+gXyTR/vAE1qg<span class="o">==</span>
+</code></pre>
+</div>
+
+<p>Once we have pre-shared key it should be installed (just paste the key like below) on all the hosts.</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@node-0:/etc$ </span>sudo cat ipsec.secrets 
+<span class="c"># This file holds shared secrets or RSA private keys for authentication.</span>
+
+<span class="c"># RSA private key for this host, authenticating it to any other host</span>
+<span class="c"># which knows the public part.</span>
+: PSK ouAKCbLHzkOrVQs+raneWwaxaMW7T+0jpdYfmv7uAFiPaomCa8XnUQ2rqLQBRcPA1m+l1dEfb+gXyTR/vAE1qg<span class="o">==</span>
+sam@node-0:/etc<span class="err">$</span>
+</code></pre>
+</div>
+
+<p>Next step is to configure Strongswan by making changes to ipsec.conf file found in /etc and swanctl.conf in /etc/swanctl</p>
+
+<h2 id="ipsecconf">ipsec.conf</h2>
+<p>Same configuration on all the hosts.</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@node-0:/etc$ </span>sudo cat ipsec.conf
+conn host-to-host
+    <span class="nv">ikelifetime</span><span class="o">=</span>60m
+    <span class="nv">keylife</span><span class="o">=</span>20m
+    <span class="nv">rekeymargin</span><span class="o">=</span>3m
+    <span class="nv">keyingtries</span><span class="o">=</span>1
+
+conn <span class="nb">trap</span>-any
+    <span class="nv">also</span><span class="o">=</span>host-to-host
+    <span class="nv">right</span><span class="o">=</span>%any
+    <span class="nv">leftsubnet</span><span class="o">=</span>192.168.1.0/24
+    <span class="nv">rightsubnet</span><span class="o">=</span>192.168.1.0/24
+    <span class="nb">type</span><span class="o">=</span>transport
+    <span class="nv">authby</span><span class="o">=</span>psk
+    <span class="nv">auto</span><span class="o">=</span>route
+</code></pre>
+</div>
+
+<h2 id="swanctlconf">swanctl.conf</h2>
+<p>Identical file on all hosts.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>  sam@node-0:/etc<span class="nv">$ </span>sudo cat swanctl/swanctl.conf 
+connections <span class="o">{</span>
+    <span class="nb">trap</span>-any <span class="o">{</span>
+        remote_addrs <span class="o">=</span> %any
+        <span class="nb">local</span> <span class="o">{</span>
+            auth <span class="o">=</span> psk
+        <span class="o">}</span>
+        remote <span class="o">{</span>
+            auth <span class="o">=</span> psk
+        <span class="o">}</span>
+
+        children <span class="o">{</span>
+            <span class="nb">trap</span>-yn <span class="o">{</span>
+                remote_ts <span class="o">=</span> 192.168.1.0/24
+                local_ts <span class="o">=</span> 192.168.1.0/24
+                mode <span class="o">=</span> transport
+                start_action <span class="o">=</span> <span class="nb">trap</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="gp">sam@node-0:/etc$ </span>
+
+
+</code></pre>
+</div>
+<p>Restart Ipsec and check the status.</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@node-0:/etc$ </span>sudo ipsec restart
+Stopping strongSwan IPsec...
+Starting strongSwan 5.6.2 IPsec <span class="o">[</span>starter]...
+<span class="gp">sam@node-0:/etc$ </span>sudo systemctl status strongswan
+● strongswan.service - strongSwan IPsec IKEv1/IKEv2 daemon using ipsec.conf
+   Loaded: loaded <span class="o">(</span>/lib/systemd/system/strongswan.service; enabled; vendor preset: enabled<span class="o">)</span>
+   Active: inactive <span class="o">(</span>dead<span class="o">)</span> since Wed 2019-01-02 10:14:33 EST; 20s ago
+  Process: 22099 <span class="nv">ExecStart</span><span class="o">=</span>/usr/sbin/ipsec start --nofork <span class="o">(</span><span class="nv">code</span><span class="o">=</span>exited, <span class="nv">status</span><span class="o">=</span>0/SUCCESS<span class="o">)</span>
+ Main PID: 22099 <span class="o">(</span><span class="nv">code</span><span class="o">=</span>exited, <span class="nv">status</span><span class="o">=</span>0/SUCCESS<span class="o">)</span>
+
+Jan 02 10:14:33 node-0.saumitraaditya.ipop-pg0.clemson.cloudlab.us ipsec[22099]: 00[CFG] loading crls from <span class="s1">'/etc/ipsec.d/crls'</span>
+Jan 02 10:14:33 node-0.saumitraaditya.ipop-pg0.clemson.cloudlab.us ipsec[22099]: 00[CFG] loading secrets from <span class="s1">'/etc/ipsec.secrets'</span>
+Jan 02 10:14:33 node-0.saumitraaditya.ipop-pg0.clemson.cloudlab.us ipsec[22099]: 00[LIB] loaded plugins: charon aesni aes rc2 sha2 sha1 md4 md5 mgf1 random nonce x509 revocation constraints pubkey pkcs1 p
+Jan 02 10:14:33 node-0.saumitraaditya.ipop-pg0.clemson.cloudlab.us ipsec[22099]: 00[LIB] dropped capabilities, running as uid 0, gid 0
+Jan 02 10:14:33 node-0.saumitraaditya.ipop-pg0.clemson.cloudlab.us ipsec[22099]: 00[JOB] spawning 16 worker threads
+Jan 02 10:14:33 node-0.saumitraaditya.ipop-pg0.clemson.cloudlab.us ipsec[22099]: 00[DMN] signal of <span class="nb">type </span>SIGINT received. Shutting down
+Jan 02 10:14:33 node-0.saumitraaditya.ipop-pg0.clemson.cloudlab.us ipsec[22099]: charon stopped after 200 ms
+Jan 02 10:14:33 node-0.saumitraaditya.ipop-pg0.clemson.cloudlab.us ipsec[22099]: ipsec starter stopped
+Jan 02 10:14:33 node-0.saumitraaditya.ipop-pg0.clemson.cloudlab.us ipsec_starter[22099]: charon stopped after 200 ms
+Jan 02 10:14:33 node-0.saumitraaditya.ipop-pg0.clemson.cloudlab.us ipsec_starter[22099]: ipsec starter stopped
+
+</code></pre>
+</div>
+
+<p>Check status of IPsec association</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@node-0:/etc$ </span>sudo ipsec statusall
+Status of IKE charon daemon <span class="o">(</span>strongSwan 5.6.2, Linux 4.15.0-39-generic, x86_64<span class="o">)</span>:
+  uptime: 2 minutes, since Jan 02 10:14:36 2019
+  malloc: sbrk 1744896, mmap 0, used 504064, free 1240832
+  worker threads: 11 of 16 idle, 5/0/0/0 working, job queue: 0/0/0/0, scheduled: 0
+  loaded plugins: charon aesni aes rc2 sha2 sha1 md4 md5 mgf1 random nonce x509 revocation constraints pubkey pkcs1 pkcs7 pkcs8 pkcs12 pgp dnskey sshkey pem openssl fips-prf gmp agent xcbc hmac gcm attr kernel-netlink resolve socket-default connmark stroke vici updown eap-mschapv2 xauth-generic counters
+Listening IP addresses:
+  172.17.74.1
+  192.168.1.120
+Connections:
+    <span class="nb">trap</span>-any:  %any...%any  IKEv1/2
+    <span class="nb">trap</span>-any:   <span class="nb">local</span>:  uses pre-shared key authentication
+    <span class="nb">trap</span>-any:   remote: uses pre-shared key authentication
+    <span class="nb">trap</span>-any:   child:  192.168.1.0/24 <span class="o">===</span> 192.168.1.0/24 TRANSPORT
+Routed Connections:
+    <span class="nb">trap</span>-any<span class="o">{</span>1<span class="o">}</span>:  ROUTED, TRANSPORT, reqid 1
+    <span class="nb">trap</span>-any<span class="o">{</span>1<span class="o">}</span>:   192.168.1.0/24 <span class="o">===</span> 192.168.1.0/24
+Security Associations <span class="o">(</span>0 up, 0 connecting<span class="o">)</span>:
+  none
+</code></pre>
+</div>
+<p>As visible in logs above their are no active associations, however we can see that the configuration changes made through the files have been picked up.<br />
+After repeating the same step on all hosts, try sending a ICMP echo request again and check the status again.</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@node-0:/etc$ </span>sudo ip netns <span class="nb">exec </span>D1 ping 10.10.10.101
+PING 10.10.10.101 <span class="o">(</span>10.10.10.101<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>2 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>1.72 ms
+64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>3 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>1.10 ms
+64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>4 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>1.12 ms
+64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>5 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>1.07 ms
+64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>6 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>1.07 ms
+64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>7 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>1.09 ms
+64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>8 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>1.08 ms
+64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>9 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>1.07 ms
+64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>10 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>1.06 ms
+64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>11 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>1.12 ms
+64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>12 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>1.08 ms
+^C
+--- 10.10.10.101 ping statistics ---
+12 packets transmitted, 11 received, 8% packet loss, <span class="nb">time </span>11033ms
+rtt min/avg/max/mdev <span class="o">=</span> 1.060/1.148/1.722/0.186 ms
+<span class="gp">sam@node-0:/etc$ </span>sudo ipsec statusall
+Status of IKE charon daemon <span class="o">(</span>strongSwan 5.6.2, Linux 4.15.0-39-generic, x86_64<span class="o">)</span>:
+  uptime: 2 minutes, since Jan 02 10:14:36 2019
+  malloc: sbrk 2285568, mmap 0, used 586528, free 1699040
+  worker threads: 11 of 16 idle, 5/0/0/0 working, job queue: 0/0/0/0, scheduled: 3
+  loaded plugins: charon aesni aes rc2 sha2 sha1 md4 md5 mgf1 random nonce x509 revocation constraints pubkey pkcs1 pkcs7 pkcs8 pkcs12 pgp dnskey sshkey pem openssl fips-prf gmp agent xcbc hmac gcm attr kernel-netlink resolve socket-default connmark stroke vici updown eap-mschapv2 xauth-generic counters
+Listening IP addresses:
+  172.17.74.1
+  192.168.1.120
+Connections:
+    <span class="nb">trap</span>-any:  %any...%any  IKEv1/2
+    <span class="nb">trap</span>-any:   <span class="nb">local</span>:  uses pre-shared key authentication
+    <span class="nb">trap</span>-any:   remote: uses pre-shared key authentication
+    <span class="nb">trap</span>-any:   child:  192.168.1.0/24 <span class="o">===</span> 192.168.1.0/24 TRANSPORT
+Routed Connections:
+    <span class="nb">trap</span>-any<span class="o">{</span>1<span class="o">}</span>:  ROUTED, TRANSPORT, reqid 1
+    <span class="nb">trap</span>-any<span class="o">{</span>1<span class="o">}</span>:   192.168.1.0/24 <span class="o">===</span> 192.168.1.0/24
+Security Associations <span class="o">(</span>1 up, 0 connecting<span class="o">)</span>:
+    <span class="nb">trap</span>-any[1]: ESTABLISHED 13 seconds ago, 192.168.1.120[192.168.1.120]...192.168.1.121[192.168.1.121]
+    <span class="nb">trap</span>-any[1]: IKEv2 SPIs: f34b6d34b3d5865a_i<span class="k">*</span> 1e0b571581dbec85_r, pre-shared key reauthentication <span class="k">in </span>52 minutes
+    <span class="nb">trap</span>-any[1]: IKE proposal: AES_CBC_128/HMAC_SHA2_256_128/PRF_AES128_XCBC/ECP_256
+    <span class="nb">trap</span>-any<span class="o">{</span>2<span class="o">}</span>:  INSTALLED, TRANSPORT, reqid 1, ESP SPIs: cd870f9f_i c53fb053_o
+    <span class="nb">trap</span>-any<span class="o">{</span>2<span class="o">}</span>:  AES_CBC_128/HMAC_SHA2_256_128, 1214 bytes_i <span class="o">(</span>13 pkts, 3s ago<span class="o">)</span>, 1214 bytes_o <span class="o">(</span>13 pkts, 8s ago<span class="o">)</span>, rekeying <span class="k">in </span>13 minutes
+    <span class="nb">trap</span>-any<span class="o">{</span>2<span class="o">}</span>:   192.168.1.120/32 <span class="o">===</span> 192.168.1.121/32
+<span class="gp">sam@node-0:/etc$ </span>sudo ipsec statusall
+
+</code></pre>
+</div>
+<p>Now we can see that the security association is up and active, the process gets triggered when a connection is set up.<br />
+We can verify that ipsec ESP mode is active by using tcpdump</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@node-1:/etc$ </span>sudo tcpdump -i any -v esp
+tcpdump: listening on any, link-type LINUX_SLL <span class="o">(</span>Linux cooked<span class="o">)</span>, capture size 262144 bytes
+10:29:18.080544 IP <span class="o">(</span>tos 0x0, ttl 64, id 58233, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
+    192.168.1.120 &gt; 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xc53fb053,seq<span class="o">=</span>0xf<span class="o">)</span>, length 152
+10:29:18.080800 IP <span class="o">(</span>tos 0x0, ttl 64, id 58233, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
+    192.168.1.120 &gt; 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xc53fb053,seq<span class="o">=</span>0xf<span class="o">)</span>, length 152
+10:29:18.081231 IP <span class="o">(</span>tos 0x0, ttl 64, id 30788, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
+    192.168.1.121 &gt; 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xcd870f9f,seq<span class="o">=</span>0xe<span class="o">)</span>, length 152
+10:29:18.081388 IP <span class="o">(</span>tos 0x0, ttl 64, id 30788, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
+    192.168.1.121 &gt; 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xcd870f9f,seq<span class="o">=</span>0xe<span class="o">)</span>, length 152
+</code></pre>
+</div>
+
+<h2 id="references">References</h2>
+<ol>
+  <li>
+    <p><a href="https://wiki.strongswan.org/projects/strongswan/wiki/UsableExamples">Strongswan documentation</a></p>
+  </li>
+  <li>
+    <p><a href="https://sysadmins.co.za/setup-a-site-to-site-ipsec-vpn-with-strongswan-on-ubuntu/">Setting up site to site strongswan on Ubuntu</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.strongswan.org/testing/testresults/ikev2/trap-any/">Strongswan host to host sample config files</a></p>
+  </li>
+  <li>
+    <p><a href="http://www.firewall.cx/networking-topics/protocols/870-ipsec-modes.html">Understanding IPSec tunnel and transport mode</a></p>
+  </li>
+</ol>
+
+
+
+
+      </section>
+    </div>
+  </article>
+
+
+  <div class="sidebar">
+    <nav class="nav__list">
+      <div class="wiki-top-links">
+        <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
+      </div>
+      
+
+    
+
+
+
+        <ul>
+  <li><strong>Deploying IPOP-VPN</strong>
+    <ul>
+      <li><a href="Quick-Start">Quick Start</a></li>
+      <li><a href="Use-IPOP,-Intro">Installation</a></li>
+      <li><a href="Understanding-the-IPOP-Configuration">Configuration</a></li>
+    </ul>
+  </li>
+  <li><strong>Development Guide</strong>
+    <ul>
+      <li><a href="Development-Workflow">Development Workflow</a></li>
+      <li><a href="Coding-Guidelines">Coding Guidelines</a></li>
+      <li><a href="Build-IPOP,-Intro">Building the Code</a></li>
+      <li><a href="IPOP-Scale-test-Walkthrough">Testing Your Build</a></li>
+      <li><a href="Controller-Framework">Controller Framework</a></li>
+      <li><a href="Controller-API">Controller API</a></li>
+      <li><a href="Build-WebRTC-Libraries,-Intro">Building WebRTC Libraries</a></li>
+    </ul>
+  </li>
+  <li><strong>General Documentation</strong>
+    <ul>
+      <li><a href="FAQs">FAQs</a></li>
+      <li><a href="Troubleshooting">Troubleshooting</a></li>
+      <li><a href="Planning-Your-Network">Planning Your Network</a></li>
+      <li><a href="Coding-Challenges">Coding Challenges</a></li>
+      <li><a href="Known-Issues">Known Issues</a></li>
+      <li><a href="Getting-Help">Getting Help</a></li>
+      <li><a href="How-to-Contribute">How to Contribute</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+
+      </section>
+    </div>
+  </article>
+
+
+
+</div>
+
+
+
+
+    </nav>
+  </div>
+
+
+</div>
+
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+     -->
+    <!-- <li><a href="/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
+<!--  </ul>
+</div> --> 
+
+<div class="page__footer-copyright footer-address">
+  <div class="float-left">
+    <img src="/assets/images/uf_small.png" class="padding-bottom-right" /><img src="/assets/images/nsf_small.png" class="padding-bottom-right" />
+  </div>
+  <i class="fa fa-address-card-o" aria-hidden="true"></i>
+  <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br />
+  <a href="http://www.ece.ufl.edu/" rel="nofollow" target="_blank">Department of Electrical & Computer Engineering</a><br />
+  <a href="http://www.eng.ufl.edu/" rel="nofollow" target="_blank">College of Engineering</a>, <a href="http://www.ufl.edu/" rel="nofollow" target="_blank">University of Florida</a>
+</div>
+
+<div class="page__footer-copyright footer-links">
+  <div>
+    <a href="/contact">Contact</a> | <a href="/contact/#mailing-list-subscription">Mailing List</a> | <a href="https://ipopvpn.slack.com/">Slack Channel</a> | <a href="/sitemap">Sitemap</a><br />
+    <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
+    &copy; 2019 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
+    </div>
+  </div>
+</div>
+<div class="page__footer-copyright footer-sponsor clear-both">This material is based upon work supported in part by the National Science Foundation under Grants No. 1234983, 1339737 and 1527415.</div>
+      </footer>
+    </div>
+
+    <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>
+
