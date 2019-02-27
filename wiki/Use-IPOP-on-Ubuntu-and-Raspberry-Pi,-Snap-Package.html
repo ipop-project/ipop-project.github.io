@@ -182,34 +182,64 @@
           <nav class="toc">
             <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
             <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#quick-start">Quick Start</a></li>
+<li class="toc-entry toc-h1"><a href="#use-ipop-on-ubuntu-and-raspberry-pi-snap-package">Use IPOP on Ubuntu and Raspberry Pi, Snap Package</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#install-ipop-snap-package">Install IPOP Snap Package</a></li>
+<li class="toc-entry toc-h2"><a href="#configuration-file">Configuration File</a></li>
+<li class="toc-entry toc-h2"><a href="#run-ipop">Run IPOP</a></li>
+</ul>
+</li>
 </ul>
           </nav>
         </aside>
 
-        <h1 id="quick-start">Quick Start</h1>
+        <h1 id="use-ipop-on-ubuntu-and-raspberry-pi-snap-package">Use IPOP on Ubuntu and Raspberry Pi, Snap Package</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Operating System / Platform</th>
-      <th style="text-align: center">Time</th>
+      <th> </th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Use IPOP, Manually</td>
-      <td><a href="Use-IPOP,-Intro">Intro</a> | <a href="Use-IPOP-on-Ubuntu-and-Raspberry-Pi,-Manually">Ubuntu &amp; Raspberry Pi</a> | <a href="Use-IPOP-on-Windows,-Manually">Windows</a> | <a href="Use-IPOP-on-CentOS,-Manually">CentOS</a></td>
-      <td style="text-align: center">~ 10 mins</td>
+      <td><strong>Tested on</strong></td>
+      <td>Ubuntu 16.04 and 18.04 x64<br />Ubuntu Core 16 on Raspberry Pi 3<br />Ubuntu Server 18.10 on Raspberry Pi 3</td>
     </tr>
     <tr>
-      <td>Use IPOP, Demo Video</td>
-      <td><a href="https://screencast-o-matic.com/watch/cbjXbPlmdl">Ubuntu</a></td>
-      <td style="text-align: center">~ 4 mins</td>
+      <td><strong>Time</strong></td>
+      <td>~ 10 Minutes</td>
     </tr>
   </tbody>
 </table>
+
+<h2 id="install-ipop-snap-package">Install IPOP Snap Package</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo snap install ipopvpn_&lt;package-version&gt;.snap --devmode
+</code></pre>
+</div>
+
+<h2 id="configuration-file">Configuration File</h2>
+
+<p>A sample configuration file is available <a href="https://raw.githubusercontent.com/ipop-project/Controllers/master/controller/sample-multi-overlay-config.json">here</a>. Copy IPOP config file to <code class="highlighter-rouge">/root/snap/ipopvpn/current/config.json</code>. Don’t forget to edit the following lines:</p>
+
+<p>Under <code class="highlighter-rouge">CFx</code> add <code class="highlighter-rouge">"NidFileName": "/root/snap/ipopvpn/current/nid"</code>.</p>
+
+<p>Under <code class="highlighter-rouge">Directory</code>, change <code class="highlighter-rouge">"Directory": "/root/snap/ipopvpn/logs/"</code>.</p>
+
+<p>Under <code class="highlighter-rouge">Signal</code> &gt; <code class="highlighter-rouge">Overlays</code> , the overlay’s <code class="highlighter-rouge">HostAddress</code>, <code class="highlighter-rouge">Username</code>, and <code class="highlighter-rouge">Password</code>.</p>
+
+<p>Under <code class="highlighter-rouge">BridgeController</code> &gt; <code class="highlighter-rouge">Overlays</code>, the overlay’s <code class="highlighter-rouge">IP4</code> address.</p>
+
+<p>These changes are mandatory to run IPOP VPN Snap package. You may want to apply further changes to the configuration file. Here is the guide to <a href="Understanding-the-IPOP-Configuration">Understanding the IPOP Configuration</a>.</p>
+
+<h2 id="run-ipop">Run IPOP</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo ipopvpn.tincan &amp;
+sudo ipopvpn.controller &amp;
+</code></pre>
+</div>
 
 
 

@@ -99,3 +99,7 @@ cp -rf ./controller/ ../../ipop-vpn/
 ## Copy Configuration File
 
 You will need a valid configuration file (`ipop-config.json`) in `ipop-vpn/config` directory to run IPOP. You may find a sample config file in the `Controllers` repo root which you have already cloned into your machine.
+
+## Sample Configuration File
+
+A sample configuration file is available [here](https://raw.githubusercontent.com/ipop-project/Controllers/master/controller/sample-multi-overlay-config.json).
