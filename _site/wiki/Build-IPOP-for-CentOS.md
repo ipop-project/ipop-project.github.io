@@ -50,3 +50,7 @@ You will need a valid configuration file (ipop-config.json) to run IPOP. Go to t
 ```
 cp ipop-config.json ~/workspace/ipop-vpn/config
 ```
+
+## Sample Configuration File
+
+A sample configuration file is available [here](https://raw.githubusercontent.com/ipop-project/Controllers/master/controller/sample-multi-overlay-config.json).
