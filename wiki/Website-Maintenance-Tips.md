@@ -5,10 +5,10 @@
 ### Step 0: Prerequisite
 
 ```
-sudo apt update && sudo apt install -y git ruby-dev libffi-dev
+sudo apt update && sudo apt install -y git ruby-dev libffi-dev libtool build-essential
 sudo gem install bundler
 ```
-Inside the website directory:
+Inside the website source directory:
 ```
 bundle install
 ```
