@@ -157,6 +157,9 @@
 <loc>/wiki/Quick-Start</loc>
 </url>
 <url>
+<loc>/wiki/Reverse-SSH-Tunneling</loc>
+</url>
+<url>
 <loc>/wiki/Running-IPoP-in-recursive-mode</loc>
 </url>
 <url>
@@ -203,6 +206,6 @@
 </url>
 <url>
 <loc>/assets/docs/IPOP-WhitePaper-1605.pdf</loc>
-<lastmod>2019-06-17T23:00:32-05:00</lastmod>
+<lastmod>2019-06-18T23:00:28-05:00</lastmod>
 </url>
 </urlset>
