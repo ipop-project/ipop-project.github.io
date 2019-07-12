@@ -36,3 +36,6 @@ Add this:
 ssh -vvv -p <local_port> <local_username>@localhost
 ```
 
+## autossh Documentation
+
+https://www.harding.motd.ca/autossh/README.txt
