@@ -201,11 +201,12 @@
 <span class="nv">LOCAL_PORT</span><span class="o">=</span>20001 <span class="c">#pick a different `LOCAL_PORT` for each node, if they are more than one. `20001` for the first node, `20002` for the second node, etc.</span>
 <span class="nv">BASE_PORT</span><span class="o">=</span>30001 <span class="c">#BASE_PORT and BASE_PORT+1 will be used for monitoring and echo service on the local node.</span>
 <span class="nv">REMOTE_PORT</span><span class="o">=</span>22 <span class="c">#Server SSH Port</span>
+<span class="nv">NAT_PORT</span><span class="o">=</span>2222 <span class="c">#Server NAT Port</span>
 <span class="nv">LOCALHOST</span><span class="o">=</span>localhost
 <span class="nv">SERVER</span><span class="o">=</span>128.227.150.20 <span class="c">#Server Public IP Address</span>
 <span class="nv">USER</span><span class="o">=</span>rpicluster <span class="c">#Server Username</span>
 <span class="nv">LOGFILE</span><span class="o">=</span>autossh.log <span class="c">#Path to the Log File</span>
-<span class="nv">AUTOSSH_DEBUG</span><span class="o">=</span>1 <span class="nv">AUTOSSH_LOGFILE</span><span class="o">=</span><span class="nv">$LOGFILE</span> autossh -f -M <span class="nv">$BASE_PORT</span> -N -R <span class="nv">$LOCAL_PORT</span>:<span class="nv">$LOCALHOST</span>:<span class="nv">$REMOTE_PORT</span> <span class="nv">$USER</span>@<span class="nv">$SERVER</span> -o <span class="nv">UserKnownHostsFile</span><span class="o">=</span>/dev/null -o <span class="nv">StrictHostKeyChecking</span><span class="o">=</span>no
+<span class="nv">AUTOSSH_DEBUG</span><span class="o">=</span>1 <span class="nv">AUTOSSH_LOGFILE</span><span class="o">=</span><span class="nv">$LOGFILE</span> autossh -f -M <span class="nv">$BASE_PORT</span> -N -R <span class="nv">$LOCAL_PORT</span>:<span class="nv">$LOCALHOST</span>:<span class="nv">$REMOTE_PORT</span> <span class="nv">$USER</span>@<span class="nv">$SERVER</span> -p <span class="nv">$NAT_PORT</span> -o <span class="nv">UserKnownHostsFile</span><span class="o">=</span>/dev/null -o <span class="nv">StrictHostKeyChecking</span><span class="o">=</span>no
 <span class="nb">echo</span> <span class="s2">"Reverse SSH Tunnel has been established. autossh tries to keep the tunnel alive while the machines are up..."</span>
 </code></pre>
 </div>
