@@ -207,27 +207,23 @@ Note that IP and MAC address should be carefully assigned to avoid address confl
 
 <p>First, bring up a Ubuntu VM and install LXC in it:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get update
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get update
 sudo apt-get install lxc
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>If this command:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo lxc-ls --fancy
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo lxc-ls --fancy
+</code></pre></div></div>
 <p>emits an error, update packages with:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get upgrade
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get upgrade
+</code></pre></div></div>
 <p>Then, create an LXC instance and clone it:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo lxc-create -t ubuntu -n c0
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo lxc-create -t ubuntu -n c0
 sudo lxc-clone c0 c1
 sudo lxc-clone c0 c2
 ...
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The following diagram illustrates an example where you’d repeat this process in two VMs:</p>
 
@@ -236,29 +232,25 @@ sudo lxc-clone c0 c2
 <p>Then restart lxc network</p>
 
 <p>Add below fields at controller config file.</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>   "switchmode": 1
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   "switchmode": 1
+</code></pre></div></div>
 <p>Run ipop-tincan and controller. 
 Then, attach ipop tap device to lxcbr0 at both ends.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo brctl addif lxcbr0 ipop
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo brctl addif lxcbr0 ipop
+</code></pre></div></div>
 
 <p>(OPTIONAL)If you need to change the IP address of lxcbr0, then modify below files and restart the network service</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo vi /etc/default/lxc-net
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo vi /etc/default/lxc-net
 sudo vi /etc/init/lxc-net.conf
 sudo service lxc-net restart
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>If the lxcbr0 address does not update, reboot your machine.</p>
 
 <p>Make sure you run LXC containers on both VMs, and change their MTUs to 1280:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo lxc-attach --name c1
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo lxc-attach --name c1
 ifconfig eth0 mtu 1280
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Check the IP addresses assigned to the eth0 interfaces of both containers (e.g. 10.0.3.5 and 10.0.3.7 in the diagram). After the IPOP tincan connection is established, you should be able to ping from 10.0.3.5 to ping 10.0.3.7.</p>
 
@@ -266,9 +258,8 @@ ifconfig eth0 mtu 1280
 
 <p>Although switchmode was intended to bind to multiple virtual network interface of the guest machine, IPOP switchmode can also run by itself providing layer 2 virutal network environment to the host machine. 
 By simply setting below fields, and run IPOP without attaching to the bridge.</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>   "switchmode": 1
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   "switchmode": 1
+</code></pre></div></div>
 
 <h1 id="switchmode-under-the-hood">Switchmode under the hood</h1>
 

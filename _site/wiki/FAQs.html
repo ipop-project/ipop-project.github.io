@@ -227,7 +227,7 @@
 
     <p>If you would like to statically assign addresses to SocialVPN peers, you can do so through an additional configuration file that can be loaded with the -p argument (e.g. -p ip_config.json). In this file, you specify the UID of a node, the virtual IP address, and a label, as in the following example:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code> [
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> [
      {
          "uid": "54f2b14f80e5374f8af7ad1b4838145ea7eaaf57",
          "ipv4": "172.31.0.101",
@@ -239,8 +239,7 @@
          "desc": "Bob"
      }
  ]
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <p><strong>How do I enable logging for debugging?</strong></p>
@@ -249,10 +248,9 @@
 nextwork performance due to I/O overhead in the packet handling thread</strong>. The logging level is 
 determined in the JSON configuration file by adding the following parameters:</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> <span class="s2">"controller_logging"</span> : <span class="s2">"DEBUG"</span>,
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="s2">"controller_logging"</span> : <span class="s2">"DEBUG"</span>,
  <span class="s2">"tincan_logging"</span>: 2
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <ul>
       <li><strong>logging_level</strong> - sets the Python logging module for the controller with possible values
 <em>DEBUG</em>, <em>INFO</em>, <em>WARNING</em>, <em>ERROR</em>, <em>CRITICAL</em></li>
@@ -291,9 +289,8 @@ determined in the JSON configuration file by adding the following parameters:</p
 
     <p>Our implementation requires IPv6 to function properly. You can easily enable it with the following command</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo modprobe ipv6
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>modprobe ipv6
+</code></pre></div>    </div>
   </li>
   <li>
     <p><strong>How do I report an issue/bug?</strong></p>

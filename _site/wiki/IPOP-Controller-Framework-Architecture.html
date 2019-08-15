@@ -303,24 +303,23 @@ The routing module leverages the infrastructure of the topology and link managem
 
 <p>Example Config:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"CFx"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"xmpp_username"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"xmpp_password"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"xmpp_host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jabber.ru"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"ip4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192.168.5.1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"ip4_mask"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"stat_report"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"tincan_logging"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"controller_logging"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEBUG"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"TincanListener"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"joinEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Logger"</span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "CFx": {
+        "xmpp_username": "",
+        "xmpp_password": "",
+        "xmpp_host": "jabber.ru",
+        "ip4": "192.168.5.1",
+        "ip4_mask": 24,
+        "stat_report": true,
+        "tincan_logging": 0,
+        "controller_logging": "DEBUG"
+    },
+    "TincanListener" : {
+        "joinEnabled": true,
+        "dependencies": ["Logger"]
+    }
+}
+</code></pre></div></div>
 <h3 id="technical-details">Technical Details</h3>
 <hr />
 
@@ -512,7 +511,7 @@ The state of local node is received as a Tincan notification, which will be disp
     <p><strong>AddressMapper</strong>: In SocialVPN, it’s possible to statically assign addresses to SocialVPN peers.
 It can be done through an additional configuration file that can be loaded with the -p argument (e.g. -p ip_config.json). In this file, you specify the UID of a node, the virtual IP address, and a label, as in the following example:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>  [
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  [
       {
           "uid": "54f2b14f80e5374f8af7ad1b4838145ea7eaaf57",
           "ipv4": "172.31.0.101",
@@ -524,17 +523,15 @@ It can be done through an additional configuration file that can be loaded with 
           "desc": "Bob"
       }
   ]
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <p>AddressMapper CM maintains a mapping of UID to IP address of the nodes, whose IP addresses are specified in the configuration file as shown above. The mappings are stored in the dict ip_map where the keys are UIDs and values are the IP addresses of the corresponding nodes. Supported CBT actions:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>* 'ADD_MAPPING': This CBT is generated when an UID-to-IP mapping has to be added.   cbt.data should be a dict with keys 'uid' and 'ip'. Response CBT is not sent to the source CM in this case.
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* 'ADD_MAPPING': This CBT is generated when an UID-to-IP mapping has to be added.   cbt.data should be a dict with keys 'uid' and 'ip'. Response CBT is not sent to the source CM in this case.
 
 * 'DEL_MAPPING': This CBT is generated when a UID-to-IP mapping has to be deleted.  cbt.data should be equal to the UID of the node to be deleted. Response CBT is not sent to the source CM in this case.
 
 * 'RESOLVE': This CBT is generated when a CM requires the IP address of a node with a given UID. cbt.data should be equal to the UID of the node, whose IP address is requested. Response CBT with action 'RESOLVE_RESP' is sent to the source CM. cbt.data is the IP address of the node in the response CBT.
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <p><strong>LinkManager</strong>: LinkManager is responsible for creating and trimming connections.   BaseTopologyManager decides the policies for creating/trimming links and leverages the LinkManager CM to   create/trim a Tincan link with another node. Supported CBT actions:</p>
@@ -709,59 +706,58 @@ determines the destination, and which module to deliver (e.g. overlay-route)</p>
 <p>A CM can also specify the dependencies by setting the value of ‘dependencies’ parameter. The CFx will ensure that the dependencies are loaded before the module gets loaded. The CFx loads the CMs specified in the config file from top to bottom.</p>
 
 <p>This a sample config shown below:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"CFx"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"xmpp_username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gingerninja@jabber.ru"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"xmpp_password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ginger123"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"ip4_mask"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"xmpp_host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jabber.ru"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"stat_report"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"tincan_logging"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"vpn_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GroupVPN"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"TincanListener"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"socket_read_wait_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"joinEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Logger"</span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"Logger"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"controller_logging"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEBUG"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"joinEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"TincanDispatcher"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"joinEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Logger"</span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"TincanSender"</span><span class="p">:{</span><span class="w">
-        </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Logger"</span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"Monitor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"joinEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Logger"</span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"BaseTopologyManager"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"timer_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"joinEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Logger"</span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"LinkManager"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"joinEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Logger"</span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"AddressMapper"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"ip4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192.168.5.1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"joinEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Logger"</span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"Watchdog"</span><span class="p">:{</span><span class="w">
-        </span><span class="nt">"timer_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"joinEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Logger"</span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "CFx": {
+        "xmpp_username": "gingerninja@jabber.ru",
+        "xmpp_password": "ginger123",
+        "ip4_mask": 24,
+        "xmpp_host": "jabber.ru",
+        "stat_report": true,
+        "tincan_logging": 0,
+        "vpn_type": "GroupVPN"
+    },
+    "TincanListener" : {
+        "socket_read_wait_time": 15,
+        "joinEnabled": true,
+        "dependencies": ["Logger"]
+    },
+    "Logger": {
+        "controller_logging": "DEBUG",
+        "joinEnabled": true
+    },
+    "TincanDispatcher": {
+        "joinEnabled": true,
+        "dependencies": ["Logger"]
+    },
+    "TincanSender":{
+        "dependencies": ["Logger"]
+    },
+    "Monitor": {
+        "joinEnabled": true,
+        "dependencies": ["Logger"]
+    },
+    "BaseTopologyManager": {
+        "timer_interval": 15,
+        "joinEnabled": true,
+        "dependencies": ["Logger"]
+    },
+    "LinkManager": {
+        "joinEnabled": true,
+        "dependencies": ["Logger"]
+    },
+    "AddressMapper": {
+        "ip4": "192.168.5.1",
+        "joinEnabled": true,
+        "dependencies": ["Logger"]
+    },
+    "Watchdog":{
+        "timer_interval": 15,
+        "joinEnabled": true,
+        "dependencies": ["Logger"]
+    }
+}
 
-</span></code></pre>
-</div>
+</code></pre></div></div>
 
 
 

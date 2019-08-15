@@ -184,7 +184,6 @@
             <ul class="section-nav">
 <li class="toc-entry toc-h1"><a href="#introduction-to-the-scale-test-script-usage">Introduction to the Scale-test Script Usage</a>
 <ul>
-<ul>
 <li class="toc-entry toc-h3"><a href="#modes">Modes</a></li>
 <li class="toc-entry toc-h3"><a href="#setup-for-ipop-groupvpn-test">Setup for IPOP GroupVPN test</a></li>
 <li class="toc-entry toc-h3"><a href="#setup-for-ipop-switch-mode">Setup for IPOP Switch-Mode</a></li>
@@ -195,7 +194,6 @@
 </ul>
 </li>
 <li class="toc-entry toc-h3"><a href="#full-command-list">Full Command List</a></li>
-</ul>
 </ul>
 </li>
 </ul>
@@ -253,11 +251,10 @@
       <li>Instructions for viewing data from tests with Robomongo GUI
         <ol>
           <li>To download and run
-            <div class="language-bash highlighter-rouge"><pre class="highlight"><code>wget https://download.robomongo.org/1.1.1/linux/robo3t-1.1.1-linux-x86_64-c93c6b0.tar.gz <span class="c">#Download zipped src</span>
-tar -xf robo3t-1.1.1-linux-x86_64-c93c6b0.tar.gz <span class="c">#Unzip src to sub directory</span>
+            <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://download.robomongo.org/1.1.1/linux/robo3t-1.1.1-linux-x86_64-c93c6b0.tar.gz <span class="c">#Download zipped src</span>
+<span class="nb">tar</span> <span class="nt">-xf</span> robo3t-1.1.1-linux-x86_64-c93c6b0.tar.gz <span class="c">#Unzip src to sub directory</span>
 ./robo3t-1.1.1-linux-x86_64-c93c6b0/bin/robo3t <span class="c">#Run Robomongo</span>
-</code></pre>
-            </div>
+</code></pre></div>            </div>
           </li>
           <li>Create new connection to localhost:27017 and connect. Data will be in ipopdb database under iperf and ping collections</li>
         </ol>

@@ -205,40 +205,38 @@
 <h2 id="installation-and-configuration">Installation and Configuration</h2>
 <p>First step is to install and activate IPoP on the hosts. Once done, make sure that the hosts can connect with each other over IPoP overlay. The following steps detail the process of installing additional packages.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># create gateway bridge</span>
-sudo ovs-vsctl add-br GRE-BR
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># create gateway bridge</span>
+<span class="nb">sudo </span>ovs-vsctl add-br GRE-BR
 <span class="c"># create a GRE tunnel with remote endpoint as IPoP address of the remote peer (192.168.1.121).</span>
-sudo ovs-vsctl add-port GRE-BR gre1 -- <span class="nb">set </span>interface gre1 <span class="nb">type</span><span class="o">=</span>gre options:remote_ip<span class="o">=</span>192.168.1.121
+<span class="nb">sudo </span>ovs-vsctl add-port GRE-BR gre1 <span class="nt">--</span> <span class="nb">set </span>interface gre1 <span class="nb">type</span><span class="o">=</span>gre options:remote_ip<span class="o">=</span>192.168.1.121
 <span class="c"># create a network namespace named D1</span>
-sudo ip netns add D1
+<span class="nb">sudo </span>ip netns add D1
 <span class="c"># create a veth pair</span>
-sudo ip link add veth0 <span class="nb">type </span>veth peer name veth1
+<span class="nb">sudo </span>ip <span class="nb">link </span>add veth0 <span class="nb">type </span>veth peer name veth1
 <span class="c"># assign one end of veth pair to namespace D1</span>
-sudo ip link <span class="nb">set </span>veth1 netns D1
+<span class="nb">sudo </span>ip <span class="nb">link set </span>veth1 netns D1
 <span class="c"># configure the veth endpoint in namespace D1 with a IP address</span>
-sudo ip netns <span class="nb">exec </span>D1 ifconfig veth1 10.10.10.100/24 up
+<span class="nb">sudo </span>ip netns <span class="nb">exec </span>D1 ifconfig veth1 10.10.10.100/24 up
 <span class="c"># Bring up the veth interface in namespace UP</span>
-sudo ip netns <span class="nb">exec </span>D1 ip link <span class="nb">set </span>veth1 up
+<span class="nb">sudo </span>ip netns <span class="nb">exec </span>D1 ip <span class="nb">link set </span>veth1 up
 <span class="c"># Attach veth interface on host to gateway bridge</span>
-sudo ovs-vsctl add-port GRE-BR veth0
+<span class="nb">sudo </span>ovs-vsctl add-port GRE-BR veth0
 <span class="c"># Bring up the veth interface in host UP</span>
-sudo ip link <span class="nb">set </span>veth0 up
-</code></pre>
-</div>
+<span class="nb">sudo </span>ip <span class="nb">link set </span>veth0 up
+</code></pre></div></div>
 <p>Repeat similar process on the second host, assuming IPoP endpoint on the host is 192.168.1.121.</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo ovs-vsctl add-br GRE-BR
-sudo ovs-vsctl add-port GRE-BR gre1 -- <span class="nb">set </span>interface gre1 <span class="nb">type</span><span class="o">=</span>gre options:remote_ip<span class="o">=</span>192.168.1.120
-sudo ip netns add D2
-sudo ip link add veth0 <span class="nb">type </span>veth peer name veth1
-sudo ip link <span class="nb">set </span>veth1 netns D2
-sudo ip netns <span class="nb">exec </span>D2 ifconfig veth1 10.10.10.101/24 up
-sudo ip netns <span class="nb">exec </span>D2 ip link <span class="nb">set </span>veth1 up
-sudo ovs-vsctl add-port GRE-BR veth0
-sudo ip link <span class="nb">set </span>veth0 up
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ovs-vsctl add-br GRE-BR
+<span class="nb">sudo </span>ovs-vsctl add-port GRE-BR gre1 <span class="nt">--</span> <span class="nb">set </span>interface gre1 <span class="nb">type</span><span class="o">=</span>gre options:remote_ip<span class="o">=</span>192.168.1.120
+<span class="nb">sudo </span>ip netns add D2
+<span class="nb">sudo </span>ip <span class="nb">link </span>add veth0 <span class="nb">type </span>veth peer name veth1
+<span class="nb">sudo </span>ip <span class="nb">link set </span>veth1 netns D2
+<span class="nb">sudo </span>ip netns <span class="nb">exec </span>D2 ifconfig veth1 10.10.10.101/24 up
+<span class="nb">sudo </span>ip netns <span class="nb">exec </span>D2 ip <span class="nb">link set </span>veth1 up
+<span class="nb">sudo </span>ovs-vsctl add-port GRE-BR veth0
+<span class="nb">sudo </span>ip <span class="nb">link set </span>veth0 up
+</code></pre></div></div>
 <p>Now verify connectivity between the network namespaces.</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@node-0:~$ </span>sudo ip netns <span class="nb">exec </span>D1 ping 10.10.10.101
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sam@node-0:~<span class="nv">$ </span><span class="nb">sudo </span>ip netns <span class="nb">exec </span>D1 ping 10.10.10.101
 PING 10.10.10.101 <span class="o">(</span>10.10.10.101<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
 64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>3 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>3.09 ms
 64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>4 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>2.43 ms
@@ -247,47 +245,41 @@ PING 10.10.10.101 <span class="o">(</span>10.10.10.101<span class="o">)</span> 5
 64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>7 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>2.34 ms
 64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>8 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>2.29 ms
 64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>9 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>2.32 ms
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>If this step is successful proceed with installation and configuration of Strongswan framework on the hosts.</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo apt-get install strongswan -y  
-sudo apt-get install strongswan-swanctl  
-sudo apt-get install strongswan-pki
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>strongswan <span class="nt">-y</span>  
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>strongswan-swanctl  
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>strongswan-pki
+</code></pre></div></div>
 <p>Before proceeding further we will need to create keys and certificates for our hosts.</p>
 
 <h2 id="creating-ca-key-and-certificate">Creating CA key and certificate</h2>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">root@node-0:/etc/ipsec.d# </span>ipsec pki --gen --type rsa --size 4096 --outform pem &gt; private/strongswanKey.pem   
-<span class="gp">root@node-0:/etc/ipsec.d# </span>ipsec pki --self --ca --lifetime 3650 --in private/strongswanKey.pem --type rsa --dn <span class="s2">"C=CH, O=strongSwan, CN=Root CA"</span> --outform pem &gt; cacerts/strongswanCert.pem
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@node-0:/etc/ipsec.d# ipsec pki <span class="nt">--gen</span> <span class="nt">--type</span> rsa <span class="nt">--size</span> 4096 <span class="nt">--outform</span> pem <span class="o">&gt;</span> private/strongswanKey.pem   
+root@node-0:/etc/ipsec.d# ipsec pki <span class="nt">--self</span> <span class="nt">--ca</span> <span class="nt">--lifetime</span> 3650 <span class="nt">--in</span> private/strongswanKey.pem <span class="nt">--type</span> rsa <span class="nt">--dn</span> <span class="s2">"C=CH, O=strongSwan, CN=Root CA"</span> <span class="nt">--outform</span> pem <span class="o">&gt;</span> cacerts/strongswanCert.pem
+</code></pre></div></div>
 <h2 id="create-private-key-for-host-1">Create private key for Host-1</h2>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">root@node-0:/etc/ipsec.d# </span>ipsec pki --gen --type rsa --size 2048 --outform pem &gt; private/client1Key.pem
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@node-0:/etc/ipsec.d# ipsec pki <span class="nt">--gen</span> <span class="nt">--type</span> rsa <span class="nt">--size</span> 2048 <span class="nt">--outform</span> pem <span class="o">&gt;</span> private/client1Key.pem
+</code></pre></div></div>
 <h2 id="generate-the-certificate-for-host-1-and-get-it-attested-by-ca">Generate the certificate for Host-1 and get it attested by CA</h2>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">root@node-0:/etc/ipsec.d# </span>ipsec pki --pub --in private/client1Key.pem --type rsa | ipsec pki --issue --lifetime 730 --cacert cacerts/strongswanCert.pem --cakey private/strongswanKey.pem --dn <span class="s2">"C=CH, O=strongSwan, CN=192.168.1.120"</span> --san 192.168.1.120 --flag serverAuth --flag ikeIntermediate --outform pem &gt; certs/client1Cert.pem
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@node-0:/etc/ipsec.d# ipsec pki <span class="nt">--pub</span> <span class="nt">--in</span> private/client1Key.pem <span class="nt">--type</span> rsa | ipsec pki <span class="nt">--issue</span> <span class="nt">--lifetime</span> 730 <span class="nt">--cacert</span> cacerts/strongswanCert.pem <span class="nt">--cakey</span> private/strongswanKey.pem <span class="nt">--dn</span> <span class="s2">"C=CH, O=strongSwan, CN=192.168.1.120"</span> <span class="nt">--san</span> 192.168.1.120 <span class="nt">--flag</span> serverAuth <span class="nt">--flag</span> ikeIntermediate <span class="nt">--outform</span> pem <span class="o">&gt;</span> certs/client1Cert.pem
+</code></pre></div></div>
 <p>repeat similar steps for generating key and certificates for other hosts, point to note here is that the common name and alternate name must either be the IP address or DNS name of the host, in this case we used IPOP IP 192.168.1.120 as the common and alternate name. Keys, Certificates can be generated on the same machine that houses the RootCA key. Subsequently rootCACert, host private key and certificate can be distributed to respective hosts.</p>
 
 <p>Once we have rootCAcert, private key and public cert in the correct folders as can be seen in the code snip above we can proceed by specifying the same in ipsec.secrets file as shown below.</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">root@node-0:/etc# </span>cat ipsec.secrets
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@node-0:/etc# <span class="nb">cat </span>ipsec.secrets
 <span class="c"># This file holds shared secrets or RSA private keys for authentication.</span>
 
 <span class="c"># RSA private key for this host, authenticating it to any other host</span>
 <span class="c"># which knows the public part.</span>
 : RSA client1Key.pem
 root@node-0:/etc#
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Next step is to configure Strongswan by making changes to ipsec.conf file found in /etc</p>
 <h2 id="ipsecconf">ipsec.conf</h2>
 <p>Same configuration on all the hosts except leftcert and leftid fields will have to be modified to point to the cert file and the common name of the respective host.</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">root@node-0:/etc# </span>cat ipsec.conf
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@node-0:/etc# <span class="nb">cat </span>ipsec.conf
 conn %default
         <span class="nv">keyingtries</span><span class="o">=</span>1
         <span class="nv">keyexchange</span><span class="o">=</span>ikev2
@@ -298,7 +290,7 @@ conn host-to-host
         <span class="nv">rekeymargin</span><span class="o">=</span>3m
         <span class="nv">keyingtries</span><span class="o">=</span>1
 
-conn <span class="nb">trap</span>-any
+conn trap-any
         <span class="nv">also</span><span class="o">=</span>host-to-host
         <span class="nv">right</span><span class="o">=</span>%any
         <span class="nv">leftsubnet</span><span class="o">=</span>192.168.1.0/24
@@ -307,17 +299,16 @@ conn <span class="nb">trap</span>-any
         <span class="nv">leftcert</span><span class="o">=</span>client1Cert.pem
         <span class="nv">leftid</span><span class="o">=</span><span class="s2">"C=CH, O=strongSwan, CN=192.168.1.120"</span>
         <span class="nv">auto</span><span class="o">=</span>route
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Restart Ipsec and check the status.</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">root@node-0:~# </span>ipsec restart
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@node-0:~# ipsec restart
 Stopping strongSwan IPsec...
 Starting strongSwan 5.6.2 IPsec <span class="o">[</span>starter]...
-<span class="gp">root@node-0:~# </span>
-<span class="gp">root@node-0:/etc# </span>ipsec statusall
+root@node-0:~# 
+root@node-0:/etc# ipsec statusall
 Status of IKE charon daemon <span class="o">(</span>strongSwan 5.6.2, Linux 4.15.0-39-generic, x86_64<span class="o">)</span>:
-  uptime: 10 seconds, since Jan 03 20:35:28 2019
+  <span class="nb">uptime</span>: 10 seconds, since Jan 03 20:35:28 2019
   malloc: sbrk 1613824, mmap 0, used 519632, free 1094192
   worker threads: 11 of 16 idle, 5/0/0/0 working, job queue: 0/0/0/0, scheduled: 0
   loaded plugins: charon aesni aes rc2 sha2 sha1 md4 md5 mgf1 random nonce x509 revocation constraints pubkey pkcs1 pkcs7 pkcs8 pkcs12 pgp dnskey sshkey pem openssl fips-prf gmp agent xcbc hmac gcm attr kernel-netlink resolve socket-default connmark stroke vici updown eap-mschapv2 xauth-generic counters
@@ -325,37 +316,36 @@ Listening IP addresses:
   172.16.251.1
   192.168.1.120
 Connections:
-    <span class="nb">trap</span>-any:  %any...%any  IKEv2
-    <span class="nb">trap</span>-any:   <span class="nb">local</span>:  <span class="o">[</span><span class="nv">C</span><span class="o">=</span>CH, <span class="nv">O</span><span class="o">=</span>strongSwan, <span class="nv">CN</span><span class="o">=</span>192.168.1.120] uses public key authentication
-    <span class="nb">trap</span>-any:    cert:  <span class="s2">"C=CH, O=strongSwan, CN=192.168.1.120"</span>
-    <span class="nb">trap</span>-any:   remote: uses public key authentication
-    <span class="nb">trap</span>-any:   child:  192.168.1.0/24 <span class="o">===</span> 192.168.1.0/24 TRANSPORT
+    trap-any:  %any...%any  IKEv2
+    trap-any:   <span class="nb">local</span>:  <span class="o">[</span><span class="nv">C</span><span class="o">=</span>CH, <span class="nv">O</span><span class="o">=</span>strongSwan, <span class="nv">CN</span><span class="o">=</span>192.168.1.120] uses public key authentication
+    trap-any:    cert:  <span class="s2">"C=CH, O=strongSwan, CN=192.168.1.120"</span>
+    trap-any:   remote: uses public key authentication
+    trap-any:   child:  192.168.1.0/24 <span class="o">===</span> 192.168.1.0/24 TRANSPORT
 Routed Connections:
-    <span class="nb">trap</span>-any<span class="o">{</span>1<span class="o">}</span>:  ROUTED, TRANSPORT, reqid 1
-    <span class="nb">trap</span>-any<span class="o">{</span>1<span class="o">}</span>:   192.168.1.0/24 <span class="o">===</span> 192.168.1.0/24
+    trap-any<span class="o">{</span>1<span class="o">}</span>:  ROUTED, TRANSPORT, reqid 1
+    trap-any<span class="o">{</span>1<span class="o">}</span>:   192.168.1.0/24 <span class="o">===</span> 192.168.1.0/24
 Security Associations <span class="o">(</span>0 up, 0 connecting<span class="o">)</span>:
   none
 root@node-0:/etc#
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>As visible in logs above their are no active associations, however we can see that the configuration changes made through the files have been picked up.<br />
 After repeating the same step on all hosts, try sending a ICMP echo request again and check the status again.</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">root@node-0:/etc# </span>sudo ip netns <span class="nb">exec </span>D1 ping 10.10.10.101
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@node-0:/etc# <span class="nb">sudo </span>ip netns <span class="nb">exec </span>D1 ping 10.10.10.101
 PING 10.10.10.101 <span class="o">(</span>10.10.10.101<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
 64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>1 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>5.38 ms
 64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>2 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>2.21 ms
 64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>3 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>2.10 ms
 64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>4 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>2.04 ms
 ^C
---- 10.10.10.101 ping statistics ---
+<span class="nt">---</span> 10.10.10.101 ping statistics <span class="nt">---</span>
 4 packets transmitted, 4 received, 0% packet loss, <span class="nb">time </span>3004ms
 rtt min/avg/max/mdev <span class="o">=</span> 2.047/2.937/5.388/1.417 ms
-<span class="gp">root@node-0:/etc# </span>
+root@node-0:/etc# 
 
-<span class="gp">root@node-0:/etc# </span>ipsec statusall
+root@node-0:/etc# ipsec statusall
 Status of IKE charon daemon <span class="o">(</span>strongSwan 5.6.2, Linux 4.15.0-39-generic, x86_64<span class="o">)</span>:
-  uptime: 64 minutes, since Jan 03 20:35:27 2019
+  <span class="nb">uptime</span>: 64 minutes, since Jan 03 20:35:27 2019
   malloc: sbrk 2695168, mmap 0, used 784128, free 1911040
   worker threads: 11 of 16 idle, 5/0/0/0 working, job queue: 0/0/0/0, scheduled: 3
   loaded plugins: charon aesni aes rc2 sha2 sha1 md4 md5 mgf1 random nonce x509 revocation constraints pubkey pkcs1 pkcs7 pkcs8 pkcs12 pgp dnskey sshkey pem openssl fips-prf gmp agent xcbc hmac gcm attr kernel-netlink resolve socket-default connmark stroke vici updown eap-mschapv2 xauth-generic counters
@@ -363,52 +353,50 @@ Listening IP addresses:
   172.16.251.1
   192.168.1.120
 Connections:
-    <span class="nb">trap</span>-any:  %any...%any  IKEv2
-    <span class="nb">trap</span>-any:   <span class="nb">local</span>:  <span class="o">[</span><span class="nv">C</span><span class="o">=</span>CH, <span class="nv">O</span><span class="o">=</span>strongSwan, <span class="nv">CN</span><span class="o">=</span>192.168.1.120] uses public key authentication
-    <span class="nb">trap</span>-any:    cert:  <span class="s2">"C=CH, O=strongSwan, CN=192.168.1.120"</span>
-    <span class="nb">trap</span>-any:   remote: uses public key authentication
-    <span class="nb">trap</span>-any:   child:  192.168.1.0/24 <span class="o">===</span> 192.168.1.0/24 TRANSPORT
+    trap-any:  %any...%any  IKEv2
+    trap-any:   <span class="nb">local</span>:  <span class="o">[</span><span class="nv">C</span><span class="o">=</span>CH, <span class="nv">O</span><span class="o">=</span>strongSwan, <span class="nv">CN</span><span class="o">=</span>192.168.1.120] uses public key authentication
+    trap-any:    cert:  <span class="s2">"C=CH, O=strongSwan, CN=192.168.1.120"</span>
+    trap-any:   remote: uses public key authentication
+    trap-any:   child:  192.168.1.0/24 <span class="o">===</span> 192.168.1.0/24 TRANSPORT
 Routed Connections:
-    <span class="nb">trap</span>-any<span class="o">{</span>1<span class="o">}</span>:  ROUTED, TRANSPORT, reqid 1
-    <span class="nb">trap</span>-any<span class="o">{</span>1<span class="o">}</span>:   192.168.1.0/24 <span class="o">===</span> 192.168.1.0/24
+    trap-any<span class="o">{</span>1<span class="o">}</span>:  ROUTED, TRANSPORT, reqid 1
+    trap-any<span class="o">{</span>1<span class="o">}</span>:   192.168.1.0/24 <span class="o">===</span> 192.168.1.0/24
 Security Associations <span class="o">(</span>1 up, 0 connecting<span class="o">)</span>:
-    <span class="nb">trap</span>-any[2]: ESTABLISHED 12 minutes ago, 192.168.1.120[C<span class="o">=</span>CH, <span class="nv">O</span><span class="o">=</span>strongSwan, <span class="nv">CN</span><span class="o">=</span>192.168.1.120]...192.168.1.121[C<span class="o">=</span>CH, <span class="nv">O</span><span class="o">=</span>strongSwan, <span class="nv">CN</span><span class="o">=</span>192.168.1.121]
-    <span class="nb">trap</span>-any[2]: IKEv2 SPIs: 4e844bcea06af37c_i<span class="k">*</span> 380b1a276f4e4270_r, public key reauthentication <span class="k">in </span>39 minutes
-    <span class="nb">trap</span>-any[2]: IKE proposal: AES_CBC_128/HMAC_SHA2_256_128/PRF_AES128_XCBC/ECP_256
-    <span class="nb">trap</span>-any<span class="o">{</span>6<span class="o">}</span>:  INSTALLED, TRANSPORT, reqid 1, ESP SPIs: cf3e6d65_i ccbce565_o
-    <span class="nb">trap</span>-any<span class="o">{</span>6<span class="o">}</span>:  AES_CBC_128/HMAC_SHA2_256_128, 574 bytes_i <span class="o">(</span>7 pkts, 32s ago<span class="o">)</span>, 500 bytes_o <span class="o">(</span>6 pkts, 32s ago<span class="o">)</span>, rekeying <span class="k">in </span>107 seconds
-    <span class="nb">trap</span>-any<span class="o">{</span>6<span class="o">}</span>:   192.168.1.120/32 <span class="o">===</span> 192.168.1.121/32
-<span class="gp">root@node-0:/etc# </span>
-</code></pre>
-</div>
+    trap-any[2]: ESTABLISHED 12 minutes ago, 192.168.1.120[C<span class="o">=</span>CH, <span class="nv">O</span><span class="o">=</span>strongSwan, <span class="nv">CN</span><span class="o">=</span>192.168.1.120]...192.168.1.121[C<span class="o">=</span>CH, <span class="nv">O</span><span class="o">=</span>strongSwan, <span class="nv">CN</span><span class="o">=</span>192.168.1.121]
+    trap-any[2]: IKEv2 SPIs: 4e844bcea06af37c_i<span class="k">*</span> 380b1a276f4e4270_r, public key reauthentication <span class="k">in </span>39 minutes
+    trap-any[2]: IKE proposal: AES_CBC_128/HMAC_SHA2_256_128/PRF_AES128_XCBC/ECP_256
+    trap-any<span class="o">{</span>6<span class="o">}</span>:  INSTALLED, TRANSPORT, reqid 1, ESP SPIs: cf3e6d65_i ccbce565_o
+    trap-any<span class="o">{</span>6<span class="o">}</span>:  AES_CBC_128/HMAC_SHA2_256_128, 574 bytes_i <span class="o">(</span>7 pkts, 32s ago<span class="o">)</span>, 500 bytes_o <span class="o">(</span>6 pkts, 32s ago<span class="o">)</span>, rekeying <span class="k">in </span>107 seconds
+    trap-any<span class="o">{</span>6<span class="o">}</span>:   192.168.1.120/32 <span class="o">===</span> 192.168.1.121/32
+root@node-0:/etc# 
+</code></pre></div></div>
 <p>Now we can see that the security association is up and active, the process gets triggered when a connection is set up.<br />
 We can verify that ipsec ESP mode is active by using tcpdump</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@node-1:~$ </span>sudo tcpdump -i any -v esp
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sam@node-1:~<span class="nv">$ </span><span class="nb">sudo </span>tcpdump <span class="nt">-i</span> any <span class="nt">-v</span> esp
 tcpdump: listening on any, link-type LINUX_SLL <span class="o">(</span>Linux cooked<span class="o">)</span>, capture size 262144 bytes
-21:40:57.578499 IP <span class="o">(</span>tos 0x0, ttl 64, id 24042, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
-    192.168.1.120 &gt; 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xccbce565,seq<span class="o">=</span>0x7<span class="o">)</span>, length 152
-21:40:57.578982 IP <span class="o">(</span>tos 0x0, ttl 64, id 24042, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
-    192.168.1.120 &gt; 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xccbce565,seq<span class="o">=</span>0x7<span class="o">)</span>, length 152
-21:40:57.580040 IP <span class="o">(</span>tos 0x0, ttl 64, id 59734, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
-    192.168.1.121 &gt; 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xcf3e6d65,seq<span class="o">=</span>0x8<span class="o">)</span>, length 152
-21:40:57.580396 IP <span class="o">(</span>tos 0x0, ttl 64, id 59734, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
-    192.168.1.121 &gt; 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xcf3e6d65,seq<span class="o">=</span>0x8<span class="o">)</span>, length 152
-21:40:58.579856 IP <span class="o">(</span>tos 0x0, ttl 64, id 24160, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
-    192.168.1.120 &gt; 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xccbce565,seq<span class="o">=</span>0x8<span class="o">)</span>, length 152
-21:40:58.579856 IP <span class="o">(</span>tos 0x0, ttl 64, id 24160, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
-    192.168.1.120 &gt; 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xccbce565,seq<span class="o">=</span>0x8<span class="o">)</span>, length 152
-21:40:58.580017 IP <span class="o">(</span>tos 0x0, ttl 64, id 59881, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
-    192.168.1.121 &gt; 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xcf3e6d65,seq<span class="o">=</span>0x9<span class="o">)</span>, length 152
-21:40:58.580022 IP <span class="o">(</span>tos 0x0, ttl 64, id 59881, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
-    192.168.1.121 &gt; 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xcf3e6d65,seq<span class="o">=</span>0x9<span class="o">)</span>, length 152
-21:40:59.581648 IP <span class="o">(</span>tos 0x0, ttl 64, id 24241, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
-    192.168.1.120 &gt; 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xccbce565,seq<span class="o">=</span>0x9<span class="o">)</span>, length 152
-21:40:59.581648 IP <span class="o">(</span>tos 0x0, ttl 64, id 24241, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
-    192.168.1.120 &gt; 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xccbce565,seq<span class="o">=</span>0x9<span class="o">)</span>, length 152
-21:40:59.581781 IP <span class="o">(</span>tos 0x0, ttl 64, id 59918, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
-    192.168.1.121 &gt; 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xcf3e6d65,seq<span class="o">=</span>0xa<span class="o">)</span>, length 152
-</code></pre>
-</div>
+21:40:57.578499 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>24042, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
+    192.168.1.120 <span class="o">&gt;</span> 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xccbce565,seq<span class="o">=</span>0x7<span class="o">)</span>, length 152
+21:40:57.578982 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>24042, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
+    192.168.1.120 <span class="o">&gt;</span> 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xccbce565,seq<span class="o">=</span>0x7<span class="o">)</span>, length 152
+21:40:57.580040 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>59734, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
+    192.168.1.121 <span class="o">&gt;</span> 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xcf3e6d65,seq<span class="o">=</span>0x8<span class="o">)</span>, length 152
+21:40:57.580396 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>59734, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
+    192.168.1.121 <span class="o">&gt;</span> 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xcf3e6d65,seq<span class="o">=</span>0x8<span class="o">)</span>, length 152
+21:40:58.579856 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>24160, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
+    192.168.1.120 <span class="o">&gt;</span> 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xccbce565,seq<span class="o">=</span>0x8<span class="o">)</span>, length 152
+21:40:58.579856 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>24160, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
+    192.168.1.120 <span class="o">&gt;</span> 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xccbce565,seq<span class="o">=</span>0x8<span class="o">)</span>, length 152
+21:40:58.580017 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>59881, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
+    192.168.1.121 <span class="o">&gt;</span> 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xcf3e6d65,seq<span class="o">=</span>0x9<span class="o">)</span>, length 152
+21:40:58.580022 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>59881, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
+    192.168.1.121 <span class="o">&gt;</span> 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xcf3e6d65,seq<span class="o">=</span>0x9<span class="o">)</span>, length 152
+21:40:59.581648 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>24241, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
+    192.168.1.120 <span class="o">&gt;</span> 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xccbce565,seq<span class="o">=</span>0x9<span class="o">)</span>, length 152
+21:40:59.581648 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>24241, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
+    192.168.1.120 <span class="o">&gt;</span> 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xccbce565,seq<span class="o">=</span>0x9<span class="o">)</span>, length 152
+21:40:59.581781 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>59918, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 172<span class="o">)</span>
+    192.168.1.121 <span class="o">&gt;</span> 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0xcf3e6d65,seq<span class="o">=</span>0xa<span class="o">)</span>, length 152
+</code></pre></div></div>
 
 <h2 id="references">References</h2>
 <ol>

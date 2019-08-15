@@ -203,40 +203,38 @@
 <h2 id="installation-and-configuration">Installation and Configuration</h2>
 <p>First step is to install and activate IPoP on the hosts. Once done, make sure that the hosts can connect with each other over IPoP overlay. The following steps detail the process of installing additional packages.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># create gateway bridge</span>
-sudo ovs-vsctl add-br GRE-BR
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># create gateway bridge</span>
+<span class="nb">sudo </span>ovs-vsctl add-br GRE-BR
 <span class="c"># create a GRE tunnel with remote endpoint as IPoP address of the remote peer (192.168.1.121).</span>
-sudo ovs-vsctl add-port GRE-BR gre1 -- <span class="nb">set </span>interface gre1 <span class="nb">type</span><span class="o">=</span>gre options:remote_ip<span class="o">=</span>192.168.1.121
+<span class="nb">sudo </span>ovs-vsctl add-port GRE-BR gre1 <span class="nt">--</span> <span class="nb">set </span>interface gre1 <span class="nb">type</span><span class="o">=</span>gre options:remote_ip<span class="o">=</span>192.168.1.121
 <span class="c"># create a network namespace named D1</span>
-sudo ip netns add D1
+<span class="nb">sudo </span>ip netns add D1
 <span class="c"># create a veth pair</span>
-sudo ip link add veth0 <span class="nb">type </span>veth peer name veth1
+<span class="nb">sudo </span>ip <span class="nb">link </span>add veth0 <span class="nb">type </span>veth peer name veth1
 <span class="c"># assign one end of veth pair to namespace D1</span>
-sudo ip link <span class="nb">set </span>veth1 netns D1
+<span class="nb">sudo </span>ip <span class="nb">link set </span>veth1 netns D1
 <span class="c"># configure the veth endpoint in namespace D1 with a IP address</span>
-sudo ip netns <span class="nb">exec </span>D1 ifconfig veth1 10.10.10.100/24 up
+<span class="nb">sudo </span>ip netns <span class="nb">exec </span>D1 ifconfig veth1 10.10.10.100/24 up
 <span class="c"># Bring up the veth interface in namespace UP</span>
-sudo ip netns <span class="nb">exec </span>D1 ip link <span class="nb">set </span>veth1 up
+<span class="nb">sudo </span>ip netns <span class="nb">exec </span>D1 ip <span class="nb">link set </span>veth1 up
 <span class="c"># Attach veth interface on host to gateway bridge</span>
-sudo ovs-vsctl add-port GRE-BR veth0
+<span class="nb">sudo </span>ovs-vsctl add-port GRE-BR veth0
 <span class="c"># Bring up the veth interface in host UP</span>
-sudo ip link <span class="nb">set </span>veth0 up
-</code></pre>
-</div>
+<span class="nb">sudo </span>ip <span class="nb">link set </span>veth0 up
+</code></pre></div></div>
 <p>Repeat similar process on the second host, assuming IPoP endpoint on the host is 192.168.1.121.</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo ovs-vsctl add-br GRE-BR
-sudo ovs-vsctl add-port GRE-BR gre1 -- <span class="nb">set </span>interface gre1 <span class="nb">type</span><span class="o">=</span>gre options:remote_ip<span class="o">=</span>192.168.1.120
-sudo ip netns add D2
-sudo ip link add veth0 <span class="nb">type </span>veth peer name veth1
-sudo ip link <span class="nb">set </span>veth1 netns D2
-sudo ip netns <span class="nb">exec </span>D2 ifconfig veth1 10.10.10.101/24 up
-sudo ip netns <span class="nb">exec </span>D2 ip link <span class="nb">set </span>veth1 up
-sudo ovs-vsctl add-port GRE-BR veth0
-sudo ip link <span class="nb">set </span>veth0 up
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ovs-vsctl add-br GRE-BR
+<span class="nb">sudo </span>ovs-vsctl add-port GRE-BR gre1 <span class="nt">--</span> <span class="nb">set </span>interface gre1 <span class="nb">type</span><span class="o">=</span>gre options:remote_ip<span class="o">=</span>192.168.1.120
+<span class="nb">sudo </span>ip netns add D2
+<span class="nb">sudo </span>ip <span class="nb">link </span>add veth0 <span class="nb">type </span>veth peer name veth1
+<span class="nb">sudo </span>ip <span class="nb">link set </span>veth1 netns D2
+<span class="nb">sudo </span>ip netns <span class="nb">exec </span>D2 ifconfig veth1 10.10.10.101/24 up
+<span class="nb">sudo </span>ip netns <span class="nb">exec </span>D2 ip <span class="nb">link set </span>veth1 up
+<span class="nb">sudo </span>ovs-vsctl add-port GRE-BR veth0
+<span class="nb">sudo </span>ip <span class="nb">link set </span>veth0 up
+</code></pre></div></div>
 <p>Now verify connectivity between the network namespaces.</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@node-0:~$ </span>sudo ip netns <span class="nb">exec </span>D1 ping 10.10.10.101
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sam@node-0:~<span class="nv">$ </span><span class="nb">sudo </span>ip netns <span class="nb">exec </span>D1 ping 10.10.10.101
 PING 10.10.10.101 <span class="o">(</span>10.10.10.101<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
 64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>3 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>3.09 ms
 64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>4 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>2.43 ms
@@ -245,150 +243,134 @@ PING 10.10.10.101 <span class="o">(</span>10.10.10.101<span class="o">)</span> 5
 64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>7 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>2.34 ms
 64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>8 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>2.29 ms
 64 bytes from 10.10.10.101: <span class="nv">icmp_seq</span><span class="o">=</span>9 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>2.32 ms
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>If this step is successful proceed with installation and configuration of Racoon framework on the hosts.</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo apt-get install racoon ipsec-tools
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>racoon ipsec-tools
+</code></pre></div></div>
 <p>Before proceeding further we will need to create keys and certificates for our hosts.</p>
 
 <h2 id="creating-certificates">Creating certificates</h2>
 <p>Root key</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code> openssl genrsa -out rootCA.key 2048
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> openssl genrsa <span class="nt">-out</span> rootCA.key 2048
+</code></pre></div></div>
 <p>Root certificate</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>openssl req -x509 -new -nodes -key rootCA.key -days 1024 -out rootCA.pem
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl req <span class="nt">-x509</span> <span class="nt">-new</span> <span class="nt">-nodes</span> <span class="nt">-key</span> rootCA.key <span class="nt">-days</span> 1024 <span class="nt">-out</span> rootCA.pem
+</code></pre></div></div>
 <p>Once we have rootCA and rootCA-key, we can attest certificates for peers.<br />
 create a private key for the peer.</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>openssl genrsa -out key.pem 2048
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl genrsa <span class="nt">-out</span> key.pem 2048
+</code></pre></div></div>
 <p>create a certificate signing request.</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>openssl req -new -key key.pem -out device.csr
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl req <span class="nt">-new</span> <span class="nt">-key</span> key.pem <span class="nt">-out</span> device.csr
+</code></pre></div></div>
 <p>Point to be noted– The CN (Common Name) should be your public IP endpoint, or your DNS Hostname. 
 The entity owning the rootCA can than service this request and create a signed certificate</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>openssl x509 -req -in device.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out cert.pem -days 500
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl x509 <span class="nt">-req</span> <span class="nt">-in</span> device.csr <span class="nt">-CA</span> rootCA.pem <span class="nt">-CAkey</span> rootCA.key <span class="nt">-CAcreateserial</span> <span class="nt">-out</span> cert.pem <span class="nt">-days</span> 500
+</code></pre></div></div>
 <p>Now place the rootCA.pem, peer certificate and key in “/etc/racoon/certs”, create the path if it does not exist. It must look like:</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@node-0:/etc/racoon/certs$ </span>ls
-cert.pem  device.csr  key.pem  rootCA.pem
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sam@node-0:/etc/racoon/certs<span class="nv">$ </span><span class="nb">ls
+</span>cert.pem  device.csr  key.pem  rootCA.pem
+</code></pre></div></div>
 <p>Next step is to configure racoon by making changes to racoon.conf file found in /etc/racoon</p>
 
 <h2 id="racoonconf">racoon.conf</h2>
 <p>On host-1</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>path pre_shared_key <span class="s2">"/etc/racoon/psk.txt"</span>;
-path certificate <span class="s2">"/etc/racoon/certs"</span>;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>path pre_shared_key <span class="s2">"/etc/racoon/psk.txt"</span><span class="p">;</span>
+path certificate <span class="s2">"/etc/racoon/certs"</span><span class="p">;</span>
 
 listen
 <span class="o">{</span>   <span class="c"># public IP endpoint for self.</span>
-    isakmp 192.168.1.120 <span class="o">[</span>500];
-    isakmp_natt 192.168.1.120 <span class="o">[</span>4500];
+    isakmp 192.168.1.120 <span class="o">[</span>500]<span class="p">;</span>
+    isakmp_natt 192.168.1.120 <span class="o">[</span>4500]<span class="p">;</span>
 <span class="o">}</span>
 
 remote anonymous <span class="o">{</span>
         proposal <span class="o">{</span>
-                encryption_algorithm 3des;
-                hash_algorithm sha1;
-                authentication_method rsasig;
-        dh_group modp1024;
+                encryption_algorithm 3des<span class="p">;</span>
+                hash_algorithm sha1<span class="p">;</span>
+                authentication_method rsasig<span class="p">;</span>
+        dh_group modp1024<span class="p">;</span>
         <span class="o">}</span>
-        certificate_type x509 <span class="s2">"cert.pem"</span> <span class="s2">"key.pem"</span>;
-        ca_type x509 <span class="s2">"rootCA.pem"</span> ;
-        my_identifier asn1dn ;
-        verify_identifier off;
-        exchange_mode main;
-        nat_traversal on;
+        certificate_type x509 <span class="s2">"cert.pem"</span> <span class="s2">"key.pem"</span><span class="p">;</span>
+        ca_type x509 <span class="s2">"rootCA.pem"</span> <span class="p">;</span>
+        my_identifier asn1dn <span class="p">;</span>
+        verify_identifier off<span class="p">;</span>
+        exchange_mode main<span class="p">;</span>
+        nat_traversal on<span class="p">;</span>
 <span class="o">}</span>
 sainfo anonymous <span class="o">{</span>
-     authentication_algorithm hmac_sha1;
-     compression_algorithm deflate;
-        pfs_group modp1024;
-        encryption_algorithm 3des;
+     authentication_algorithm hmac_sha1<span class="p">;</span>
+     compression_algorithm deflate<span class="p">;</span>
+        pfs_group modp1024<span class="p">;</span>
+        encryption_algorithm 3des<span class="p">;</span>
 <span class="o">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>On host-2</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>path pre_shared_key <span class="s2">"/etc/racoon/psk.txt"</span>;
-path certificate <span class="s2">"/etc/racoon/certs"</span>;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>path pre_shared_key <span class="s2">"/etc/racoon/psk.txt"</span><span class="p">;</span>
+path certificate <span class="s2">"/etc/racoon/certs"</span><span class="p">;</span>
 
 listen
 <span class="o">{</span>   <span class="c"># public IP endpoint for self.</span>
-    isakmp 192.168.1.121 <span class="o">[</span>500];
-    isakmp_natt 192.168.1.121 <span class="o">[</span>4500];
+    isakmp 192.168.1.121 <span class="o">[</span>500]<span class="p">;</span>
+    isakmp_natt 192.168.1.121 <span class="o">[</span>4500]<span class="p">;</span>
 <span class="o">}</span>
 
 remote anonymous <span class="o">{</span>
         proposal <span class="o">{</span>
-                encryption_algorithm 3des;
-                hash_algorithm sha1;
-                authentication_method rsasig;
-        dh_group modp1024;
+                encryption_algorithm 3des<span class="p">;</span>
+                hash_algorithm sha1<span class="p">;</span>
+                authentication_method rsasig<span class="p">;</span>
+        dh_group modp1024<span class="p">;</span>
         <span class="o">}</span>
-        certificate_type x509 <span class="s2">"cert.pem"</span> <span class="s2">"key.pem"</span>;
-        ca_type x509 <span class="s2">"rootCA.pem"</span> ;
-        my_identifier asn1dn ;
-        verify_identifier off;
-        exchange_mode main;
-        nat_traversal on;
+        certificate_type x509 <span class="s2">"cert.pem"</span> <span class="s2">"key.pem"</span><span class="p">;</span>
+        ca_type x509 <span class="s2">"rootCA.pem"</span> <span class="p">;</span>
+        my_identifier asn1dn <span class="p">;</span>
+        verify_identifier off<span class="p">;</span>
+        exchange_mode main<span class="p">;</span>
+        nat_traversal on<span class="p">;</span>
 <span class="o">}</span>
 sainfo anonymous <span class="o">{</span>
-     authentication_algorithm hmac_sha1;
-     compression_algorithm deflate;
-        pfs_group modp1024;
-        encryption_algorithm 3des;
+     authentication_algorithm hmac_sha1<span class="p">;</span>
+     compression_algorithm deflate<span class="p">;</span>
+        pfs_group modp1024<span class="p">;</span>
+        encryption_algorithm 3des<span class="p">;</span>
 <span class="o">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>To do manual security-association management, the script below script can be used. The controller will otherwise automatically take care of it.</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#! /bin/bash</span>
-setkey -c <span class="sh">&lt;&lt; EOF
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#! /bin/bash</span>
+setkey <span class="nt">-c</span> <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh">
 #flush ;
 #spdflush ;
 spdadd 192.168.1.0/24 192.168.1.0/24 any -P out ipsec esp/transport//require ;
 spdadd 192.168.1.0/24 192.168.1.0/24 any -P in  ipsec esp/transport//require ;
-EOF
-</span></code></pre>
-</div>
+</span><span class="no">EOF
+</span></code></pre></div></div>
 <p>Once the racoon daemon is running, you can use execute the script to add security associations. For “out” rule first field is local address range, followed by remote address range on which IPsec is to be triggered. For “in” the first field is remote followed by local. We use ESP-Transport mode. The above file should have permissions as shown below.</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>-rwxr-xr-x 1 root root             213 Oct 18 14:21 ipsec.sh
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">-rwxr-xr-x</span> 1 root root             213 Oct 18 14:21 ipsec.sh
+</code></pre></div></div>
 <h2 id="assumptions">Assumptions</h2>
 <p>IPsec racoon daemon is already running, ensure that no un-wanted security associations are active. This can be done on command line by using</p>
 
 <p>Start racoon in Foreground</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code> /usr/sbin/racoon -F
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> /usr/sbin/racoon <span class="nt">-F</span>
+</code></pre></div></div>
 <p>OR <br />
 Start racoon in background.</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo /etc/init.d/racoon start
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo</span> /etc/init.d/racoon start
+</code></pre></div></div>
 <p>To check current security associations.</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code> setkey -DP
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> setkey <span class="nt">-DP</span>
+</code></pre></div></div>
 <p>In case you made a mistake while setting up configuration, you can purge the policies by using</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"spdflush; flush;"</span> | sudo setkey -c
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"spdflush; flush;"</span> | <span class="nb">sudo </span>setkey <span class="nt">-c</span>
+</code></pre></div></div>
 <p>The below IPsec logs depict successful set up of IPsec</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@sam-T520:/etc/racoon$ </span>sudo /usr/sbin/racoon -F
-<span class="o">[</span>sudo] password <span class="k">for </span>sam: 
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sam@sam-T520:/etc/racoon<span class="nv">$ </span><span class="nb">sudo</span> /usr/sbin/racoon <span class="nt">-F</span>
+<span class="o">[</span><span class="nb">sudo</span><span class="o">]</span> password <span class="k">for </span>sam: 
 Foreground mode.
-<span class="gp">sam@node-0:~$ </span>sudo /usr/sbin/racoon -F
+sam@node-0:~<span class="nv">$ </span><span class="nb">sudo</span> /usr/sbin/racoon <span class="nt">-F</span>
 Foreground mode.
 2018-10-18 14:22:43: INFO: @<span class="o">(</span><span class="c">#)ipsec-tools 0.8.2 (http://ipsec-tools.sourceforge.net)</span>
 2018-10-18 14:22:43: INFO: @<span class="o">(</span><span class="c">#)This product linked OpenSSL 1.0.2n  7 Dec 2017 (http://www.openssl.org/)</span>
@@ -399,7 +381,7 @@ Foreground mode.
 2018-10-18 14:22:43: INFO: 192.168.1.120[500] used as isakmp port <span class="o">(</span><span class="nv">fd</span><span class="o">=</span>8<span class="o">)</span>
 2018-10-18 14:25:02: INFO: unsupported PF_KEY message REGISTER
 2018-10-18 14:26:33: INFO: IPsec-SA request <span class="k">for </span>192.168.1.121 queued due to no phase1 found.
-2018-10-18 14:26:33: INFO: initiate new phase 1 negotiation: 192.168.1.120[500]&lt;<span class="o">=</span>&gt;192.168.1.121[500]
+2018-10-18 14:26:33: INFO: initiate new phase 1 negotiation: 192.168.1.120[500]&lt;<span class="o">=&gt;</span>192.168.1.121[500]
 2018-10-18 14:26:33: INFO: begin Identity Protection mode.
 2018-10-18 14:26:33: INFO: received Vendor ID: RFC 3947
 2018-10-18 14:26:33: INFO: received Vendor ID: DPD
@@ -416,95 +398,92 @@ Foreground mode.
 2018-10-18 14:26:33: WARNING: unable to get certificate CRL<span class="o">(</span>3<span class="o">)</span> at depth:1 SubjectName:/C<span class="o">=</span>US/ST<span class="o">=</span>Florida/L<span class="o">=</span>gainesville/O<span class="o">=</span>IPOP/OU<span class="o">=</span>IPOP/CN<span class="o">=</span>IPOP
 2018-10-18 14:26:33: INFO: ISAKMP-SA established 192.168.1.120[500]-192.168.1.121[500] spi:b0c0a9fc47480115:21942c95b1bbfdbe
 2018-10-18 14:26:33: <span class="o">[</span>192.168.1.121] INFO: received INITIAL-CONTACT
-2018-10-18 14:26:34: INFO: initiate new phase 2 negotiation: 192.168.1.120[500]&lt;<span class="o">=</span>&gt;192.168.1.121[500]
+2018-10-18 14:26:34: INFO: initiate new phase 2 negotiation: 192.168.1.120[500]&lt;<span class="o">=&gt;</span>192.168.1.121[500]
 2018-10-18 14:26:34: INFO: IPsec-SA established: ESP/Transport 192.168.1.120[500]-&gt;192.168.1.121[500] <span class="nv">spi</span><span class="o">=</span>252339908<span class="o">(</span>0xf0a66c4<span class="o">)</span>
 2018-10-18 14:26:34: INFO: IPsec-SA established: ESP/Transport 192.168.1.120[500]-&gt;192.168.1.121[500] <span class="nv">spi</span><span class="o">=</span>212878123<span class="o">(</span>0xcb0432b<span class="o">)</span>
 
 
 
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>Note both the   “2018-10-18 14:26:34: INFO: IPsec-SA established: ESP/Transport 192.168.1.120[500]-&gt;192.168.1.121[500] spi=252339908(0xf0a66c4)” which denotes successful phase1 and “2018-10-18 14:26:34: INFO: IPsec-SA established: ESP/Transport 192.168.1.120[500]-&gt;192.168.1.121[500] spi=212878123(0xcb0432b)” phase2 stages respectively.</p>
 
 <p>tcp-dump output when sending ICMP messages between network namespaces as captured on the Linux node hosting namespaces.</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@node-1:~$ </span>sudo tcpdump -ni any -v esp
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sam@node-1:~<span class="nv">$ </span><span class="nb">sudo </span>tcpdump <span class="nt">-ni</span> any <span class="nt">-v</span> esp
 tcpdump: listening on any, link-type LINUX_SLL <span class="o">(</span>Linux cooked<span class="o">)</span>, capture size 262144 bytes
-14:27:26.317303 IP <span class="o">(</span>tos 0x0, ttl 64, id 2328, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
-    192.168.1.120 &gt; 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0cb0432b,seq<span class="o">=</span>0x38<span class="o">)</span>, length 132
-14:27:26.317303 IP <span class="o">(</span>tos 0x0, ttl 64, id 2328, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
-    192.168.1.120 &gt; 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0cb0432b,seq<span class="o">=</span>0x38<span class="o">)</span>, length 132
-14:27:26.317462 IP <span class="o">(</span>tos 0x0, ttl 64, id 21351, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
-    192.168.1.121 &gt; 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0f0a66c4,seq<span class="o">=</span>0x38<span class="o">)</span>, length 132
-14:27:26.317467 IP <span class="o">(</span>tos 0x0, ttl 64, id 21351, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
-    192.168.1.121 &gt; 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0f0a66c4,seq<span class="o">=</span>0x38<span class="o">)</span>, length 132
-14:27:27.318861 IP <span class="o">(</span>tos 0x0, ttl 64, id 2426, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
-    192.168.1.120 &gt; 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0cb0432b,seq<span class="o">=</span>0x39<span class="o">)</span>, length 132
-14:27:27.318861 IP <span class="o">(</span>tos 0x0, ttl 64, id 2426, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
-    192.168.1.120 &gt; 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0cb0432b,seq<span class="o">=</span>0x39<span class="o">)</span>, length 132
-14:27:27.319004 IP <span class="o">(</span>tos 0x0, ttl 64, id 21517, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
-    192.168.1.121 &gt; 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0f0a66c4,seq<span class="o">=</span>0x39<span class="o">)</span>, length 132
-14:27:27.319010 IP <span class="o">(</span>tos 0x0, ttl 64, id 21517, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
-    192.168.1.121 &gt; 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0f0a66c4,seq<span class="o">=</span>0x39<span class="o">)</span>, length 132
-14:27:28.320513 IP <span class="o">(</span>tos 0x0, ttl 64, id 2574, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
-    192.168.1.120 &gt; 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0cb0432b,seq<span class="o">=</span>0x3a<span class="o">)</span>, length 132
-14:27:28.320513 IP <span class="o">(</span>tos 0x0, ttl 64, id 2574, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
-    192.168.1.120 &gt; 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0cb0432b,seq<span class="o">=</span>0x3a<span class="o">)</span>, length 132
-14:27:28.320652 IP <span class="o">(</span>tos 0x0, ttl 64, id 21618, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
-    192.168.1.121 &gt; 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0f0a66c4,seq<span class="o">=</span>0x3a<span class="o">)</span>, length 132
-14:27:28.320657 IP <span class="o">(</span>tos 0x0, ttl 64, id 21618, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
-    192.168.1.121 &gt; 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0f0a66c4,seq<span class="o">=</span>0x3a<span class="o">)</span>, length 132
-14:27:29.322088 IP <span class="o">(</span>tos 0x0, ttl 64, id 2677, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
-    192.168.1.120 &gt; 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0cb0432b,seq<span class="o">=</span>0x3b<span class="o">)</span>, length 132
+14:27:26.317303 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>2328, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
+    192.168.1.120 <span class="o">&gt;</span> 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0cb0432b,seq<span class="o">=</span>0x38<span class="o">)</span>, length 132
+14:27:26.317303 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>2328, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
+    192.168.1.120 <span class="o">&gt;</span> 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0cb0432b,seq<span class="o">=</span>0x38<span class="o">)</span>, length 132
+14:27:26.317462 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>21351, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
+    192.168.1.121 <span class="o">&gt;</span> 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0f0a66c4,seq<span class="o">=</span>0x38<span class="o">)</span>, length 132
+14:27:26.317467 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>21351, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
+    192.168.1.121 <span class="o">&gt;</span> 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0f0a66c4,seq<span class="o">=</span>0x38<span class="o">)</span>, length 132
+14:27:27.318861 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>2426, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
+    192.168.1.120 <span class="o">&gt;</span> 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0cb0432b,seq<span class="o">=</span>0x39<span class="o">)</span>, length 132
+14:27:27.318861 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>2426, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
+    192.168.1.120 <span class="o">&gt;</span> 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0cb0432b,seq<span class="o">=</span>0x39<span class="o">)</span>, length 132
+14:27:27.319004 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>21517, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
+    192.168.1.121 <span class="o">&gt;</span> 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0f0a66c4,seq<span class="o">=</span>0x39<span class="o">)</span>, length 132
+14:27:27.319010 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>21517, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
+    192.168.1.121 <span class="o">&gt;</span> 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0f0a66c4,seq<span class="o">=</span>0x39<span class="o">)</span>, length 132
+14:27:28.320513 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>2574, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
+    192.168.1.120 <span class="o">&gt;</span> 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0cb0432b,seq<span class="o">=</span>0x3a<span class="o">)</span>, length 132
+14:27:28.320513 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>2574, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
+    192.168.1.120 <span class="o">&gt;</span> 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0cb0432b,seq<span class="o">=</span>0x3a<span class="o">)</span>, length 132
+14:27:28.320652 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>21618, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
+    192.168.1.121 <span class="o">&gt;</span> 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0f0a66c4,seq<span class="o">=</span>0x3a<span class="o">)</span>, length 132
+14:27:28.320657 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>21618, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
+    192.168.1.121 <span class="o">&gt;</span> 192.168.1.120: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0f0a66c4,seq<span class="o">=</span>0x3a<span class="o">)</span>, length 132
+14:27:29.322088 IP <span class="o">(</span>tos 0x0, ttl 64, <span class="nb">id </span>2677, offset 0, flags <span class="o">[</span>DF], proto ESP <span class="o">(</span>50<span class="o">)</span>, length 152<span class="o">)</span>
+    192.168.1.120 <span class="o">&gt;</span> 192.168.1.121: ESP<span class="o">(</span><span class="nv">spi</span><span class="o">=</span>0x0cb0432b,seq<span class="o">=</span>0x3b<span class="o">)</span>, length 132
 
 
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>Check Security associations–</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@node-1:~$ </span>sudo setkey -DP
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sam@node-1:~<span class="nv">$ </span><span class="nb">sudo </span>setkey <span class="nt">-DP</span>
 192.168.1.0/24[any] 192.168.1.0/24[any] 255
 	fwd prio def ipsec
 	esp/transport//require
 	created: Oct 18 14:25:10 2018  lastused:                     
 	lifetime: 0<span class="o">(</span>s<span class="o">)</span> validtime: 0<span class="o">(</span>s<span class="o">)</span>
-	<span class="nv">spid</span><span class="o">=</span>370 <span class="nv">seq</span><span class="o">=</span>1 <span class="nv">pid</span><span class="o">=</span>24623
+	<span class="nv">spid</span><span class="o">=</span>370 <span class="nb">seq</span><span class="o">=</span>1 <span class="nv">pid</span><span class="o">=</span>24623
 	<span class="nv">refcnt</span><span class="o">=</span>1
 192.168.1.0/24[any] 192.168.1.0/24[any] 255
 	<span class="k">in </span>prio def ipsec
 	esp/transport//require
 	created: Oct 18 14:25:10 2018  lastused: Oct 18 15:00:25 2018
 	lifetime: 0<span class="o">(</span>s<span class="o">)</span> validtime: 0<span class="o">(</span>s<span class="o">)</span>
-	<span class="nv">spid</span><span class="o">=</span>360 <span class="nv">seq</span><span class="o">=</span>2 <span class="nv">pid</span><span class="o">=</span>24623
+	<span class="nv">spid</span><span class="o">=</span>360 <span class="nb">seq</span><span class="o">=</span>2 <span class="nv">pid</span><span class="o">=</span>24623
 	<span class="nv">refcnt</span><span class="o">=</span>1
 192.168.1.0/24[any] 192.168.1.0/24[any] 255
 	out prio def ipsec
 	esp/transport//require
 	created: Oct 18 14:25:10 2018  lastused: Oct 18 14:45:08 2018
 	lifetime: 0<span class="o">(</span>s<span class="o">)</span> validtime: 0<span class="o">(</span>s<span class="o">)</span>
-	<span class="nv">spid</span><span class="o">=</span>353 <span class="nv">seq</span><span class="o">=</span>3 <span class="nv">pid</span><span class="o">=</span>24623
+	<span class="nv">spid</span><span class="o">=</span>353 <span class="nb">seq</span><span class="o">=</span>3 <span class="nv">pid</span><span class="o">=</span>24623
 	<span class="nv">refcnt</span><span class="o">=</span>4
 <span class="o">(</span>per-socket policy<span class="o">)</span> 
 	out<span class="o">(</span>socket<span class="o">)</span> none
 	created: Oct 18 14:22:47 2018  lastused: Oct 18 14:26:34 2018
 	lifetime: 0<span class="o">(</span>s<span class="o">)</span> validtime: 0<span class="o">(</span>s<span class="o">)</span>
-	<span class="nv">spid</span><span class="o">=</span>348 <span class="nv">seq</span><span class="o">=</span>4 <span class="nv">pid</span><span class="o">=</span>24623
+	<span class="nv">spid</span><span class="o">=</span>348 <span class="nb">seq</span><span class="o">=</span>4 <span class="nv">pid</span><span class="o">=</span>24623
 	<span class="nv">refcnt</span><span class="o">=</span>1
 <span class="o">(</span>per-socket policy<span class="o">)</span> 
 	<span class="k">in</span><span class="o">(</span>socket<span class="o">)</span> none
 	created: Oct 18 14:22:47 2018  lastused: Oct 18 14:26:34 2018
 	lifetime: 0<span class="o">(</span>s<span class="o">)</span> validtime: 0<span class="o">(</span>s<span class="o">)</span>
-	<span class="nv">spid</span><span class="o">=</span>339 <span class="nv">seq</span><span class="o">=</span>5 <span class="nv">pid</span><span class="o">=</span>24623
+	<span class="nv">spid</span><span class="o">=</span>339 <span class="nb">seq</span><span class="o">=</span>5 <span class="nv">pid</span><span class="o">=</span>24623
 	<span class="nv">refcnt</span><span class="o">=</span>1
 <span class="o">(</span>per-socket policy<span class="o">)</span> 
 	out<span class="o">(</span>socket<span class="o">)</span> none
 	created: Oct 18 14:22:47 2018  lastused:                     
 	lifetime: 0<span class="o">(</span>s<span class="o">)</span> validtime: 0<span class="o">(</span>s<span class="o">)</span>
-	<span class="nv">spid</span><span class="o">=</span>332 <span class="nv">seq</span><span class="o">=</span>6 <span class="nv">pid</span><span class="o">=</span>24623
+	<span class="nv">spid</span><span class="o">=</span>332 <span class="nb">seq</span><span class="o">=</span>6 <span class="nv">pid</span><span class="o">=</span>24623
 	<span class="nv">refcnt</span><span class="o">=</span>1
 
-<span class="gp">sam@sam-T520:/etc/racoon$ </span>
+sam@sam-T520:/etc/racoon<span class="nv">$ </span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>##References:</p>
 <ol>

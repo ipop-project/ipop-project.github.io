@@ -226,20 +226,19 @@
 
 <ol>
   <li>Here is a sample <code class="highlighter-rouge">.travis.yml</code> configuration file for ipop-tincan repository:
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>  language: cpp
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  language: cpp
   compiler:
   - g++
   os:
   - linux
   before_install:
-  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
-  - sudo apt-get update -qq
-  install:
-  - sudo apt-get install g++-4.8 -y
-  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 50
+  - <span class="nb">sudo </span>add-apt-repository ppa:ubuntu-toolchain-r/test <span class="nt">-y</span>
+  - <span class="nb">sudo </span>apt-get update <span class="nt">-qq</span>
+  <span class="nb">install</span>:
+  - <span class="nb">sudo </span>apt-get <span class="nb">install </span>g++-4.8 <span class="nt">-y</span>
+  - <span class="nb">sudo </span>update-alternatives <span class="nt">--install</span> /usr/bin/g++ g++ /usr/bin/g++-4.8 50
   script: make
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <p><strong>Tip:</strong> <em>Because the g++ version(4.6) on Travis CI is lack of support for c++11, so we need to install a newer version g++(4.8+) to build the code.</em></p>
   </li>
 </ol>

@@ -197,44 +197,35 @@
         </aside>
 
         <h1 id="installation">Installation</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo apt-get install openvswitch-switch
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>openvswitch-switch
+</code></pre></div></div>
 <h1 id="check-status">Check status</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo ovs-vsctl show
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ovs-vsctl show
+</code></pre></div></div>
 <h1 id="create-a-bridge">Create a bridge</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo ovs-vsctl add-br &lt;bridge name&gt;
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ovs-vsctl add-br &lt;bridge name&gt;
+</code></pre></div></div>
 <h1 id="delete-a-bridge">Delete a bridge</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo ovs-vsctl del-br &lt;bridge name&gt;  
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ovs-vsctl del-br &lt;bridge name&gt;  
+</code></pre></div></div>
 <h1 id="create-a-virtual-tap-interface">Create a virtual tap interface</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo ip tuntap add mode tap &lt;name of interface&gt;
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ip tuntap add mode tap &lt;name of interface&gt;
+</code></pre></div></div>
 <h1 id="add-ipv4-address-to-tap-interface">Add IPv4 address to tap interface</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo ip addr add &lt;address/subnet&gt; dev &lt;name of interface&gt;  
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ip addr add &lt;address/subnet&gt; dev &lt;name of interface&gt;  
+</code></pre></div></div>
 <h1 id="bring-the-interface-up">Bring the interface up</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo ifconfig &lt;name of interface&gt; up  
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ifconfig &lt;name of interface&gt; up  
+</code></pre></div></div>
 <h1 id="add-interface-to-a-port-on-vswitch">Add interface to a port on Vswitch</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo ovs-vsctl add-port &lt;name of bridge&gt; &lt;name of interface&gt;  
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ovs-vsctl add-port &lt;name of bridge&gt; &lt;name of interface&gt;  
+</code></pre></div></div>
 <h1 id="delete-a-interface-from-port-on-vswitch">Delete a interface from port on Vswitch</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo ovs-vsctl del-port &lt;name of interface&gt;  
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ovs-vsctl del-port &lt;name of interface&gt;  
+</code></pre></div></div>
 
 <h1 id="example-run">Example run</h1>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@ubuntu:~$ </span>sudo apt-get install openvswitch-switch
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sam@ubuntu:~<span class="nv">$ </span><span class="nb">sudo </span>apt-get <span class="nb">install </span>openvswitch-switch
 Reading package lists... Done
 Building dependency tree       
 Reading state information... Done
@@ -244,27 +235,23 @@ The following NEW packages will be installed:
   openvswitch-common openvswitch-switch
 0 upgraded, 2 newly installed, 0 to remove and 545 not upgraded.
 Need to get 1,811 kB of archives.  
-</code></pre>
-</div>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@ubuntu:~$ </span>sudo ovs-vsctl show
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sam@ubuntu:~<span class="nv">$ </span><span class="nb">sudo </span>ovs-vsctl show
 389b9d31-1859-4044-9a8d-a2884367f2a6
     ovs_version: <span class="s2">"2.5.2"</span>
-</code></pre>
-</div>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@ubuntu:~$ </span>sudo ovs-vsctl add-br br-int
-</code></pre>
-</div>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@ubuntu:~$ </span>sudo ovs-vsctl show
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sam@ubuntu:~<span class="nv">$ </span><span class="nb">sudo </span>ovs-vsctl add-br br-int
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sam@ubuntu:~<span class="nv">$ </span><span class="nb">sudo </span>ovs-vsctl show
 389b9d31-1859-4044-9a8d-a2884367f2a6
     Bridge br-int
         Port br-int
             Interface br-int
                 <span class="nb">type</span>: internal
     ovs_version: <span class="s2">"2.5.2"</span>  
-</code></pre>
-</div>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@ubuntu:~$ </span>sudo ip tuntap add mode tap vport1
-<span class="gp">sam@ubuntu:~$ </span>ifconfig -a
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sam@ubuntu:~<span class="nv">$ </span><span class="nb">sudo </span>ip tuntap add mode tap vport1
+sam@ubuntu:~<span class="nv">$ </span>ifconfig <span class="nt">-a</span>
 br-int    Link encap:Ethernet  HWaddr 72:e4:a1:2a:e7:4b  
           BROADCAST MULTICAST  MTU:1500  Metric:1
           RX packets:0 errors:0 dropped:0 overruns:0 frame:0
@@ -303,10 +290,9 @@ vport1    Link encap:Ethernet  HWaddr 1a:9c:76:55:f1:8a
           TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
           collisions:0 txqueuelen:1000 
           RX bytes:0 <span class="o">(</span>0.0 B<span class="o">)</span>  TX bytes:0 <span class="o">(</span>0.0 B<span class="o">)</span>
-</code></pre>
-</div>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@ubuntu:~$ </span>sudo ip addr add 10.10.10.100/24 dev vport1
-<span class="gp">sam@ubuntu:~$ </span>ifconfig -a
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sam@ubuntu:~<span class="nv">$ </span><span class="nb">sudo </span>ip addr add 10.10.10.100/24 dev vport1
+sam@ubuntu:~<span class="nv">$ </span>ifconfig <span class="nt">-a</span>
 br-int    Link encap:Ethernet  HWaddr 72:e4:a1:2a:e7:4b  
           BROADCAST MULTICAST  MTU:1500  Metric:1
           RX packets:0 errors:0 dropped:0 overruns:0 frame:0
@@ -346,16 +332,14 @@ vport1    Link encap:Ethernet  HWaddr 1a:9c:76:55:f1:8a
           TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
           collisions:0 txqueuelen:1000 
           RX bytes:0 <span class="o">(</span>0.0 B<span class="o">)</span>  TX bytes:0 <span class="o">(</span>0.0 B<span class="o">)</span>
-</code></pre>
-</div>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@ubuntu:~$ </span>sudo ifconfig vport1 up
-</code></pre>
-</div>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">sam@ubuntu:~$ </span>sudo ovs-vsctl add-port br-int vport1
-<span class="gp">sam@ubuntu:~$ </span>
-<span class="gp">sam@ubuntu:~$ </span>
-<span class="gp">sam@ubuntu:~$ </span>
-<span class="gp">sam@ubuntu:~$ </span>sudo ovs-vsctl show
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sam@ubuntu:~<span class="nv">$ </span><span class="nb">sudo </span>ifconfig vport1 up
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sam@ubuntu:~<span class="nv">$ </span><span class="nb">sudo </span>ovs-vsctl add-port br-int vport1
+sam@ubuntu:~<span class="nv">$ </span>
+sam@ubuntu:~<span class="nv">$ </span>
+sam@ubuntu:~<span class="nv">$ </span>
+sam@ubuntu:~<span class="nv">$ </span><span class="nb">sudo </span>ovs-vsctl show
 389b9d31-1859-4044-9a8d-a2884367f2a6
     Bridge br-int
         Port br-int
@@ -364,19 +348,18 @@ vport1    Link encap:Ethernet  HWaddr 1a:9c:76:55:f1:8a
         Port <span class="s2">"vport1"</span>
             Interface <span class="s2">"vport1"</span>
     ovs_version: <span class="s2">"2.5.2"</span>
-<span class="gp">sam@ubuntu:~$ </span>
-<span class="gp">sam@ubuntu:~$ </span>sudo ovs-vsctl del-port vport1
-<span class="gp">sam@ubuntu:~$ </span>
-<span class="gp">sam@ubuntu:~$ </span>sudo ovs-vsctl show
+sam@ubuntu:~<span class="nv">$ </span>
+sam@ubuntu:~<span class="nv">$ </span><span class="nb">sudo </span>ovs-vsctl del-port vport1
+sam@ubuntu:~<span class="nv">$ </span>
+sam@ubuntu:~<span class="nv">$ </span><span class="nb">sudo </span>ovs-vsctl show
 389b9d31-1859-4044-9a8d-a2884367f2a6
     Bridge br-int
         Port br-int
             Interface br-int
                 <span class="nb">type</span>: internal
     ovs_version: <span class="s2">"2.5.2"</span>
-<span class="gp">sam@ubuntu:~$ </span>
-</code></pre>
-</div>
+sam@ubuntu:~<span class="nv">$ </span>
+</code></pre></div></div>
 
 
 

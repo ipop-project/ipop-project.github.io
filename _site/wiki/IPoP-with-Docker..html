@@ -189,33 +189,29 @@
         <p>Following the steps given below one would be able to run IPoP inside a docker container utilizing the containers network and process namespace. Provided docker image runs December 2018 release of IPoP in a Ubuntu 16.04 container.</p>
 <ol>
   <li>Create a IPv6 enabled docker network.
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo docker network create --ipv6 --driver<span class="o">=</span>bridge --subnet<span class="o">=</span>172.20.0.0/24 --subnet<span class="o">=</span>2002:ac14:0000::/48 --gateway<span class="o">=</span>172.20.0.1 my_ipv6_bridge
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>docker network create <span class="nt">--ipv6</span> <span class="nt">--driver</span><span class="o">=</span>bridge <span class="nt">--subnet</span><span class="o">=</span>172.20.0.0/24 <span class="nt">--subnet</span><span class="o">=</span>2002:ac14:0000::/48 <span class="nt">--gateway</span><span class="o">=</span>172.20.0.1 my_ipv6_bridge
+</code></pre></div>    </div>
     <p>ensure you do not have any IP conflicts while creating this network.</p>
   </li>
   <li>Create and run a docker container <br />
 We are going to mount a directory on the host inside the container, so that the configuration file can stay on the host, also to enable us to view controller and tincan logs, log directory is also mounted on the host. In the example shown below configuration file on host is at the location “/home/osboxes/dockerfiles/ipop_overlay/configs” which is mounted inside the container. Make sure the configuration file is called “config.json”. For logging to work properly directory for logging  in ipop config file is configured to be like below
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="s2">"Directory"</span>: <span class="s2">"./logs/"</span>,
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"Directory"</span>: <span class="s2">"./logs/"</span>,
+</code></pre></div>    </div>
   </li>
 </ol>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo docker run -ti -d --privileged  -v /home/osboxes/dockerfiles/ipop_overlay/configs:/home/ipop-vpn/config --network my_ipv6_bridge saumitraaditya/ipop_release_dec18_ub16.04:1.2
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>docker run <span class="nt">-ti</span> <span class="nt">-d</span> <span class="nt">--privileged</span>  <span class="nt">-v</span> /home/osboxes/dockerfiles/ipop_overlay/configs:/home/ipop-vpn/config <span class="nt">--network</span> my_ipv6_bridge saumitraaditya/ipop_release_dec18_ub16.04:1.2
+</code></pre></div></div>
 
 <ol>
   <li>Either you can name the container in the previous command and use it for addressing the container or use docker ps to find its containerID
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">osboxes@osboxes:~/dockerfiles$ </span>docker ps -a
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osboxes@osboxes:~/dockerfiles<span class="nv">$ </span>docker ps <span class="nt">-a</span>
 CONTAINER ID        IMAGE                                           COMMAND                  CREATED             STATUS                           PORTS               NAMES
 dec5f3d214a1        saumitraaditya/ipop_release_dec18_ub16.04:1.0   <span class="s2">"./overlay.sh"</span>           43 minutes ago      Up 43 minutes                                        condescending_khayyam
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <p>Here the containerID for desired container is dec5f3d214a1.</p>
   </li>
-  <li>Next we launch a shell inside the container to verify its working.
+  <li>Next we launch a shell inside the container to verify its working.<br />
 ```bash
 osboxes@osboxes:~/dockerfiles$ docker exec -it dec5f3d214a1 /bin/bash
 root@dec5f3d214a1:~# ifconfig -a
@@ -270,7 +266,7 @@ PING 10.245.1.1 (10.245.1.1) 56(84) bytes of data.
 2 packets transmitted, 2 received, 0% packet loss, time 1002ms
 rtt min/avg/max/mdev = 1.629/1.662/1.696/0.052 ms
 root@dec5f3d214a1:~#</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 5. Logs from tincan and controller can be checked on host, by locating the volume location for the container  
 ```bash
 docker inspect dec5f3d214a1 `  
@@ -285,20 +281,18 @@ from the output the relevant snippet is as below
                 "RW": true,
                 "Propagation": ""
             }
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>On the host we will find the logs at the locations “/var/lib/docker/volumes/d70d94be69367a230c9751b56c0a4a103d92f217856cec98551ad42f54a553d3/_data” like below</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">osboxes@osboxes:~/dockerfiles$ </span>sudo su -
-<span class="gp">root@osboxes:~# </span><span class="nb">cd</span> /var/lib/docker/volumes/d70d94be69367a230c9751b56c0a4a103d92f217856cec98551ad42f54a553d3/_data
-<span class="gp">root@osboxes:/var/lib/docker/volumes/d70d94be69367a230c9751b56c0a4a103d92f217856cec98551ad42f54a553d3/_data# </span>ls
-ctrl.log  tincan_log_0
-<span class="gp">root@osboxes:/var/lib/docker/volumes/d70d94be69367a230c9751b56c0a4a103d92f217856cec98551ad42f54a553d3/_data# </span>ls -ltr
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osboxes@osboxes:~/dockerfiles<span class="nv">$ </span><span class="nb">sudo </span>su -
+root@osboxes:~# <span class="nb">cd</span> /var/lib/docker/volumes/d70d94be69367a230c9751b56c0a4a103d92f217856cec98551ad42f54a553d3/_data
+root@osboxes:/var/lib/docker/volumes/d70d94be69367a230c9751b56c0a4a103d92f217856cec98551ad42f54a553d3/_data# <span class="nb">ls
+</span>ctrl.log  tincan_log_0
+root@osboxes:/var/lib/docker/volumes/d70d94be69367a230c9751b56c0a4a103d92f217856cec98551ad42f54a553d3/_data# <span class="nb">ls</span> <span class="nt">-ltr</span>
 total 2996
--rw-r--r-- 1 root root 1042144 Mar 13 16:38 ctrl.log
--rw-r--r-- 1 root root 2019328 Mar 13 16:39 tincan_log_0
-<span class="gp">root@osboxes:/var/lib/docker/volumes/d70d94be69367a230c9751b56c0a4a103d92f217856cec98551ad42f54a553d3/_data# </span>
-</code></pre>
-</div>
+<span class="nt">-rw-r--r--</span> 1 root root 1042144 Mar 13 16:38 ctrl.log
+<span class="nt">-rw-r--r--</span> 1 root root 2019328 Mar 13 16:39 tincan_log_0
+root@osboxes:/var/lib/docker/volumes/d70d94be69367a230c9751b56c0a4a103d92f217856cec98551ad42f54a553d3/_data# 
+</code></pre></div></div>
 
 
 

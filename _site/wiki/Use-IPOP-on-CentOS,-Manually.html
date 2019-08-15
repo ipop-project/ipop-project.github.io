@@ -236,13 +236,12 @@
 
 <h2 id="download-and-install-dependencies">Download and Install Dependencies</h2>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo apt-get update -y
-sudo apt-get install -y software-properties-common git make libssl-dev make g++-4.9 
-sudo apt-get install -y python3 python-pip python-dev
-sudo pip install -v <span class="nv">sleekxmpp</span><span class="o">==</span>1.3.1  
-sudo pip install psutil pystun
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update <span class="nt">-y</span>
+<span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">-y</span> software-properties-common git make libssl-dev make g++-4.9 
+<span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">-y</span> python3 python-pip python-dev
+<span class="nb">sudo </span>pip <span class="nb">install</span> <span class="nt">-v</span> <span class="nv">sleekxmpp</span><span class="o">==</span>1.3.1  
+<span class="nb">sudo </span>pip <span class="nb">install </span>psutil pystun
+</code></pre></div></div>
 
 <h2 id="get-ipop-binary">Get IPOP Binary</h2>
 
@@ -250,32 +249,28 @@ sudo pip install psutil pystun
 
 <p>Then go to the download directory and extract the file (Put in the actual file name):</p>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>tar -xzvf ipop-vxxx_centos7.tar.gz
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar</span> <span class="nt">-xzvf</span> ipop-vxxx_centos7.tar.gz
 <span class="nb">cd </span>ipop-vxxx_centos7
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="copy-configuration-file">Copy Configuration File</h2>
 
 <p>You will need a valid configuration file (ipop-config.json) to run IPOP. Go to the directory you have your config file and copy the file to the <code class="highlighter-rouge">config</code> directory:</p>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>cp PATH/TO/CONFIGFILE/ipop-config.json config/
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp </span>PATH/TO/CONFIGFILE/ipop-config.json config/
+</code></pre></div></div>
 
 <h2 id="run-ipop-tincan">Run IPOP TinCan</h2>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>scl <span class="nb">enable </span>rh-python35 bash
-sudo ./ipop-tincan &amp;
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scl <span class="nb">enable </span>rh-python35 bash
+<span class="nb">sudo</span> ./ipop-tincan &amp;
+</code></pre></div></div>
 
 <h2 id="run-ipop-controller">Run IPOP Controller</h2>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>scl <span class="nb">enable </span>rh-python35 bash
-python -m controller.Controller -c ./config/ipop-config.json &amp;
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scl <span class="nb">enable </span>rh-python35 bash
+python <span class="nt">-m</span> controller.Controller <span class="nt">-c</span> ./config/ipop-config.json &amp;
+</code></pre></div></div>
 
 <p>Now, if everything is going well, IPOP should be run.</p>
 
@@ -283,15 +278,13 @@ python -m controller.Controller -c ./config/ipop-config.json &amp;
 
 <h3 id="stop-ipop-tincan">Stop IPOP Tincan</h3>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo killall ipop-tincan  
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>killall ipop-tincan  
+</code></pre></div></div>
 
 <h3 id="stop-ipop-controller">Stop IPOP Controller</h3>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>ps aux | grep -v grep | grep controller.Controller | awk <span class="s1">'{print $2}'</span> | xargs sudo <span class="nb">kill</span> -9
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps aux | <span class="nb">grep</span> <span class="nt">-v</span> <span class="nb">grep</span> | <span class="nb">grep </span>controller.Controller | <span class="nb">awk</span> <span class="s1">'{print $2}'</span> | xargs <span class="nb">sudo kill</span> <span class="nt">-9</span>
+</code></pre></div></div>
 
 <h2 id="remove-ipop">Remove IPOP</h2>
 
@@ -305,19 +298,17 @@ python -m controller.Controller -c ./config/ipop-config.json &amp;
   <li>Run IPOP:</li>
 </ul>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo ./ipop-tincan &amp;
-python -m controller.Controller -c ./config/ipop-config.json &amp;
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo</span> ./ipop-tincan &amp;
+python <span class="nt">-m</span> controller.Controller <span class="nt">-c</span> ./config/ipop-config.json &amp;
+</code></pre></div></div>
 
 <ul>
   <li>Stop IPOP:</li>
 </ul>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo killall ipop-tincan  
-ps aux | grep -v grep | grep controller.Controller | awk <span class="s1">'{print $2}'</span> | xargs sudo <span class="nb">kill</span> -9
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>killall ipop-tincan  
+ps aux | <span class="nb">grep</span> <span class="nt">-v</span> <span class="nb">grep</span> | <span class="nb">grep </span>controller.Controller | <span class="nb">awk</span> <span class="s1">'{print $2}'</span> | xargs <span class="nb">sudo kill</span> <span class="nt">-9</span>
+</code></pre></div></div>
 
 
 

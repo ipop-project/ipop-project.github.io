@@ -229,9 +229,8 @@
 
 <p><strong>Note:</strong> You need to have root access to run some of the following commands. Running the IPOP Installer with just adding <code class="highlighter-rouge">sudo</code> to the beginning of the command is NOT enough. Switch to interactive root shell:</p>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>sudo -i
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo</span> <span class="nt">-i</span>
+</code></pre></div></div>
 
 <h2 id="prerequisite">Prerequisite</h2>
 
@@ -239,23 +238,20 @@
 
 <p><strong>In Ubuntu:</strong></p>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>apt-get install wget
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt-get <span class="nb">install </span>wget
+</code></pre></div></div>
 
 <p><strong>In CentOS:</strong></p>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>yum install wget
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum <span class="nb">install </span>wget
+</code></pre></div></div>
 
 <h2 id="launching-the-ipop-vpn-installer">Launching the IPOP-VPN Installer</h2>
 
 <p>To start the IPOP Installer, run the following command:</p>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>wget -O - https://raw.githubusercontent.com/ipop-project/Release-Management/master/Deploy/linux/installer | /bin/bash
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget <span class="nt">-O</span> - https://raw.githubusercontent.com/ipop-project/Release-Management/master/Deploy/linux/installer | /bin/bash
+</code></pre></div></div>
 
 <p>The default installation directory will be <code class="highlighter-rouge">/opt/ipop</code> and you can use <code class="highlighter-rouge">ipop</code> executable script to control IPOP.</p>
 
@@ -265,47 +261,40 @@
 
 <p>First, change current directory to the installation directory:</p>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> /opt/ipop
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /opt/ipop
+</code></pre></div></div>
 
 <p>Execute IPOP which is <code class="highlighter-rouge">ipop</code> executable script right in the installation directory with following parameters:</p>
 
 <p><strong>Install IPOP:</strong> (If you have already installed IPOP using IPOP Installer, you don’t need to re-install it. So just skip this command.)</p>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop install
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./ipop <span class="nb">install</span>
+</code></pre></div></div>
 
 <p><strong>Configure IPOP:</strong></p>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop config
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./ipop config
+</code></pre></div></div>
 
 <p><strong>Start IPOP:</strong></p>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop start
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./ipop start
+</code></pre></div></div>
 
 <p><strong>Get IPOP Node Status:</strong></p>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop status <span class="o">(</span>This option is not available <span class="k">in </span>this release, yet.<span class="o">)</span>
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./ipop status <span class="o">(</span>This option is not available <span class="k">in </span>this release, yet.<span class="o">)</span>
+</code></pre></div></div>
 
 <p><strong>Stop IPOP:</strong></p>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop stop
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./ipop stop
+</code></pre></div></div>
 
 <p><strong>Remove IPOP:</strong></p>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop remove
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./ipop remove
+</code></pre></div></div>
 
 <h2 id="log-files">Log Files</h2>
 
@@ -324,19 +313,17 @@ See the <a href="Configuration">configuration page</a> for more information abou
   <li>Start the IPOP Installer:</li>
 </ul>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>wget -O - https://raw.githubusercontent.com/ipop-project/Release-Management/master/Deploy/linux/installer | /bin/bash
-</code></pre>
-</div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget <span class="nt">-O</span> - https://raw.githubusercontent.com/ipop-project/Release-Management/master/Deploy/linux/installer | /bin/bash
+</code></pre></div></div>
 <ul>
   <li>Usage:</li>
 </ul>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>./ipop config
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./ipop config
 ./ipop start
 ./ipop stop
 ./ipop remove
-</code></pre>
-</div>
+</code></pre></div></div>
 
 
 

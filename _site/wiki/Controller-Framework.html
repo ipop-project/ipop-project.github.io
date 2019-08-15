@@ -184,7 +184,6 @@
             <ul class="section-nav">
 <li class="toc-entry toc-h1"><a href="#ipop-controller-framework-architecture">IPOP Controller Framework Architecture</a>
 <ul>
-<ul>
 <li class="toc-entry toc-h3"><a href="#introduction">Introduction</a>
 <ul>
 <li class="toc-entry toc-h4"><a href="#example-use-cases">Example use Cases</a></li>
@@ -210,7 +209,6 @@
 <li class="toc-entry toc-h4"><a href="#configuration-1">Configuration</a></li>
 </ul>
 </li>
-</ul>
 </ul>
 </li>
 </ul>
@@ -304,24 +302,23 @@
 
 <p>Example Config:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"CFx"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"xmpp_username"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"xmpp_password"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"xmpp_host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jabber.ru"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"ip4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192.168.5.1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"ip4_mask"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"stat_report"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"tincan_logging"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"controller_logging"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEBUG"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"TincanListener"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"joinEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Logger"</span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "CFx": {
+        "xmpp_username": "",
+        "xmpp_password": "",
+        "xmpp_host": "jabber.ru",
+        "ip4": "192.168.5.1",
+        "ip4_mask": 24,
+        "stat_report": true,
+        "tincan_logging": 0,
+        "controller_logging": "DEBUG"
+    },
+    "TincanListener" : {
+        "joinEnabled": true,
+        "dependencies": ["Logger"]
+    }
+}
+</code></pre></div></div>
 
 <h3 id="technical-details">Technical Details</h3>
 
@@ -530,7 +527,7 @@
   <li>
     <p><strong>AddressMapper</strong>: In SocialVPN, it’s possible to statically assign addresses to SocialVPN peers. It can be done through an additional configuration file that can be loaded with the -p argument (e.g. -p ip_config.json). In this file, you specify the UID of a node, the virtual IP address, and a label, as in the following example:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>  [
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  [
       {
           "uid": "54f2b14f80e5374f8af7ad1b4838145ea7eaaf57",
           "ipv4": "172.31.0.101",
@@ -542,8 +539,7 @@
           "desc": "Bob"
       }
   ]
-</code></pre>
-    </div>
+</code></pre></div>    </div>
 
     <p>AddressMapper CM maintains a mapping of UID to IP address of the nodes, whose IP addresses are specified in the configuration file as shown above. The mappings are stored in the dict ip_map where the keys are UIDs and values are the IP addresses of the corresponding nodes. Supported CBT actions:</p>
 

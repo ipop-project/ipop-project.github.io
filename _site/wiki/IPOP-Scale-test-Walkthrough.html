@@ -187,7 +187,6 @@
 <li class="toc-entry toc-h2"><a href="#description">Description</a></li>
 <li class="toc-entry toc-h2"><a href="#usage">Usage</a>
 <ul>
-<ul>
 <li class="toc-entry toc-h4"><a href="#preparing-your-virtual-machine">Preparing your virtual machine</a></li>
 <li class="toc-entry toc-h4"><a href="#download-the-automated-test-script-on-host">Download the automated test script on Host</a>
 <ul>
@@ -206,7 +205,6 @@
 </li>
 <li class="toc-entry toc-h4"><a href="#consolidated-logs-for-debugging">Consolidated logs for debugging</a></li>
 <li class="toc-entry toc-h4"><a href="#references">References</a></li>
-</ul>
 </ul>
 </li>
 </ul>
@@ -254,13 +252,12 @@
 <p>(note: if you use the osboxes.org VMware Ubuntu 16.04 image, the default root password is: osboxes.org )
 This tutorial uses scale-test, an automated test script that install and configures all software needed to run a test IPOP network of a few nodes.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>cd
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd
 git clone https://github.com/ipop-project/Release-Management
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="scale-test---setting-up-the-environment">Scale test - setting up the environment</h5>
-<div class="highlighter-rouge"><pre class="highlight"><code>cd ./Release-Management/Test/ipop-scale-test
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd ./Release-Management/Test/ipop-scale-test
 osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
 Enter from the following options:
     configure                      : install/prepare default container
@@ -279,8 +276,7 @@ Enter from the following options:
     mode                           : show or change ipop mode to test
      
 &gt; configure
-</code></pre>
-</div>
+</code></pre></div></div>
 <h5 id="scale-test---starting-execution">Scale test - starting execution</h5>
 <p>This step will</p>
 <ul>
@@ -291,7 +287,7 @@ Enter from the following options:
   <li>Configure topology parameters such as successor links, chords, on-demand and inbound links.</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
 Enter from the following options:
     configure                      : install/prepare default container
     containers-create              : create and start containers
@@ -345,12 +341,11 @@ Container node10 started.
 User node10@ejabberd successfully registered
 osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ 
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="start-ipop-network-and-query-for-its-status">Start IPOP network and query for its status</h4>
 <p>In this phase we will start IPOP processes inside the containers we created in the previous step and then query for the status of those processes.</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
 Enter from the following options:
     configure                      : install/prepare default container
     containers-create              : create and start containers
@@ -421,12 +416,11 @@ Controller is UP &amp;&amp; Tincan is UP on node9
 Controller is UP &amp;&amp; Tincan is UP on node10
 osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ 
 
-</code></pre>
-</div>
+</code></pre></div></div>
 <h4 id="validation-and-testing-tools">Validation and testing tools.</h4>
 <p>This phase entails use of features for validating functional correctness and performance metrics under a tool suite called ipop-tests. We are going to go through some of its features.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
 Enter from the following options:
     configure                      : install/prepare default container
     containers-create              : create and start containers
@@ -450,13 +444,12 @@ Documented commands (type help &lt;topic&gt;):
 ========================================
 EOF  churn  exit  exportdata  help  iperf  ping  pingall  status
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>As seen above, with the use of this tool one can verify all to all connectivity (pingall), pairwise connectivity (ping), query for IPOP addresses on individual nodes (status) and collect performance metrics (iperf).</p>
 
 <h5 id="status">status</h5>
-<div class="highlighter-rouge"><pre class="highlight"><code>(scale-test) status
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(scale-test) status
 Container: node1 is running | ip addresses: (u'10.0.3.243', u'10.254.0.1')
 Container: node10 is running | ip addresses: (u'10.0.3.192', u'10.254.0.10')
 Container: node2 is running | ip addresses: (u'10.0.3.253', u'10.254.0.2')
@@ -468,10 +461,9 @@ Container: node7 is running | ip addresses: (u'10.0.3.160', u'10.254.0.7')
 Container: node8 is running | ip addresses: (u'10.0.3.75', u'10.254.0.8')
 Container: node9 is running | ip addresses: (u'10.0.3.215', u'10.254.0.9')
 (scale-test) 
-</code></pre>
-</div>
+</code></pre></div></div>
 <h5 id="all-to-all-connectivity">all to all connectivity</h5>
-<div class="highlighter-rouge"><pre class="highlight"><code>(scale-test) pingall
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(scale-test) pingall
 Staring pingall with default packet count of 2.
 node1 -&gt; node10 with packet loss 0.0%
 node1 -&gt; node2 with packet loss 0.0%
@@ -564,10 +556,9 @@ node9 -&gt; node6 with packet loss 0.0%
 node9 -&gt; node7 with packet loss 0.0%
 node9 -&gt; node8 with packet loss 0.0%
 (scale-test) 
-</code></pre>
-</div>
+</code></pre></div></div>
 <h5 id="pair-wise-connectivity">pair-wise connectivity</h5>
-<div class="highlighter-rouge"><pre class="highlight"><code>(scale-test) ping node1 node2 10
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(scale-test) ping node1 node2 10
 PING 10.254.0.2 (10.254.0.2) 56(84) bytes of data.
 64 bytes from 10.254.0.2: icmp_seq=1 ttl=64 time=30.7 ms
 64 bytes from 10.254.0.2: icmp_seq=2 ttl=64 time=1.94 ms
@@ -586,10 +577,9 @@ rtt min/avg/max/mdev = 0.754/4.376/30.733/8.796 ms
 
 (scale-test) 
 
-</code></pre>
-</div>
+</code></pre></div></div>
 <h5 id="performance-metrics-via-iperf">Performance metrics via iperf</h5>
-<div class="highlighter-rouge"><pre class="highlight"><code>(scale-test) iperf node3 node8
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(scale-test) iperf node3 node8
 {
 	"start":	{
 		"connected":	[{
@@ -776,10 +766,9 @@ rtt min/avg/max/mdev = 0.754/4.376/30.733/8.796 ms
 
 (scale-test) 
 
-</code></pre>
-</div>
+</code></pre></div></div>
 <h4 id="consolidated-logs-for-debugging">Consolidated logs for debugging</h4>
-<div class="highlighter-rouge"><pre class="highlight"><code>osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
 Enter from the following options:
     configure                      : install/prepare default container
     containers-create              : create and start containers
@@ -815,8 +804,7 @@ drwxrwxr-x 2 osboxes osboxes 4096 Aug 16 10:37 node9
 drwxrwxr-x 2 osboxes osboxes 4096 Aug 16 10:37 node10
 osboxes@osboxes:~/Release-Management/Test/ipop-scale-test/logs$ 
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="references">References</h4>
 

@@ -196,7 +196,7 @@
 <p>https://www.linuxhelp.com/how-to-install-autossh-on-ubuntu-16-04</p>
 
 <p><strong>Step 2:</strong> Run the following script on the local node (pick a different <code class="highlighter-rouge">LOCAL_PORT</code> for each node, if they are more than one):</p>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
 
 <span class="c"># This forwards all requests to the local port to the remote port on the server.</span>
 <span class="nv">LOCAL_PORT</span><span class="o">=</span>20001 <span class="c">#pick a different `LOCAL_PORT` for each node, if they are more than one. `20001` for the first node, `20002` for the second node, etc.</span>
@@ -207,27 +207,23 @@
 <span class="nv">SERVER</span><span class="o">=</span>&lt;server_public_IP_address&gt;
 <span class="nv">USER</span><span class="o">=</span>&lt;local_username&gt;
 <span class="nv">LOGFILE</span><span class="o">=</span>&lt;path_to_log_file&gt;
-<span class="nv">AUTOSSH_DEBUG</span><span class="o">=</span>1 <span class="nv">AUTOSSH_LOGFILE</span><span class="o">=</span><span class="nv">$LOGFILE</span> autossh -f -M <span class="nv">$BASE_PORT</span> -N -R <span class="nv">$LOCAL_PORT</span>:<span class="nv">$LOCALHOST</span>:<span class="nv">$REMOTE_PORT</span> <span class="nv">$USER</span>@<span class="nv">$SERVER</span> -p <span class="nv">$NAT_PORT</span> -o <span class="nv">UserKnownHostsFile</span><span class="o">=</span>/dev/null -o <span class="nv">StrictHostKeyChecking</span><span class="o">=</span>no
+<span class="nv">AUTOSSH_DEBUG</span><span class="o">=</span>1 <span class="nv">AUTOSSH_LOGFILE</span><span class="o">=</span><span class="nv">$LOGFILE</span> autossh <span class="nt">-f</span> <span class="nt">-M</span> <span class="nv">$BASE_PORT</span> <span class="nt">-N</span> <span class="nt">-R</span> <span class="nv">$LOCAL_PORT</span>:<span class="nv">$LOCALHOST</span>:<span class="nv">$REMOTE_PORT</span> <span class="nv">$USER</span>@<span class="nv">$SERVER</span> <span class="nt">-p</span> <span class="nv">$NAT_PORT</span> <span class="nt">-o</span> <span class="nv">UserKnownHostsFile</span><span class="o">=</span>/dev/null <span class="nt">-o</span> <span class="nv">StrictHostKeyChecking</span><span class="o">=</span>no
 <span class="nb">echo</span> <span class="s2">"Reverse SSH Tunnel has been established. autossh tries to keep the tunnel alive while the machines are up..."</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>To make sure the SSH tunnel stays open, you should run the following script as a cron job frequently, like every 10 minutes:</p>
 
 <p>Run:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>crontab -e
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crontab -e
+</code></pre></div></div>
 
 <p>Add this:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>*/10 * * * * &lt;path_to_script&gt;
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>*/10 * * * * &lt;path_to_script&gt;
+</code></pre></div></div>
 
 <p><strong>Step 3:</strong> On the server node, run:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>ssh -vvv -p &lt;local_port&gt; &lt;local_username&gt;@localhost
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh -vvv -p &lt;local_port&gt; &lt;local_username&gt;@localhost
+</code></pre></div></div>
 
 <h2 id="using-a-management-node-instead-of-directly-connecting-to-the-server">Using a Management Node instead of Directly Connecting to the Server</h2>
 
@@ -235,15 +231,13 @@
 
 <p><strong>Step 2:</strong> On the Server Node:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sysctl net.ipv4.ip_forward=1
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sysctl net.ipv4.ip_forward=1
 iptables -t nat -A PREROUTING -p tcp -d &lt;server_ip&gt; --dport &lt;server_NAT_port&gt; -j DNAT --to-destination &lt;management_node_ip&gt;:22
-</code></pre>
-</div>
+</code></pre></div></div>
 <p><strong>Step 3:</strong> Accessing the Management Node:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>ssh -p &lt;server_NAT_port&gt; &lt;management_username&gt;@&lt;server_ip&gt;
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh -p &lt;server_NAT_port&gt; &lt;management_username&gt;@&lt;server_ip&gt;
+</code></pre></div></div>
 
 <h2 id="autossh-documentation">autossh Documentation</h2>
 

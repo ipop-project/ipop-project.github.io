@@ -203,10 +203,9 @@
     <p>Clone your newly-forked repo to your local machine (use the clone
 URL from the repository page on GitHub):</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ git clone git@github.com:&lt;username&gt;/ipop-tincan.git
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git clone git@github.com:&lt;username&gt;/ipop-tincan.git
 $ cd ipop-tincan
-</code></pre>
-    </div>
+</code></pre></div>    </div>
 
     <p>Git will refer to this repository (your fork) as <code class="highlighter-rouge">origin</code>.</p>
   </li>
@@ -215,27 +214,24 @@ $ cd ipop-tincan
 for the corresponding
 <a href="https://github.com/ipop-project/">ipop-project</a> repository):</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ git remote add upstream https://github.com/ipop-project/ipop-tincan.git
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git remote add upstream https://github.com/ipop-project/ipop-tincan.git
+</code></pre></div>    </div>
 
     <p>Git will refer to this repository as <code class="highlighter-rouge">upstream</code>.</p>
   </li>
   <li>
     <p>Create a branch for the feature you will work on:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ git checkout -b my-feature
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout -b my-feature
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Develop on the <strong>my-feature</strong> branch. Commit changes to <strong>my-feature</strong>
 branch:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ git add .
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git add .
 $ git commit -m "commit message"
-</code></pre>
-    </div>
+</code></pre></div>    </div>
 
     <p>Always keep the first line of the commit message shorter than 55
 characters. If you need to write a longer commit message, use just <code class="highlighter-rouge">git
@@ -246,9 +242,8 @@ from the rest of the commit message.</p>
   <li>
     <p>Push your branch to GitHub periodically.</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ git push origin my-feature
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git push origin my-feature
+</code></pre></div>    </div>
 
     <p>Caution: Don’t <strong>pull</strong> or <strong>merge</strong> from upstream. Doing so creates
 weird-looking merge commits and makes the history messy. Instead,
@@ -258,26 +253,23 @@ should <strong>rebase</strong>, as described below.</p>
   <li>
     <p>Fetch upstream changes that were done by other contributors:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ git fetch upstream
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git fetch upstream
+</code></pre></div>    </div>
   </li>
   <li>
     <p>If you need to incorporate new upstream changes into your branch,
 <strong>rebase</strong> your branch on top of the upstream master:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ git rebase upstream/master
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git rebase upstream/master
+</code></pre></div>    </div>
 
     <p>In the process of the <strong>rebase</strong>, Git may discover conflicts. In
 that case it will stop and allow you to fix the conflicts. After
 fixing conflicts, use <code class="highlighter-rouge">git add .</code> to update the index with those
 contents, and then run:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ git rebase --continue
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git rebase --continue
+</code></pre></div>    </div>
 
     <p>Run <code class="highlighter-rouge">git status</code> liberally during a rebase if you are confused. It
 will tell you what you need to do to continue.</p>
@@ -285,9 +277,8 @@ will tell you what you need to do to continue.</p>
   <li>
     <p>Push your branch to GitHub.</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ git push origin my-feature
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git push origin my-feature
+</code></pre></div>    </div>
 
     <p>If you rebased earlier, your commits will have been re-written and
 GitHub may deny your push because it would involve overwriting
@@ -296,9 +287,8 @@ commits you pushed earlier. In that case you will have to use the
 using!</strong> (In that scenario, you should just create a new branch and
 push it.)</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ git push origin my-feature --force
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git push origin my-feature --force
+</code></pre></div>    </div>
   </li>
   <li>
     <p>When ready, send a <a href="http://help.github.com/send-pull-requests/">pull

@@ -227,7 +227,7 @@
 
 <h2 id="download-and-install-dependencies">Download and Install Dependencies</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>su
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>su
 yum -y update
 yum install -y centos-release-scl-rh
 yum install -y devtoolset-3-gcc-c++ rh-python35
@@ -238,14 +238,13 @@ curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
 python get-pip.py
 yum install -y python-devel.x86_64
 pip install sleekxmpp psutil pystun
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="build-ipop">Build IPOP</h2>
 
 <p>Run the following commands as a regular (non-root) user:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>scl enable rh-python35 bash
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scl enable rh-python35 bash
 scl enable devtoolset-3 bash
 mkdir -p ~/workspace/ipop-project ~/workspace/ipop-vpn/config
 cd workspace/ipop-project/
@@ -257,15 +256,13 @@ make
 cp -f ../out/release/x64/ipop-tincan ../../../../ipop-vpn/
 cd ../../../Controllers
 cp -rf ./controller/ ../../ipop-vpn/
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="copy-configuration-file">Copy Configuration File</h2>
 
 <p>You will need a valid configuration file (ipop-config.json) to run IPOP. Go to the directory you have your config file and copy the file to the <code class="highlighter-rouge">config</code> directory:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>cp ipop-config.json ~/workspace/ipop-vpn/config
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp ipop-config.json ~/workspace/ipop-vpn/config
+</code></pre></div></div>
 
 <h2 id="sample-configuration-file">Sample Configuration File</h2>
 

@@ -209,17 +209,15 @@
 
 <p>For instance, if you want to find a Raspberry Pi connected to the local network without a connection to a monitor:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo nmap -sn 10.244.19.0/24
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nmap <span class="nt">-sn</span> 10.244.19.0/24
+</code></pre></div></div>
 
 <p>In the output, you should find it. For instance:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Nmap scan report for 10.244.19.227
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Nmap scan report for 10.244.19.227
 Host is up (0.00027s latency).
 MAC Address: B8:27:EB:82:48:A0 (Raspberry Pi Foundation)
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Remember to run it with <code class="highlighter-rouge">sudo</code> to get the platform details. Do NOT repeat it multiple times or for a very large subnet. The system may get blocked in the network because of spamming.</p>
 
@@ -231,45 +229,39 @@ MAC Address: B8:27:EB:82:48:A0 (Raspberry Pi Foundation)
 
 <p>For instance, <code class="highlighter-rouge">gcc</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>opkg update &amp;&amp; opkg install gcc
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>opkg update &amp;&amp; opkg install gcc
+</code></pre></div></div>
 
 <p><a href="https://wiki.openwrt.org/doc/techref/opkg">OpenWrt » Technical Reference » OPKG Package Manager</a></p>
 
 <h2 id="compile-a-simple-c-code-on-openwrt">Compile a Simple C Code on OpenWRT</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>gcc -mfloat-abi=hard hello.c -o hello
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc -mfloat-abi=hard hello.c -o hello
+</code></pre></div></div>
 
 <h2 id="determine-file-type">Determine File Type</h2>
 
 <p>For instance, a file which is built for running on Raspberry Pi 1:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>file ipop-tincan-rpi1
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>file ipop-tincan-rpi1
+</code></pre></div></div>
 <p>Output:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>ipop-tincan-rpi1: ELF 32-bit LSB executable, ARM, EABI5 version 1 (GNU/Linux), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, for GNU/Linux 2.6.32, BuildID[sha1]=c24056bbd7c9f90660087db2c1296ae3b7dca93b, not stripped
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ipop-tincan-rpi1: ELF 32-bit LSB executable, ARM, EABI5 version 1 (GNU/Linux), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, for GNU/Linux 2.6.32, BuildID[sha1]=c24056bbd7c9f90660087db2c1296ae3b7dca93b, not stripped
+</code></pre></div></div>
 
 <h2 id="cross-compile-code-for-openwrt">Cross-compile Code for OpenWRT</h2>
 
 <p>Requirement:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt update &amp;&amp; sudo apt install ccache libncursesw5-dev
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt update &amp;&amp; sudo apt install ccache libncursesw5-dev
+</code></pre></div></div>
 
 <h2 id="git-on-openwrt">Git on OpenWRT</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>opkg install git-http
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>opkg install git-http
 opkg install ca-bundle
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="expand-the-root-partition-on-openwrt">Expand the Root Partition on OpenWRT</h2>
 
@@ -279,9 +271,8 @@ opkg install ca-bundle
 
 <p>If you are running Ubuntu 17.10 and fail to install/start Cisco Anyconnect (version 4.5.0.2033):</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt install libpangox-1.0-0
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt install libpangox-1.0-0
+</code></pre></div></div>
 
 <p><a href="https://zngguvnf.org/2017-12-04--ubuntu-17-10-and-cisco-anyconnect.html">Source</a></p>
 
@@ -297,23 +288,21 @@ opkg install ca-bundle
 
 <p>In <code class="highlighter-rouge">/etc/default/grub</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>GRUB_TIMEOUT=3
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GRUB_TIMEOUT=3
 GRUB_RECORDFAIL_TIMEOUT=3
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Then:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo update_grub2
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo update_grub2
+</code></pre></div></div>
 
 <p><a href="https://askubuntu.com/questions/932595/where-to-change-30-seconds-for-grub-on-forced-reset?answertab=active#tab-top">Source</a></p>
 
 <h2 id="openwrt-network-configuration">OpenWRT Network Configuration</h2>
 
 <p>To change the network settings from static to DHCP, edit <code class="highlighter-rouge">/etc/config/network</code>:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>config interface 'loopback'
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>config interface 'loopback'
 	option ifname 'lo'
 	option proto 'static'
 	option ipaddr '127.0.0.1'
@@ -329,8 +318,7 @@ config interface 'lan'
 #	option ipaddr '192.168.1.1'
 #	option netmask '255.255.255.0'
 #	option ip6assign '60'
-</code></pre>
-</div>
+</code></pre></div></div>
 
 
 

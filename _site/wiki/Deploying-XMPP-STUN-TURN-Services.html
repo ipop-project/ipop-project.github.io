@@ -213,17 +213,15 @@ https://github.com/ipop-project/ipop-project.github.io/wiki/Introduction-to-the-
   <li>
     <p>Install ejabberd</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo apt-get update
- sudo apt-get install ejabberd
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt-get update
+ <span class="nb">sudo </span>apt-get <span class="nb">install </span>ejabberd
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Determine the version of ejabberd for later parts of this guide</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo ejabberdctl status
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>ejabberdctl status
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Update the ejabberd configuration file. For this example, we define the admin user <em>ipopuser</em> and ejabberd hostname <em>ejabberd</em>.</p>
@@ -232,9 +230,8 @@ https://github.com/ipop-project/ipop-project.github.io/wiki/Introduction-to-the-
       <li>
         <p>For ejabberd before ejabberd 14.07:</p>
 
-        <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo nano /etc/ejabberd/ejabberd.cfg
-</code></pre>
-        </div>
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>nano /etc/ejabberd/ejabberd.cfg
+</code></pre></div>        </div>
 
         <pre><code class="language-data"> ...
  %% Admin user
@@ -248,24 +245,22 @@ https://github.com/ipop-project/ipop-project.github.io/wiki/Introduction-to-the-
       <li>
         <p>For ejabberd 14.07 or later:</p>
 
-        <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo nano /etc/ejabberd/ejabberd.yml
-</code></pre>
-        </div>
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>nano /etc/ejabberd/ejabberd.yml
+</code></pre></div>        </div>
 
-        <div class="language-yml highlighter-rouge"><pre class="highlight"><code> <span class="s">...</span>
+        <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="s">...</span>
  <span class="err">		</span>   <span class="c1">#in the served hostnames section</span>
-<span class="err"> 		</span>   <span class="s">hosts</span><span class="pi">:</span>
+<span class="err"> 		</span>   <span class="na">hosts</span><span class="pi">:</span>
 <span class="err"> 		</span>     <span class="pi">-</span> <span class="s2">"</span><span class="s">localhost"</span>
 <span class="err"> 		</span>     <span class="pi">-</span> <span class="s2">"</span><span class="s">ejabberd"</span>
 <span class="err"> </span><span class="s">...</span>
     <span class="s">#in the access control lists section</span>
        <span class="s">admin</span><span class="pi">:</span>
-         <span class="s">user</span><span class="pi">:</span>
+         <span class="na">user</span><span class="pi">:</span>
              <span class="pi">-</span> <span class="s2">"</span><span class="s">"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">localhost"</span>
              <span class="pi">-</span> <span class="s2">"</span><span class="s">ipopuser"</span><span class="pi">:</span> <span class="s2">"</span><span class="s">ejabberd</span>
  <span class="s">...</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </li>
     </ol>
   </li>
@@ -276,9 +271,8 @@ https://github.com/ipop-project/ipop-project.github.io/wiki/Introduction-to-the-
       <li>
         <p>For ejabberd before ejabberd 14.07:</p>
 
-        <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo nano /etc/ejabberd/ejabberd.cfg
-</code></pre>
-        </div>
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>nano /etc/ejabberd/ejabberd.cfg
+</code></pre></div>        </div>
 
         <pre><code class="language-data"> ...
  {listen,
@@ -294,50 +288,45 @@ https://github.com/ipop-project/ipop-project.github.io/wiki/Introduction-to-the-
    { {3478, udp}, ejabberd_stun, []},
  ...
 </code></pre>
-        <p>Note: only add <code class="highlighter-rouge"><span class="p">{</span><span class="w"> </span><span class="err">{3478,</span><span class="w"> </span><span class="err">udp</span><span class="p">}</span><span class="err">,</span><span class="w"> </span><span class="err">ejabberd_stun,</span><span class="w"> </span><span class="p">[]</span><span class="err">},</span></code>.</p>
+        <p>Note: only add <code class="highlighter-rouge">{ {3478, udp}, ejabberd_stun, []},</code>.</p>
       </li>
       <li>
         <p>For ejabberd 14.07 or later:</p>
 
-        <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo nano /etc/ejabberd/ejabberd.yml
-</code></pre>
-        </div>
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>nano /etc/ejabberd/ejabberd.yml
+</code></pre></div>        </div>
 
-        <div class="language-yml highlighter-rouge"><pre class="highlight"><code> <span class="s">...</span>
+        <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="s">...</span>
  <span class="s">#in the listening ports section</span>
  <span class="s">listen</span><span class="pi">:</span>
    <span class="pi">-</span>
-     <span class="s">port</span><span class="pi">:</span> <span class="s">3478</span>
-     <span class="s">transport</span><span class="pi">:</span> <span class="s">udp</span>
-     <span class="s">module</span><span class="pi">:</span> <span class="s">ejabberd_stun</span>
+     <span class="na">port</span><span class="pi">:</span> <span class="m">3478</span>
+     <span class="na">transport</span><span class="pi">:</span> <span class="s">udp</span>
+     <span class="na">module</span><span class="pi">:</span> <span class="s">ejabberd_stun</span>
  <span class="s">...</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </li>
     </ol>
   </li>
   <li>
     <p>(For ejabberd 14.07 or later only) Enable mod_admin_extra for extra ejabberd commands</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo nano /etc/ejabberd/ejabberd.yml
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>nano /etc/ejabberd/ejabberd.yml
+</code></pre></div>    </div>
 
-    <div class="language-yml highlighter-rouge"><pre class="highlight"><code> <span class="s">...</span>
+    <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="s">...</span>
  <span class="s">#in the modules section</span>
  <span class="s">modules</span><span class="pi">:</span>
-   <span class="s">mod_admin_extra</span><span class="pi">:</span> <span class="pi">{}</span>
+   <span class="na">mod_admin_extra</span><span class="pi">:</span> <span class="pi">{}</span>
  <span class="s">...</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>(Optional) Create a self-signed certificate. Note if you change the ejabberd hostname from <em>ejabberd</em> to something else, you must create a new self-signed certificate and set the common name (CN) to the new ejabberd hostname.</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> openssl req -x509 -nodes -days 3650 -newkey rsa:1024 -keyout ejabberd.pem -out ejabberd.pem
- sudo cp ejabberd.pem /etc/ejabberd/
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> openssl req <span class="nt">-x509</span> <span class="nt">-nodes</span> <span class="nt">-days</span> 3650 <span class="nt">-newkey</span> rsa:1024 <span class="nt">-keyout</span> ejabberd.pem <span class="nt">-out</span> ejabberd.pem
+ <span class="nb">sudo cp </span>ejabberd.pem /etc/ejabberd/
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Restart the ejabberd service</p>
@@ -346,25 +335,22 @@ https://github.com/ipop-project/ipop-project.github.io/wiki/Introduction-to-the-
       <li>
         <p>For Ubuntu before Ubuntu 15.04 (with Upstart):</p>
 
-        <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo service ejabberd restart
-</code></pre>
-        </div>
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>service ejabberd restart
+</code></pre></div>        </div>
       </li>
       <li>
         <p>For Ubuntu 15.04 or later (with systemd):</p>
 
-        <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo systemctl restart ejabberd.service
-</code></pre>
-        </div>
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>systemctl restart ejabberd.service
+</code></pre></div>        </div>
       </li>
     </ol>
   </li>
   <li>
     <p>Create your admin user</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo ejabberdctl register ipopuser ejabberd password
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>ejabberdctl register ipopuser ejabberd password
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Useful ejabberd commands, features, and notes</p>
@@ -373,52 +359,46 @@ https://github.com/ipop-project/ipop-project.github.io/wiki/Introduction-to-the-
       <li>
         <p>Create users</p>
 
-        <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo ejabberdctl register alice ejabberd password
- sudo ejabberdctl register bob ejabberd password
-</code></pre>
-        </div>
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>ejabberdctl register alice ejabberd password
+ <span class="nb">sudo </span>ejabberdctl register bob ejabberd password
+</code></pre></div>        </div>
       </li>
       <li>
         <p>Create user-to-user relationships (using rosteritems). Note: rosteritems are directed; you must run the command twice (i.e. add Alice to Bob’s roster, and add Bob to Alice’s roster).</p>
 
-        <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo ejabberdctl add-rosteritem alice ejabberd bob ejabberd bob svpn both
- sudo ejabberdctl add-rosteritem bob ejabberd alice ejabberd alice svpn both
-</code></pre>
-        </div>
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>ejabberdctl add-rosteritem alice ejabberd bob ejabberd bob svpn both
+ <span class="nb">sudo </span>ejabberdctl add-rosteritem bob ejabberd alice ejabberd alice svpn both
+</code></pre></div>        </div>
       </li>
       <li>
         <p>(For ejabberd 14.07 or later only) Create user-to-user relationships (using shared roster groups). All users in a shared roster group have a relationship with each other.</p>
 
-        <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo ejabberdctl srg_create ipop_vpn ejabberd ipop_vpn ipop_vpn ipop_vpn
- sudo ejabberdctl srg_user_add @all@ ejabberd ipop_vpn ejabberd
-</code></pre>
-        </div>
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>ejabberdctl srg_create ipop_vpn ejabberd ipop_vpn ipop_vpn ipop_vpn
+ <span class="nb">sudo </span>ejabberdctl srg_user_add @all@ ejabberd ipop_vpn ejabberd
+</code></pre></div>        </div>
         <p>Note: <code class="highlighter-rouge">@all@</code> adds all users to the shared roster group</p>
       </li>
       <li>
         <p>Check which users are online</p>
 
-        <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo ejabberdctl connected-users
-</code></pre>
-        </div>
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>ejabberdctl connected-users
+</code></pre></div>        </div>
       </li>
       <li>
         <p>Visit <code class="highlighter-rouge">http://&lt;ip-address-of-ejabberd&gt;:5280/admin</code> to manage your ejabberd service. Click Virtual Hosts -&gt; ejabberd -&gt; Users).</p>
 
-        <div class="language-bash highlighter-rouge"><pre class="highlight"><code> username: ipopuser@ejabberd
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> username: ipopuser@ejabberd
  password: password
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </li>
       <li>
         <p>Note: open port the following ports</p>
 
-        <div class="language-bash highlighter-rouge"><pre class="highlight"><code> TCP/5222  <span class="o">(</span>XMPP client-to-server<span class="o">)</span>
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> TCP/5222  <span class="o">(</span>XMPP client-to-server<span class="o">)</span>
  TCP/5269 <span class="o">(</span>XMPP server-to-server<span class="o">)</span>
  TCP/5280
  UDP/3478  <span class="o">(</span>STUN<span class="o">)</span>
-</code></pre>
-        </div>
+</code></pre></div>        </div>
       </li>
     </ol>
   </li>
@@ -430,32 +410,28 @@ https://github.com/ipop-project/ipop-project.github.io/wiki/Introduction-to-the-
   <li>
     <p>Install turnserver</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo apt-get update
- sudo apt-get install libconfuse0 turnserver
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt-get update
+ <span class="nb">sudo </span>apt-get <span class="nb">install </span>libconfuse0 turnserver
+</code></pre></div>    </div>
   </li>
   <li>
     <p>If you are running on the cloud (i.e. EC2 or CloudLab), you must use IP aliasing to allow the TURN server to bind your public IP address</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo ifconfig eth0:0 &lt;public-ip-of-turnserver&gt; up
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>ifconfig eth0:0 &lt;public-ip-of-turnserver&gt; up
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Update the turnserver configuration file with the public IP address</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> <span class="nv">VM_IPv4</span><span class="o">=</span><span class="s2">"&lt;public-ip-of-turnserver&gt;"</span>
- sudo sed -i <span class="s2">"s/listen_address = .*/listen_address = { </span><span class="se">\"</span><span class="nv">$VM_IPv4</span><span class="se">\"</span><span class="s2"> }/g"</span> /etc/turnserver/turnserver.conf
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">VM_IPv4</span><span class="o">=</span><span class="s2">"&lt;public-ip-of-turnserver&gt;"</span>
+ <span class="nb">sudo sed</span> <span class="nt">-i</span> <span class="s2">"s/listen_address = .*/listen_address = { </span><span class="se">\"</span><span class="nv">$VM_IPv4</span><span class="se">\"</span><span class="s2"> }/g"</span> /etc/turnserver/turnserver.conf
+</code></pre></div>    </div>
   </li>
   <li>
     <p>(Optional) Set the number of sessions per user</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo nano /etc/turnserver/turnserver.conf
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>nano /etc/turnserver/turnserver.conf
+</code></pre></div>    </div>
 
     <pre><code class="language-data"> ## Max relay per username.
  max_relay_per_username = 100000
@@ -467,9 +443,8 @@ https://github.com/ipop-project/ipop-project.github.io/wiki/Introduction-to-the-
   <li>
     <p>(Optional) Set the file descriptor limit to allow for thousands of TURN connections. Note: you must re-login for these changes to take effect.</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo nano /etc/security/limits.conf
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>nano /etc/security/limits.conf
+</code></pre></div>    </div>
 
     <pre><code class="language-data"> ubuntu    hard    nofile    100000
  ubuntu    soft    nofile    100000
@@ -478,9 +453,8 @@ https://github.com/ipop-project/ipop-project.github.io/wiki/Introduction-to-the-
   <li>
     <p>(Optional) To control user accesses to the TURN service, you can create turnserver user credentials by modifying the <code class="highlighter-rouge">/etc/turnserver/turnusers.txt</code> file.</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo nano /etc/turnserver/turnusers.txt
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>nano /etc/turnserver/turnusers.txt
+</code></pre></div>    </div>
 
     <pre><code class="language-data"> ...
  ipopuser:password:&lt;public-ip-of-turnserver&gt;:authorized
@@ -491,16 +465,14 @@ https://github.com/ipop-project/ipop-project.github.io/wiki/Introduction-to-the-
   <li>
     <p>Run turnserver</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> sudo turnserver -c /etc/turnserver/turnserver.conf
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>turnserver <span class="nt">-c</span> /etc/turnserver/turnserver.conf
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Verify that turnserver is running</p>
 
-    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> netstat -aupn | grep 19302
-</code></pre>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> netstat <span class="nt">-aupn</span> | <span class="nb">grep </span>19302
+</code></pre></div>    </div>
   </li>
 </ol>
 

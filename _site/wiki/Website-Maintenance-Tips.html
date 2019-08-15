@@ -219,9 +219,7 @@
 <li class="toc-entry toc-h2"><a href="#add-table-of-contents-to-the-wiki-pages">Add Table of Contents to the Wiki Pages</a></li>
 <li class="toc-entry toc-h2"><a href="#integrate-wiki-sidebar-into-the-website">Integrate Wiki Sidebar into the Website</a>
 <ul>
-<ul>
 <li class="toc-entry toc-h4"><a href="#-on-this-page"> On This Page</a></li>
-</ul>
 </ul>
 </li>
 </ul>
@@ -252,26 +250,23 @@
 
 <h3 id="step-0-prerequisite">Step 0: Prerequisite</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt update &amp;&amp; sudo apt install -y git ruby-dev libffi-dev libtool build-essential
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt update &amp;&amp; sudo apt install -y git ruby-dev libffi-dev libtool build-essential
 sudo gem install bundler
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>Inside the website source directory:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>bundle install
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle install
+</code></pre></div></div>
 
 <h3 id="step-1-initialization">Step 1: Initialization</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>mkdir -p ~/workspace &amp;&amp; cd ~/workspace &amp;&amp; rm -rf ipop-project.github.io
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir -p ~/workspace &amp;&amp; cd ~/workspace &amp;&amp; rm -rf ipop-project.github.io
 git clone https://github.com/ipop-project/ipop-project.github.io.git
 cd ipop-project.github.io
 rm -rf _site
 rm -rf .git/modules/wiki
 rm -rf wiki
 git submodule add https://github.com/ipop-project/ipop-project.github.io.wiki.git wiki
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="step-2-apply-the-desired-changes">Step 2: Apply the Desired Changes</h3>
 
@@ -279,15 +274,14 @@ git submodule add https://github.com/ipop-project/ipop-project.github.io.wiki.gi
 
 <h3 id="step-3-build-the-static-pages-and-test-the-website-locally">Step 3: Build the Static Pages and Test the Website Locally</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>mkdir -p _site/wiki &amp;&amp; touch _site/wiki/_Sidebar.html
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir -p _site/wiki &amp;&amp; touch _site/wiki/_Sidebar.html
 bundle exec jekyll build
 JEKYLL_ENV=production bundle exec jekyll serve
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="step-4-update-the-github-repo">Step 4: Update the GitHub Repo</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>rm -rf ~/workspace/_site
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rm -rf ~/workspace/_site
 cp -r _site ~/workspace
 rm -rf wiki
 git add .
@@ -299,8 +293,7 @@ cp -r ~/workspace/_site/* .
 git add .
 git commit -m "Update Website"
 git push
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="website-git-structure">Website Git Structure</h2>
 
@@ -326,21 +319,19 @@ git push
 
 <p>In the main repo, source branch:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git rm -rf --cached wiki/
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git rm -rf --cached wiki/
 rm -rf .git/modules/wiki
 rm -rf wiki
 git submodule add https://github.com/ipop-project/ipop-project.github.io.wiki.git wiki
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="add-wiki-as-submodule">Add Wiki as Submodule</h3>
 
 <p>In the main repo:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>git submodule add https://github.com/ipop-project/ipop-project.github.io.wiki.git wiki
-git commit -m <span class="s2">"Wiki Added as a Submodule"</span>
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git submodule add https://github.com/ipop-project/ipop-project.github.io.wiki.git wiki
+git commit <span class="nt">-m</span> <span class="s2">"Wiki Added as a Submodule"</span>
+</code></pre></div></div>
 
 <h3 id="remove-wiki-submodule">Remove Wiki Submodule</h3>
 
@@ -364,23 +355,20 @@ git commit -m <span class="s2">"Wiki Added as a Submodule"</span>
 
 <h3 id="prerequisite">Prerequisite</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo gem install bundler
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo gem install bundler
 sudo apt install ruby-dev
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>In the main repo, source branch:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>bundle install
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle install
+</code></pre></div></div>
 
 <h3 id="work-on-the-website-locally">Work on the Website Locally</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>touch _site/wiki/_Sidebar.html
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>touch _site/wiki/_Sidebar.html
 bundle exec jekyll build
 JEKYLL_ENV=production bundle exec jekyll serve
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="add-yaml-front-matter-to-wiki-markdown-source-files">Add YAML Front Matter to Wiki MarkDown Source Files</h2>
 
@@ -390,9 +378,8 @@ JEKYLL_ENV=production bundle exec jekyll serve
 
 <p>In order to make relative links in wiki pages work correctly inside Jekyll website, remove the <code class="highlighter-rouge">/</code> from the end of the following line in <code class="highlighter-rouge">_config.yml</code>:</p>
 
-<div class="language-yml highlighter-rouge"><pre class="highlight"><code><span class="s">permalink</span><span class="pi">:</span> <span class="s">/:categories/:title/</span>
-</code></pre>
-</div>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">permalink</span><span class="pi">:</span> <span class="s">/:categories/:title/</span>
+</code></pre></div></div>
 
 <h2 id="redirect-wiki-home">Redirect Wiki Home</h2>
 
@@ -400,7 +387,7 @@ JEKYLL_ENV=production bundle exec jekyll serve
 
 <p>This technique would allow you to set up redirects for your pages without resorting to any plugin. All you need to do is create a layout named redirected.html in your _layouts folder. The content of this layout would be as shown below:</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
 <span class="nt">&lt;head&gt;</span>
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"canonical"</span> <span class="na">href=</span><span class="s">""</span><span class="nt">/&gt;</span>
@@ -409,22 +396,20 @@ JEKYLL_ENV=production bundle exec jekyll serve
 <span class="nt">&lt;/head&gt;</span>
 <span class="nt">&lt;body&gt;</span>
       <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;</span>Redirecting ...<span class="nt">&lt;/a&gt;</span>
-      <span class="nt">&lt;script&gt;</span><span class="nx">location</span><span class="o">=</span><span class="s1">''</span><span class="nt">&lt;/script&gt;</span>
+      <span class="nt">&lt;script&gt;</span><span class="nx">location</span><span class="o">=</span><span class="dl">''</span><span class="nt">&lt;/script&gt;</span>
 <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Once you have this layout ready, then to set up redirect from any page, all you need to do is specify redirected as your layout in its YAML front matter and specify the destination in redirect_to as shown below. in <code class="highlighter-rouge">wiki.md</code>:</p>
 
-<div class="language-yml highlighter-rouge"><pre class="highlight"><code><span class="nn">---</span>
-<span class="s">layout</span><span class="pi">:</span> <span class="s">redirected</span>
-<span class="s">sitemap</span><span class="pi">:</span> <span class="s">false</span>
-<span class="s">permalink</span><span class="pi">:</span> <span class="s">/wiki/</span>
-<span class="s">redirect_to</span><span class="pi">:</span>  <span class="s">Home</span>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">layout</span><span class="pi">:</span> <span class="s">redirected</span>
+<span class="na">sitemap</span><span class="pi">:</span> <span class="no">false</span>
+<span class="na">permalink</span><span class="pi">:</span> <span class="s">/wiki/</span>
+<span class="na">redirect_to</span><span class="pi">:</span>  <span class="s">Home</span>
 <span class="nn">---</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Note that, I have also included sitemap: false in the front matter as I don’t want the redirected pages to be included in the sitemap.</p>
 
@@ -438,11 +423,10 @@ JEKYLL_ENV=production bundle exec jekyll serve
 
 <p>To make it appear in all the wiki pages automatically, add <code class="highlighter-rouge">toc: true</code> to the wiki layout settings defaults in <code class="highlighter-rouge">_config.yml</code>:</p>
 
-<div class="language-yml highlighter-rouge"><pre class="highlight"><code>  <span class="c1"># wiki</span>
-  <span class="pi">-</span> <span class="s">values</span><span class="pi">:</span>
-      <span class="s">toc</span><span class="pi">:</span> <span class="s">true</span>
-</code></pre>
-</div>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1"># wiki</span>
+  <span class="pi">-</span> <span class="na">values</span><span class="pi">:</span>
+      <span class="na">toc</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
 
 <h2 id="integrate-wiki-sidebar-into-the-website">Integrate Wiki Sidebar into the Website</h2>
 
@@ -525,18 +509,16 @@ JEKYLL_ENV=production bundle exec jekyll serve
     <p>Start an Admin Windows Powershell and change to the ipop-vpn directory previously created</p>
   </li>
   <li>Enter the following commands:
-    <div class="highlighter-rouge"><pre class="highlight"><code> PowerShell -ExecutionPolicy Unrestricted
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> PowerShell -ExecutionPolicy Unrestricted
  .\ipop-setup
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Follow the prompts to install and setup IPOP</p>
   </li>
   <li>While installing Social VPN, copy the “ip4” entry from “AddressMapper” to “CFx”, e.g.,
-    <div class="highlighter-rouge"><pre class="highlight"><code> ip4": "172.31.0.100" 
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ip4": "172.31.0.100" 
+</code></pre></div>    </div>
   </li>
   <li>Finally, double click ipop-start to run IPOP. Closing this console window will terminate IPOP.</li>
 </ol>
@@ -564,12 +546,10 @@ JEKYLL_ENV=production bundle exec jekyll serve
     <p>Extract the contents of the archive to a directory, e.g., ipop-vpn</p>
   </li>
   <li>Decide if you want to run <a href="Planning Your Network">GroupVPN or Social VPN</a> and copy the appropriate sample config to the ipop-vpn directory. Use one of the following for group or social VPN respectively:
-    <div class="highlighter-rouge"><pre class="highlight"><code> cp .\controller\modules\sample-gvpn-config.json .\config.json
-</code></pre>
-    </div>
-    <div class="highlighter-rouge"><pre class="highlight"><code> cp .\controller\modules\sample-svpn-config.json .\config.json
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> cp .\controller\modules\sample-gvpn-config.json .\config.json
+</code></pre></div>    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> cp .\controller\modules\sample-svpn-config.json .\config.json
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Update your <a href="Configuration">config file</a> with your XMPP credentials and other details. For SocialVPN you only need to add the XMPP server IP, your XMPP client user id and password. For GroupVPN you will need to add your static virtual IP.</p>
@@ -593,10 +573,9 @@ pip install sleekxmpp</p>
 
 <p>Enter the following commands:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>PowerShell -ExecutionPolicy Unrestricted
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PowerShell -ExecutionPolicy Unrestricted
 .\ipop-setup
-</code></pre>
-</div>
+</code></pre></div></div>
 
 
 
@@ -674,16 +653,15 @@ pip install sleekxmpp</p>
 
 <p>Include <code class="highlighter-rouge">_Sidebar.md</code> to the Jekyll include list in <code class="highlighter-rouge">_config.yml</code>:</p>
 
-<div class="language-yml highlighter-rouge"><pre class="highlight"><code><span class="s">include</span><span class="pi">:</span>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">include</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="s">_Sidebar</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Insert the sidebar in the wiki template <code class="highlighter-rouge">wiki.html</code>. Check  the file content.</p>
 
 <p>Add proper styles to <code class="highlighter-rouge">main.scss</code>:</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nc">.layout--wiki</span> <span class="nc">.sidebar</span> <span class="nc">.nav__list</span> <span class="nt">strong</span> <span class="p">{</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.layout--wiki</span> <span class="nc">.sidebar</span> <span class="nc">.nav__list</span> <span class="nt">strong</span> <span class="p">{</span>
   <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
   <span class="nl">margin</span><span class="p">:</span> <span class="m">0.5rem</span> <span class="m">0</span><span class="p">;</span>
   <span class="nl">padding</span><span class="p">:</span> <span class="m">0.5rem</span> <span class="m">0</span><span class="p">;</span>
@@ -700,8 +678,7 @@ pip install sleekxmpp</p>
 <span class="nc">.layout--wiki</span> <span class="nc">.sidebar</span> <span class="nt">li</span> <span class="p">{</span>
   <span class="nl">font-size</span><span class="p">:</span> <span class="m">.85em</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="issues">Issues</h2>
 
@@ -711,11 +688,10 @@ pip install sleekxmpp</p>
 
 <p>A workaround would be to create an empty file at that path manually and after a successful Jekyll build, run the <code class="highlighter-rouge">build</code> or <code class="highlighter-rouge">serve</code> command for the second time to include the wiki sidebar:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>touch _site/wiki/_Sidebar.html
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>touch _site/wiki/_Sidebar.html
 bundle exec jekyll build
 JEKYLL_ENV=production bundle exec jekyll serve
-</code></pre>
-</div>
+</code></pre></div></div>
 
 
 

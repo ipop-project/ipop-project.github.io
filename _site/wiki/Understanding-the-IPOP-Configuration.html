@@ -198,33 +198,32 @@
 <h2 id="quickstart">Quickstart</h2>
 
 <p>There are only two required modification to the IPOP configuration file that is necessary to get started. You must add your XMPP server host/IP address, username and password to the “Signal” section of the configuration JSON file. You will also want to set an appropriate IP4 address value in BridgeController. Example:</p>
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="w">  </span><span class="s2">"Signal"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"Enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Overlays"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"101000F"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"HostAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmpp.host.addr"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"Port"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5222"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"Username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmpp-id@ejabberd"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"Password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a_secure-pswd"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"AuthenticationMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PASSWORD"</span><span class="w">
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="nl">"Signal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"Enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Overlays"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"101000F"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"HostAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmpp.host.addr"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"Port"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5222"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"Username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmpp-id@ejabberd"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"Password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a_secure-pswd"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"AuthenticationMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PASSWORD"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="err">,</span><span class="w">
-  </span><span class="s2">"BridgeController"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"Enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"Overlays"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"101000F"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OVS"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"BridgeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ipopbr0"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"IP4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.10.100.101"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"PrefixLen"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"MTU"</span><span class="p">:</span><span class="w"> </span><span class="mi">1410</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"AutoDelete"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="nl">"BridgeController"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"Enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Overlays"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"101000F"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OVS"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"BridgeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ipopbr0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"IP4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.10.100.101"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"PrefixLen"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"MTU"</span><span class="p">:</span><span class="w"> </span><span class="mi">1410</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"AutoDelete"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 <p>A template can be found in the ipop installation directory /opt/ipop-vpn/sample-config.json, and should be completed and copied to /etc/opt/ipop-vpn/config.json.</p>
 
 <h2 id="advanced-configuration">Advanced Configuration</h2>

@@ -65,6 +65,8 @@ Contributes to IPOP Implementation and Testing on Raspberry Pi and ARM Devices
 ---
 {: .clear-both}
 
+## Former Members and Contributors
+
 ![Gaurav A. Yeole](../assets/images/gaurav.jpg){: .float-left .profile-img}
 <h3><a href="https://www.acis.ufl.edu/people/gauravyeole">Gaurav A. Yeole <i class="fa fa-external-link" aria-hidden="true"></i></a></h3>
 Master's Student, ACIS Lab, University of Florida  
@@ -88,8 +90,6 @@ Contributes to General Software Design and Development
 
 ---
 {: .clear-both}
-
-## Former Members and Contributors
 
 ![Kyuho Jeong](../assets/images/kyuho.jpg){: .float-left .profile-img}
 <h3><a href="https://www.acis.ufl.edu/people/xetron">Kyuho Jeong <i class="fa fa-external-link" aria-hidden="true"></i></a></h3>

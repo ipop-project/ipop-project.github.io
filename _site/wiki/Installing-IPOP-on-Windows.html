@@ -208,18 +208,16 @@
     <p>Start an Admin Windows Powershell and change to the ipop-vpn directory previously created</p>
   </li>
   <li>Enter the following commands:
-    <div class="highlighter-rouge"><pre class="highlight"><code> PowerShell -ExecutionPolicy Unrestricted
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> PowerShell -ExecutionPolicy Unrestricted
  .\ipop-setup
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Follow the prompts to install and setup IPOP</p>
   </li>
   <li>While installing Social VPN, copy the “ip4” entry from “AddressMapper” to “CFx”, e.g.,
-    <div class="highlighter-rouge"><pre class="highlight"><code> ip4": "172.31.0.100" 
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ip4": "172.31.0.100" 
+</code></pre></div>    </div>
   </li>
   <li>Finally, double click ipop-start to run IPOP. Closing this console window will terminate IPOP.</li>
 </ol>
@@ -247,12 +245,10 @@ If you are using an earlier version of Windows such as 7, 8, Server 2008, or 201
     <p>Extract the contents of the archive to a directory, e.g., ipop-vpn</p>
   </li>
   <li>Decide if you want to run <a href="Planning Your Network">GroupVPN or Social VPN</a> and copy the appropriate sample config to the ipop-vpn directory. Use one of the following for group or social VPN respectively:
-    <div class="highlighter-rouge"><pre class="highlight"><code> cp .\controller\modules\sample-gvpn-config.json .\config.json
-</code></pre>
-    </div>
-    <div class="highlighter-rouge"><pre class="highlight"><code> cp .\controller\modules\sample-svpn-config.json .\config.json
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> cp .\controller\modules\sample-gvpn-config.json .\config.json
+</code></pre></div>    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> cp .\controller\modules\sample-svpn-config.json .\config.json
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Update your <a href="Configuration">config file</a> with your XMPP credentials and other details. For SocialVPN you only need to add the XMPP server IP, your XMPP client user id and password. For GroupVPN you will need to add your static virtual IP.</p>

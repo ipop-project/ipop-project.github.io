@@ -76,7 +76,7 @@ We also gratefully acknowledge support from the US Department of Defense, Google
 ---
 {: .clear-both}
 
-Please help us continue being supported by our sponsors by [referencing our work in your publications].
+Please help us continue being supported by our sponsors by referencing our work in your publications.
 
 
 [Brunet]: http://github.com/johnynek/brunet
@@ -87,4 +87,3 @@ Please help us continue being supported by our sponsors by [referencing our work
 [1234983]: http://nsf.gov/awardsearch/showAward?AWD_ID=1234983
 [Advanced Computing and Information Systems (ACIS) Laboratory]: https://www.acis.ufl.edu/
 [University of Florida]: https://www.ufl.edu/
-[referencing our work in your publications]: ../publications/
