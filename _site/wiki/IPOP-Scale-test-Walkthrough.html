@@ -1,0 +1,938 @@
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.5.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>IPOP</title>
+
+
+
+
+<meta name="description" content="IP-Over-P2P, Open-source User-centric Software Virtual Network">
+
+
+
+
+<meta name="author" content="">
+
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="IPOP">
+<meta property="og:title" content="IPOP">
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "IPOP",
+      "url" : null,
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--wiki">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">IPOP</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="/about/">About</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/wiki/Quick-Start">Quick Start</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/download">Download</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/learn/">Learn</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/wiki/">Wiki</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/whitepaper/">White Paper</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/contribute/">Contribute</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/contact/">Contact</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    
+
+
+
+<div id="main" role="main">
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      <section class="page__content" itemprop="text">
+
+        <aside class="sidebar__right">
+          <nav class="toc">
+            <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+            <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#ipop-scale-test-walkthrough">IPOP Scale-test Walkthrough</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#description">Description</a></li>
+<li class="toc-entry toc-h2"><a href="#usage">Usage</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#preparing-your-virtual-machine">Preparing your virtual machine</a></li>
+<li class="toc-entry toc-h4"><a href="#download-the-automated-test-script-on-host">Download the automated test script on Host</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#scale-test---setting-up-the-environment">Scale test - setting up the environment</a></li>
+<li class="toc-entry toc-h5"><a href="#scale-test---starting-execution">Scale test - starting execution</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h4"><a href="#start-ipop-network-and-query-for-its-status">Start IPOP network and query for its status</a></li>
+<li class="toc-entry toc-h4"><a href="#validation-and-testing-tools">Validation and testing tools.</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#status">status</a></li>
+<li class="toc-entry toc-h5"><a href="#all-to-all-connectivity">all to all connectivity</a></li>
+<li class="toc-entry toc-h5"><a href="#pair-wise-connectivity">pair-wise connectivity</a></li>
+<li class="toc-entry toc-h5"><a href="#performance-metrics-via-iperf">Performance metrics via iperf</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h4"><a href="#consolidated-logs-for-debugging">Consolidated logs for debugging</a></li>
+<li class="toc-entry toc-h4"><a href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+          </nav>
+        </aside>
+
+        <h1 id="ipop-scale-test-walkthrough">IPOP Scale-test Walkthrough</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Tested on</strong></td>
+      <td>Ubuntu 16.04 Desktop x64</td>
+    </tr>
+    <tr>
+      <td><strong>Time</strong></td>
+      <td>~ 40 Minutes</td>
+    </tr>
+    <tr>
+      <td><strong>Objective</strong></td>
+      <td>- Install and execute Ipop scale test for validating functionality and debugging. <br /> - Visualize topology based on configuration parameters.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="description">Description</h2>
+
+<p>This tutorial guides you through the deployment IPOP scale test, a handy tool to validate functionality and performance of an IPOP network deployed locally. This tool can be used for debugging post modifications made to the source code and to visualize behavioral aspects of topology based on set topology parameters. It is pre-configured to work within a single Ubuntu 16.04 VMware/VirtualBox VM to make it easy for anyone to reproduce it on their own computers and test-drive IPOP network. The tutorial deploys all services IPOP uses (XMPP, STUN, TURN), as well as 10 IPOP nodes on 10 LXC containers within the VM.</p>
+
+<h2 id="usage">Usage</h2>
+
+<h4 id="preparing-your-virtual-machine">Preparing your virtual machine</h4>
+
+<p>You will need a 64-bit Ubuntu 16.04 VM to run this tutorial. It has been tested on <a href="http://www.osboxes.org/ubuntu/#ubuntu-16-04-vmware">this osboxes.org VMware image</a></p>
+
+<h4 id="download-the-automated-test-script-on-host">Download the automated test script on Host</h4>
+<p>(note: if you use the osboxes.org VMware Ubuntu 16.04 image, the default root password is: osboxes.org )
+This tutorial uses scale-test, an automated test script that install and configures all software needed to run a test IPOP network of a few nodes.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd
+git clone https://github.com/ipop-project/Release-Management
+</code></pre></div></div>
+
+<h5 id="scale-test---setting-up-the-environment">Scale test - setting up the environment</h5>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd ./Release-Management/Test/ipop-scale-test
+osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
+Enter from the following options:
+    configure                      : install/prepare default container
+    containers-create              : create and start containers
+    containers-start               : start stopped containers
+    containers-stop                : stop containers
+    containers-del                 : delete containers
+    ipop-run                       : to run IPOP node
+    ipop-kill                      : to kill IPOP node
+    ipop-tests                     : open scale test shell to test ipop
+    ipop-status                    : show statuses of IPOP processes
+    visualizer-start               : install and start up visualizer
+    visualizer-stop                : stop visualizer processes
+    visualizer-status              : show statuses of visualizer processes
+    logs                           : aggregate ipop logs under ./logs
+    mode                           : show or change ipop mode to test
+     
+&gt; configure
+</code></pre></div></div>
+<h5 id="scale-test---starting-execution">Scale test - starting execution</h5>
+<p>This step will</p>
+<ul>
+  <li>Create and start containers.</li>
+  <li>Download and build IPOP tincan binary.</li>
+  <li>Download controller repository.</li>
+  <li>Register ejabberd user for every container and establish relationships between them on the ejabberd server.</li>
+  <li>Configure topology parameters such as successor links, chords, on-demand and inbound links.</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
+Enter from the following options:
+    configure                      : install/prepare default container
+    containers-create              : create and start containers
+    containers-start               : start stopped containers
+    containers-stop                : stop containers
+    containers-del                 : delete containers
+    ipop-run                       : to run IPOP node
+    ipop-kill                      : to kill IPOP node
+    ipop-tests                     : open scale test shell to test ipop
+    ipop-status                    : show statuses of IPOP processes
+    visualizer-start               : install and start up visualizer
+    visualizer-stop                : stop visualizer processes
+    visualizer-status              : show statuses of visualizer processes
+    logs                           : aggregate ipop logs under ./logs
+    mode                           : show or change ipop mode to test
+     
+&gt; containers-create
+No of containers to be created: 10
+Controllers repo already present in the current path. Continue with existing repo? (Y/N) 
+y
+Using existing Tincan binary...
+Enable visualization? (Y/N): 
+y
+Network defaults:
+No of Successor links: 4
+Max No of Chords: 4
+Max No of Ondemand links: 0
+Max No of Inbound links: 4
+Do you want to use IPOP network defaults? (Y/N): 
+y
+Starting containers. Please wait... 
+Container node1 started.
+User node1@ejabberd successfully registered
+Container node2 started.
+User node2@ejabberd successfully registered
+Container node3 started.
+User node3@ejabberd successfully registered
+Container node4 started.
+User node4@ejabberd successfully registered
+Container node5 started.
+User node5@ejabberd successfully registered
+Container node6 started.
+User node6@ejabberd successfully registered
+Container node7 started.
+User node7@ejabberd successfully registered
+Container node8 started.
+User node8@ejabberd successfully registered
+Container node9 started.
+User node9@ejabberd successfully registered
+Container node10 started.
+User node10@ejabberd successfully registered
+osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ 
+
+</code></pre></div></div>
+
+<h4 id="start-ipop-network-and-query-for-its-status">Start IPOP network and query for its status</h4>
+<p>In this phase we will start IPOP processes inside the containers we created in the previous step and then query for the status of those processes.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
+Enter from the following options:
+    configure                      : install/prepare default container
+    containers-create              : create and start containers
+    containers-start               : start stopped containers
+    containers-stop                : stop containers
+    containers-del                 : delete containers
+    ipop-run                       : to run IPOP node
+    ipop-kill                      : to kill IPOP node
+    ipop-tests                     : open scale test shell to test ipop
+    ipop-status                    : show statuses of IPOP processes
+    visualizer-start               : install and start up visualizer
+    visualizer-stop                : stop visualizer processes
+    visualizer-status              : show statuses of visualizer processes
+    logs                           : aggregate ipop logs under ./logs
+    mode                           : show or change ipop mode to test
+     
+&gt; ipop-run
+Enter # To RUN all containers or Enter the container number.  (e.g. Enter 1 to start node1)
+#
+Running node1
+nohup: ignoring input and appending output to 'nohup.out'
+Running node2
+nohup: ignoring input and appending output to 'nohup.out'
+Running node3
+nohup: ignoring input and appending output to 'nohup.out'
+Running node4
+nohup: ignoring input and appending output to 'nohup.out'
+Running node5
+nohup: ignoring input and appending output to 'nohup.out'
+Running node6
+nohup: ignoring input and appending output to 'nohup.out'
+Running node7
+nohup: ignoring input and appending output to 'nohup.out'
+Running node8
+nohup: ignoring input and appending output to 'nohup.out'
+Running node9
+nohup: ignoring input and appending output to 'nohup.out'
+Running node10
+nohup: ignoring input and appending output to 'nohup.out'
+osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ 
+osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
+Enter from the following options:
+    configure                      : install/prepare default container
+    containers-create              : create and start containers
+    containers-start               : start stopped containers
+    containers-stop                : stop containers
+    containers-del                 : delete containers
+    ipop-run                       : to run IPOP node
+    ipop-kill                      : to kill IPOP node
+    ipop-tests                     : open scale test shell to test ipop
+    ipop-status                    : show statuses of IPOP processes
+    visualizer-start               : install and start up visualizer
+    visualizer-stop                : stop visualizer processes
+    visualizer-status              : show statuses of visualizer processes
+    logs                           : aggregate ipop logs under ./logs
+    mode                           : show or change ipop mode to test
+     
+&gt; ipop-status
+node1 is not running
+Controller is UP &amp;&amp; Tincan is UP on node2
+Controller is UP &amp;&amp; Tincan is UP on node3
+Controller is UP &amp;&amp; Tincan is UP on node4
+Controller is UP &amp;&amp; Tincan is UP on node5
+Controller is UP &amp;&amp; Tincan is UP on node6
+Controller is UP &amp;&amp; Tincan is UP on node7
+Controller is UP &amp;&amp; Tincan is UP on node8
+Controller is UP &amp;&amp; Tincan is UP on node9
+Controller is UP &amp;&amp; Tincan is UP on node10
+osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ 
+
+</code></pre></div></div>
+<h4 id="validation-and-testing-tools">Validation and testing tools.</h4>
+<p>This phase entails use of features for validating functional correctness and performance metrics under a tool suite called ipop-tests. We are going to go through some of its features.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
+Enter from the following options:
+    configure                      : install/prepare default container
+    containers-create              : create and start containers
+    containers-start               : start stopped containers
+    containers-stop                : stop containers
+    containers-del                 : delete containers
+    ipop-run                       : to run IPOP node
+    ipop-kill                      : to kill IPOP node
+    ipop-tests                     : open scale test shell to test ipop
+    ipop-status                    : show statuses of IPOP processes
+    visualizer-start               : install and start up visualizer
+    visualizer-stop                : stop visualizer processes
+    visualizer-status              : show statuses of visualizer processes
+    logs                           : aggregate ipop logs under ./logs
+    mode                           : show or change ipop mode to test
+     
+&gt; ipop-tests
+(scale-test) help
+
+Documented commands (type help &lt;topic&gt;):
+========================================
+EOF  churn  exit  exportdata  help  iperf  ping  pingall  status
+
+</code></pre></div></div>
+
+<p>As seen above, with the use of this tool one can verify all to all connectivity (pingall), pairwise connectivity (ping), query for IPOP addresses on individual nodes (status) and collect performance metrics (iperf).</p>
+
+<h5 id="status">status</h5>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(scale-test) status
+Container: node1 is running | ip addresses: (u'10.0.3.243', u'10.254.0.1')
+Container: node10 is running | ip addresses: (u'10.0.3.192', u'10.254.0.10')
+Container: node2 is running | ip addresses: (u'10.0.3.253', u'10.254.0.2')
+Container: node3 is running | ip addresses: (u'10.0.3.176', u'10.254.0.3')
+Container: node4 is running | ip addresses: (u'10.0.3.250', u'10.254.0.4')
+Container: node5 is running | ip addresses: (u'10.0.3.191', u'10.254.0.5')
+Container: node6 is running | ip addresses: (u'10.0.3.97', u'10.254.0.6')
+Container: node7 is running | ip addresses: (u'10.0.3.160', u'10.254.0.7')
+Container: node8 is running | ip addresses: (u'10.0.3.75', u'10.254.0.8')
+Container: node9 is running | ip addresses: (u'10.0.3.215', u'10.254.0.9')
+(scale-test) 
+</code></pre></div></div>
+<h5 id="all-to-all-connectivity">all to all connectivity</h5>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(scale-test) pingall
+Staring pingall with default packet count of 2.
+node1 -&gt; node10 with packet loss 0.0%
+node1 -&gt; node2 with packet loss 0.0%
+node1 -&gt; node3 with packet loss 0.0%
+node1 -&gt; node4 with packet loss 0.0%
+node1 -&gt; node5 with packet loss 0.0%
+node1 -&gt; node6 with packet loss 0.0%
+node1 -&gt; node7 with packet loss 0.0%
+node1 -&gt; node8 with packet loss 0.0%
+node1 -&gt; node9 with packet loss 0.0%
+node10 -&gt; node1 with packet loss 0.0%
+node10 -&gt; node2 with packet loss 0.0%
+node10 -&gt; node3 with packet loss 0.0%
+node10 -&gt; node4 with packet loss 0.0%
+node10 -&gt; node5 with packet loss 0.0%
+node10 -&gt; node6 with packet loss 0.0%
+node10 -&gt; node7 with packet loss 0.0%
+node10 -&gt; node8 with packet loss 0.0%
+node10 -&gt; node9 with packet loss 0.0%
+node2 -&gt; node1 with packet loss 0.0%
+node2 -&gt; node10 with packet loss 0.0%
+node2 -&gt; node3 with packet loss 0.0%
+node2 -&gt; node4 with packet loss 0.0%
+node2 -&gt; node5 with packet loss 0.0%
+node2 -&gt; node6 with packet loss 0.0%
+node2 -&gt; node7 with packet loss 0.0%
+node2 -&gt; node8 with packet loss 0.0%
+node2 -&gt; node9 with packet loss 0.0%
+node3 -&gt; node1 with packet loss 0.0%
+node3 -&gt; node10 with packet loss 0.0%
+node3 -&gt; node2 with packet loss 0.0%
+node3 -&gt; node4 with packet loss 0.0%
+node3 -&gt; node5 with packet loss 0.0%
+node3 -&gt; node6 with packet loss 0.0%
+node3 -&gt; node7 with packet loss 0.0%
+node3 -&gt; node8 with packet loss 0.0%
+node3 -&gt; node9 with packet loss 0.0%
+node4 -&gt; node1 with packet loss 0.0%
+node4 -&gt; node10 with packet loss 0.0%
+node4 -&gt; node2 with packet loss 0.0%
+node4 -&gt; node3 with packet loss 0.0%
+node4 -&gt; node5 with packet loss 0.0%
+node4 -&gt; node6 with packet loss 0.0%
+node4 -&gt; node7 with packet loss 0.0%
+node4 -&gt; node8 with packet loss 0.0%
+node4 -&gt; node9 with packet loss 0.0%
+node5 -&gt; node1 with packet loss 0.0%
+node5 -&gt; node10 with packet loss 0.0%
+node5 -&gt; node2 with packet loss 0.0%
+node5 -&gt; node3 with packet loss 0.0%
+node5 -&gt; node4 with packet loss 0.0%
+node5 -&gt; node6 with packet loss 0.0%
+node5 -&gt; node7 with packet loss 0.0%
+node5 -&gt; node8 with packet loss 0.0%
+node5 -&gt; node9 with packet loss 0.0%
+node6 -&gt; node1 with packet loss 0.0%
+node6 -&gt; node10 with packet loss 0.0%
+node6 -&gt; node2 with packet loss 0.0%
+node6 -&gt; node3 with packet loss 0.0%
+node6 -&gt; node4 with packet loss 0.0%
+node6 -&gt; node5 with packet loss 0.0%
+node6 -&gt; node7 with packet loss 0.0%
+node6 -&gt; node8 with packet loss 0.0%
+node6 -&gt; node9 with packet loss 0.0%
+node7 -&gt; node1 with packet loss 0.0%
+node7 -&gt; node10 with packet loss 0.0%
+node7 -&gt; node2 with packet loss 0.0%
+node7 -&gt; node3 with packet loss 0.0%
+node7 -&gt; node4 with packet loss 0.0%
+node7 -&gt; node5 with packet loss 0.0%
+node7 -&gt; node6 with packet loss 0.0%
+node7 -&gt; node8 with packet loss 0.0%
+node7 -&gt; node9 with packet loss 0.0%
+node8 -&gt; node1 with packet loss 0.0%
+node8 -&gt; node10 with packet loss 0.0%
+node8 -&gt; node2 with packet loss 0.0%
+node8 -&gt; node3 with packet loss 0.0%
+node8 -&gt; node4 with packet loss 0.0%
+node8 -&gt; node5 with packet loss 0.0%
+node8 -&gt; node6 with packet loss 0.0%
+node8 -&gt; node7 with packet loss 0.0%
+node8 -&gt; node9 with packet loss 0.0%
+node9 -&gt; node1 with packet loss 0.0%
+node9 -&gt; node10 with packet loss 0.0%
+node9 -&gt; node2 with packet loss 0.0%
+node9 -&gt; node3 with packet loss 0.0%
+node9 -&gt; node4 with packet loss 0.0%
+node9 -&gt; node5 with packet loss 0.0%
+node9 -&gt; node6 with packet loss 0.0%
+node9 -&gt; node7 with packet loss 0.0%
+node9 -&gt; node8 with packet loss 0.0%
+(scale-test) 
+</code></pre></div></div>
+<h5 id="pair-wise-connectivity">pair-wise connectivity</h5>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(scale-test) ping node1 node2 10
+PING 10.254.0.2 (10.254.0.2) 56(84) bytes of data.
+64 bytes from 10.254.0.2: icmp_seq=1 ttl=64 time=30.7 ms
+64 bytes from 10.254.0.2: icmp_seq=2 ttl=64 time=1.94 ms
+64 bytes from 10.254.0.2: icmp_seq=3 ttl=64 time=1.76 ms
+64 bytes from 10.254.0.2: icmp_seq=4 ttl=64 time=1.60 ms
+64 bytes from 10.254.0.2: icmp_seq=5 ttl=64 time=1.84 ms
+64 bytes from 10.254.0.2: icmp_seq=6 ttl=64 time=1.80 ms
+64 bytes from 10.254.0.2: icmp_seq=7 ttl=64 time=1.61 ms
+64 bytes from 10.254.0.2: icmp_seq=8 ttl=64 time=0.909 ms
+64 bytes from 10.254.0.2: icmp_seq=9 ttl=64 time=0.790 ms
+64 bytes from 10.254.0.2: icmp_seq=10 ttl=64 time=0.754 ms
+
+--- 10.254.0.2 ping statistics ---
+10 packets transmitted, 10 received, 0% packet loss, time 9059ms
+rtt min/avg/max/mdev = 0.754/4.376/30.733/8.796 ms
+
+(scale-test) 
+
+</code></pre></div></div>
+<h5 id="performance-metrics-via-iperf">Performance metrics via iperf</h5>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(scale-test) iperf node3 node8
+{
+	"start":	{
+		"connected":	[{
+				"socket":	4,
+				"local_host":	"10.254.0.3",
+				"local_port":	49164,
+				"remote_host":	"10.254.0.8",
+				"remote_port":	5201
+			}],
+		"version":	"iperf 3.0.11",
+		"system_info":	"Linux node3 4.10.0-32-generic #36~16.04.1-Ubuntu SMP Wed Aug 9 09:19:02 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux\n",
+		"timestamp":	{
+			"time":	"Wed, 16 Aug 2017 14:32:13 GMT",
+			"timesecs":	1502893933
+		},
+		"connecting_to":	{
+			"host":	"10.254.0.8",
+			"port":	5201
+		},
+		"cookie":	"node3.1502893933.268437.34d12d0f6321",
+		"tcp_mss_default":	524,
+		"test_start":	{
+			"protocol":	"TCP",
+			"num_streams":	1,
+			"blksize":	131072,
+			"omit":	0,
+			"duration":	5,
+			"bytes":	0,
+			"blocks":	0,
+			"reverse":	0
+		}
+	},
+	"intervals":	[{
+			"streams":	[{
+					"socket":	4,
+					"start":	0,
+					"end":	1.00017,
+					"seconds":	1.00017,
+					"bytes":	3770180,
+					"bits_per_second":	3.01563e+07,
+					"retransmits":	10,
+					"snd_cwnd":	60784,
+					"omitted":	false
+				}],
+			"sum":	{
+				"start":	0,
+				"end":	1.00017,
+				"seconds":	1.00017,
+				"bytes":	3770180,
+				"bits_per_second":	3.01563e+07,
+				"retransmits":	10,
+				"omitted":	false
+			}
+		}, {
+			"streams":	[{
+					"socket":	4,
+					"start":	1.00017,
+					"end":	2.00022,
+					"seconds":	1.00005,
+					"bytes":	3118848,
+					"bits_per_second":	2.49496e+07,
+					"retransmits":	1,
+					"snd_cwnd":	53972,
+					"omitted":	false
+				}],
+			"sum":	{
+				"start":	1.00017,
+				"end":	2.00022,
+				"seconds":	1.00005,
+				"bytes":	3118848,
+				"bits_per_second":	2.49496e+07,
+				"retransmits":	1,
+				"omitted":	false
+			}
+		}, {
+			"streams":	[{
+					"socket":	4,
+					"start":	2.00022,
+					"end":	3.00011,
+					"seconds":	0.99989,
+					"bytes":	3118848,
+					"bits_per_second":	2.49535e+07,
+					"retransmits":	0,
+					"snd_cwnd":	67596,
+					"omitted":	false
+				}],
+			"sum":	{
+				"start":	2.00022,
+				"end":	3.00011,
+				"seconds":	0.99989,
+				"bytes":	3118848,
+				"bits_per_second":	2.49535e+07,
+				"retransmits":	0,
+				"omitted":	false
+			}
+		}, {
+			"streams":	[{
+					"socket":	4,
+					"start":	3.00011,
+					"end":	4.00007,
+					"seconds":	0.999966,
+					"bytes":	3118848,
+					"bits_per_second":	2.49516e+07,
+					"retransmits":	2,
+					"snd_cwnd":	61308,
+					"omitted":	false
+				}],
+			"sum":	{
+				"start":	3.00011,
+				"end":	4.00007,
+				"seconds":	0.999966,
+				"bytes":	3118848,
+				"bits_per_second":	2.49516e+07,
+				"retransmits":	2,
+				"omitted":	false
+			}
+		}, {
+			"streams":	[{
+					"socket":	4,
+					"start":	4.00007,
+					"end":	5.00008,
+					"seconds":	1.00001,
+					"bytes":	3118848,
+					"bits_per_second":	2.49507e+07,
+					"retransmits":	1,
+					"snd_cwnd":	53972,
+					"omitted":	false
+				}],
+			"sum":	{
+				"start":	4.00007,
+				"end":	5.00008,
+				"seconds":	1.00001,
+				"bytes":	3118848,
+				"bits_per_second":	2.49507e+07,
+				"retransmits":	1,
+				"omitted":	false
+			}
+		}],
+	"end":	{
+		"streams":	[{
+				"sender":	{
+					"socket":	4,
+					"start":	0,
+					"end":	5.00008,
+					"seconds":	5.00008,
+					"bytes":	16245572,
+					"bits_per_second":	2.59925e+07,
+					"retransmits":	14
+				},
+				"receiver":	{
+					"socket":	4,
+					"start":	0,
+					"end":	5.00008,
+					"seconds":	5.00008,
+					"bytes":	15641924,
+					"bits_per_second":	2.50267e+07
+				}
+			}],
+		"sum_sent":	{
+			"start":	0,
+			"end":	5.00008,
+			"seconds":	5.00008,
+			"bytes":	16245572,
+			"bits_per_second":	2.59925e+07,
+			"retransmits":	14
+		},
+		"sum_received":	{
+			"start":	0,
+			"end":	5.00008,
+			"seconds":	5.00008,
+			"bytes":	15641924,
+			"bits_per_second":	2.50267e+07
+		},
+		"cpu_utilization_percent":	{
+			"host_total":	0.869463,
+			"host_user":	0.0783283,
+			"host_system":	0.783283,
+			"remote_total":	9.95959,
+			"remote_user":	0.0773897,
+			"remote_system":	9.82849
+		}
+	}
+}
+
+(scale-test) 
+
+</code></pre></div></div>
+<h4 id="consolidated-logs-for-debugging">Consolidated logs for debugging</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ ./scale_test.sh
+Enter from the following options:
+    configure                      : install/prepare default container
+    containers-create              : create and start containers
+    containers-start               : start stopped containers
+    containers-stop                : stop containers
+    containers-del                 : delete containers
+    ipop-run                       : to run IPOP node
+    ipop-kill                      : to kill IPOP node
+    ipop-tests                     : open scale test shell to test ipop
+    ipop-status                    : show statuses of IPOP processes
+    visualizer-start               : install and start up visualizer
+    visualizer-stop                : stop visualizer processes
+    visualizer-status              : show statuses of visualizer processes
+    logs                           : aggregate ipop logs under ./logs
+    mode                           : show or change ipop mode to test
+     
+&gt; logs
+[sudo] password for osboxes: 
+node1 is not running
+View ./logs/ to see ctrl and tincan logs
+osboxes@osboxes:~/Release-Management/Test/ipop-scale-test$ cd logs/
+osboxes@osboxes:~/Release-Management/Test/ipop-scale-test/logs$ ls -ltr
+total 40
+drwxrwxr-x 2 osboxes osboxes 4096 Aug 16 10:37 node1
+drwxrwxr-x 2 osboxes osboxes 4096 Aug 16 10:37 node2
+drwxrwxr-x 2 osboxes osboxes 4096 Aug 16 10:37 node3
+drwxrwxr-x 2 osboxes osboxes 4096 Aug 16 10:37 node4
+drwxrwxr-x 2 osboxes osboxes 4096 Aug 16 10:37 node5
+drwxrwxr-x 2 osboxes osboxes 4096 Aug 16 10:37 node6
+drwxrwxr-x 2 osboxes osboxes 4096 Aug 16 10:37 node7
+drwxrwxr-x 2 osboxes osboxes 4096 Aug 16 10:37 node8
+drwxrwxr-x 2 osboxes osboxes 4096 Aug 16 10:37 node9
+drwxrwxr-x 2 osboxes osboxes 4096 Aug 16 10:37 node10
+osboxes@osboxes:~/Release-Management/Test/ipop-scale-test/logs$ 
+
+</code></pre></div></div>
+
+<h4 id="references">References</h4>
+
+<p>[1] <a href="http://ipop-project.org/">IPOP</a></p>
+
+<p>[2] <a href="https://github.com/ipop-project">IPOP GitHub</a></p>
+
+<p>[3] <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Testing-Your-Build">Scale-Test concept</a></p>
+
+<p>[4] <a href="https://github.com/ipop-project/Release-Management/tree/master/Test/ipop-scale-test">More about scale-test</a></p>
+
+
+
+      </section>
+    </div>
+  </article>
+
+
+  <div class="sidebar">
+    <nav class="nav__list">
+      <div class="wiki-top-links">
+        <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
+      </div>
+      
+
+    
+
+
+
+        <ul>
+  <li><strong>Deploying IPOP-VPN</strong>
+    <ul>
+      <li><a href="Quick-Start">Quick Start</a></li>
+      <li><a href="Use-IPOP,-Intro">Installation</a></li>
+      <li><a href="Understanding-the-IPOP-Configuration">Configuration</a></li>
+    </ul>
+  </li>
+  <li><strong>Development Guide</strong>
+    <ul>
+      <li><a href="Development-Workflow">Development Workflow</a></li>
+      <li><a href="Coding-Guidelines">Coding Guidelines</a></li>
+      <li><a href="Build-IPOP,-Intro">Building the Code</a></li>
+      <li><a href="IPOP-Scale-test-Walkthrough">Testing Your Build</a></li>
+      <li><a href="Controller-Framework">Controller Framework</a></li>
+      <li><a href="Controller-API">Controller API</a></li>
+      <li><a href="Build-WebRTC-Libraries,-Intro">Building WebRTC Libraries</a></li>
+    </ul>
+  </li>
+  <li><strong>General Documentation</strong>
+    <ul>
+      <li><a href="FAQs">FAQs</a></li>
+      <li><a href="Troubleshooting">Troubleshooting</a></li>
+      <li><a href="Planning-Your-Network">Planning Your Network</a></li>
+      <li><a href="Coding-Challenges">Coding Challenges</a></li>
+      <li><a href="Known-Issues">Known Issues</a></li>
+      <li><a href="Getting-Help">Getting Help</a></li>
+      <li><a href="How-to-Contribute">How to Contribute</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+
+      </section>
+    </div>
+  </article>
+
+
+
+</div>
+
+
+
+
+    </nav>
+  </div>
+
+
+</div>
+
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+     -->
+    <!-- <li><a href="/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
+<!--  </ul>
+</div> --> 
+
+<div class="page__footer-copyright footer-address">
+  <div class="float-left">
+    <img src="/assets/images/uf_small.png" class="padding-bottom-right" /><img src="/assets/images/nsf_small.png" class="padding-bottom-right" />
+  </div>
+  <i class="fa fa-address-card-o" aria-hidden="true"></i>
+  <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br />
+  <a href="http://www.ece.ufl.edu/" rel="nofollow" target="_blank">Department of Electrical & Computer Engineering</a><br />
+  <a href="http://www.eng.ufl.edu/" rel="nofollow" target="_blank">College of Engineering</a>, <a href="http://www.ufl.edu/" rel="nofollow" target="_blank">University of Florida</a>
+</div>
+
+<div class="page__footer-copyright footer-links">
+  <div>
+    <a href="/contact">Contact</a> | <a href="/contact/#mailing-list-subscription">Mailing List</a> | <a href="https://ipopvpn.slack.com/">Slack Channel</a> | <a href="/sitemap">Sitemap</a><br />
+    <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
+    &copy; 2019 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
+    </div>
+  </div>
+</div>
+<div class="page__footer-copyright footer-sponsor clear-both">This material is based upon work supported in part by the National Science Foundation under Grants No. 1234983, 1339737 and 1527415.</div>
+      </footer>
+    </div>
+
+    <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>
+
