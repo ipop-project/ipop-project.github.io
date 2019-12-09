@@ -182,13 +182,17 @@
           <nav class="toc">
             <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
             <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#build-webrtc-libraries-for-linux">Build WebRTC Libraries for Linux</a>
+<li class="toc-entry toc-h1"><a href="#build-webrtc-libraries-for-ubuntu-and-centos">Build WebRTC Libraries for Ubuntu and CentOS</a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#install-dependencies">Install Dependencies</a></li>
 <li class="toc-entry toc-h2"><a href="#install-toolchain">Install Toolchain</a></li>
 <li class="toc-entry toc-h2"><a href="#download-the-webrtc-source-code">Download the WebRTC source code</a></li>
 <li class="toc-entry toc-h2"><a href="#optional-update-your-checkout">(Optional) Update your checkout</a></li>
-<li class="toc-entry toc-h2"><a href="#build-webrtc-libraries">Build WebRTC libraries</a></li>
+<li class="toc-entry toc-h2"><a href="#build-webrtc-libraries">Build WebRTC Libraries</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#testing-webrtc">Testing WebRTC</a></li>
+</ul>
+</li>
 <li class="toc-entry toc-h2"><a href="#extract-the-static-libraries">Extract the static libraries</a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#get-tincan-source-code">Get TinCan Source Code</a></li>
@@ -201,7 +205,7 @@
           </nav>
         </aside>
 
-        <h1 id="build-webrtc-libraries-for-linux">Build WebRTC Libraries for Linux</h1>
+        <h1 id="build-webrtc-libraries-for-ubuntu-and-centos">Build WebRTC Libraries for Ubuntu and CentOS</h1>
 
 <table>
   <thead>
@@ -213,7 +217,7 @@
   <tbody>
     <tr>
       <td><strong>Tested on</strong></td>
-      <td>Ubuntu 14.04 and 16.04 x64</td>
+      <td>Ubuntu 18.04</td>
     </tr>
     <tr>
       <td><strong>Time</strong></td>
@@ -277,25 +281,49 @@
 
 <h2 id="optional-update-your-checkout">(Optional) Update your checkout</h2>
 <p>To update an existing checkout, you can run</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git rebase-update
-gclient sync
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git rebase-update
+gclient <span class="nb">sync</span>
 </code></pre></div></div>
 <p>The first command updates the primary Chromium source repository and rebases any of your local branches on top of tip-of-tree (aka the Git branch origin/master). If you don’t want to use this script, you can also just use git pull or other common Git commands to update the repo.</p>
 
 <p>The second command syncs the sub-repositories to the appropriate versions and re-runs the hooks as needed.</p>
 
-<h2 id="build-webrtc-libraries">Build WebRTC libraries</h2>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add wolf https://github.com/dgarske/webrtc.git
+git fetch wolf
+git checkout wolf_57
+<span class="nb">rm</span> <span class="nt">-rf</span> testing/gmock/include/gmock
+<span class="nb">rm</span> <span class="nt">-rf</span> testing/gtest/include/gtest
+gclient <span class="nb">sync</span>
+</code></pre></div></div>
+
+<h2 id="build-webrtc-libraries">Build WebRTC Libraries</h2>
 <p>These gn flags are critical for compatiabilty with tincan. Turn off iterator_debugging or the mangled symbol names will not match; it causes a debug prefix to added to STL container names. Also, all the pieces of libboringssl do not get assembled. My approach to was to turn off component builds and switch from a shared to a static library and then manually create the libboringssl_asm.a file.</p>
 
 <p>Beware it requires to have the <code class="highlighter-rouge">gtk+-2.0</code> package.</p>
 
 <p>The default configuration is for a 64-bit debug build:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  gn gen out/debug <span class="s2">"--args=enable_iterator_debugging=false is_component_build=false"</span>
-  ninja <span class="nt">-C</span> out/debug/ boringssl field_trial_default protobuf_lite p2p base jsoncpp
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  gn clean out/debug
+  gn gen out/debug <span class="s2">"--args=enable_iterator_debugging=false is_component_build=false rtc_build_wolfssl=true rtc_build_ssl=false rtc_ssl_root=</span><span class="se">\"</span><span class="s2">/usr/local/include</span><span class="se">\"</span><span class="s2">"</span>
+  ninja <span class="nt">-C</span> out/debug/ <span class="nt">-t</span> clean
+  ninja <span class="nt">-C</span> out/debug/ field_trial_default protobuf_lite p2p base jsoncpp
 </code></pre></div></div>
-<p>To create a 64-bit release build you must set is_debug = false</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  gn gen out/release <span class="s2">"--args=enable_iterator_debugging=false is_component_build=false is_debug=false"</span>
-  ninja <span class="nt">-C</span> out/release/ boringssl field_trial_default protobuf_lite p2p base jsoncpp
+<p>To create a 64-bit release build you must set <code class="highlighter-rouge">is_debug = false</code>.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  gn clean out/release
+  gn gen out/release <span class="s2">"--args=enable_iterator_debugging=false is_component_build=false is_debug=false rtc_build_wolfssl=true rtc_build_ssl=false rtc_ssl_root=</span><span class="se">\"</span><span class="s2">/usr/local/include</span><span class="se">\"</span><span class="s2">"</span>
+  ninja <span class="nt">-C</span> out/release/ <span class="nt">-t</span> clean
+  ninja <span class="nt">-C</span> out/release/ field_trial_default protobuf_lite p2p base jsoncpp
+</code></pre></div></div>
+
+<h4 id="testing-webrtc">Testing WebRTC</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>webrtc/examples/
+gn gen out/debug
+ninja <span class="nt">-C</span> out/debug/ <span class="nt">-t</span> clean
+ninja <span class="nt">-C</span> out/debug/
+
+<span class="nb">cd </span>out/debug
+./peerconnection_server &amp;
+./peerconnection_client
 </code></pre></div></div>
 
 <h2 id="extract-the-static-libraries">Extract the static libraries</h2>
@@ -331,30 +359,32 @@ gclient sync
 
 <p><strong>Release</strong></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ar -rcs ipop-project/Tincan/external/3rd-Party-Libs/release/libboringssl_asm.a webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/aes-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/aesni-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/bsaes-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/vpaes-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/rsaz-avx2.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/x86_64-mont.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/x86_64-mont5.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/chacha-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/p256-x86_64-asm.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/md5-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/aesni-gcm-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/ghash-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/rdrand-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/sha1-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/sha256-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/sha512-x86_64.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/x25519-asm-x86_64.o
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ar <span class="nt">-rcs</span> Tincan/external/3rd-Party-Libs/release/libjsoncpp.a webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_reader.o webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_value.o webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_writer.o
 
-ar -rcs ipop-project/Tincan/external/3rd-Party-Libs/release/libjsoncpp.a webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_reader.o webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_value.o webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_writer.o
-
-cp webrtc-checkout/src/out/release/obj/third_party/boringssl/libboringssl.a ipop-project/Tincan/external/3rd-Party-Libs/release
-cp webrtc-checkout/src/out/release/obj/webrtc/system_wrappers/libfield_trial_default.a ipop-project/Tincan/external/3rd-Party-Libs/release
-cp webrtc-checkout/src/out/release/obj/webrtc/base/librtc_base.a ipop-project/Tincan/external/3rd-Party-Libs/release
-cp webrtc-checkout/src/out/release/obj/webrtc/base/librtc_base_approved.a ipop-project/Tincan/external/3rd-Party-Libs/release
-cp webrtc-checkout/src/out/release/obj/webrtc/p2p/librtc_p2p.a ipop-project/Tincan/external/3rd-Party-Libs/release
-cp webrtc-checkout/src/out/release/obj/third_party/protobuf/libprotobuf_lite.a ipop-project/Tincan/external/3rd-Party-Libs/release
+<span class="nb">cp </span>webrtc-checkout/src/out/release/obj/webrtc/p2p/librtc_p2p.a Tincan/external/3rd-Party-Libs/release
+<span class="nb">cp </span>webrtc-checkout/src/out/release/obj/webrtc/p2p/libstunprober.a Tincan/external/3rd-Party-Libs/release
+<span class="nb">cp </span>webrtc-checkout/src/out/release/obj/webrtc/base/librtc_base_approved.a Tincan/external/3rd-Party-Libs/release
+<span class="nb">cp </span>webrtc-checkout/src/out/release/obj/webrtc/base/librtc_task_queue.a Tincan/external/3rd-Party-Libs/release
+<span class="nb">cp </span>webrtc-checkout/src/out/release/obj/webrtc/base/librtc_base.a Tincan/external/3rd-Party-Libs/release
+<span class="nb">cp </span>webrtc-checkout/src/out/release/obj/webrtc/libwebrtc_common.a Tincan/external/3rd-Party-Libs/release
+<span class="nb">cp </span>webrtc-checkout/src/out/release/obj/base/third_party/libevent/libevent.a Tincan/external/3rd-Party-Libs/release
+<span class="nb">cp </span>webrtc-checkout/src/out/release/obj/third_party/protobuf/libprotobuf_lite.a Tincan/external/3rd-Party-Libs/release
+<span class="nb">cp </span>webrtc-checkout/src/out/release/obj/webrtc/system_wrappers/libfield_trial_default.a ipop-project/Tincan/external/3rd-Party-Libs/release
+<span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/webrtc/system_wrappers/libfield_trial_default.a ipop-project/Tincan/external/3rd-Party-Libs/debug
 </code></pre></div></div>
 
 <p><strong>Debug</strong></p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ar <span class="nt">-rcs</span> ipop-project/Tincan/external/3rd-Party-Libs/debug/libboringssl_asm.a webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/aes-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/aesni-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/bsaes-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/vpaes-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/rsaz-avx2.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/x86_64-mont.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/x86_64-mont5.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/chacha-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/p256-x86_64-asm.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/md5-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/aesni-gcm-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/ghash-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/rdrand-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/sha1-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/sha256-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/sha512-x86_64.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/x25519-asm-x86_64.o
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ar <span class="nt">-rcs</span> Tincan/external/3rd-Party-Libs/debug/libjsoncpp.a webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_reader.o webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_value.o webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_writer.o
 
-ar <span class="nt">-rcs</span> ipop-project/Tincan/external/3rd-Party-Libs/debug/libjsoncpp.a webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_reader.o webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_value.o webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_writer.o
-
-<span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/third_party/boringssl/libboringssl.a ipop-project/Tincan/external/3rd-Party-Libs/debug
-<span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/webrtc/system_wrappers/libfield_trial_default.a ipop-project/Tincan/external/3rd-Party-Libs/debug
-<span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/webrtc/base/librtc_base.a ipop-project/Tincan/external/3rd-Party-Libs/debug
-<span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/webrtc/base/librtc_base_approved.a ipop-project/Tincan/external/3rd-Party-Libs/debug
-<span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/webrtc/p2p/librtc_p2p.a ipop-project/Tincan/external/3rd-Party-Libs/debug
-<span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/third_party/protobuf/libprotobuf_lite.a ipop-project/Tincan/external/3rd-Party-Libs/debug
+<span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/webrtc/p2p/librtc_p2p.a Tincan/external/3rd-Party-Libs/debug
+<span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/webrtc/p2p/libstunprober.a Tincan/external/3rd-Party-Libs/debug
+<span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/webrtc/base/librtc_base_approved.a Tincan/external/3rd-Party-Libs/debug
+<span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/webrtc/base/librtc_task_queue.a Tincan/external/3rd-Party-Libs/debug
+<span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/webrtc/base/librtc_base.a Tincan/external/3rd-Party-Libs/debug
+<span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/webrtc/libwebrtc_common.a Tincan/external/3rd-Party-Libs/debug
+<span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/base/third_party/libevent/libevent.a Tincan/external/3rd-Party-Libs/debug
+<span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/third_party/protobuf/libprotobuf_lite.a Tincan/external/3rd-Party-Libs/debug
 </code></pre></div></div>
 
 <hr />
@@ -366,6 +396,7 @@ ar <span class="nt">-rcs</span> ipop-project/Tincan/external/3rd-Party-Libs/debu
   <li><a href="https://webrtc.org/native-code/development/prerequisite-sw/">https://webrtc.org/native-code/development/prerequisite-sw/</a></li>
   <li><a href="http://dev.chromium.org/developers/how-tos/install-depot-tools">http://dev.chromium.org/developers/how-tos/install-depot-tools</a></li>
   <li><a href="https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instructions.md">https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instructions.md</a></li>
+  <li><a href="https://github.com/dgarske/Tincan/blob/wolf/README_wolf.md">https://github.com/dgarske/Tincan/blob/wolf/README_wolf.md</a></li>
 </ul>
 
 
