@@ -182,10 +182,12 @@
           <nav class="toc">
             <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
             <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#build-webrtc-libraries-for-raspberry-pi-3-cross-compile-on-ubuntu">Build WebRTC Libraries for Raspberry Pi 3 (Cross compile on Ubuntu)</a>
+<li class="toc-entry toc-h1"><a href="#build-webrtc-libraries-for-raspberry-pi-3-cross-compile-on-ubuntu-1604">Build WebRTC Libraries for Raspberry Pi 3 (Cross compile on Ubuntu 16.04)</a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#install-toolchain">Install Toolchain</a></li>
+<li class="toc-entry toc-h2"><a href="#install-wolfssl">Install wolfSSL</a></li>
 <li class="toc-entry toc-h2"><a href="#get-webrtc">Get WebRTC</a></li>
+<li class="toc-entry toc-h2"><a href="#get-wolfssl">Get wolfSSL</a></li>
 <li class="toc-entry toc-h2"><a href="#build-webrtc">Build WebRTC</a></li>
 <li class="toc-entry toc-h2"><a href="#extract-the-static-libraries-for-building-ipop-tincan">Extract the Static Libraries for Building IPOP Tincan</a>
 <ul>
@@ -199,7 +201,7 @@
           </nav>
         </aside>
 
-        <h1 id="build-webrtc-libraries-for-raspberry-pi-3-cross-compile-on-ubuntu">Build WebRTC Libraries for Raspberry Pi 3 (Cross compile on Ubuntu)</h1>
+        <h1 id="build-webrtc-libraries-for-raspberry-pi-3-cross-compile-on-ubuntu-1604">Build WebRTC Libraries for Raspberry Pi 3 (Cross compile on Ubuntu 16.04)</h1>
 
 <table>
   <thead>
@@ -215,7 +217,7 @@
     </tr>
     <tr>
       <td><strong>Time</strong></td>
-      <td>~ 45 Minutes</td>
+      <td>~ 60 Minutes</td>
     </tr>
     <tr>
       <td><strong>Question(s)</strong></td>
@@ -246,15 +248,30 @@
 <span class="nb">sudo </span>git clone https://github.com/raspberrypi/tools.git /opt/rpi_tools
 <span class="nb">echo</span> <span class="s2">"export PATH=/opt/rpi_tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin:</span><span class="se">\$</span><span class="s2">PATH"</span> | <span class="nb">sudo tee</span> /etc/profile.d/rpi_tools.sh
 
-<span class="nb">sudo chown</span> <span class="sb">`</span><span class="nb">whoami</span><span class="sb">`</span>:<span class="sb">`</span><span class="nb">whoami</span><span class="sb">`</span> /opt/depot_tools /opt/rpi_tools
+<span class="nb">sudo chown</span> <span class="nt">-R</span> <span class="sb">`</span><span class="nb">whoami</span><span class="sb">`</span>:<span class="sb">`</span><span class="nb">whoami</span><span class="sb">`</span> /opt/depot_tools /opt/rpi_tools
 <span class="nb">source</span> /etc/profile
 
-<span class="nb">sudo </span>debootstrap <span class="nt">--arch</span> armhf <span class="nt">--foreign</span> <span class="nt">--include</span><span class="o">=</span>g++,libasound2-dev,libpulse-dev,libudev-dev,libexpat1-dev,libnss3-dev,libgtk2.0-dev wheezy rootfs
+<span class="nb">sudo </span>debootstrap <span class="nt">--arch</span> armhf <span class="nt">--foreign</span> <span class="nt">--include</span><span class="o">=</span>g++,libasound2-dev,libpulse-dev,libudev-dev,libexpat1-dev,libnss3-dev,libgtk2.0-dev jessie rootfs
 <span class="nb">sudo cp</span> /usr/bin/qemu-arm-static rootfs/usr/bin/
 <span class="nb">sudo chroot </span>rootfs /debootstrap/debootstrap <span class="nt">--second-stage</span>
 find rootfs/usr/lib/arm-linux-gnueabihf <span class="nt">-lname</span> <span class="s1">'/*'</span> <span class="nt">-printf</span> <span class="s1">'%p %l\n'</span> | <span class="k">while </span><span class="nb">read link </span>target<span class="p">;</span> <span class="k">do </span><span class="nb">sudo ln</span> <span class="nt">-snfv</span> <span class="s2">"../../..</span><span class="k">${</span><span class="nv">target</span><span class="k">}</span><span class="s2">"</span> <span class="s2">"</span><span class="k">${</span><span class="nv">link</span><span class="k">}</span><span class="s2">"</span><span class="p">;</span> <span class="k">done
 </span>find rootfs/usr/lib/arm-linux-gnueabihf/pkgconfig <span class="nt">-printf</span> <span class="s2">"%f</span><span class="se">\n</span><span class="s2">"</span> | <span class="k">while </span><span class="nb">read </span>target<span class="p">;</span> <span class="k">do </span><span class="nb">sudo ln</span> <span class="nt">-snfv</span> <span class="s2">"../../lib/arm-linux-gnueabihf/pkgconfig/</span><span class="k">${</span><span class="nv">target</span><span class="k">}</span><span class="s2">"</span> rootfs/usr/share/pkgconfig/<span class="k">${</span><span class="nv">target</span><span class="k">}</span><span class="p">;</span> <span class="k">done</span>
 </code></pre></div></div>
+
+<h2 id="install-wolfssl">Install wolfSSL</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/wolfSSL/wolfssl.git
+<span class="nb">cd </span>wolfssl
+./autogen.sh
+./configure <span class="nt">--enable-opensslall</span> <span class="nt">--enable-keygen</span> <span class="nt">--enable-rsapss</span> <span class="nt">--enable-aesccm</span> <span class="se">\</span>
+    <span class="nt">--enable-aesctr</span> <span class="nt">--enable-des3</span> <span class="nt">--enable-camellia</span> <span class="nt">--enable-curve25519</span> <span class="nt">--enable-ed25519</span> <span class="se">\</span>
+    <span class="nt">--enable-dtls</span> <span class="nt">--enable-certgen</span> <span class="nt">--enable-certreq</span> <span class="nt">--enable-certext</span> <span class="nt">--enable-tlsv10</span> <span class="se">\</span>
+    <span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">"-DWOLFSSL_PUBLIC_MP -DWOLFSSL_DES_ECB"</span>
+make
+make check
+<span class="nb">sudo </span>make <span class="nb">install</span>
+</code></pre></div></div>
+
 <h2 id="get-webrtc">Get WebRTC</h2>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fetch webrtc
@@ -262,16 +279,29 @@ find rootfs/usr/lib/arm-linux-gnueabihf <span class="nt">-lname</span> <span cla
 git checkout branch-heads/57
 gclient <span class="nb">sync</span>
 </code></pre></div></div>
+
+<h2 id="get-wolfssl">Get wolfSSL</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add wolf https://github.com/dgarske/webrtc.git
+git fetch wolf
+git checkout wolf_57
+gclient <span class="nb">sync</span>
+</code></pre></div></div>
+
 <h2 id="build-webrtc">Build WebRTC</h2>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./build/install-build-deps.sh
 ./build/linux/sysroot_scripts/install-sysroot.py <span class="nt">--arch</span><span class="o">=</span>arm
 
-gn gen out/debug <span class="nt">--args</span><span class="o">=</span><span class="s1">'target_os="linux" target_cpu="arm" enable_iterator_debugging=false is_component_build=false is_debug=true'</span>
-ninja <span class="nt">-C</span> out/debug boringssl field_trial_default protobuf_lite p2p base jsoncpp
+gn clean out/debug
+gn gen out/debug <span class="nt">--args</span><span class="o">=</span><span class="s1">'target_os="linux" target_cpu="arm" is_debug=true enable_iterator_debugging=false is_component_build=false is_debug=true rtc_build_wolfssl=true rtc_build_ssl=false rtc_ssl_root="/usr/local/include"'</span>
+ninja <span class="nt">-C</span> out/debug/ <span class="nt">-t</span> clean
+ninja <span class="nt">-C</span> out/debug field_trial_default protobuf_lite p2p base jsoncpp
 
-gn gen out/release <span class="nt">--args</span><span class="o">=</span><span class="s1">'target_os="linux" target_cpu="arm" enable_iterator_debugging=false is_component_build=false is_debug=false'</span>
-ninja <span class="nt">-C</span> out/release boringssl field_trial_default protobuf_lite p2p base jsoncpp
+gn clean out/release
+gn gen out/release <span class="nt">--args</span><span class="o">=</span><span class="s1">'target_os="linux" target_cpu="arm" is_debug=false enable_iterator_debugging=false is_component_build=false rtc_build_wolfssl=true rtc_build_ssl=false rtc_ssl_root="/usr/local/include"'</span>
+ninja <span class="nt">-C</span> out/release/ <span class="nt">-t</span> clean
+ninja <span class="nt">-C</span> out/release field_trial_default protobuf_lite p2p base jsoncpp
 </code></pre></div></div>
 <h2 id="extract-the-static-libraries-for-building-ipop-tincan">Extract the Static Libraries for Building IPOP Tincan</h2>
 
@@ -293,23 +323,18 @@ mkdir -p ipop-project/Tincan/external/3rd-Party-Libs/release
 <p>These freshly built libraries will replace the existing libraries, if any.</p>
 
 <p><strong>Debug Libraries</strong></p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ar <span class="nt">-rcs</span> ipop-project/Tincan/external/3rd-Party-Libs/debug/libboringssl_asm.a webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/aes-armv4.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/bsaes-armv7.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/ghashv8-armx32.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/sha256-armv4.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/aesv8-armx32.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/chacha-armv4.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/poly1305_arm_asm.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/sha512-armv4.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/armv4-mont.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/ghash-armv4.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/sha1-armv4-large.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/x25519-asm-arm.o
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ar <span class="nt">-rcs</span> ipop-project/Tincan/external/3rd-Party-Libs/debug/libjsoncpp.a webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_reader.o webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_value.o webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_writer.o
 
-ar <span class="nt">-rcs</span> ipop-project/Tincan/external/3rd-Party-Libs/debug/libjsoncpp.a webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_reader.o webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_value.o webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_writer.o
-
-<span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/third_party/boringssl/libboringssl.a ipop-project/Tincan/external/3rd-Party-Libs/debug
 <span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/webrtc/system_wrappers/libfield_trial_default.a ipop-project/Tincan/external/3rd-Party-Libs/debug
 <span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/webrtc/base/librtc_base.a ipop-project/Tincan/external/3rd-Party-Libs/debug
 <span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/webrtc/base/librtc_base_approved.a ipop-project/Tincan/external/3rd-Party-Libs/debug
 <span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/webrtc/p2p/librtc_p2p.a ipop-project/Tincan/external/3rd-Party-Libs/debug
 <span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/third_party/protobuf/libprotobuf_lite.a ipop-project/Tincan/external/3rd-Party-Libs/debug
 </code></pre></div></div>
+
 <p><strong>Release Libraries</strong></p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ar <span class="nt">-rcs</span> ipop-project/Tincan/external/3rd-Party-Libs/release/libboringssl_asm.a webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/aes-armv4.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/bsaes-armv7.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/ghashv8-armx32.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/sha256-armv4.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/aesv8-armx32.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/chacha-armv4.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/poly1305_arm_asm.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/sha512-armv4.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/armv4-mont.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/ghash-armv4.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/sha1-armv4-large.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/x25519-asm-arm.o
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ar <span class="nt">-rcs</span> ipop-project/Tincan/external/3rd-Party-Libs/release/libjsoncpp.a webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_reader.o webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_value.o webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_writer.o
 
-ar <span class="nt">-rcs</span> ipop-project/Tincan/external/3rd-Party-Libs/release/libjsoncpp.a webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_reader.o webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_value.o webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_writer.o
-
-<span class="nb">cp </span>webrtc-checkout/src/out/release/obj/third_party/boringssl/libboringssl.a ipop-project/Tincan/external/3rd-Party-Libs/release
 <span class="nb">cp </span>webrtc-checkout/src/out/release/obj/webrtc/system_wrappers/libfield_trial_default.a ipop-project/Tincan/external/3rd-Party-Libs/release
 <span class="nb">cp </span>webrtc-checkout/src/out/release/obj/webrtc/base/librtc_base.a ipop-project/Tincan/external/3rd-Party-Libs/release
 <span class="nb">cp </span>webrtc-checkout/src/out/release/obj/webrtc/base/librtc_base_approved.a ipop-project/Tincan/external/3rd-Party-Libs/release
