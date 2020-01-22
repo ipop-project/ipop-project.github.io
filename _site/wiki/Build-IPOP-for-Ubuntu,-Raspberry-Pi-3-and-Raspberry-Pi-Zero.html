@@ -239,7 +239,8 @@
 
 <h2 id="install-wolfssl">Install wolfSSL</h2>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/wolfSSL/wolfssl.git
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt <span class="nb">install </span>autoconf automake libtool
+git clone https://github.com/wolfSSL/wolfssl.git
 <span class="nb">cd </span>wolfssl
 ./autogen.sh
 ./configure <span class="nt">--enable-opensslall</span> <span class="nt">--enable-keygen</span> <span class="nt">--enable-rsapss</span> <span class="nt">--enable-aesccm</span> <span class="se">\</span>
