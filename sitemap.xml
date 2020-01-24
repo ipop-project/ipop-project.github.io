@@ -181,9 +181,6 @@
 <loc>/wiki/Use-IPOP,-Intro</loc>
 </url>
 <url>
-<loc>/wiki/Use-IPOP-on-CentOS,-Manually</loc>
-</url>
-<url>
 <loc>/wiki/Use-IPOP-on-Ubuntu,-Raspberry-Pi-and-CentOS,-Scripted</loc>
 </url>
 <url>
@@ -205,10 +202,13 @@
 <loc>/wiki/%5BLegacy-Document%5D-Switchmode-with-LXC</loc>
 </url>
 <url>
+<loc>/wiki/%5BLegacy-Document%5D-Use-IPOP-on-CentOS,-Manually</loc>
+</url>
+<url>
 <loc>/wiki/_Sidebar</loc>
 </url>
 <url>
 <loc>/assets/docs/IPOP-WhitePaper-1605.pdf</loc>
-<lastmod>2020-01-21T23:00:29-05:00</lastmod>
+<lastmod>2020-01-22T23:00:28-05:00</lastmod>
 </url>
 </urlset>
