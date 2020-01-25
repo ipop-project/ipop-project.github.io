@@ -289,11 +289,13 @@ The configurations tells the controller framework which modules to load and with
       <li><em>Overlay UUID</em> - A hexadecimal value matching one in the CFx Overlays list (see above 1)</li>
       <li><em>Name</em> - Descriptive mnemonic .</li>
       <li><em>Description</em> - Descriptive mnemonic .</li>
-      <li><em>EnforcedEdges</em> - Peer Ids that a tunnel should be created to.</li>
+      <li><em>EnforcedEdges</em> - Peer Ids that a tunnel should be created to, eg., [ “12345”, 12346”, 12347” ].</li>
       <li><em>ManualTopology</em> - Should the topology only create enforced edges. Values true/false (default)</li>
       <li><em>PeerDiscoveryCoalesce</em> - The number of new peer notifications to wait on before attempting to update the overlay edges. If this threshold is not reached the overlay will be refreshed on its periodic <em>TimerInterval</em>.</li>
       <li><em>MaxSuccessors</em> - Maximum number of successors links to create. These are outgoing links to the next peer in the overlay’s ring.</li>
       <li><em>MaxLongDistEdges</em> - Maximum number of outgoing long distance edges to initiate.</li>
+      <li><em>MaxConcurrentEdgeSetup</em> - Maximum number of edges to be created concurrently. Prevents the stampede effect when joining an existing large overlay.</li>
+      <li><em>Role</em> - Switch (if this node will perform switching operations and accept incoming connection requests), or Leaf (if it is a client/edge device that will connect to switch node, and reject any incoming requests for an edge).</li>
     </ul>
   </li>
 </ul>
@@ -323,12 +325,13 @@ The configurations tells the controller framework which modules to load and with
   <li><em>Overlays</em> - A configuration for each overlay being managed by this controller
     <ul>
       <li><em>Overlay UUID</em> - A hexadecimal value matching one in the CFx Overlays list (see above 1)</li>
-      <li><em>Type</em> - The type of network bridge to instantiate, the Linux bridge and Openvswitch are supported. Values: LXBR/OVS</li>
+      <li><em>Type</em> - The type of network bridge to instantiate, the Linux bridge and Openvswitch are supported. Values: LXBR/OVS/VNIC. Set this value to VNIC if Topology’s Role is set to Leaf.</li>
       <li><em>BridgeName</em> - Mnemonic used for naming the bridge instance.</li>
       <li><em>IP4</em> - The IPv4 address to assign to the bridge. This is an optional parameter, if your deployment does not require assigning an IP configuration to the bridge it can be omitted.</li>
       <li><em>PrefixLen</em> - The network prefix length to apply to the bridge. (Optional parameter)</li>
       <li><em>MTU</em> - The maximum transmission unit size to be applied to the bridge. Optional parameter, IPOP sets an MTU of 1410.</li>
       <li><em>AutoDelete</em> - Remove the bridge device that was specified when the controller shuts down. Values: True/False (default)</li>
+      <li><em>STP</em> - Enable or disable Spanning Tree Protocol on the IPOP bridge device.</li>
     </ul>
   </li>
 </ul>
@@ -343,7 +346,7 @@ The configurations tells the controller framework which modules to load and with
 
 <h2 id="sample-configuration-file">Sample Configuration File</h2>
 
-<p>A sample configuration file is available <a href="https://raw.githubusercontent.com/ipop-project/Controllers/master/controller/sample-multi-overlay-config.json">here</a>.</p>
+<p>A sample configuration file is available <a href="https://raw.githubusercontent.com/ipop-project/Controllers/master/controller/template-config.json">here</a>.</p>
 
 
 
