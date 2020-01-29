@@ -240,6 +240,7 @@
 <li class="toc-entry toc-h2"><a href="#issues">Issues</a></li>
 </ul>
 </li>
+<li class="toc-entry toc-h1"><a href="#wiki-maintenance-tips">Wiki Maintenance Tips</a></li>
 </ul>
           </nav>
         </aside>
@@ -599,28 +600,16 @@ pip install sleekxmpp</p>
         <ul>
   <li><strong>Deploying IPOP-VPN</strong>
     <ul>
-      <li><a href="Quick-Start">Quick Start</a></li>
-      <li><a href="Use-IPOP,-Intro">Installation</a></li>
+      <li><a href="home">Quick Start</a></li>
       <li><a href="Understanding-the-IPOP-Configuration">Configuration</a></li>
-    </ul>
-  </li>
-  <li><strong>Development Guide</strong>
-    <ul>
-      <li><a href="Development-Workflow">Development Workflow</a></li>
-      <li><a href="Coding-Guidelines">Coding Guidelines</a></li>
-      <li><a href="Build-IPOP,-Intro">Building the Code</a></li>
-      <li><a href="IPOP-Scale-test-Walkthrough">Testing Your Build</a></li>
-      <li><a href="Controller-Framework">Controller Framework</a></li>
-      <li><a href="Controller-API">Controller API</a></li>
-      <li><a href="Build-WebRTC-Libraries,-Intro">Building WebRTC Libraries</a></li>
     </ul>
   </li>
   <li><strong>General Documentation</strong>
     <ul>
       <li><a href="FAQs">FAQs</a></li>
+      <li><a href="Coding-Guidelines">Coding Guidelines</a></li>
       <li><a href="Troubleshooting">Troubleshooting</a></li>
       <li><a href="Planning-Your-Network">Planning Your Network</a></li>
-      <li><a href="Coding-Challenges">Coding Challenges</a></li>
       <li><a href="Known-Issues">Known Issues</a></li>
       <li><a href="Getting-Help">Getting Help</a></li>
       <li><a href="How-to-Contribute">How to Contribute</a></li>
@@ -694,6 +683,16 @@ bundle exec jekyll build
 JEKYLL_ENV=production bundle exec jekyll serve
 </code></pre></div></div>
 
+<h1 id="wiki-maintenance-tips">Wiki Maintenance Tips</h1>
+
+<ul>
+  <li>Follow the page format from <a href="Install-and-Run-IPOP-on-Ubuntu-and-Raspberry-Pi">Install and Run IPOP on Ubuntu and Raspberry Pi</a>.</li>
+  <li>Every wiki page should start with a Header 1 title. It would be the title of the respective page on the website. Otherwise, the page won’t have a title on the website.</li>
+  <li>There should be a blank line before each table. Otherwise, the table won’t render correctly on the website. That won’t affect the table view on the wiki, though.</li>
+  <li>Avoid using anything that looks like Liquid objects and tags on the wiki. Those will cause an error while building the website. If you need more info, take a look at the <a href="https://shopify.github.io/liquid/basics/introduction/">Liquid Introduction</a>.</li>
+  <li>The website will be automatically updated according to the wiki updates every day.</li>
+</ul>
+
 
 
       </section>
@@ -715,28 +714,16 @@ JEKYLL_ENV=production bundle exec jekyll serve
         <ul>
   <li><strong>Deploying IPOP-VPN</strong>
     <ul>
-      <li><a href="Quick-Start">Quick Start</a></li>
-      <li><a href="Use-IPOP,-Intro">Installation</a></li>
+      <li><a href="home">Quick Start</a></li>
       <li><a href="Understanding-the-IPOP-Configuration">Configuration</a></li>
-    </ul>
-  </li>
-  <li><strong>Development Guide</strong>
-    <ul>
-      <li><a href="Development-Workflow">Development Workflow</a></li>
-      <li><a href="Coding-Guidelines">Coding Guidelines</a></li>
-      <li><a href="Build-IPOP,-Intro">Building the Code</a></li>
-      <li><a href="IPOP-Scale-test-Walkthrough">Testing Your Build</a></li>
-      <li><a href="Controller-Framework">Controller Framework</a></li>
-      <li><a href="Controller-API">Controller API</a></li>
-      <li><a href="Build-WebRTC-Libraries,-Intro">Building WebRTC Libraries</a></li>
     </ul>
   </li>
   <li><strong>General Documentation</strong>
     <ul>
       <li><a href="FAQs">FAQs</a></li>
+      <li><a href="Coding-Guidelines">Coding Guidelines</a></li>
       <li><a href="Troubleshooting">Troubleshooting</a></li>
       <li><a href="Planning-Your-Network">Planning Your Network</a></li>
-      <li><a href="Coding-Challenges">Coding Challenges</a></li>
       <li><a href="Known-Issues">Known Issues</a></li>
       <li><a href="Getting-Help">Getting Help</a></li>
       <li><a href="How-to-Contribute">How to Contribute</a></li>

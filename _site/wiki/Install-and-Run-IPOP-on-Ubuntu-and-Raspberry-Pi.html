@@ -182,89 +182,83 @@
           <nav class="toc">
             <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
             <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#legacy-document-switchmode-with-lxc">[Legacy Document] Switchmode with LXC</a></li>
-<li class="toc-entry toc-h1"><a href="#ipop-switchmode-tutorial">IPOP Switchmode Tutorial</a></li>
-<li class="toc-entry toc-h1"><a href="#stand-alone-switchmode">Stand alone Switchmode</a></li>
-<li class="toc-entry toc-h1"><a href="#switchmode-under-the-hood">Switchmode under the hood</a></li>
+<li class="toc-entry toc-h1"><a href="#install-and-run-ipop-on-ubuntu-and-raspberry-pi">Install and Run IPOP on Ubuntu and Raspberry Pi</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#get-ipop-deb-package">Get IPOP deb Package</a></li>
+<li class="toc-entry toc-h2"><a href="#install-ipop-deb-package">Install IPOP deb Package</a></li>
+<li class="toc-entry toc-h2"><a href="#edit-ipop-configuration-file">Edit IPOP Configuration File</a></li>
+<li class="toc-entry toc-h2"><a href="#run-ipop-service">Run IPOP Service</a></li>
+<li class="toc-entry toc-h2"><a href="#dependencies">Dependencies</a></li>
+<li class="toc-entry toc-h2"><a href="#start-on-boot">Start on Boot</a></li>
+<li class="toc-entry toc-h2"><a href="#related-files-and-directories">Related Files and Directories</a></li>
+<li class="toc-entry toc-h2"><a href="#remove-ipop">Remove IPOP</a></li>
+</ul>
+</li>
 </ul>
           </nav>
         </aside>
 
-        <h1 id="legacy-document-switchmode-with-lxc">[Legacy Document] Switchmode with LXC</h1>
+        <h1 id="install-and-run-ipop-on-ubuntu-and-raspberry-pi">Install and Run IPOP on Ubuntu and Raspberry Pi</h1>
 
-<p><strong>Warning: This document may be out of date.</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Tested on</strong></td>
+      <td>Ubuntu 16.04 and 18.04 x64<br />Raspbian Buster on Raspberry Pi 3 and 4<br />Raspbian Buster on Raspberry Pi Zero</td>
+    </tr>
+    <tr>
+      <td><strong>Time</strong></td>
+      <td>~ 5 Minutes</td>
+    </tr>
+    <tr>
+      <td><strong>Question(s)</strong></td>
+      <td>- How to install IPOP?<br /> - How to run IPOP?<br /> - How to remove IPOP?</td>
+    </tr>
+    <tr>
+      <td><strong>Objective(s)</strong></td>
+      <td>- Install IPOP<br /> - Run IPOP<br /> - Stop IPOP<br /> - Remove IPOP</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>In switchmode, IPOP supports handling of layer-2 (L2) Ethernet frames. In this mode, IPOP nodes function as a switch and make all the connected IPOP nodes and associated virtual network interface be on the same Layer 2 network.
-Note that IP and MAC address should be carefully assigned to avoid address conflicts.</p>
+<h2 id="get-ipop-deb-package">Get IPOP deb Package</h2>
+<p>Download the latest release of IPOP VPN from <a href="https://github.com/ipop-project/Downloads/releases">GitHub</a>.</p>
 
-<h1 id="ipop-switchmode-tutorial">IPOP Switchmode Tutorial</h1>
+<h2 id="install-ipop-deb-package">Install IPOP deb Package</h2>
+<p>To install IPOP invoke <code class="highlighter-rouge">sudo apt install -y &lt;path/to&gt;/ipop-vpn_*.deb</code>. On Desktop Environments, you can install the deb package by double click.</p>
 
-<p>The configuration of IPOP in L2/switchmode is to a large extent the same as the default L3 IPOP setup - so first, make sure you are able to run two IPOP nodes and ping each other in the default L3 configuration before trying out switchmode. <a href="https://github.com/ipop-project/ipop-project.github.io/wiki/Manual-Install-on-Linux">You can follow this tutorial as a starting point</a>, run two IPOP nodes on two VMs, and make sure they get connected.</p>
+<h2 id="edit-ipop-configuration-file">Edit IPOP Configuration File</h2>
+<p>After installation but before starting IPOP, complete <code class="highlighter-rouge">/etc/opt/ipop-vpn/config.json</code> by adding the XMPP credentials, setting the IP address, and applying other configurations as needed.</p>
 
-<p>The main difference is that IPOP’s configuration needs to enable switchmode, and the tap device should be bound to a bridge on the L2 segments that you plan to inter-connect.</p>
+<h2 id="run-ipop-service">Run IPOP Service</h2>
+<p>Then start IPOP using <code class="highlighter-rouge">sudo systemctl start ipop</code>.<br />
+Additionally, use <code class="highlighter-rouge">systemctl</code> to <code class="highlighter-rouge">start</code>/<code class="highlighter-rouge">stop</code>/<code class="highlighter-rouge">restart</code>/<code class="highlighter-rouge">status</code> <code class="highlighter-rouge">ipop</code>.</p>
 
-<p>To test IPOP with switchmode test, we recommend following the example below using LXC containers with ubuntu 14.04 or 15.04 - this is the easiest way to run containers in VM. But, since switchmode works with Linux bridge, it works with any other cloud solutions such as openstack, ec2.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>The installer has dependencies on, and will install <code class="highlighter-rouge">python3.6</code>, <code class="highlighter-rouge">python3.6-dev</code>,  <code class="highlighter-rouge">python3-pip</code>, <code class="highlighter-rouge">iproute2</code>, <code class="highlighter-rouge">bridge-utils</code>. They will be automatically installed.</p>
 
-<p>First, bring up a Ubuntu VM and install LXC in it:</p>
+<h2 id="start-on-boot">Start on Boot</h2>
+<p>IPOP is configured to be started automatically on boot. You can disable it using <code class="highlighter-rouge">sudo systemctl disable ipop</code>.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get update
-sudo apt-get install lxc
-</code></pre></div></div>
+<h2 id="related-files-and-directories">Related Files and Directories</h2>
+<p>By default, the following files and directories are created:</p>
+<ol>
+  <li><code class="highlighter-rouge">/opt/ipop-vpn/ipop-tincan</code></li>
+  <li><code class="highlighter-rouge">/opt/ipop-vpn/controller/</code></li>
+  <li><code class="highlighter-rouge">/etc/opt/ipop-vpn/config.json</code></li>
+  <li><code class="highlighter-rouge">/etc/systemd/system</code></li>
+  <li><code class="highlighter-rouge">/var/logs/ipop-vpn/tincan_log</code></li>
+  <li><code class="highlighter-rouge">/var/logs/ipop-vpn/ctrl.log</code></li>
+</ol>
 
-<p>If this command:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo lxc-ls --fancy
-</code></pre></div></div>
-<p>emits an error, update packages with:</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get upgrade
-</code></pre></div></div>
-<p>Then, create an LXC instance and clone it:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo lxc-create -t ubuntu -n c0
-sudo lxc-clone c0 c1
-sudo lxc-clone c0 c2
-...
-</code></pre></div></div>
-
-<p>The following diagram illustrates an example where you’d repeat this process in two VMs:</p>
-
-<p><img src="http://www.acis.ufl.edu/~xetron/ipop-project/switchmode0.png" alt="" /></p>
-
-<p>Then restart lxc network</p>
-
-<p>Add below fields at controller config file.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   "switchmode": 1
-</code></pre></div></div>
-<p>Run ipop-tincan and controller. 
-Then, attach ipop tap device to lxcbr0 at both ends.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo brctl addif lxcbr0 ipop
-</code></pre></div></div>
-
-<p>(OPTIONAL)If you need to change the IP address of lxcbr0, then modify below files and restart the network service</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo vi /etc/default/lxc-net
-sudo vi /etc/init/lxc-net.conf
-sudo service lxc-net restart
-</code></pre></div></div>
-<p>If the lxcbr0 address does not update, reboot your machine.</p>
-
-<p>Make sure you run LXC containers on both VMs, and change their MTUs to 1280:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo lxc-attach --name c1
-ifconfig eth0 mtu 1280
-</code></pre></div></div>
-
-<p>Check the IP addresses assigned to the eth0 interfaces of both containers (e.g. 10.0.3.5 and 10.0.3.7 in the diagram). After the IPOP tincan connection is established, you should be able to ping from 10.0.3.5 to ping 10.0.3.7.</p>
-
-<h1 id="stand-alone-switchmode">Stand alone Switchmode</h1>
-
-<p>Although switchmode was intended to bind to multiple virtual network interface of the guest machine, IPOP switchmode can also run by itself providing layer 2 virutal network environment to the host machine. 
-By simply setting below fields, and run IPOP without attaching to the bridge.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   "switchmode": 1
-</code></pre></div></div>
-
-<h1 id="switchmode-under-the-hood">Switchmode under the hood</h1>
-
-<p>Unlike host mode, which maps IP address with TinCan link by controller. Switchmode maps MAC address to the TinCan link by the ARP traffic in the tap device. Conside a case when a node 10.0.3.5 sends packets to 10.0.3.4 of above figure. Host of 10.0.3.5 first broadcasts ARP message looking for 10.0.3.4. IPOP observe this broadcast frame(destination address ff:ff:ff:ff:ff:ff) then sends to every TInCan link it has. On receipient of the ARP message from the remote side, it updates MAC t able to associate the source MAC address to TinCan link it came from. Then, host 10.0.3.4 replies with ARP reply message, then it traverses (since the destination MAC address already link to its TinCan tunnel) back to the LAN of host 10.0.3.5. Then the source LAN also updates MAC table of this ARP reply message.</p>
-
+<h2 id="remove-ipop">Remove IPOP</h2>
+<p>You can remove IPOP running <code class="highlighter-rouge">sudo apt remove -y ipop-vpn</code>.</p>
 
 
 
@@ -287,28 +281,16 @@ By simply setting below fields, and run IPOP without attaching to the bridge.</p
         <ul>
   <li><strong>Deploying IPOP-VPN</strong>
     <ul>
-      <li><a href="Quick-Start">Quick Start</a></li>
-      <li><a href="Use-IPOP,-Intro">Installation</a></li>
+      <li><a href="home">Quick Start</a></li>
       <li><a href="Understanding-the-IPOP-Configuration">Configuration</a></li>
-    </ul>
-  </li>
-  <li><strong>Development Guide</strong>
-    <ul>
-      <li><a href="Development-Workflow">Development Workflow</a></li>
-      <li><a href="Coding-Guidelines">Coding Guidelines</a></li>
-      <li><a href="Build-IPOP,-Intro">Building the Code</a></li>
-      <li><a href="IPOP-Scale-test-Walkthrough">Testing Your Build</a></li>
-      <li><a href="Controller-Framework">Controller Framework</a></li>
-      <li><a href="Controller-API">Controller API</a></li>
-      <li><a href="Build-WebRTC-Libraries,-Intro">Building WebRTC Libraries</a></li>
     </ul>
   </li>
   <li><strong>General Documentation</strong>
     <ul>
       <li><a href="FAQs">FAQs</a></li>
+      <li><a href="Coding-Guidelines">Coding Guidelines</a></li>
       <li><a href="Troubleshooting">Troubleshooting</a></li>
       <li><a href="Planning-Your-Network">Planning Your Network</a></li>
-      <li><a href="Coding-Challenges">Coding Challenges</a></li>
       <li><a href="Known-Issues">Known Issues</a></li>
       <li><a href="Getting-Help">Getting Help</a></li>
       <li><a href="How-to-Contribute">How to Contribute</a></li>
