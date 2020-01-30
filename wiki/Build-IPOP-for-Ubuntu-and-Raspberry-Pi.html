@@ -182,10 +182,9 @@
           <nav class="toc">
             <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
             <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#build-ipop-for-ubuntu-raspberry-pi-3-and-raspberry-pi-zero">Build IPOP for Ubuntu, Raspberry Pi 3 and Raspberry Pi Zero</a>
+<li class="toc-entry toc-h1"><a href="#build-ipop-for-ubuntu-and-raspberry-pi">Build IPOP for Ubuntu and Raspberry Pi</a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#download-and-install-dependencies">Download and Install Dependencies</a></li>
-<li class="toc-entry toc-h2"><a href="#install-wolfssl">Install wolfSSL</a></li>
 <li class="toc-entry toc-h2"><a href="#build-ipop">Build IPOP</a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#get-tincan-and-webrtc-libraries">Get Tincan and WebRTC Libraries</a></li>
@@ -200,7 +199,7 @@
           </nav>
         </aside>
 
-        <h1 id="build-ipop-for-ubuntu-raspberry-pi-3-and-raspberry-pi-zero">Build IPOP for Ubuntu, Raspberry Pi 3 and Raspberry Pi Zero</h1>
+        <h1 id="build-ipop-for-ubuntu-and-raspberry-pi">Build IPOP for Ubuntu and Raspberry Pi</h1>
 
 <table>
   <thead>
@@ -235,21 +234,6 @@
 <span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> git make libssl-dev g++-5 python3 python3-pip python3-dev
 <span class="nb">sudo</span> <span class="nt">-H</span> pip3 <span class="nb">install</span> <span class="nt">--upgrade</span> pip
 <span class="nb">sudo</span> <span class="nt">-H</span> pip3 <span class="nb">install </span>sleekxmpp psutil requests 
-</code></pre></div></div>
-
-<h2 id="install-wolfssl">Install wolfSSL</h2>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt <span class="nb">install </span>autoconf automake libtool
-git clone https://github.com/wolfSSL/wolfssl.git
-<span class="nb">cd </span>wolfssl
-./autogen.sh
-./configure <span class="nt">--enable-opensslall</span> <span class="nt">--enable-keygen</span> <span class="nt">--enable-rsapss</span> <span class="nt">--enable-aesccm</span> <span class="se">\</span>
-    <span class="nt">--enable-aesctr</span> <span class="nt">--enable-des3</span> <span class="nt">--enable-camellia</span> <span class="nt">--enable-curve25519</span> <span class="nt">--enable-ed25519</span> <span class="se">\</span>
-    <span class="nt">--enable-dtls</span> <span class="nt">--enable-certgen</span> <span class="nt">--enable-certreq</span> <span class="nt">--enable-certext</span> <span class="nt">--enable-tlsv10</span> <span class="se">\</span>
-    <span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">"-DWOLFSSL_PUBLIC_MP -DWOLFSSL_DES_ECB"</span>
-make
-make check
-<span class="nb">sudo </span>make <span class="nb">install</span>
 </code></pre></div></div>
 
 <h2 id="build-ipop">Build IPOP</h2>
@@ -320,7 +304,7 @@ cp -rf ./controller/ ../../ipop-vpn/
 
 <h2 id="copy-configuration-file">Copy Configuration File</h2>
 
-<p>You will need a valid configuration file (<code class="highlighter-rouge">ipop-config.json</code>) in <code class="highlighter-rouge">ipop-vpn/config</code> directory to run IPOP. You may find a sample config file in the <code class="highlighter-rouge">Controllers</code> repo root which you have already cloned into your machine.</p>
+<p>You will need a valid configuration file (<code class="highlighter-rouge">config.json</code>) in <code class="highlighter-rouge">ipop-vpn/config</code> directory to run IPOP. You may find a sample config file in the <code class="highlighter-rouge">Controllers</code> repo root which you have already cloned into your machine.</p>
 
 <h2 id="sample-configuration-file">Sample Configuration File</h2>
 

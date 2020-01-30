@@ -182,11 +182,10 @@
           <nav class="toc">
             <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
             <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#build-webrtc-libraries-for-ubuntu-and-centos">Build WebRTC Libraries for Ubuntu and CentOS</a>
+<li class="toc-entry toc-h1"><a href="#build-webrtc-libraries-for-ubuntu">Build WebRTC Libraries for Ubuntu</a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#install-dependencies">Install Dependencies</a></li>
 <li class="toc-entry toc-h2"><a href="#install-toolchain">Install Toolchain</a></li>
-<li class="toc-entry toc-h2"><a href="#install-wolfssl">Install wolfSSL</a></li>
 <li class="toc-entry toc-h2"><a href="#download-the-webrtc-source-code">Download the WebRTC source code</a></li>
 <li class="toc-entry toc-h2"><a href="#optional-update-your-checkout">(Optional) Update your checkout</a></li>
 <li class="toc-entry toc-h2"><a href="#build-webrtc-libraries">Build WebRTC Libraries</a>
@@ -206,7 +205,7 @@
           </nav>
         </aside>
 
-        <h1 id="build-webrtc-libraries-for-ubuntu-and-centos">Build WebRTC Libraries for Ubuntu and CentOS</h1>
+        <h1 id="build-webrtc-libraries-for-ubuntu">Build WebRTC Libraries for Ubuntu</h1>
 
 <table>
   <thead>
@@ -256,20 +255,6 @@
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/depot_tools:<span class="s2">"</span><span class="nv">$PATH</span><span class="s2">"</span>
 </code></pre></div></div>
 
-<h2 id="install-wolfssl">Install wolfSSL</h2>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/wolfSSL/wolfssl.git
-<span class="nb">cd </span>wolfssl
-./autogen.sh
-./configure <span class="nt">--enable-opensslall</span> <span class="nt">--enable-keygen</span> <span class="nt">--enable-rsapss</span> <span class="nt">--enable-aesccm</span> <span class="se">\</span>
-    <span class="nt">--enable-aesctr</span> <span class="nt">--enable-des3</span> <span class="nt">--enable-camellia</span> <span class="nt">--enable-curve25519</span> <span class="nt">--enable-ed25519</span> <span class="se">\</span>
-    <span class="nt">--enable-dtls</span> <span class="nt">--enable-certgen</span> <span class="nt">--enable-certreq</span> <span class="nt">--enable-certext</span> <span class="nt">--enable-tlsv10</span> <span class="se">\</span>
-    <span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">"-DWOLFSSL_PUBLIC_MP -DWOLFSSL_DES_ECB"</span>
-make
-make check
-<span class="nb">sudo </span>make <span class="nb">install</span>
-</code></pre></div></div>
-
 <h2 id="download-the-webrtc-source-code">Download the WebRTC source code</h2>
 <ol>
   <li>Create a working directory, enter it, and run <code class="highlighter-rouge">fetch webrtc</code> (beware <code class="highlighter-rouge">fetch</code> requires python2.x):</li>
@@ -303,18 +288,6 @@ gclient <span class="nb">sync</span>
 <p>The first command updates the primary Chromium source repository and rebases any of your local branches on top of tip-of-tree (aka the Git branch origin/master). If you don’t want to use this script, you can also just use git pull or other common Git commands to update the repo.</p>
 
 <p>The second command syncs the sub-repositories to the appropriate versions and re-runs the hooks as needed.</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add wolf https://github.com/dgarske/webrtc.git
-git fetch wolf
-git checkout wolf_57
-gclient <span class="nb">sync</span>
-</code></pre></div></div>
-
-<p><strong>Note:</strong> Git may complain about existing files when switching to wolf_57 branch. To resolve that, delete the conflicting directories:</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm</span> <span class="nt">-rf</span> testing/gmock/include/gmock
-<span class="nb">rm</span> <span class="nt">-rf</span> testing/gtest/include/gtest
-</code></pre></div></div>
 
 <h2 id="build-webrtc-libraries">Build WebRTC Libraries</h2>
 <p>These gn flags are critical for compatiabilty with tincan. Turn off iterator_debugging or the mangled symbol names will not match; it causes a debug prefix to added to STL container names. Also, all the pieces of libboringssl do not get assembled. My approach to was to turn off component builds and switch from a shared to a static library and then manually create the libboringssl_asm.a file.</p>
@@ -416,7 +389,6 @@ ninja <span class="nt">-C</span> out/debug/
   <li><a href="https://webrtc.org/native-code/development/prerequisite-sw/">https://webrtc.org/native-code/development/prerequisite-sw/</a></li>
   <li><a href="http://dev.chromium.org/developers/how-tos/install-depot-tools">http://dev.chromium.org/developers/how-tos/install-depot-tools</a></li>
   <li><a href="https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instructions.md">https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instructions.md</a></li>
-  <li><a href="https://github.com/dgarske/Tincan/blob/wolf/README_wolf.md">https://github.com/dgarske/Tincan/blob/wolf/README_wolf.md</a></li>
 </ul>
 
 
