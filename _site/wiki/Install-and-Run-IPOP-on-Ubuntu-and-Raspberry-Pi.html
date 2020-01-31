@@ -189,7 +189,7 @@
 <li class="toc-entry toc-h2"><a href="#edit-ipop-configuration-file">Edit IPOP Configuration File</a></li>
 <li class="toc-entry toc-h2"><a href="#run-ipop-service">Run IPOP Service</a></li>
 <li class="toc-entry toc-h2"><a href="#dependencies">Dependencies</a></li>
-<li class="toc-entry toc-h2"><a href="#start-on-boot">Start on Boot</a></li>
+<li class="toc-entry toc-h2"><a href="#disable-start-on-boot">Disable Start on Boot</a></li>
 <li class="toc-entry toc-h2"><a href="#related-files-and-directories">Related Files and Directories</a></li>
 <li class="toc-entry toc-h2"><a href="#remove-ipop">Remove IPOP</a></li>
 </ul>
@@ -210,19 +210,11 @@
   <tbody>
     <tr>
       <td><strong>Tested on</strong></td>
-      <td>Ubuntu 16.04 and 18.04 x64<br />Raspbian Buster on Raspberry Pi 3 and 4<br />Raspbian Buster on Raspberry Pi Zero</td>
+      <td>Ubuntu 18.04 x64<br />Raspbian Buster on Raspberry Pi 3 and 4</td>
     </tr>
     <tr>
       <td><strong>Time</strong></td>
       <td>~ 5 Minutes</td>
-    </tr>
-    <tr>
-      <td><strong>Question(s)</strong></td>
-      <td>- How to install IPOP?<br /> - How to run IPOP?<br /> - How to remove IPOP?</td>
-    </tr>
-    <tr>
-      <td><strong>Objective(s)</strong></td>
-      <td>- Install IPOP<br /> - Run IPOP<br /> - Stop IPOP<br /> - Remove IPOP</td>
     </tr>
   </tbody>
 </table>
@@ -231,20 +223,26 @@
 <p>Download the latest release of IPOP VPN from <a href="https://github.com/ipop-project/Downloads/releases">GitHub</a>.</p>
 
 <h2 id="install-ipop-deb-package">Install IPOP deb Package</h2>
-<p>To install IPOP invoke <code class="highlighter-rouge">sudo apt install -y &lt;path/to&gt;/ipop-vpn_*.deb</code>. On Desktop Environments, you can install the deb package by double click.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> &lt;path/to&gt;/ipop-vpn_<span class="k">*</span>.deb
+</code></pre></div></div>
+<p>On Desktop Environments, you can install the deb package by double click.</p>
 
 <h2 id="edit-ipop-configuration-file">Edit IPOP Configuration File</h2>
 <p>After installation but before starting IPOP, complete <code class="highlighter-rouge">/etc/opt/ipop-vpn/config.json</code> by adding the XMPP credentials, setting the IP address, and applying other configurations as needed.</p>
 
 <h2 id="run-ipop-service">Run IPOP Service</h2>
-<p>Then start IPOP using <code class="highlighter-rouge">sudo systemctl start ipop</code>.<br />
-Additionally, use <code class="highlighter-rouge">systemctl</code> to <code class="highlighter-rouge">start</code>/<code class="highlighter-rouge">stop</code>/<code class="highlighter-rouge">restart</code>/<code class="highlighter-rouge">status</code> <code class="highlighter-rouge">ipop</code>.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl start ipop
+</code></pre></div></div>
+
+<p>Additionally, use <code class="highlighter-rouge">systemctl</code> to <code class="highlighter-rouge">start</code>/<code class="highlighter-rouge">stop</code>/<code class="highlighter-rouge">restart</code>/<code class="highlighter-rouge">status</code> <code class="highlighter-rouge">ipop</code>.</p>
 
 <h2 id="dependencies">Dependencies</h2>
-<p>The installer has dependencies on, and will install <code class="highlighter-rouge">python3.6</code>, <code class="highlighter-rouge">python3.6-dev</code>,  <code class="highlighter-rouge">python3-pip</code>, <code class="highlighter-rouge">iproute2</code>, <code class="highlighter-rouge">bridge-utils</code>. They will be automatically installed.</p>
+<p>The installer has dependencies on, and will install <code class="highlighter-rouge">python3 (&gt;=3.6)</code>, <code class="highlighter-rouge">python3-dev (&gt;=3.6)</code>,  <code class="highlighter-rouge">python3-pip</code>, <code class="highlighter-rouge">iproute2</code>, <code class="highlighter-rouge">bridge-utils</code>.</p>
 
-<h2 id="start-on-boot">Start on Boot</h2>
-<p>IPOP is configured to be started automatically on boot. You can disable it using <code class="highlighter-rouge">sudo systemctl disable ipop</code>.</p>
+<h2 id="disable-start-on-boot">Disable Start on Boot</h2>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl disable ipop
+</code></pre></div></div>
 
 <h2 id="related-files-and-directories">Related Files and Directories</h2>
 <p>By default, the following files and directories are created:</p>
@@ -258,7 +256,9 @@ Additionally, use <code class="highlighter-rouge">systemctl</code> to <code clas
 </ol>
 
 <h2 id="remove-ipop">Remove IPOP</h2>
-<p>You can remove IPOP running <code class="highlighter-rouge">sudo apt remove -y ipop-vpn</code>.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt remove <span class="nt">-y</span> ipop-vpn
+</code></pre></div></div>
 
 
 

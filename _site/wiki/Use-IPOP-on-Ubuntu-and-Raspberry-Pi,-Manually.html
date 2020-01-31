@@ -202,7 +202,6 @@
 <li class="toc-entry toc-h2"><a href="#remove-ipop">Remove IPOP</a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h1"><a href="#key-points-summary">Key Points Summary</a></li>
 </ul>
           </nav>
         </aside>
@@ -219,19 +218,11 @@
   <tbody>
     <tr>
       <td><strong>Tested on</strong></td>
-      <td>Ubuntu 16.04 and 18.04 x64<br />Raspbian Jessie and Stretch on Raspberry Pi 3<br />Raspbian Stretch on Raspberry Pi Zero</td>
+      <td>Ubuntu 18.04 x64<br />Raspbian Buster on Raspberry Pi 3 and 4</td>
     </tr>
     <tr>
       <td><strong>Time</strong></td>
       <td>~ 10 Minutes</td>
-    </tr>
-    <tr>
-      <td><strong>Question(s)</strong></td>
-      <td>- How to install IPOP?<br /> - How to run IPOP?<br /> - How to remove IPOP?</td>
-    </tr>
-    <tr>
-      <td><strong>Objective(s)</strong></td>
-      <td>- Install IPOP<br /> - Run IPOP<br /> - Stop IPOP<br /> - Remove IPOP</td>
     </tr>
   </tbody>
 </table>
@@ -245,19 +236,16 @@
 
 <h2 id="get-ipop-binary">Get IPOP Binary</h2>
 
-<p>Download the proper version of IPOP from <a href="https://github.com/ipop-project/Downloads/releases">our latest release</a>.</p>
+<p>If you have already <a href="Build-IPOP-for-Ubuntu-and-Raspberry-Pi">build IPOP</a>, it must be in <code class="highlighter-rouge">~/workspace/ipop-vpn</code>.</p>
 
-<p>Then go to the download directory and extract the file (Put in the actual file name):</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar</span> <span class="nt">-xzvf</span> ipop-vxxx.tar.gz
-<span class="nb">cd </span>ipop-vxxx
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~/workspace/ipop-vpn
 </code></pre></div></div>
 
 <h2 id="copy-configuration-file">Copy Configuration File</h2>
 
-<p>You will need a valid configuration file (ipop-config.json) to run IPOP. Go to the directory you have your config file and copy the file to the <code class="highlighter-rouge">config</code> directory:</p>
+<p>You will need a valid configuration file (config.json) to run IPOP. Go to the directory you have your config file and copy the file to the <code class="highlighter-rouge">config</code> directory:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp </span>PATH/TO/CONFIGFILE/ipop-config.json config/
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp </span>PATH/TO/CONFIGFILE/config.json config/
 </code></pre></div></div>
 
 <h2 id="run-ipop">Run IPOP</h2>
@@ -269,7 +257,7 @@
 
 <h3 id="run-ipop-controller">Run IPOP Controller</h3>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 <span class="nt">-m</span> controller.Controller <span class="nt">-c</span> ./config/ipop-config.json &amp;
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>python3 <span class="nt">-m</span> controller.Controller <span class="nt">-c</span> ./config/config.json &amp;
 </code></pre></div></div>
 
 <p>Now, if everything is going well, IPOP should be run.</p>
@@ -288,26 +276,7 @@
 
 <h2 id="remove-ipop">Remove IPOP</h2>
 
-<p>To uninstall IPOP, its is safe to stop it first and then remove the IPOP execution directory.</p>
-
-<hr />
-
-<h1 id="key-points-summary">Key Points Summary</h1>
-
-<ul>
-  <li>Run IPOP:</li>
-</ul>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo</span> ./ipop-tincan &amp;
-python3 <span class="nt">-m</span> controller.Controller <span class="nt">-c</span> ./config/ipop-config.json &amp;
-</code></pre></div></div>
-<ul>
-  <li>Stop IPOP:</li>
-</ul>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>killall ipop-tincan  
-ps aux | <span class="nb">grep</span> <span class="nt">-v</span> <span class="nb">grep</span> | <span class="nb">grep </span>controller.Controller | <span class="nb">awk</span> <span class="s1">'{print $2}'</span> | xargs <span class="nb">sudo kill</span> <span class="nt">-9</span>
-</code></pre></div></div>
+<p>To uninstall IPOP, it is safe to stop it first and then remove the IPOP execution directory.</p>
 
 
 

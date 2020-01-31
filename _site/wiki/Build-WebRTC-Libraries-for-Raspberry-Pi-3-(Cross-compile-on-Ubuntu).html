@@ -182,12 +182,10 @@
           <nav class="toc">
             <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
             <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#build-webrtc-libraries-for-raspberry-pi-3-cross-compile-on-ubuntu-1604">Build WebRTC Libraries for Raspberry Pi 3 (Cross compile on Ubuntu 16.04)</a>
+<li class="toc-entry toc-h1"><a href="#build-webrtc-libraries-for-raspberry-pi-3-and-4-cross-compile-on-ubuntu-1604">Build WebRTC Libraries for Raspberry Pi 3 and 4 (Cross compile on Ubuntu 16.04)</a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#install-toolchain">Install Toolchain</a></li>
-<li class="toc-entry toc-h2"><a href="#install-wolfssl">Install wolfSSL</a></li>
 <li class="toc-entry toc-h2"><a href="#get-webrtc">Get WebRTC</a></li>
-<li class="toc-entry toc-h2"><a href="#get-wolfssl">Get wolfSSL</a></li>
 <li class="toc-entry toc-h2"><a href="#build-webrtc">Build WebRTC</a></li>
 <li class="toc-entry toc-h2"><a href="#extract-the-static-libraries-for-building-ipop-tincan">Extract the Static Libraries for Building IPOP Tincan</a>
 <ul>
@@ -201,7 +199,7 @@
           </nav>
         </aside>
 
-        <h1 id="build-webrtc-libraries-for-raspberry-pi-3-cross-compile-on-ubuntu-1604">Build WebRTC Libraries for Raspberry Pi 3 (Cross compile on Ubuntu 16.04)</h1>
+        <h1 id="build-webrtc-libraries-for-raspberry-pi-3-and-4-cross-compile-on-ubuntu-1604">Build WebRTC Libraries for Raspberry Pi 3 and 4 (Cross compile on Ubuntu 16.04)</h1>
 
 <table>
   <thead>
@@ -213,26 +211,18 @@
   <tbody>
     <tr>
       <td><strong>Tested on</strong></td>
-      <td>Raspbian Jessie and Stretch on Raspberry Pi 3</td>
+      <td>Raspbian Buster on Raspberry Pi 3 and 4</td>
     </tr>
     <tr>
       <td><strong>Time</strong></td>
       <td>~ 60 Minutes</td>
-    </tr>
-    <tr>
-      <td><strong>Question(s)</strong></td>
-      <td>- How to build WebRTC for Raspberry Pi 3?<br /> - How to extract WebRTC static libraries for building IPOP?</td>
-    </tr>
-    <tr>
-      <td><strong>Objective(s)</strong></td>
-      <td>- Build the WebRTC Libraries<br /> - Extract required WebRTC Static Libraries for Building IPOP</td>
     </tr>
   </tbody>
 </table>
 
 <p><strong>Note 1:</strong> If you want to run IPOP right away, use the proper version of IPOP from <a href="https://github.com/ipop-project/Downloads/releases">our latest release</a>.</p>
 
-<p><strong>Note 2:</strong> There are some WebRTC libraries needed to build IPOP Tincan binary. They are already built and located in <a href="https://github.com/ipop-project/Tincan/tree/master/external/lib">Tincan/external/lib/</a>. You can use them to <a href="Build-IPOP,-Intro">build IPOP Tincan binary</a> yourself.</p>
+<p><strong>Note 2:</strong> There are some WebRTC libraries needed to build IPOP Tincan binary. They are already built and located in <a href="https://github.com/ipop-project/3rd-Party-Libs/tree/rpi3-arm7">3rd-Party-Libs</a>. You can use them to <a href="Build-IPOP-for-Ubuntu-and-Raspberry-Pi">build IPOP Tincan binary</a> yourself.</p>
 
 <p>If you want to build WebRTC libraries for IPOP yourself, follow the instructions.</p>
 
@@ -258,33 +248,11 @@ find rootfs/usr/lib/arm-linux-gnueabihf <span class="nt">-lname</span> <span cla
 </span>find rootfs/usr/lib/arm-linux-gnueabihf/pkgconfig <span class="nt">-printf</span> <span class="s2">"%f</span><span class="se">\n</span><span class="s2">"</span> | <span class="k">while </span><span class="nb">read </span>target<span class="p">;</span> <span class="k">do </span><span class="nb">sudo ln</span> <span class="nt">-snfv</span> <span class="s2">"../../lib/arm-linux-gnueabihf/pkgconfig/</span><span class="k">${</span><span class="nv">target</span><span class="k">}</span><span class="s2">"</span> rootfs/usr/share/pkgconfig/<span class="k">${</span><span class="nv">target</span><span class="k">}</span><span class="p">;</span> <span class="k">done</span>
 </code></pre></div></div>
 
-<h2 id="install-wolfssl">Install wolfSSL</h2>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/wolfSSL/wolfssl.git
-<span class="nb">cd </span>wolfssl
-./autogen.sh
-./configure <span class="nt">--enable-opensslall</span> <span class="nt">--enable-keygen</span> <span class="nt">--enable-rsapss</span> <span class="nt">--enable-aesccm</span> <span class="se">\</span>
-    <span class="nt">--enable-aesctr</span> <span class="nt">--enable-des3</span> <span class="nt">--enable-camellia</span> <span class="nt">--enable-curve25519</span> <span class="nt">--enable-ed25519</span> <span class="se">\</span>
-    <span class="nt">--enable-dtls</span> <span class="nt">--enable-certgen</span> <span class="nt">--enable-certreq</span> <span class="nt">--enable-certext</span> <span class="nt">--enable-tlsv10</span> <span class="se">\</span>
-    <span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">"-DWOLFSSL_PUBLIC_MP -DWOLFSSL_DES_ECB"</span>
-make
-make check
-<span class="nb">sudo </span>make <span class="nb">install</span>
-</code></pre></div></div>
-
 <h2 id="get-webrtc">Get WebRTC</h2>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fetch webrtc
 <span class="nb">cd </span>src/
 git checkout branch-heads/57
-gclient <span class="nb">sync</span>
-</code></pre></div></div>
-
-<h2 id="get-wolfssl">Get wolfSSL</h2>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add wolf https://github.com/dgarske/webrtc.git
-git fetch wolf
-git checkout wolf_57
 gclient <span class="nb">sync</span>
 </code></pre></div></div>
 
@@ -320,8 +288,6 @@ ninja <span class="nt">-C</span> out/release field_trial_default protobuf_lite p
 mkdir -p ipop-project/Tincan/external/3rd-Party-Libs/release
 </code></pre></div></div>
 
-<p>These freshly built libraries will replace the existing libraries, if any.</p>
-
 <p><strong>Debug Libraries</strong></p>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ar <span class="nt">-rcs</span> ipop-project/Tincan/external/3rd-Party-Libs/debug/libjsoncpp.a webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_reader.o webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_value.o webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_writer.o
 
@@ -342,7 +308,7 @@ mkdir -p ipop-project/Tincan/external/3rd-Party-Libs/release
 <span class="nb">cp </span>webrtc-checkout/src/out/release/obj/third_party/protobuf/libprotobuf_lite.a ipop-project/Tincan/external/3rd-Party-Libs/release
 </code></pre></div></div>
 
-<p>Now you can <a href="Build-IPOP,-Intro">build IPOP Tincan binary</a> on the Raspberry Pi 3, itself.</p>
+<p>Now you can <a href="Build-IPOP-for-Ubuntu-and-Raspberry-Pi">build IPOP Tincan binary</a> on the Raspberry Pi, itself.</p>
 
 
 
