@@ -191,8 +191,7 @@
 <li class="toc-entry toc-h3"><a href="#get-controllers">Get Controllers</a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h2"><a href="#copy-configuration-file">Copy Configuration File</a></li>
-<li class="toc-entry toc-h2"><a href="#sample-configuration-file">Sample Configuration File</a></li>
+<li class="toc-entry toc-h2"><a href="#build-debian-package">Build Debian Package</a></li>
 </ul>
 </li>
 </ul>
@@ -232,7 +231,7 @@
 
 <p>Run the following commands as a regular (non-root) user:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> ~/workspace/ipop-project ~/workspace/ipop-vpn/config
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> ~/workspace/ipop-project/ipop-vpn/config
 <span class="nb">cd</span> ~/workspace/ipop-project/
 </code></pre></div></div>
 
@@ -281,26 +280,32 @@
 
 <p><strong>To build the Tincan binary in debug mode:</strong></p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make DEBUG=1
-cp -f ../out/debug/$(uname -m)/ipop-tincan ../../../../ipop-vpn/
+cp -f ../out/debug/$(uname -m)/ipop-tincan ../../../ipop-vpn/
 </code></pre></div></div>
 
 <p><strong>Otherwise, for release mode:</strong></p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make
-cp -f ../out/release/$(uname -m)/ipop-tincan ../../../../ipop-vpn/
+cp -f ../out/release/$(uname -m)/ipop-tincan ../../../ipop-vpn/
 </code></pre></div></div>
 
 <p>Then:</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd ../../../Controllers
-cp -rf ./controller/ ../../ipop-vpn/
+cp -rf ./controller/ ../ipop-vpn/
 </code></pre></div></div>
 
-<h2 id="copy-configuration-file">Copy Configuration File</h2>
+<p>Now you can <a href="Use-IPOP-on-Ubuntu-and-Raspberry-Pi,-Manually">manually run IPOP</a> from <code class="highlighter-rouge">ipop-vpn</code> directory.</p>
 
-<p>You will need a valid configuration file (<code class="highlighter-rouge">config.json</code>) in <code class="highlighter-rouge">ipop-vpn/config</code> directory to run IPOP. You may find a sample config file in the <code class="highlighter-rouge">Controllers</code> repo root which you have already cloned into your machine.</p>
+<h2 id="build-debian-package">Build Debian Package</h2>
 
-<h2 id="sample-configuration-file">Sample Configuration File</h2>
+<p>If you want to build the IPOP deb package to be able to install/start/stop/remove IPOP easier:</p>
 
-<p>A sample configuration file is available <a href="https://raw.githubusercontent.com/ipop-project/Controllers/master/controller/template-config.json">here</a>.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~/workspace/ipop-project
+git clone https://github.com/ipop-project/Release-Management.git
+<span class="nb">cp </span>ipop-vpn/ipop-tincan Release-Management/Deploy/deb-pak/ipop-vpn/opt/ipop-vpn/
+<span class="nb">cp</span> <span class="nt">-r</span> Controllers/controller Release-Management/Deploy/deb-pak/ipop-vpn/opt/ipop-vpn/
+Release-Management/Deploy/deb-pak/deb-gen
+</code></pre></div></div>
+<p>The deb package, <code class="highlighter-rouge">ipop-vpn_{ver}_{arch}.deb</code> will be generated in <code class="highlighter-rouge">Release-Management/Deploy/deb-pak</code> directory. Now you can <a href="Install-and-Run-IPOP-on-Ubuntu-and-Raspberry-Pi">install and run it</a>.</p>
 
 
 

@@ -186,7 +186,12 @@
 <ul>
 <li class="toc-entry toc-h2"><a href="#download-and-install-dependencies">Download and Install Dependencies</a></li>
 <li class="toc-entry toc-h2"><a href="#get-ipop-binary">Get IPOP Binary</a></li>
-<li class="toc-entry toc-h2"><a href="#copy-configuration-file">Copy Configuration File</a></li>
+<li class="toc-entry toc-h2"><a href="#configuration-file">Configuration File</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#copy-configuration-file">Copy Configuration File</a></li>
+<li class="toc-entry toc-h3"><a href="#edit-configuration-file">Edit Configuration File</a></li>
+</ul>
+</li>
 <li class="toc-entry toc-h2"><a href="#run-ipop">Run IPOP</a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#run-ipop-tincan">Run IPOP TinCan</a></li>
@@ -236,17 +241,22 @@
 
 <h2 id="get-ipop-binary">Get IPOP Binary</h2>
 
-<p>If you have already <a href="Build-IPOP-for-Ubuntu-and-Raspberry-Pi">build IPOP</a>, it must be in <code class="highlighter-rouge">~/workspace/ipop-vpn</code>.</p>
+<p>If you have already done <a href="Build-IPOP-for-Ubuntu-and-Raspberry-Pi">building IPOP</a>, it must be in <code class="highlighter-rouge">~/workspace/ipop-projct/ipop-vpn</code>:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~/workspace/ipop-vpn
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~/workspace/ipop-project/ipop-vpn
 </code></pre></div></div>
 
-<h2 id="copy-configuration-file">Copy Configuration File</h2>
+<h2 id="configuration-file">Configuration File</h2>
 
-<p>You will need a valid configuration file (config.json) to run IPOP. Go to the directory you have your config file and copy the file to the <code class="highlighter-rouge">config</code> directory:</p>
+<h3 id="copy-configuration-file">Copy Configuration File</h3>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp </span>PATH/TO/CONFIGFILE/config.json config/
+<p>You will need a valid configuration file, <code class="highlighter-rouge">config.json</code> in <code class="highlighter-rouge">config</code> directory to run IPOP. A <a href="https://raw.githubusercontent.com/ipop-project/Controllers/master/controller/template-config.json">sample configuration file</a> is available to use:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp </span>controller/template-config.json config/config.json
 </code></pre></div></div>
+<h3 id="edit-configuration-file">Edit Configuration File</h3>
+
+<p>Follow the <a href="Understanding-the-IPOP-Configuration">instructions</a>.</p>
 
 <h2 id="run-ipop">Run IPOP</h2>
 
@@ -260,13 +270,11 @@
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>python3 <span class="nt">-m</span> controller.Controller <span class="nt">-c</span> ./config/config.json &amp;
 </code></pre></div></div>
 
-<p>Now, if everything is going well, IPOP should be run.</p>
-
 <h2 id="stop-ipop">Stop IPOP</h2>
 
 <h3 id="stop-ipop-tincan">Stop IPOP Tincan</h3>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>killall ipop-tincan  
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>killall ipop-tincan
 </code></pre></div></div>
 
 <h3 id="stop-ipop-controller">Stop IPOP Controller</h3>
@@ -276,8 +284,10 @@
 
 <h2 id="remove-ipop">Remove IPOP</h2>
 
-<p>To uninstall IPOP, it is safe to stop it first and then remove the IPOP execution directory.</p>
+<p>To uninstall IPOP, it is safe to stop it first and then remove the <code class="highlighter-rouge">ipop-vpn</code> directory:</p>
 
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm</span> <span class="nt">-rf</span> ~/workspace/ipop-project/ipop-vpn
+</code></pre></div></div>
 
 
 
