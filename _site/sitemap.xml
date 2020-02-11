@@ -82,9 +82,6 @@
 <loc>/wiki/IPSec-Strongswan-host-to-host-transport-mode-with-X.509-based-authentication</loc>
 </url>
 <url>
-<loc>/wiki/IPoP-with-Docker.</loc>
-</url>
-<url>
 <loc>/wiki/Install-and-Run-IPOP-on-Ubuntu-and-Raspberry-Pi</loc>
 </url>
 <url>
@@ -95,6 +92,9 @@
 </url>
 <url>
 <loc>/wiki/Overview:-XMPP,STUN,TURN</loc>
+</url>
+<url>
+<loc>/wiki/Run-IPOP-with-Docker</loc>
 </url>
 <url>
 <loc>/wiki/Testing-Your-Build</loc>
@@ -122,6 +122,6 @@
 </url>
 <url>
 <loc>/assets/docs/IPOP-WhitePaper-1605.pdf</loc>
-<lastmod>2020-02-08T23:00:19-05:00</lastmod>
+<lastmod>2020-02-10T22:07:19-05:00</lastmod>
 </url>
 </urlset>

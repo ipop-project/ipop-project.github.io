@@ -182,45 +182,64 @@
           <nav class="toc">
             <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
             <ul class="section-nav">
-<li class="toc-entry toc-h2"><a href="#install-dependencies">Install dependencies:</a></li>
-<li class="toc-entry toc-h2"><a href="#create-a-docker-network-namespace">Create a Docker network namespace</a></li>
-<li class="toc-entry toc-h2"><a href="#create-network-folders-on-host-for-configuration-and-logs">Create network folders on host for configuration and logs</a></li>
-<li class="toc-entry toc-h2"><a href="#run-the-container">Run the container</a></li>
+<li class="toc-entry toc-h1"><a href="#run-ipop-with-docker">Run IPOP with Docker</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#install-the-dependencies">Install the Dependencies</a></li>
+<li class="toc-entry toc-h2"><a href="#create-a-docker-network-namespace">Create a Docker Network Namespace</a></li>
+<li class="toc-entry toc-h2"><a href="#create-network-folders-on-the-host-for-configuration-and-logs">Create Network Folders on the Host for Configuration and Logs</a></li>
+<li class="toc-entry toc-h2"><a href="#run-the-container">Run the Container</a></li>
+<li class="toc-entry toc-h2"><a href="#test-the-container">Test the Container</a></li>
+</ul>
+</li>
 </ul>
           </nav>
         </aside>
 
-        <p>These are the steps to run IPOP inside a Docker container, from an image available on DockerHub. This has been tested on Ubuntu 18.04.</p>
+        <h1 id="run-ipop-with-docker">Run IPOP with Docker</h1>
 
-<h2 id="install-dependencies">Install dependencies:</h2>
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Tested on</strong></td>
+      <td>Ubuntu 18.04 x64</td>
+    </tr>
+    <tr>
+      <td><strong>Time</strong></td>
+      <td>~ 5 Minutes</td>
+    </tr>
+  </tbody>
+</table>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>su -
-apt-get update <span class="nt">-y</span> 
-apt-get <span class="nb">install</span> <span class="nt">-y</span> openvswitch-switch <span class="se">\</span>
+<h2 id="install-the-dependencies">Install the Dependencies</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-fsSL</span> https://download.docker.com/linux/ubuntu/gpg | <span class="nb">sudo </span>apt-key add -
+<span class="nb">sudo </span>add-apt-repository <span class="s2">"deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"</span>
+<span class="nb">sudo </span>apt-get update <span class="nt">-y</span>
+<span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">-y</span> openvswitch-switch <span class="se">\</span>
                         python3 python3-pip python3-venv <span class="se">\</span>
                         apt-transport-https <span class="se">\</span>
                         ca-certificates <span class="se">\</span>
                         curl git <span class="se">\</span>
-                        software-properties-common
-
-curl <span class="nt">-fsSL</span> https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-add-apt-repository <span class="se">\"</span>deb <span class="o">[</span><span class="nb">arch</span><span class="o">=</span>amd64] https://download.docker.com/linux/ubuntu bionic stable<span class="se">\"</span> 
-apt-cache policy docker-ce 
-apt-get <span class="nb">install</span> <span class="nt">-y</span> containerd.io <span class="se">\</span>
-                       docker-ce-cli<span class="o">=</span>5:18.09.7~3-0~ubuntu-bionic <span class="se">\</span>
-                       docker-ce 
+                        software-properties-common <span class="se">\</span>
+                        containerd.io <span class="se">\</span>
+                        docker-ce-cli <span class="se">\</span>
+                        docker-ce 
 groupadd <span class="nt">-f</span> docker
-usermod <span class="nt">-a</span> <span class="nt">-G</span> docker <span class="nv">$USER</span>
+<span class="nb">sudo </span>usermod <span class="nt">-a</span> <span class="nt">-G</span> docker <span class="nv">$USER</span>
 </code></pre></div></div>
 
-<h2 id="create-a-docker-network-namespace">Create a Docker network namespace</h2>
-
-<p>To create a network namespace, run the following command:</p>
+<h2 id="create-a-docker-network-namespace">Create a Docker Network Namespace</h2>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker network create dkrnet
 </code></pre></div></div>
 
-<h2 id="create-network-folders-on-host-for-configuration-and-logs">Create network folders on host for configuration and logs</h2>
+<h2 id="create-network-folders-on-the-host-for-configuration-and-logs">Create Network Folders on the Host for Configuration and Logs</h2>
 
 <p>The example below will assume you have the following folders created:</p>
 
@@ -232,10 +251,12 @@ usermod <span class="nt">-a</span> <span class="nt">-G</span> docker <span class
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/home/<span class="nv">$USER</span>/ipop/config/config-001.json
 </code></pre></div></div>
 
-<h2 id="run-the-container">Run the container</h2>
+<h2 id="run-the-container">Run the Container</h2>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="nt">-v</span> /home/<span class="nv">$USER</span>/ipop/config/config-001.json:/etc/opt/ipop-vpn/config.json <span class="nt">-v</span> /home/<span class="nv">$USER</span>/ipop/log/drk001:/var/log/ipop-vpn/ <span class="nt">-v</span> <span class="nt">--rm</span> <span class="nt">--privileged</span> <span class="nt">--name</span> ipop-dkr001 <span class="nt">--network</span> dkrnet ipopproject/ipop-vpn:1.0 /sbin/init
 </code></pre></div></div>
+
+<h2 id="test-the-container">Test the Container</h2>
 
 <p>You should then be able to log in to the container and check it obtained an IPOP virtual network address (naturally, your Docker container ID and IP addresses will be different from what you see below):</p>
 
