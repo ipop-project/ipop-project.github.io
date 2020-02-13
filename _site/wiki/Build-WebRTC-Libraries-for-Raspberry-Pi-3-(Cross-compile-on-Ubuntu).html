@@ -264,12 +264,12 @@ gclient <span class="nb">sync</span>
 gn clean out/debug
 gn gen out/debug <span class="nt">--args</span><span class="o">=</span><span class="s1">'target_os="linux" target_cpu="arm" is_debug=true enable_iterator_debugging=false is_component_build=false is_debug=true rtc_build_wolfssl=true rtc_build_ssl=false rtc_ssl_root="/usr/local/include"'</span>
 ninja <span class="nt">-C</span> out/debug/ <span class="nt">-t</span> clean
-ninja <span class="nt">-C</span> out/debug field_trial_default protobuf_lite p2p base jsoncpp
+ninja <span class="nt">-C</span> out/debug boringssl field_trial_default protobuf_lite p2p base jsoncpp
 
 gn clean out/release
 gn gen out/release <span class="nt">--args</span><span class="o">=</span><span class="s1">'target_os="linux" target_cpu="arm" is_debug=false enable_iterator_debugging=false is_component_build=false rtc_build_wolfssl=true rtc_build_ssl=false rtc_ssl_root="/usr/local/include"'</span>
 ninja <span class="nt">-C</span> out/release/ <span class="nt">-t</span> clean
-ninja <span class="nt">-C</span> out/release field_trial_default protobuf_lite p2p base jsoncpp
+ninja <span class="nt">-C</span> out/release boring field_trial_default protobuf_lite p2p base jsoncpp
 </code></pre></div></div>
 <h2 id="extract-the-static-libraries-for-building-ipop-tincan">Extract the Static Libraries for Building IPOP Tincan</h2>
 
@@ -289,8 +289,10 @@ mkdir -p ipop-project/Tincan/external/3rd-Party-Libs/release
 </code></pre></div></div>
 
 <p><strong>Debug Libraries</strong></p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ar <span class="nt">-rcs</span> ipop-project/Tincan/external/3rd-Party-Libs/debug/libjsoncpp.a webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_reader.o webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_value.o webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_writer.o
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ar <span class="nt">-rcs</span> ipop-project/Tincan/external/3rd-Party-Libs/debug/libboringssl_asm.a webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/aes-armv4.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/bsaes-armv7.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/ghashv8-armx32.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/sha256-armv4.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/aesv8-armx32.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/chacha-armv4.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/poly1305_arm_asm.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/sha512-armv4.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/armv4-mont.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/ghash-armv4.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/sha1-armv4-large.o webrtc-checkout/src/out/debug/obj/third_party/boringssl/boringssl_asm/x25519-asm-arm.o
+ar <span class="nt">-rcs</span> ipop-project/Tincan/external/3rd-Party-Libs/debug/libjsoncpp.a webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_reader.o webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_value.o webrtc-checkout/src/out/debug/obj/third_party/jsoncpp/jsoncpp/json_writer.o
 
+<span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/third_party/boringssl/libboringssl.a ipop-project/Tincan/external/3rd-Party-Libs/debug
 <span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/webrtc/system_wrappers/libfield_trial_default.a ipop-project/Tincan/external/3rd-Party-Libs/debug
 <span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/webrtc/base/librtc_base.a ipop-project/Tincan/external/3rd-Party-Libs/debug
 <span class="nb">cp </span>webrtc-checkout/src/out/debug/obj/webrtc/base/librtc_base_approved.a ipop-project/Tincan/external/3rd-Party-Libs/debug
@@ -299,8 +301,10 @@ mkdir -p ipop-project/Tincan/external/3rd-Party-Libs/release
 </code></pre></div></div>
 
 <p><strong>Release Libraries</strong></p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ar <span class="nt">-rcs</span> ipop-project/Tincan/external/3rd-Party-Libs/release/libjsoncpp.a webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_reader.o webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_value.o webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_writer.o
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ar <span class="nt">-rcs</span> ipop-project/Tincan/external/3rd-Party-Libs/release/libboringssl_asm.a webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/aes-armv4.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/bsaes-armv7.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/ghashv8-armx32.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/sha256-armv4.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/aesv8-armx32.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/chacha-armv4.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/poly1305_arm_asm.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/sha512-armv4.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/armv4-mont.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/ghash-armv4.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/sha1-armv4-large.o webrtc-checkout/src/out/release/obj/third_party/boringssl/boringssl_asm/x25519-asm-arm.o
+ar <span class="nt">-rcs</span> ipop-project/Tincan/external/3rd-Party-Libs/release/libjsoncpp.a webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_reader.o webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_value.o webrtc-checkout/src/out/release/obj/third_party/jsoncpp/jsoncpp/json_writer.o
 
+<span class="nb">cp </span>webrtc-checkout/src/out/release/obj/third_party/boringssl/libboringssl.a ipop-project/Tincan/external/3rd-Party-Libs/release
 <span class="nb">cp </span>webrtc-checkout/src/out/release/obj/webrtc/system_wrappers/libfield_trial_default.a ipop-project/Tincan/external/3rd-Party-Libs/release
 <span class="nb">cp </span>webrtc-checkout/src/out/release/obj/webrtc/base/librtc_base.a ipop-project/Tincan/external/3rd-Party-Libs/release
 <span class="nb">cp </span>webrtc-checkout/src/out/release/obj/webrtc/base/librtc_base_approved.a ipop-project/Tincan/external/3rd-Party-Libs/release
