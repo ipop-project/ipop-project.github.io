@@ -1,0 +1,393 @@
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.5.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>IPOP</title>
+
+
+
+
+<meta name="description" content="IP-Over-P2P, Open-source User-centric Software Virtual Network">
+
+
+
+
+<meta name="author" content="">
+
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="IPOP">
+<meta property="og:title" content="IPOP">
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "IPOP",
+      "url" : null,
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--wiki">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">IPOP</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="/about/">About</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/wiki/Quick-Start">Quick Start</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/download">Download</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/learn/">Learn</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/wiki/">Wiki</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/whitepaper/">White Paper</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/contribute/">Contribute</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/contact/">Contact</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    
+
+
+
+<div id="main" role="main">
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      <section class="page__content" itemprop="text">
+
+        <aside class="sidebar__right">
+          <nav class="toc">
+            <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+            <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#run-ipop-with-docker">Run IPOP with Docker</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#install-the-dependencies">Install the Dependencies</a></li>
+<li class="toc-entry toc-h2"><a href="#create-a-docker-network-namespace">Create a Docker Network Namespace</a></li>
+<li class="toc-entry toc-h2"><a href="#create-network-folders-on-the-host-for-configuration-and-logs">Create Network Folders on the Host for Configuration and Logs</a></li>
+<li class="toc-entry toc-h2"><a href="#run-the-container">Run the Container</a></li>
+<li class="toc-entry toc-h2"><a href="#test-the-container">Test the Container</a></li>
+</ul>
+</li>
+</ul>
+          </nav>
+        </aside>
+
+        <h1 id="run-ipop-with-docker">Run IPOP with Docker</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Tested on</strong></td>
+      <td>Ubuntu 18.04 x64</td>
+    </tr>
+    <tr>
+      <td><strong>Time</strong></td>
+      <td>~ 5 Minutes</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="install-the-dependencies">Install the Dependencies</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-fsSL</span> https://download.docker.com/linux/ubuntu/gpg | <span class="nb">sudo </span>apt-key add -
+<span class="nb">sudo </span>add-apt-repository <span class="s2">"deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"</span>
+<span class="nb">sudo </span>apt-get update <span class="nt">-y</span>
+<span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">-y</span> openvswitch-switch <span class="se">\</span>
+                        python3 python3-pip python3-venv <span class="se">\</span>
+                        apt-transport-https <span class="se">\</span>
+                        ca-certificates <span class="se">\</span>
+                        curl git <span class="se">\</span>
+                        software-properties-common <span class="se">\</span>
+                        containerd.io <span class="se">\</span>
+                        docker-ce-cli <span class="se">\</span>
+                        docker-ce 
+groupadd <span class="nt">-f</span> docker
+<span class="nb">sudo </span>usermod <span class="nt">-a</span> <span class="nt">-G</span> docker <span class="nv">$USER</span>
+</code></pre></div></div>
+
+<h2 id="create-a-docker-network-namespace">Create a Docker Network Namespace</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker network create dkrnet
+</code></pre></div></div>
+
+<h2 id="create-network-folders-on-the-host-for-configuration-and-logs">Create Network Folders on the Host for Configuration and Logs</h2>
+
+<p>The example below will assume you have the following folders created:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/home/<span class="nv">$USER</span>/ipop/config
+/home/<span class="nv">$USER</span>/ipop/log/drk001
+</code></pre></div></div>
+<p>And that a valid IPOP configuration file is stored in:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/home/<span class="nv">$USER</span>/ipop/config/config-001.json
+</code></pre></div></div>
+
+<h2 id="run-the-container">Run the Container</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="nt">-v</span> /home/<span class="nv">$USER</span>/ipop/config/config-001.json:/etc/opt/ipop-vpn/config.json <span class="nt">-v</span> /home/<span class="nv">$USER</span>/ipop/log/drk001:/var/log/ipop-vpn/ <span class="nt">-v</span> <span class="nt">--rm</span> <span class="nt">--privileged</span> <span class="nt">--name</span> ipop-dkr001 <span class="nt">--network</span> dkrnet ipopproject/ipop-vpn:1.0 /sbin/init
+</code></pre></div></div>
+
+<h2 id="test-the-container">Test the Container</h2>
+
+<p>You should then be able to log in to the container and check it obtained an IPOP virtual network address (naturally, your Docker container ID and IP addresses will be different from what you see below):</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker <span class="nb">exec</span> <span class="nt">-it</span> ipop-dkr001 /bin/bash
+root@5d79c6188d03:~# ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    <span class="nb">link</span>/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+2: ipopbr1010001: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1410 qdisc noqueue state UP group default qlen 1000
+    <span class="nb">link</span>/ether 12:93:82:c2:91:e9 brd ff:ff:ff:ff:ff:ff
+    inet 10.10.10.20/24 scope global ipopbr1010001
+       valid_lft forever preferred_lft forever
+3: tnl87d62f4: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1410 qdisc fq_codel master ipopbr1010001 state UNKNOWN group default qlen 1000
+    <span class="nb">link</span>/ether 1a:dc:5e:32:aa:ac brd ff:ff:ff:ff:ff:ff
+4: tnl79e5473: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1410 qdisc fq_codel master ipopbr1010001 state UNKNOWN group default qlen 1000
+    <span class="nb">link</span>/ether 12:93:82:c2:91:e9 brd ff:ff:ff:ff:ff:ff
+14: eth0@if15: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default 
+    <span class="nb">link</span>/ether 02:42:ac:12:00:02 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 172.18.0.2/16 brd 172.18.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+root@5d79c6188d03:~# ping 10.10.10.10
+PING 10.10.10.10 <span class="o">(</span>10.10.10.10<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+64 bytes from 10.10.10.10: <span class="nv">icmp_seq</span><span class="o">=</span>2 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>41.3 ms
+64 bytes from 10.10.10.10: <span class="nv">icmp_seq</span><span class="o">=</span>3 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>43.6 ms
+64 bytes from 10.10.10.10: <span class="nv">icmp_seq</span><span class="o">=</span>4 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>45.4 ms
+</code></pre></div></div>
+
+
+
+      </section>
+    </div>
+  </article>
+
+
+  <div class="sidebar">
+    <nav class="nav__list">
+      <div class="wiki-top-links">
+        <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
+      </div>
+      
+
+    
+
+
+
+        <ul>
+  <li><strong>Deploying IPOP-VPN</strong>
+    <ul>
+      <li><a href="Quick-Start">Quick Start</a></li>
+      <li><a href="Understanding-the-IPOP-Configuration">Configuration</a></li>
+    </ul>
+  </li>
+  <li><strong>General Documentation</strong>
+    <ul>
+      <li><a href="FAQs">FAQs</a></li>
+      <li><a href="Coding-Guidelines">Coding Guidelines</a></li>
+      <li><a href="Troubleshooting">Troubleshooting</a></li>
+      <li><a href="Getting-Help">Getting Help</a></li>
+      <li><a href="How-to-Contribute">How to Contribute</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+
+      </section>
+    </div>
+  </article>
+
+
+
+</div>
+
+
+
+
+    </nav>
+  </div>
+
+
+</div>
+
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+     -->
+    <!-- <li><a href="/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
+<!--  </ul>
+</div> --> 
+
+<div class="page__footer-copyright footer-address">
+  <div class="float-left">
+    <img src="/assets/images/uf_small.png" class="padding-bottom-right" /><img src="/assets/images/nsf_small.png" class="padding-bottom-right" />
+  </div>
+  <i class="fa fa-address-card-o" aria-hidden="true"></i>
+  <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br />
+  <a href="http://www.ece.ufl.edu/" rel="nofollow" target="_blank">Department of Electrical & Computer Engineering</a><br />
+  <a href="http://www.eng.ufl.edu/" rel="nofollow" target="_blank">College of Engineering</a>, <a href="http://www.ufl.edu/" rel="nofollow" target="_blank">University of Florida</a>
+</div>
+
+<div class="page__footer-copyright footer-links">
+  <div>
+    <a href="/contact">Contact</a> | <a href="/contact/#mailing-list-subscription">Mailing List</a> | <a href="https://ipopvpn.slack.com/">Slack Channel</a> | <a href="/sitemap">Sitemap</a><br />
+    <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
+    &copy; 2020 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
+    </div>
+  </div>
+</div>
+<div class="page__footer-copyright footer-sponsor clear-both">This material is based upon work supported in part by the National Science Foundation under Grants No. 1234983, 1339737 and 1527415.</div>
+      </footer>
+    </div>
+
+    <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>
+
