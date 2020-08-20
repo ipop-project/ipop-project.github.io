@@ -1,0 +1,456 @@
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.5.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>IPOP</title>
+
+
+
+
+<meta name="description" content="IP-Over-P2P, Open-source User-centric Software Virtual Network">
+
+
+
+
+<meta name="author" content="">
+
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="IPOP">
+<meta property="og:title" content="IPOP">
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "IPOP",
+      "url" : null,
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="IPOP Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--wiki">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">IPOP</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="/about/">About</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/wiki/Quick-Start">Quick Start</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/download">Download</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/learn/">Learn</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/wiki/">Wiki</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/whitepaper/">White Paper</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/contribute/">Contribute</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/contact/">Contact</a></li>
+          
+        </ul>
+        <button><div class="navicon"></div></button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    
+
+
+
+<div id="main" role="main">
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      <section class="page__content" itemprop="text">
+
+        <aside class="sidebar__right">
+          <nav class="toc">
+            <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+            <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#understanding-the-ipop-configuration">Understanding the IPOP Configuration</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#quickstart">Quickstart</a></li>
+<li class="toc-entry toc-h2"><a href="#advanced-configuration">Advanced Configuration</a></li>
+<li class="toc-entry toc-h2"><a href="#sample-configuration-file">Sample Configuration File</a></li>
+</ul>
+</li>
+</ul>
+          </nav>
+        </aside>
+
+        <h1 id="understanding-the-ipop-configuration">Understanding the IPOP Configuration</h1>
+
+<h2 id="quickstart">Quickstart</h2>
+
+<p>There are only two required modification to the IPOP configuration file that is necessary to get started. You must add your XMPP server host/IP address, username and password to the “Signal” section of the configuration JSON file. You will also want to set an appropriate IP4 address value in BridgeController. Example:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="nl">"Signal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"Enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Overlays"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"101000F"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"HostAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmpp.host.addr"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"Port"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5222"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"Username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xmpp-id@ejabberd"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"Password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a_secure-pswd"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"AuthenticationMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PASSWORD"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="err">,</span><span class="w">
+  </span><span class="nl">"BridgeController"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"Enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Overlays"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"101000F"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OVS"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"BridgeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ipopbr"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"IP4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.10.100.101"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"PrefixLen"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"MTU"</span><span class="p">:</span><span class="w"> </span><span class="mi">1410</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"AutoDelete"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>A template can be found in the ipop installation directory /opt/ipop-vpn/sample-config.json, and should be completed and copied to /etc/opt/ipop-vpn/config.json.</p>
+
+<h2 id="advanced-configuration">Advanced Configuration</h2>
+
+<p>The IPOP configuration file uses the JSON format, and specifies the parameterized options for the various controller modules that make up the IPOP controller. A valid config.json file is required to run IPOP. The options that are of most interest and/or need to be changed are stored in this file. The controller/framework/fxlib.py contains the full set of default values in the CONFIG dictionary. This dictionary is loaded first and any values specified in config file will override them. Therefore, changes should always be made to the config.json file and not the fxlib.py file.
+The configurations tells the controller framework which modules to load and with what parameters. If a module is not specified in the configuration it is not loaded. Certain keys occur in multiple modules with the same meaning and effect. Each module has an <em>Enabled</em> key that when set to false will cause the framework to skip loading it. <em>TimerInterval</em> specifies how often a module’s timer event fires in seconds. <em>Dependencies</em> specify which modules are used a module and must be loaded before hand.</p>
+
+<p><strong>CFx</strong> - Used by the framework</p>
+<ul>
+  <li><em>NodeId</em> - hexadecimal UUID for the local node. One can specified here or left blank for the framework to generate its own.</li>
+  <li><em>Model</em> - A mnemonic  to describe customized IPOP controllers. You can develop and add your own modules, or remove or replace existing modules.</li>
+  <li><em>Overlays</em> - List of overlays UUIDs that your controller creates and manages. By default there is only one but you can add more. Each overlay is a separate L2 network and must be configured separately throughout the config file1.</li>
+  <li><em>NidFileName</em> - Fully qualified filename for storing generated Node Id.</li>
+</ul>
+
+<p><strong>Logger</strong> - The controller logger module. Used by all other modules for logging. Supports disk file and console streams.</p>
+<ul>
+  <li><em>LogLevel</em> - The detail of information to log. Values: NONE/ERROR/WARNING/INFO/DEBUG.</li>
+  <li><em>ConsoleLevel</em> - Separate logging level used for the console when device is all</li>
+  <li><em>Device</em> - The output stream to be used. Values: File/Console/All.</li>
+  <li><em>Directory</em> - The filesystem directory path to store the log files.</li>
+  <li><em>CtrlLogFileName</em> - Controller log file name</li>
+  <li><em>TincanLogFileName</em> - Tincan (data plane) log file name</li>
+  <li><em>MaxFileSize</em> - Maximum individual log file size</li>
+  <li><em>MaxArchives</em> - no of log files to archive before overwriting</li>
+</ul>
+
+<p><strong>TincanInterface</strong> - Module to abstract interacting with Tincan process</p>
+<ul>
+  <li><em>MaxReadSize</em> - Max buffer size for Tincan Messages</li>
+  <li><em>SocketReadWaitTime</em> - Socket read wait time for Tincan Messages</li>
+  <li><em>RcvServiceAddress</em> - Controller server address</li>
+  <li><em>SndServiceAddress</em> - Tincan server address</li>
+  <li><em>RcvServiceAddress6</em> - Controller server IPv6 address</li>
+  <li><em>SndServiceAddress6</em> - Tincan server IPv6 address</li>
+  <li><em>CtrlRecvPort</em> - Controller Listening Port</li>
+  <li><em>CtrlSendPort</em> - Tincan Listening Port</li>
+</ul>
+
+<p><strong>Signal</strong> - Provides signalling services for bootstrapping tunnel connections.</p>
+<ul>
+  <li><em>CacheExpiry</em> - Minimum duration in seconds that an entry remains in the Node ID -&gt; JID cache</li>
+  <li><em>Overlays</em> - A configuration for each overlay being managed by this controller
+    <ul>
+      <li><em>Overlay UUID</em> - A hexadecimal value matching one in the CFx Overlays list (see above 1)</li>
+      <li><em>HostAddress</em> - A compliant XMPP server (eg ejabberd) host/IP address</li>
+      <li><em>Port</em>: XMPP server listening network port</li>
+      <li><em>Username</em> - XMPP user name in user@host format</li>
+      <li><em>Password</em> - corresponding XMPP password, can be blank if password is stored in keyring.</li>
+      <li><em>AuthenticationMethod</em> - Use password or asymmetric key for authentication. Values: Password/x509</li>
+      <li><em>TrustStore</em> - Directory to the local root trust store</li>
+      <li><em>CertDirectory</em> - Directory where the client certificates</li>
+      <li><em>CertFile</em> - Client certificate filename</li>
+      <li><em>KeyFile</em> - Client key filename</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Topology</strong> - Module that defines and enforces the overlay topology.</p>
+<ul>
+  <li><em>Overlays</em> - A configuration for each overlay being managed by this controller
+    <ul>
+      <li><em>Overlay UUID</em> - A hexadecimal value matching one in the CFx Overlays list (see above 1)</li>
+      <li><em>Name</em> - Descriptive mnemonic .</li>
+      <li><em>Description</em> - Descriptive mnemonic .</li>
+      <li><em>EnforcedEdges</em> - Peer Ids that a tunnel should be created to, eg., [ “12345”, 12346”, 12347” ].</li>
+      <li><em>ManualTopology</em> - Should the topology only create enforced edges. Values true/false (default)</li>
+      <li><em>PeerDiscoveryCoalesce</em> - The number of new peer notifications to wait on before attempting to update the overlay edges. If this threshold is not reached the overlay will be refreshed on its periodic <em>TimerInterval</em>.</li>
+      <li><em>MaxSuccessors</em> - Maximum number of successors links to create. These are outgoing links to the next peer in the overlay’s ring.</li>
+      <li><em>MaxLongDistEdges</em> - Maximum number of outgoing long distance edges to initiate.</li>
+      <li><em>MaxConcurrentEdgeSetup</em> - Maximum number of edges to be created concurrently. Prevents the stampede effect when joining an existing large overlay.</li>
+      <li><em>Role</em> - Switch (if this node will perform switching operations and accept incoming connection requests), or Leaf (if it is a client/edge device that will connect to switch node, and reject any incoming requests for an edge).</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>LinkManager</strong> - Creates and manages the WebRTC based links between peers.</p>
+<ul>
+  <li><em>Stun</em> - List of STUN server addresses in format address:port</li>
+  <li><em>Turn</em> - List of dictionaries which specify the TURN server and corresponding credentials.
+    <ul>
+      <li><em>Address</em> - TURN server host/IP address and port in format address:port</li>
+      <li><em>User</em> - TURN user name</li>
+      <li><em>Password</em> - Corresponding TURN password.</li>
+    </ul>
+  </li>
+  <li><em>Overlays</em> - A configuration for each overlay being managed by this controller
+    <ul>
+      <li><em>Overlay UUID</em> - A hexadecimal value matching one in the CFx Overlays list (see above 1)</li>
+      <li><em>Type</em> - Should only be TUNNEL</li>
+      <li><em>TapName</em> - The prefix used for creating the IPOP TAP devices. The first 7 chars of the link ID are appended.</li>
+      <li><em>IgnoredNetInterfaces</em> - List of TAP device names that should not be used for tunneling. No CAS endpoints points bound to these network interfaces will be generated.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>BridgeController</strong> - Module that manages the network bridge interaction with the IPOP TAP devices.</p>
+<ul>
+  <li><em>Overlays</em> - A configuration for each overlay being managed by this controller
+    <ul>
+      <li><em>Overlay UUID</em> - A hexadecimal value matching one in the CFx Overlays list (see above 1)</li>
+      <li><em>Type</em> - The type of network bridge to instantiate, the Linux bridge and Openvswitch are supported. Values: LXBR/OVS/VNIC. Set this value to VNIC if Topology’s Role is set to Leaf.</li>
+      <li><em>BridgeName</em> - Mnemonic used for naming the bridge instance.</li>
+      <li><em>IP4</em> - The IPv4 address to assign to the bridge. This is an optional parameter, if your deployment does not require assigning an IP configuration to the bridge it can be omitted.</li>
+      <li><em>PrefixLen</em> - The network prefix length to apply to the bridge. (Optional parameter)</li>
+      <li><em>MTU</em> - The maximum transmission unit size to be applied to the bridge. Optional parameter, IPOP sets an MTU of 1410.</li>
+      <li><em>AutoDelete</em> - Remove the bridge device that was specified when the controller shuts down. Values: True/False (default)</li>
+      <li><em>STP</em> - Enable or disable Spanning Tree Protocol on the IPOP bridge device.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>OverlayVisualizer</strong> - Module which collects overlay network status and metrics and transmits it to the collector web service.</p>
+<ul>
+  <li><em>WebServiceAddress</em> - The host/IP address of the collector and visualization web service, in the format address:port.</li>
+  <li><em>NodeName</em> - A user provided descriptive mnemonic that is used for labeling the node in the visualization browser UI.</li>
+</ul>
+
+<p><strong>UsageReport</strong> - Module that collects and transmits anonymized usage data necessary for reporting to NSF per funding agreement. If you do not wish to participate, set the module’s Enabled key to false. There is no other parameter to configure.</p>
+
+<h2 id="sample-configuration-file">Sample Configuration File</h2>
+
+<p>A sample configuration file is available <a href="https://raw.githubusercontent.com/ipop-project/Controllers/master/controller/template-config.json">here</a>.</p>
+
+
+
+      </section>
+    </div>
+  </article>
+
+
+  <div class="sidebar">
+    <nav class="nav__list">
+      <div class="wiki-top-links">
+        <a href="../wiki" class="display-unset">Wiki Home</a> / <a href="../wikipages" class="display-unset">Wiki Pages</a>
+      </div>
+      
+
+    
+
+
+
+        <ul>
+  <li><strong>Deploying IPOP-VPN</strong>
+    <ul>
+      <li><a href="Quick-Start">Quick Start</a></li>
+      <li><a href="Understanding-the-IPOP-Configuration">Configuration</a></li>
+    </ul>
+  </li>
+  <li><strong>General Documentation</strong>
+    <ul>
+      <li><a href="FAQs">FAQs</a></li>
+      <li><a href="Coding-Guidelines">Coding Guidelines</a></li>
+      <li><a href="Troubleshooting">Troubleshooting</a></li>
+      <li><a href="Getting-Help">Getting Help</a></li>
+      <li><a href="How-to-Contribute">How to Contribute</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+
+      </section>
+    </div>
+  </article>
+
+
+
+</div>
+
+
+
+
+    </nav>
+  </div>
+
+
+</div>
+
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+     -->
+    <!-- <li><a href="/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li> -->
+<!--  </ul>
+</div> --> 
+
+<div class="page__footer-copyright footer-address">
+  <div class="float-left">
+    <img src="/assets/images/uf_small.png" class="padding-bottom-right" /><img src="/assets/images/nsf_small.png" class="padding-bottom-right" />
+  </div>
+  <i class="fa fa-address-card-o" aria-hidden="true"></i>
+  <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>, P.O. Box 116200, 339 Larsen Hall, Gainesville, FL 32611-6200; 352.392.4964<br />
+  <a href="http://www.ece.ufl.edu/" rel="nofollow" target="_blank">Department of Electrical & Computer Engineering</a><br />
+  <a href="http://www.eng.ufl.edu/" rel="nofollow" target="_blank">College of Engineering</a>, <a href="http://www.ufl.edu/" rel="nofollow" target="_blank">University of Florida</a>
+</div>
+
+<div class="page__footer-copyright footer-links">
+  <div>
+    <a href="/contact">Contact</a> | <a href="/contact/#mailing-list-subscription">Mailing List</a> | <a href="https://ipopvpn.slack.com/">Slack Channel</a> | <a href="/sitemap">Sitemap</a><br />
+    <div>Powered by <a href="http://jekyllrb.com" rel="nofollow" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow" target="_blank">Minimal Mistakes</a><br />
+    &copy; 2020 IPOP - <a href="http://www.acis.ufl.edu" rel="nofollow" target="_blank">ACIS Lab</a>
+    </div>
+  </div>
+</div>
+<div class="page__footer-copyright footer-sponsor clear-both">This material is based upon work supported in part by the National Science Foundation under Grants No. 1234983, 1339737 and 1527415.</div>
+      </footer>
+    </div>
+
+    <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+  </body>
+</html>
+
